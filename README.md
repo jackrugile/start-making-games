@@ -132,6 +132,7 @@
 
 ---
 
+# Miscellaneous
 - easy to get started, difficult to master
 - math plays a role
 - don't need to know it all
