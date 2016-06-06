@@ -2,16 +2,41 @@
 
 # Game Dev for the Front End Dev
 
-## Part 1: Intro
+## I: Intro (Who the heck?)
 
-## Part 2: Game Dev Rules
-#### The Ultimate Creative Expression
+### By Day
 
-## Part 3: Build a Game
+#### Jack Rugile
+- Front End Developer at The Firm Graphics
+- 28 year old introverted Virgo
+- Loves sandwiches, cookies, pizza, and beer
+- @jackrugile on all the things
 
-## Part 4: Endless Possibilities
 
-## Part 5: Go Make a Game
+### By Night
+
+#### Jack Rugile (still)
+
+## II: Game Dev Rules
+
+### The Ultimate Creative Expression
+
+## III: Build a Game
+
+### The DOM (The tools you know and love)
+
+	
+## IV: Endless Possibilities
+
+## V: Go Make a Game
+
+### Resources
+
+#### Go To jackrugile.com/game-dev-resources
+
+### Tutorials
+
+### Game Jams
 
 making a game with css and js
 
@@ -66,4 +91,15 @@ then code with visual explanation of game
 all web based
 bring in speakers to ensure sound is synced
 clap joke where sound is delayed?
+
+
+---
+
+# Tech Notes
+- 16:9 or 4:3
+- High contrast mode
+- Swapped lightness mode
+- Control with keyboard and gamepad
+- Limit raster images (none if possible)
+- Keep it somewhat classy, but still funny. Avoid GIFs.
 
