@@ -23,22 +23,26 @@
 - Get you to start making games
 - Already do? Make more games. Make better games.
 
-## II: Game Dev is Awesome
+## II: Game Dev is Amazing
+
+### It's also painful, frustrating, exhausting
+
+### But mainly it's amazing!
 
 ### The Ultimate Creative Expression
-- Graphics
+- Visual Art / Graphics
 - Animation
 - Sound
 - Music
 - Interactivity
 - User Interface
-- Story
+- Story / Writing / Dialogue
 - Cinematography
 - Artifical Intelligence
 
-### Being able to control something on the screen and have an effect on the game world is pretty damn delightful.
+### Being able to control something on the screen and have an effect on the game world is pretty gosh darn delightful.
 
-## III: Build a Game
+## III: Let's Build a Game
 
 ### What We're Making
 
@@ -56,15 +60,32 @@
 ### JS: Game Logic
 
 ### AABB Collision Detection
-
 	
 ## IV: Endless Possibilities
+
+- shooting multiple balls at you
+- trying to avoid the balls
+- change the level for round pong
+- add characters
+- change setting
+- add powerups
+- add effects
+- add sound
+- add music
+- add achievements
+- control 2 at once
+- add weather
+- add spike move
+- add increasing ai difficulty
+- particles
+- screenshake
+- light flashes
 
 ## V: Go Make a Game
 
 ### Remix or Innovate, it doesn't matter
 
-- Whether modifying a classic or building a brand new game, always put your own twist or flavor into it
+- Whether modifying a classic or building a brand new game,  put your own twist or flavor into it
 
 ### Start small, build working prototypes that demonstrate the core game mechanic. See if it's fun before committing to the long haul.
 
@@ -75,37 +96,6 @@
 ### Tutorials
 
 ### Game Jams
-
-a simple example, a starting point
-    where to go from here - create your own concepts
-        everything is a remix - modify the classics
-        build off initial pong game (premade demos, showing only concepts
-            shooting multiple balls at you
-            trying to avoid the balls
-            change the level for round pong
-            add characters
-            change setting
-            add powerups
-            add effects
-            add sound
-            add music
-            add achievements
-Control 2 at once
-    mention game jams
-easy to get started, difficult to master
-math plays a role
-don't need to know it all
-hide it away in a utility/helper function
-pythagoreans theorem? totally useful!
-I don't learn all the math because of pythagoreasons
-
-show "where" we are when zoomed in on code
-
-add weather
-add spike
-add increasing ai difficulty
-
-
 
 ---
 
@@ -139,3 +129,13 @@ add increasing ai difficulty
 - Game jams
 - Denver MeetUps
 - Canvas and DOM versions available after
+
+---
+
+- easy to get started, difficult to master
+- math plays a role
+- don't need to know it all
+- hide it away in a utility/helper function
+- pythagoreans theorem? totally useful!
+- I don't learn all the math because of pythagoreasons
+- show "where" we are when zoomed in on code
