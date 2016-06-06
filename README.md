@@ -12,10 +12,12 @@
 - Loves sandwiches, cookies, pizza, and beer
 - @jackrugile on all the things
 
-
 ### By Night
 
 #### Jack Rugile (still)
+- Hobby HTML5 Game Developer
+- Game Jammer
+- CodePen Demo Maker
 
 ## II: Game Dev Rules
 
@@ -23,7 +25,16 @@
 
 ## III: Build a Game
 
-### The DOM (The tools you know and love)
+### What We're Making
+
+#### Pong! 
+- Cosmic Paddle Warfare 2084: Wimbledon in Ruins
+- The Medieval Racketeer: A Tale from Love to Deuce
+- Volley of the Vikings: A Quest for Valhalla
+
+#### The DOM (The tools you know and love)
+
+### AABB Collision Detection
 
 	
 ## IV: Endless Possibilities
@@ -88,10 +99,15 @@ artificial fetching joke about dog and electric fence
 use game controller to control
 code with playing demo or gif
 then code with visual explanation of game
-all web based
-bring in speakers to ensure sound is synced
-clap joke where sound is delayed?
 
+---
+
+# Slide Notes
+- New part introduction (swapped colors?)
+- General text slide
+- Code slide
+- Demo slide
+- Code/Demo slide
 
 ---
 
@@ -102,4 +118,7 @@ clap joke where sound is delayed?
 - Control with keyboard and gamepad
 - Limit raster images (none if possible)
 - Keep it somewhat classy, but still funny. Avoid GIFs.
+- Simple transition between slides, hopefully not page reload
+- Test thoroughly on laptop for performance, fullscreen, and sound
+- Bring speakers in case sound is out of sync with visuals
 
