@@ -63,29 +63,35 @@
 	
 ## IV: Endless Possibilities
 
+### Gameplay Changes
 - shooting multiple balls at you
 - trying to avoid the balls
 - change the level for round pong
+- add powerups
+- add spike move
+- add increasing ai difficulty
+
+### Non-Gameplay Changes
 - add characters
 - change setting
-- add powerups
 - add effects
 - add sound
 - add music
-- add achievements
-- control 2 at once
 - add weather
-- add spike move
-- add increasing ai difficulty
 - particles
-- screenshake
+- random screenshake
+- accurate screenshake
 - light flashes
+- slow motion
+- trails
+- use svg for lines?
+- all together
 
 ## V: Go Make a Game
 
 ### Remix or Innovate, it doesn't matter
 
-- Whether modifying a classic or building a brand new game,  put your own twist or flavor into it
+- Whether modifying a classic or building a brand new game, put your own twist or flavor into it
 
 ### Start small, build working prototypes that demonstrate the core game mechanic. See if it's fun before committing to the long haul.
 
