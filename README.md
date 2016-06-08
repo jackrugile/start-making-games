@@ -120,6 +120,8 @@
 - Simple transition between slides, hopefully not page reload
 - Test thoroughly on laptop for performance, fullscreen, and sound
 - Bring speakers in case sound is out of sync with visuals
+- Opacity animations are causing the text to snap into a different mode (px shift)
+- Option for audio calibration?
 
 ---
 
@@ -132,6 +134,12 @@
 
 ---
 
+# Credits
+
+- [Juice it or lose it - a talk by Martin Jonasson & Petri Purho](https://www.youtube.com/watch?v=Fy0aCDmgnxg)
+
+---
+
 # Miscellaneous
 - easy to get started, difficult to master
 - math plays a role
@@ -140,3 +148,10 @@
 - pythagoreans theorem? totally useful!
 - I don't learn all the math because of pythagoreasons
 - show "where" we are when zoomed in on code
+
+---
+
+# Alt Idea - All Game Concepts With The DOM
+
+
+
