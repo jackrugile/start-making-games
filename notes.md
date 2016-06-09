@@ -60,7 +60,7 @@
 
 ### What We're Making
 
-#### Pong! 
+#### Bare Bones Pong! 
 - Cosmic Paddle Warfare 2084: Wimbledon in Ruins
 - The Medieval Racketeer: A Tale from Love to Deuce
 - Volley of the Vikings: A Quest for Valhalla
@@ -128,6 +128,36 @@
 
 ### Game Jams
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ---
 
 # Slide Notes
@@ -153,6 +183,8 @@
 - Bring speakers in case sound is out of sync with visuals
 - Opacity animations are causing the text to snap into a different mode (px shift)
 - Option for audio calibration?
+- Pause button
+- Pause / Step function?
 
 ---
 
@@ -189,7 +221,33 @@
 - Game Dev using the DOM
 - Web Dev to Game Dev
 - Build Games, Not Websites
+- Get Into Game Dev
+- Start Making Games
+- Start Developing Games
+- The Joys of Game Development
+- Game Dev Fundamentals
+- Game Dev Basics
+- The Win Condition
+- Object of the Game
+- Object of the Game Dev
+- Collision Detected
+- A Web Dev's Intro to Game Dev
+- Intro to Game Dev for the Web Dev
+- From Web Dev to Game Dev
+- An Intro to Game Dev for The Web Dev
 
 ---
 
 # Pitches
+
+## Pitch 1
+
+Game development is an incredibly fun and challenging hobby that every developer should try. Creating a game requires you to merge artistic, logical, and playful parts of your thought process into one cohesive expression. It's the perfect next step for web developers because they already have the tools and skills they need to get started. My goal is to encourage you to start your game development journey.
+
+Here's what you can expect from this talk:
+
+- Learn why games are the ultimate creative expression and that every developer should explore.
+- Examine the similarities and natural progression between web development and game development.
+- Walk through fundamental core game development concepts through the creation of a bare bones classic game.
+- Demo various game dev enhancements that can bring games to life.
+- Get inspired to start making games!
