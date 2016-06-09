@@ -56,6 +56,7 @@ Scripts
 
 gulp.task( 'scripts', function() {
 	gulp.src( 'src/js/**/*' )
+	.pipe( p.uglify() )
 	.pipe( gulp.dest( 'js' ) )
 	.pipe( p.notify( 'Gulp Scripts Task Completed' ) );
 });

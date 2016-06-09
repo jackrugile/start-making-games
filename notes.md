@@ -44,6 +44,20 @@
 
 ## III: Let's Build a Game
 
+### Similarities between Front End Dev and Game Dev
+
+#### performance is key
+- framerate
+- load time
+
+#### use analytics to improve your game
+- how many people beat it?
+- which levels to people quit at?
+- which control scheme is most used?
+- when do people play?
+- how many people mute the game?
+- how many people are experiencing a low frame rate?
+
 ### What We're Making
 
 #### Pong! 
@@ -52,6 +66,10 @@
 - Volley of the Vikings: A Quest for Valhalla
 
 #### The DOM (The tools you know and love)
+
+### Coordinate System
+
+### Drawing from Top Left of Shapes
 
 ### HTML: Set the Stage
 
@@ -63,6 +81,8 @@
 	
 ## IV: Endless Possibilities
 
+### Explain Juice / Polish
+
 ### Gameplay Changes
 - shooting multiple balls at you
 - trying to avoid the balls
@@ -70,8 +90,12 @@
 - add powerups
 - add spike move
 - add increasing ai difficulty
+- add graphics that help the player visualize certain behaviors
+	- add edges to paddles to reflect collision detection
+- illustrate benefits of good hitboxes vs bad hitboxes
 
 ### Non-Gameplay Changes
+- colors
 - add characters
 - change setting
 - add effects
@@ -85,6 +109,7 @@
 - slow motion
 - trails
 - use svg for lines?
+- goo filter
 - all together
 
 ## V: Go Make a Game
@@ -157,7 +182,14 @@
 
 ---
 
-# Alt Idea - All Game Concepts With The DOM
+# Alt Titles
 
+- Game Dev for the Web Dev
+- Game Dev for the Front End Dev
+- Game Dev using the DOM
+- Web Dev to Game Dev
+- Build Games, Not Websites
 
+---
 
+# Pitches
