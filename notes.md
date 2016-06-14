@@ -77,6 +77,8 @@
 
 ### JS: Game Logic
 
+### Not making Skynet
+
 ### AABB Collision Detection
 	
 ## IV: Endless Possibilities
@@ -127,36 +129,6 @@
 ### Tutorials
 
 ### Game Jams
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 ---
 
