@@ -72,7 +72,7 @@ $color-subdued: #666;
 }
 
 body {
-	background: $color-bg;
+	background: $color-bg !important;
 	color: $color-primary;
 	font: 400 100%/1.5 'Lato', sans-serif;
 	min-height: 100vh;
@@ -184,4 +184,8 @@ h1 {
 		transform: rotate( 45deg );
 		width: 60%;
 	}
+}
+
+canvas {
+	display: none;
 }

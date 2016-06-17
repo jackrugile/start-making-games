@@ -7,11 +7,11 @@ var slide = document.querySelector( '.slide' ),
 	scaleMax = Infinity,
 	scale,
 	scaleOutline,
-	keyCodes = {
-		up: [ 38, 87 ],
-		right: [ 39, 68 ],
-		down: [ 40, 83 ],
-		left: [ 37, 65 ]
+	keyMap = {
+		up: [ 'up', 'w' ],
+		right: [ 'right', 'd' ],
+		down: [ 'down', 's' ],
+		left: [ 'left', 'a' ]
 	},
 	keys = {
 		up: 0,
@@ -24,7 +24,7 @@ var slide = document.querySelector( '.slide' ),
 		right: document.querySelector( '.dir-right' ),
 		down: document.querySelector( '.dir-down' ),
 		left: document.querySelector( '.dir-left' )
-	}
+	};
 
 function setScale() {
 	if( innerWidth > innerHeight / slideRatio ) {
@@ -42,32 +42,33 @@ function onResize( e ) {
 	setScale();
 }
 
-function onKeydown( e ) {
-	if(      keyCodes.up.indexOf( e.which ) > -1 ) { keys.up = 1; }
-	else if( keyCodes.right.indexOf( e.which ) > -1 ) { keys.right = 1; }
-	else if( keyCodes.down.indexOf( e.which ) > -1 ) { keys.down = 1; }
-	else if( keyCodes.left.indexOf( e.which ) > -1 ) { keys.left = 1; }
-	
-	if(      keyCodes.up.indexOf( e.which ) > -1 ) { dirs.up.classList.add( 'is-active' ); }
-	else if( keyCodes.right.indexOf( e.which ) > -1 ) { dirs.right.classList.add( 'is-active' ); }
-	else if( keyCodes.down.indexOf( e.which ) > -1 ) { dirs.down.classList.add( 'is-active' ); }
-	else if( keyCodes.left.indexOf( e.which ) > -1 ) { dirs.left.classList.add( 'is-active' ); }
-}
-
-function onKeyup( e ) {
-	if(      keyCodes.up.indexOf( e.which ) > -1 ) { keys.up = 0; }
-	else if( keyCodes.right.indexOf( e.which ) > -1 ) { keys.right = 0; }
-	else if( keyCodes.down.indexOf( e.which ) > -1 ) { keys.down = 0; }
-	else if( keyCodes.left.indexOf( e.which ) > -1 ) { keys.left = 0; }
-	
-	if(      keyCodes.up.indexOf( e.which ) > -1 ) { dirs.up.classList.remove( 'is-active' ); }
-	else if( keyCodes.right.indexOf( e.which ) > -1 ) { dirs.right.classList.remove( 'is-active' ); }
-	else if( keyCodes.down.indexOf( e.which ) > -1 ) { dirs.down.classList.remove( 'is-active' ); }
-	else if( keyCodes.left.indexOf( e.which ) > -1 ) { dirs.left.classList.remove( 'is-active' ); }
-}
-
 addEventListener( 'resize', onResize );
-addEventListener( 'keydown', onKeydown );
-addEventListener( 'keyup', onKeyup );
+
+playground({
+	keydown: function( e ) {
+		if(      keyMap.up.indexOf( e.key ) > -1 )    { keys.up = 1; dirs.up.classList.add( 'is-active' ); }
+		else if( keyMap.right.indexOf( e.key ) > -1 ) { keys.right = 1; dirs.right.classList.add( 'is-active' ); }
+		else if( keyMap.down.indexOf( e.key ) > -1 )  { keys.down = 1; dirs.down.classList.add( 'is-active' ); }
+		else if( keyMap.left.indexOf( e.key ) > -1 )  { keys.left = 1; dirs.left.classList.add( 'is-active' ); }
+	},
+	keyup: function( e ) {
+		if(      keyMap.up.indexOf( e.key ) > -1 )    { keys.up = 0; dirs.up.classList.remove( 'is-active' ); }
+		else if( keyMap.right.indexOf( e.key ) > -1 ) { keys.right = 0; dirs.right.classList.remove( 'is-active' ); }
+		else if( keyMap.down.indexOf( e.key ) > -1 )  { keys.down = 0; dirs.down.classList.remove( 'is-active' ); }
+		else if( keyMap.left.indexOf( e.key ) > -1 )  { keys.left = 0; dirs.left.classList.remove( 'is-active' ); }
+	},
+	gamepaddown: function( e ) {
+		if(      keyMap.up.indexOf( e.button ) > -1 )    { keys.up = 1; dirs.up.classList.add( 'is-active' ); }
+		else if( keyMap.right.indexOf( e.button ) > -1 ) { keys.right = 1; dirs.right.classList.add( 'is-active' ); }
+		else if( keyMap.down.indexOf( e.button ) > -1 )  { keys.down = 1; dirs.down.classList.add( 'is-active' ); }
+		else if( keyMap.left.indexOf( e.button ) > -1 )  { keys.left = 1; dirs.left.classList.add( 'is-active' ); }
+	},
+	gamepadup: function( e ) {
+		if(      keyMap.up.indexOf( e.button ) > -1 )    { keys.up = 0; dirs.up.classList.remove( 'is-active' ); }
+		else if( keyMap.right.indexOf( e.button ) > -1 ) { keys.right = 0; dirs.right.classList.remove( 'is-active' ); }
+		else if( keyMap.down.indexOf( e.button ) > -1 )  { keys.down = 0; dirs.down.classList.remove( 'is-active' ); }
+		else if( keyMap.left.indexOf( e.button ) > -1 )  { keys.left = 0; dirs.left.classList.remove( 'is-active' ); }
+	}
+});
 
 setScale();

@@ -54,12 +54,48 @@ gulp.task( 'styles', function() {
 Scripts
 ==============================================================================*/
 
-gulp.task( 'scripts', function() {
-	gulp.src( 'src/js/**/*' )
-	.pipe( p.uglify() )
-	.pipe( gulp.dest( 'js' ) )
-	.pipe( p.notify( 'Gulp Scripts Task Completed' ) );
+gulp.task( 'scripts1', function() {
+	return gulp.src( [ 'src/js/*.js', '!src/js/imports.js',] )
+		.pipe( p.jshint() )
+		.pipe( p.jshint.reporter( 'default') );
 });
+
+gulp.task( 'scripts2', [ 'scripts1' ], function() {
+	return gulp.src( 'src/js/lib/imports.js' )
+		.pipe( p.imports() )
+		.pipe( p.uglify() )
+		.pipe( p.rename( 'imports.lib.min.js' ) )
+		.pipe( gulp.dest( 'temp' ) );
+});
+
+gulp.task( 'scripts3', [ 'scripts2' ], function() {
+	return gulp.src( 'src/js/imports.js' )
+		.pipe( p.imports() )
+		.pipe( p.uglify() )
+		.on( 'error', handleError )
+		.pipe( p.rename( 'imports.min.js' ) )
+		.pipe( gulp.dest( 'temp' ) );
+});
+
+gulp.task( 'scripts4', [ 'scripts3' ], function() {
+	return gulp.src( [ 'temp/imports.lib.min.js', 'temp/imports.min.js' ] )
+		.pipe( p.concat( 'main.min.js') )
+		.pipe( gulp.dest( 'js' ) );
+});
+
+gulp.task( 'scripts5', [ 'scripts4' ], function() {
+	return gulp.src( 'temp', {
+			read: false
+		})
+		.pipe( p.rimraf() );
+});
+
+gulp.task( 'scripts', [ 'scripts5' ], function() {
+	return gulp.src( 'src/js/lib/modernizr.min.js' )
+		.pipe( gulp.dest( 'js' ) )
+		.pipe( p.notify( 'Gulp Scripts Task Complete' ) );
+});
+
 
 /*==============================================================================
 Images
