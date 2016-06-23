@@ -95,6 +95,7 @@
 - add graphics that help the player visualize certain behaviors
 	- add edges to paddles to reflect collision detection
 - illustrate benefits of good hitboxes vs bad hitboxes
+- play against yourself
 
 ### Non-Gameplay Changes
 - colors
@@ -112,6 +113,7 @@
 - trails
 - use svg for lines?
 - goo filter
+- add stats
 - all together
 
 ## V: Go Make a Game
@@ -172,6 +174,9 @@
 # Credits
 
 - [Juice it or lose it - a talk by Martin Jonasson & Petri Purho](https://www.youtube.com/watch?v=Fy0aCDmgnxg)
+- [Jan Willem Nijman - Vlambeer - "The art of screenshake"](https://www.youtube.com/watch?v=AJdEqssNZ-U)
+- [The Creative Coding Podcast - 53 – Iain’s guide to Game Design!](http://creativecodingpodcast.com/53-iains-guide-to-game-design/)
+- [Game Mechanic Explorer by John Watson](http://gamemechanicexplorer.com/)
 
 ---
 
