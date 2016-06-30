@@ -1,6 +1,6 @@
 ##### Develop Denver 2016
 
-# Game Dev for the Front End Dev
+# Start Making Games
 
 ## I: Intro (Who the heck?)
 
@@ -45,6 +45,9 @@
 ## III: Let's Build a Game
 
 ### Similarities between Front End Dev and Game Dev
+
+#### context/position aware
+- use TD game as example
 
 #### performance is key
 - framerate
@@ -171,12 +174,34 @@
 
 ---
 
-# Credits
+# Credits and Resources
 
+## Talks
 - [Juice it or lose it - a talk by Martin Jonasson & Petri Purho](https://www.youtube.com/watch?v=Fy0aCDmgnxg)
 - [Jan Willem Nijman - Vlambeer - "The art of screenshake"](https://www.youtube.com/watch?v=AJdEqssNZ-U)
-- [The Creative Coding Podcast - 53 – Iain’s guide to Game Design!](http://creativecodingpodcast.com/53-iains-guide-to-game-design/)
+- [The Creative Coding Podcast - 53 – Iain's guide to Game Design!](http://creativecodingpodcast.com/53-iains-guide-to-game-design/)
+
+## Tutorials
 - [Game Mechanic Explorer by John Watson](http://gamemechanicexplorer.com/)
+- [Foundation HTML5 Animation with JavaSCript](https://www.amazon.com/dp/1430236655)
+- [Coding Math - Keith Peters](https://www.youtube.com/user/codingmath)
+- [Coding Rainbow - Daniel Shiffman](https://www.youtube.com/channel/UCvjgXvBlbQiydffZU7m1_aw)
+
+## Tools
+- [CodePen](http://codepen.io/)
+- [Playground.js](http://playgroundjs.com/)
+- [Bfxr](http://www.bfxr.net/)
+
+## People
+- [Justin Gitlin - @cacheflowe](http://twitter.com/cacheflowe)
+- [Keith Peters - @bit101](http://twitter.com/bit101)
+- [Przemysław Sikorski - @rezoner](http://twitter.com/rezoner)
+
+## Competitions and Challenges
+- [js13k](http://js13kgames.com/)
+- [js1k](http://js1k.com/)
+- [Ludum Dare](http://ludumdare.com/compo/)
+- [#1GAM - One Game a Month](http://onegameamonth.com/)
 
 ---
 
@@ -188,43 +213,3 @@
 - pythagoreans theorem? totally useful!
 - I don't learn all the math because of pythagoreasons
 - show "where" we are when zoomed in on code
-
----
-
-# Alt Titles
-
-- Game Dev for the Web Dev
-- Game Dev for the Front End Dev
-- Game Dev using the DOM
-- Web Dev to Game Dev
-- Build Games, Not Websites
-- Get Into Game Dev
-- Start Making Games
-- Start Developing Games
-- The Joys of Game Development
-- Game Dev Fundamentals
-- Game Dev Basics
-- The Win Condition
-- Object of the Game
-- Object of the Game Dev
-- Collision Detected
-- A Web Dev's Intro to Game Dev
-- Intro to Game Dev for the Web Dev
-- From Web Dev to Game Dev
-- An Intro to Game Dev for The Web Dev
-
----
-
-# Pitches
-
-## Pitch 1
-
-Game development is an incredibly fun and challenging hobby that every developer should try. Creating a game requires you to merge artistic, logical, and playful parts of your thought process into one cohesive expression. It's the perfect next step for web developers because they already have the tools and skills they need to get started. My goal is to encourage you to start your game development journey.
-
-Here's what you can expect from this talk:
-
-- Learn why games are the ultimate creative expression and that every developer should explore.
-- Examine the similarities and natural progression between web development and game development.
-- Walk through fundamental core game development concepts through the creation of a bare bones classic game.
-- Demo various game dev enhancements that can bring games to life.
-- Get inspired to start making games!

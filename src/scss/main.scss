@@ -34,10 +34,10 @@ $height: 1080px;
 
 // 4:3
 // $width: 1920px;
- $height: 1440px;
+//$height: 1440px;
 
 // spacing
-$padding: 200px;
+$padding: ceil( $width * 0.1 );
 
 // color set 1
 $color-bg: #101215;
@@ -47,18 +47,18 @@ $color-accent: #f34;
 $color-subdued: #4c6381;
 
 // color set 2
-$color-bg: #000;
-$color-slide-bg: #fff;
-$color-primary: #333;
-$color-accent: #f34;
-$color-subdued: #999;
+// $color-bg: #000;
+// $color-slide-bg: #fff;
+// $color-primary: #333;
+// $color-accent: #f34;
+// $color-subdued: #999;
 
 // color set 3
-$color-bg: #000;
-$color-slide-bg: #202020;
-$color-primary: #fff;
-$color-accent: #ff3344;
-$color-subdued: #666;
+// $color-bg: #1c1c1c;
+// $color-slide-bg: #1c1c1c;
+// $color-primary: #fff;
+// $color-accent: #ff3344;
+// $color-subdued: #666;
 
 // color set 4
 // $color-bg: #000;
@@ -99,7 +99,7 @@ h1 {
 	font-size: 9em;
 	font-weight: 900;
 	letter-spacing: -0.025em;
-	line-height: 1.2;
+	line-height: 1;
 	span {
 		color: $color-accent;
 	}
