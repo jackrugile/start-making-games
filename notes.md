@@ -10,7 +10,8 @@
 - Front End Developer at The Firm Graphics
 - 28 year old introverted Virgo
 - Loves sandwiches, cookies, pizza, and beer
-- @jackrugile on all the things
+- Approaches most things like ¯\\_(ツ)_/¯
+- @jackrugile on The Internet
 
 ### By Night
 
@@ -84,7 +85,7 @@
 
 ### AABB Collision Detection
 	
-## IV: Endless Possibilities
+## IV: Game Juice / Polish: Enhance That
 
 ### Explain Juice / Polish
 
@@ -99,6 +100,7 @@
 	- add edges to paddles to reflect collision detection
 - illustrate benefits of good hitboxes vs bad hitboxes
 - play against yourself
+- influence ball trajectory by moving paddle
 
 ### Non-Gameplay Changes
 - colors
@@ -108,12 +110,18 @@
 - add sound
 - add music
 - add weather
+- rotate ball based on direction
+- dynamic sound that is affected by the game pieces! paddles and ball
 - particles
+	- channel bob ross
+	- happy little trees = happy little particles
+- user video as background (reactions)
 - random screenshake
 - accurate screenshake
 - light flashes
 - slow motion
 - trails
+- 3d stransform based on ball pos
 - use svg for lines?
 - goo filter
 - add stats
@@ -126,6 +134,10 @@
 - Whether modifying a classic or building a brand new game, put your own twist or flavor into it
 
 ### Start small, build working prototypes that demonstrate the core game mechanic. See if it's fun before committing to the long haul.
+
+### In the end, tools don't matter
+
+- any medium is fine, just do it. dom, canvas, gamemaker, unity, board game, etc.
 
 ### Resources
 
@@ -213,3 +225,5 @@
 - pythagoreans theorem? totally useful!
 - I don't learn all the math because of pythagoreasons
 - show "where" we are when zoomed in on code
+- whole journey that other game developers have experience that you get to experience too
+	- even if you weren't the one to invent or discover a concept, it still feels great to understand it and implement it in your own way

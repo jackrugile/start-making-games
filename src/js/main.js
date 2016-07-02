@@ -25,7 +25,7 @@ var slide = document.querySelector( '.slide' ),
 		down: document.querySelector( '.dir-down' ),
 		left: document.querySelector( '.dir-left' )
 	};
-
+// plwfefew
 function setScale() {
 	if( innerWidth > innerHeight / slideRatio ) {
 		scale = innerHeight / slideRatio / slideWidth;

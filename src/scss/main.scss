@@ -39,48 +39,78 @@ $height: 1080px;
 // spacing
 $padding: ceil( $width * 0.1 );
 
-// color set 1
-$color-bg: #101215;
-$color-slide-bg: #151c27;
-$color-primary: #f4ecd0;
-$color-accent: #f34;
-$color-subdued: #4c6381;
+$colors1: (
+	bg: #101215,
+	slide-bg: #151c27,
+	primary: #f4ecd0,
+	accent: #f34,
+	subdued: #4c6381
+);
 
-// color set 2
-// $color-bg: #000;
-// $color-slide-bg: #fff;
-// $color-primary: #333;
-// $color-accent: #f34;
-// $color-subdued: #999;
+$colors2: (
+	bg: #000,
+	slide-bg: #fff,
+	primary: #333,
+	accent: #f34,
+	subdued: #999
+);
 
-// color set 3
-// $color-bg: #1c1c1c;
-// $color-slide-bg: #1c1c1c;
-// $color-primary: #fff;
-// $color-accent: #ff3344;
-// $color-subdued: #666;
+$colors3: (
+	bg: #1c1c1c,
+	slide-bg: #1c1c1c,
+	primary: #fff,
+	accent: #f34,
+	subdued: #666
+);
 
-// color set 4
-// $color-bg: #000;
-// $color-slide-bg: #202025;
-// $color-primary: #fec;
-// $color-accent: #f34;
-// $color-subdued: #66666c;
+$colors4: (
+	bg: #000,
+	slide-bg: #202025,
+	primary: #fec,
+	accent: #f34,
+	subdued: #66666c
+);
+
+$colors5: (
+	bg: #000,
+	slide-bg: #1b1b1f,
+	primary: #edb,
+	accent: #f23,
+	subdued: #68687b
+);
+
+$colors6: (
+	bg: #000,
+	slide-bg: #181b23,
+	primary: hsl(50, 96%, 90%),
+	accent: hsl(130, 90%, 60%),
+	subdued: hsl(50, 96%, 90%)
+);
+
+$colors7: (
+	bg: #1e1e21,
+	slide-bg: #fdf0dd,
+	primary: #3e414e,
+	accent: #f34,
+	subdued: #847b6e
+);
+
+$colors: $colors4;
 
 * {
 	box-sizing: border-box;
 }
 
 body {
-	background: $color-bg !important;
-	color: $color-primary;
+	background: map-get( $colors, bg ) !important;
+	color: map-get( $colors, primary );
 	font: 400 100%/1.5 'Lato', sans-serif;
 	min-height: 100vh;
 	overflow: hidden;
 }
 
 .slide {
-	background: $color-slide-bg;
+	background: map-get( $colors, slide-bg );
 	//outline: 1px solid rgba(0, 0, 0, 0.1);
 	display: flex;
 	flex-direction: column;
@@ -98,13 +128,13 @@ body {
 h1 {
 	font-size: 9em;
 	font-weight: 900;
-	letter-spacing: -0.025em;
+	letter-spacing: -0.015em;
 	line-height: 1;
 	span {
-		color: $color-accent;
+		color: map-get( $colors, accent );
 	}
 	em {
-		color: $color-subdued;
+		color: map-get( $colors, subdued );
 		font-style: italic;
 		font-weight: 300;
 	}
@@ -123,17 +153,17 @@ h1 {
 }
 
 .dir {
-	background: $color-primary;
+	background: map-get( $colors, subdued );
 	height: 30%;
-	opacity: 0.1;
+	opacity: 0.25;
 	position: absolute;
 	transform: rotate( 45deg );
 	transition-duration: 600ms;
-	transition-property: box-shadow, opacity, transform;
+	transition-property: background, box-shadow, opacity, transform;
 	transition-timing-function: $easeOutExpo;
 	width: 30%;
 	&.is-active {
-		//box-shadow: 0 0 10px #fff;
+		background: map-get( $colors, primary );
 		opacity: 1;
 		transition-duration: 0ms;
 	}
@@ -172,7 +202,7 @@ h1 {
 	&.dir-center {
 		background: none;
 		border: none;
-		border: 3px solid $color-slide-bg;
+		border: 3px solid map-get( $colors, slide-bg );
 		bottom: 0;
 		display: none;
 		height: 60%;
