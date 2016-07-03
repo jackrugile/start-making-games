@@ -38,42 +38,47 @@ Slide Loading
 var slides = [
 	'title',
 	'demo',
-	'demo-2'
+	'code-test'
 ];
-
-var slideChangeEvent = new Event( 'slideChange' );
 
 var slideTimeout = null,
 	currentSlide = location.hash ? location.hash.slice( 1 ) - 1 : 0,
 	lastSlide = null,
 	totalSlides = slides.length,
 	prevSlideButton = document.querySelector( '.nav-prev' ),
-	nextSlideButton = document.querySelector( '.nav-next' );
+	nextSlideButton = document.querySelector( '.nav-next' ),
+	slideChangeEvent = new Event( 'slideChange' ),
+	slideRequest;
 
 if( currentSlide > totalSlides ) {
 	currentSlide = 0;
 }
 
 function loadSlide( i ) {
+	if( slideRequest ) {
+		return;
+	}
 	location.hash = ( i + 1 );
 	window.dispatchEvent( slideChangeEvent );
 	document.documentElement.classList.add( 'loading' );
-	var request = new XMLHttpRequest();
-	request.open('GET', 'slides/' + slides[ i ] + '/index.html', true);
-	request.onload = function() {
-		if (request.status >= 200 && request.status < 400) {
+	var slideRequest = new XMLHttpRequest();
+	slideRequest.open('GET', 'slides/' + slides[ i ] + '/index.html', true);
+	slideRequest.onload = function() {
+		if (slideRequest.status >= 200 && slideRequest.status < 400) {
 			clearTimeout( slideTimeout );
 			slideTimeout = setTimeout( function() {
-				document.documentElement.classList.remove( 'loading' );
-
 				if( lastSlide !== null) {
 					// remove the old css
 					var oldStylesheet = document.querySelector( '.stylesheet-' + lastSlide );
-					oldStylesheet.parentNode.removeChild( oldStylesheet );
+					if( oldStylesheet ) {
+						oldStylesheet.parentNode.removeChild( oldStylesheet );
+					}
 
 					// remove the old js
 					var oldScript = document.querySelector( '.script-' + lastSlide );
-					oldScript.parentNode.removeChild( oldScript );
+					if( oldScript ) {
+						oldScript.parentNode.removeChild( oldScript );
+					}
 				}
 
 				var stylesheet = document.createElement( 'link' );
@@ -83,25 +88,28 @@ function loadSlide( i ) {
 				document.getElementsByTagName( 'head' )[ 0 ].appendChild( stylesheet );
 
 				// load the content
-				slideContent.innerHTML = request.responseText;
+				slideContent.innerHTML = slideRequest.responseText;
 
 				// run per slide code
 				// syntax highlighting
 
 				// load the new js
 				var script = document.createElement( 'script' );
+				
 				script.setAttribute( 'src', 'slides/' + slides[ i ] + '/index.js' );
+				script.async = true;
 				script.classList.add( 'script-' + i );
 				document.getElementsByTagName( 'head' )[0].appendChild( script );
-			}, 20 );
+				document.documentElement.classList.remove( 'loading' );
+				slideRequest = null;
+			}, 10 );
 		} 
 	};
-	request.onerror = function() {};
-	request.send();
+	slideRequest.send();
 }
 
 function prevSlide() {
-	if( currentSlide > 0 ) {
+	if( currentSlide > 0 && !slideRequest ) {
 		document.documentElement.classList.add( 'prev' );
 		document.documentElement.classList.remove( 'next' );
 		lastSlide = currentSlide;
@@ -111,7 +119,7 @@ function prevSlide() {
 }
 
 function nextSlide() {
-	if( currentSlide < totalSlides - 1 ) {
+	if( currentSlide < totalSlides - 1 && !slideRequest ) {
 		document.documentElement.classList.add( 'next' );
 		document.documentElement.classList.remove( 'prev' );
 		lastSlide = currentSlide;

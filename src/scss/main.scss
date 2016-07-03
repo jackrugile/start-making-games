@@ -5,17 +5,9 @@
 body {
 	background: map-get( $colors, bg );
 	color: map-get( $colors, primary );
-	font: 400 100%/1.5 'Lato', sans-serif;
+	font: 400 100%/1.5 $font-lato;
 	min-height: 100vh;
 	overflow: hidden;
-}
-
-.slide-wrap {
-	bottom: 100px;
-	left: 100px;
-	position: absolute;
-	right: 100px;
-	top: 100px;
 	&:before,
 	&:after {
 		border: 30px solid transparent;
@@ -28,6 +20,7 @@ body {
 		transition-duration: 300ms;
 		transition-property: opacity, transform;
 		transition-timing-function: $easeOutExpo;
+		z-index: 10;
 	}
 	&:before {
 		border-left-width: 0;
@@ -53,6 +46,15 @@ body {
 		opacity: 1;
 		transform: translateX( 0 ) scale( 1 );
 	}
+}
+
+.slide-wrap {
+	bottom: 100px;
+	left: 5%;
+	position: absolute;
+	right: 5%;
+	top: 100px;
+	
 }
 
 .slide {

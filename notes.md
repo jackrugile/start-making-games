@@ -37,6 +37,7 @@
 - be very careful about destroying all lingering items
 - hide mouse after inactive mouse movent?
 - get caffeine app for his laptop?
+- cancel current ajax request when skipping slides fast, could cause a race issue
 
 ---
 
@@ -50,3 +51,4 @@
 - show "where" we are when zoomed in on code
 - whole journey that other game developers have experience that you get to experience too
 	- even if you weren't the one to invent or discover a concept, it still feels great to understand it and implement it in your own way
+- compare hitbox sizes to front end dev

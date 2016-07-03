@@ -92,8 +92,12 @@ function resetGame() {
 function resetBall() {
 	ball.x = gameWidth / 2 - ballWidth / 2;
 	ball.y = gameHeight / 2 - ballHeight / 2;
-	ball.vx = ballSpeed;
-	ball.vy = ballSpeed;
+	ball.vx = 0;
+	ball.vy = 0;
+	setTimeout( function() {
+		ball.vx = ballSpeed;
+		ball.vy = ballSpeed;
+	}, 500);
 }
 
 /*==========================================
@@ -121,7 +125,6 @@ function addEventListeners() {
 
 function onControlUpDown() {
 	playerMoveUp = true;
-	console.log( 1 );
 }
 
 function onControlDownDown() {
@@ -206,25 +209,21 @@ function update() {
 	if(ball.y <= 0) {
 		ball.y = 0;
 		ball.vy = -ball.vy;
-		pg.sound.play( 'move' );
 	}
 	
 	if(ball.y + ball.height >= gameHeight) {
 		ball.y = gameHeight - ball.height;
 		ball.vy = -ball.vy;
-		pg.sound.play( 'move' );
 	}
 	
 	if(ball.x + ball.width > gameWidth) {
 		scorePlayer.value++;
 		ballSpeed += 0.5;
 		resetBall();
-		pg.sound.play( 'move' );
 	} else if(ball.x < 0) {
 		scoreEnemy.value++;
 		ballSpeed += 0.5;
 		resetBall();
-		pg.sound.play( 'move' );
 	}
 	
 	/*==========================================
@@ -234,13 +233,11 @@ function update() {
 	if(collisionAABB(ball, paddlePlayer)) {
 		ball.x = paddlePlayer.x + paddlePlayer.width;
 		ball.vx = -ball.vx;
-		pg.sound.play( 'move' );
 	}
 	
 	if(collisionAABB(ball, paddleEnemy)) {
 		ball.x = paddleEnemy.x - ball.width;
 		ball.vx = -ball.vx;
-		pg.sound.play( 'move' );
 	}
 	
 	/*==========================================
