@@ -2,47 +2,25 @@
 Slide Scaling
 ==============================================================================*/
 
-var slide = document.querySelector( '.slide' ),
+var slideWrap = document.querySelector( '.slide-wrap' ),
+	slide = document.querySelector( '.slide' ),
 	slideContent = document.querySelector( '.slide-content' ),
 	slideBcr = slide.getBoundingClientRect(),
 	slideWidth = slideBcr.width,
 	slideHeight = slideBcr.height,
 	slideRatio = slideHeight / slideWidth,
-	scaleMin = 0,
-	scaleMax = Infinity,
-	scale,
-	scaleOutline,
-	keyMap = {
-		up: [ 'up', 'w' ],
-		right: [ 'right', 'd' ],
-		down: [ 'down', 's' ],
-		left: [ 'left', 'a' ],
-		prev: [ 'openbracket', 'l1' ],
-		next: [ 'closebraket', 'r1' ],
-	},
-	keys = {
-		up: 0,
-		right: 0,
-		down: 0,
-		left: 0
-	},
-	dirs = {
-		up: document.querySelector( '.dir-up' ),
-		right: document.querySelector( '.dir-right' ),
-		down: document.querySelector( '.dir-down' ),
-		left: document.querySelector( '.dir-left' )
-	};
+	slideScaleMin = 0,
+	slideScaleMax = Infinity,
+	slideScale;
 
 function setScale() {
-	if( innerWidth > innerHeight / slideRatio ) {
-		scale = innerHeight / slideRatio / slideWidth;
+	if( slideWrap.offsetWidth > slideWrap.offsetHeight / slideRatio ) {
+		slideScale = slideWrap.offsetHeight / slideRatio / slideWidth;
 	} else {
-		scale = innerWidth * slideRatio / slideHeight;
+		slideScale = slideWrap.offsetWidth * slideRatio / slideHeight;
 	}
-	scale = Math.max( Math.min( scale, scaleMax ), scaleMin ) + 0.001;
-	scaleOutline = ( 1 / scale ) * 5;
-	slide.style.transform = 'scale(' + scale + ')';
-	slide.style.outlineWidth = scaleOutline+ 'px';
+	slideScale = Math.max( Math.min( slideScale, slideScaleMax ), slideScaleMin ) + 0.001;
+	slide.style.transform = 'scale(' + slideScale + ')';
 }
 
 function onResize( e ) {
@@ -56,10 +34,6 @@ setScale();
 /*==============================================================================
 Slide Loading
 ==============================================================================*/
-
-/*
-	possibly decouple titles/directories from order
-*/
 
 var slides = [
 	'title',
@@ -158,37 +132,76 @@ nextSlideButton.addEventListener( 'click', function( e ) {
 
 loadSlide( currentSlide );
 
+
 /*==============================================================================
 Playground Gamepad
 ==============================================================================*/
 
+var controlDownDownEvent = new Event( 'controlDownDown' ),
+	controlDownUpEvent = new Event( 'controlDownUp' ),
+	controlUpDownEvent = new Event( 'controlUpDown' ),
+	controlUpUpEvent = new Event( 'controlUpUp' ),
+	keyMap = {
+		up: [ 'up', 'w' ],
+		right: [ 'right', 'd' ],
+		down: [ 'down', 's' ],
+		left: [ 'left', 'a' ],
+		prev: [ 'openbracket', 'l1' ],
+		next: [ 'closebraket', 'r1' ],
+	},
+	keys = {
+		up: 0,
+		right: 0,
+		down: 0,
+		left: 0
+	},
+	dirs = {
+		up: document.querySelector( '.dir-up' ),
+		right: document.querySelector( '.dir-right' ),
+		down: document.querySelector( '.dir-down' ),
+		left: document.querySelector( '.dir-left' )
+	};
+
+/*
+up
+right
+down
+left
+y
+b
+a
+x
+
+
+*/
+
 var overview = playground({
 	keydown: function( e ) {
-		if(      keyMap.up.indexOf( e.key ) > -1 )    { keys.up = 1; dirs.up.classList.add( 'is-active' ); }
+		if(      keyMap.up.indexOf( e.key ) > -1 )    { keys.up = 1; dirs.up.classList.add( 'is-active' ); window.dispatchEvent( controlUpDownEvent ); }
 		else if( keyMap.right.indexOf( e.key ) > -1 ) { keys.right = 1; dirs.right.classList.add( 'is-active' ); }
-		else if( keyMap.down.indexOf( e.key ) > -1 )  { keys.down = 1; dirs.down.classList.add( 'is-active' ); }
+		else if( keyMap.down.indexOf( e.key ) > -1 )  { keys.down = 1; dirs.down.classList.add( 'is-active' ); window.dispatchEvent( controlDownDownEvent ); }
 		else if( keyMap.left.indexOf( e.key ) > -1 )  { keys.left = 1; dirs.left.classList.add( 'is-active' ); }
 		else if( keyMap.prev.indexOf( e.key ) > -1 )  { prevSlide(); }
 		else if( keyMap.next.indexOf( e.key ) > -1 )  { nextSlide(); }
 	},
 	keyup: function( e ) {
-		if(      keyMap.up.indexOf( e.key ) > -1 )    { keys.up = 0; dirs.up.classList.remove( 'is-active' ); }
+		if(      keyMap.up.indexOf( e.key ) > -1 )    { keys.up = 0; dirs.up.classList.remove( 'is-active' ); window.dispatchEvent( controlUpUpEvent ); }
 		else if( keyMap.right.indexOf( e.key ) > -1 ) { keys.right = 0; dirs.right.classList.remove( 'is-active' ); }
-		else if( keyMap.down.indexOf( e.key ) > -1 )  { keys.down = 0; dirs.down.classList.remove( 'is-active' ); }
+		else if( keyMap.down.indexOf( e.key ) > -1 )  { keys.down = 0; dirs.down.classList.remove( 'is-active' ); window.dispatchEvent( controlDownUpEvent ); }
 		else if( keyMap.left.indexOf( e.key ) > -1 )  { keys.left = 0; dirs.left.classList.remove( 'is-active' ); }
 	},
 	gamepaddown: function( e ) {
-		if(      keyMap.up.indexOf( e.button ) > -1 )    { keys.up = 1; dirs.up.classList.add( 'is-active' ); }
+		if(      keyMap.up.indexOf( e.button ) > -1 )    { keys.up = 1; dirs.up.classList.add( 'is-active' ); window.dispatchEvent( controlUpDownEvent ); }
 		else if( keyMap.right.indexOf( e.button ) > -1 ) { keys.right = 1; dirs.right.classList.add( 'is-active' ); }
-		else if( keyMap.down.indexOf( e.button ) > -1 )  { keys.down = 1; dirs.down.classList.add( 'is-active' ); }
+		else if( keyMap.down.indexOf( e.button ) > -1 )  { keys.down = 1; dirs.down.classList.add( 'is-active' ); window.dispatchEvent( controlDownDownEvent ); }
 		else if( keyMap.left.indexOf( e.button ) > -1 )  { keys.left = 1; dirs.left.classList.add( 'is-active' ); }
 		else if( keyMap.prev.indexOf( e.button ) > -1 )  { prevSlide(); }
 		else if( keyMap.next.indexOf( e.button ) > -1 )  { nextSlide(); }
 	},
 	gamepadup: function( e ) {
-		if(      keyMap.up.indexOf( e.button ) > -1 )    { keys.up = 0; dirs.up.classList.remove( 'is-active' ); }
+		if(      keyMap.up.indexOf( e.button ) > -1 )    { keys.up = 0; dirs.up.classList.remove( 'is-active' ); window.dispatchEvent( controlUpUpEvent ); }
 		else if( keyMap.right.indexOf( e.button ) > -1 ) { keys.right = 0; dirs.right.classList.remove( 'is-active' ); }
-		else if( keyMap.down.indexOf( e.button ) > -1 )  { keys.down = 0; dirs.down.classList.remove( 'is-active' ); }
+		else if( keyMap.down.indexOf( e.button ) > -1 )  { keys.down = 0; dirs.down.classList.remove( 'is-active' ); window.dispatchEvent( controlDownUpEvent ); }
 		else if( keyMap.left.indexOf( e.button ) > -1 )  { keys.left = 0; dirs.left.classList.remove( 'is-active' ); }
 	}
 });

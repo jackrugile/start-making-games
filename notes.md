@@ -24,6 +24,17 @@
 - Pause button
 - Pause / Step function?
 - Mute function
+- top bar
+	- dvlp dnvr logo
+	- current slide?
+- bot bar
+	- controls being pressed
+	- slide controls
+- handle double layered controls, two playgrounds?
+- setup full code, full game, and half and half view
+- load fonts locally
+- check if I can disable main playground loop
+- be very careful about destroying all lingering items
 
 ---
 

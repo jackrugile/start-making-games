@@ -10,42 +10,12 @@ body {
 	overflow: hidden;
 }
 
-.slide {
-	background: map-get( $colors, slide-bg );
-	//outline: 1px solid rgba(0, 0, 0, 0.1);
-	display: flex;
-	flex-direction: column;
-	height: $height;
-	justify-content: center;
-	left: 50%;
-	margin: ( $height / -2 ) 0 0 ( $width / -2 );
-	opacity: 1;
-	padding: $padding;
+.slide-wrap {
+	bottom: 100px;
+	left: 100px;
 	position: absolute;
-	top: 50%;
-	transition: background 300ms;
-	width: $width;
-	//will-change: transform;
-	/*&:after {
-		background: rgba(255, 255, 255, 0.1);
-		bottom: 0;
-		content: '';
-		left: 0;
-		opacity: 0;
-		pointer-events: none;
-		position: absolute;
-		right: 0;
-		top: 0;
-		transition-duration: 150ms;
-		transition-property: opacity, transform;
-	}
-	.loading &:after {
-		opacity: 1;
-		transition-duration: 0ms;
-	}*/
-}
-
-.slide-content {
+	right: 100px;
+	top: 100px;
 	&:before,
 	&:after {
 		border: 30px solid transparent;
@@ -83,6 +53,44 @@ body {
 		opacity: 1;
 		transform: translateX( 0 ) scale( 1 );
 	}
+}
+
+.slide {
+	background: map-get( $colors, slide-bg );
+	//outline: 1px solid rgba(0, 0, 0, 0.1);
+	display: flex;
+	flex-direction: column;
+	height: $height;
+	justify-content: center;
+	left: 50%;
+	margin: ( $height / -2 ) 0 0 ( $width / -2 );
+	opacity: 1;
+	padding: $padding;
+	position: absolute;
+	top: 50%;
+	transition: background 300ms;
+	width: $width;
+	//will-change: transform;
+	/*&:after {
+		background: rgba(255, 255, 255, 0.1);
+		bottom: 0;
+		content: '';
+		left: 0;
+		opacity: 0;
+		pointer-events: none;
+		position: absolute;
+		right: 0;
+		top: 0;
+		transition-duration: 150ms;
+		transition-property: opacity, transform;
+	}
+	.loading &:after {
+		opacity: 1;
+		transition-duration: 0ms;
+	}*/
+}
+
+.slide-content {
 }
 
 h1 {

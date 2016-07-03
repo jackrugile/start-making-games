@@ -7,18 +7,19 @@
 }
 
 .dir {
-	background: map-get( $colors, subdued );
+	background: rgba(255, 255, 255, 0.1);
 	height: 30%;
-	opacity: 0.25;
+	//opacity: 0.25;
 	position: absolute;
 	transform: rotate( 45deg );
 	transition-duration: 600ms;
-	transition-property: background, box-shadow, opacity, transform;
+	transition-property: background, box-shadow, transform;
 	transition-timing-function: $easeOutExpo;
 	width: 30%;
 	&.is-active {
-		background: map-get( $colors, primary );
-		opacity: 1;
+		//background: map-get( $colors, primary );
+		//opacity: 1;
+		background: rgba(255, 255, 255, 1);
 		transition-duration: 0ms;
 	}
 	&.dir-up,

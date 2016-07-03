@@ -1,6 +1,10 @@
-.slide {
-	//background: #222;
-}
+/*.wrap {
+	position: absolute;
+	width: 50%;
+	right: 0;
+	top: 0;
+	height: 100%;
+}*/
 
 .pong,
 .pong * {
@@ -10,22 +14,22 @@
 .pong {
 	bottom: 0;
 	box-shadow: 0 0 0 2px white;
-	height: 900px;
+	height: 1080px;
 	left: 0;
 	margin: auto;
 	right: 0;
 	top: 0;
-	width: 1600px;
+	width: 1920px;
 }
 
 /* --- */
 
 .paddle {
 	background: white;
-	height: 120px;
+	height: 240px;
 	left: 0;
 	top: 0;
-	width: 30px;
+	width: 60px;
 }
 
 .paddle-player { 
@@ -40,28 +44,28 @@
 
 .score {
 	color: white;
-	font: bold 3em/1 'Roboto Mono', monospace;
-	top: 60px;
+	font: bold 6em/1 'Roboto Mono', monospace;
+	top: 80px;
 }
 
 .score-player {
 	color: dodgerblue;
-	left: 80px;
+	left: 160px;
 }
 
 .score-enemy {
 	color: tomato;
-	right: 80px;
+	right: 160px;
 }
 
 /* --- */
 
 .ball {
 	background: white;
-	height: 30px;
+	height: 60px;
 	left: 0;
 	top: 0;
-	width: 30px;
+	width: 60px;
 }
 
 .net {

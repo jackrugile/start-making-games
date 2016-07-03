@@ -8,18 +8,18 @@ Config
 var raf;
 
 // game
-var gameWidth = 1600,
-	gameHeight = 900;
+var gameWidth = 1920,
+	gameHeight = 1080;
 
 // paddles
-var paddleWidth = 30,
-	paddleHeight = 120,
-	paddleSpeed = 8;
+var paddleWidth = 60,
+	paddleHeight = 240,
+	paddleSpeed = 16;
 	
 // ball
-var ballWidth = 30,
-	ballHeight = 30,
-	ballSpeedStart = 8,
+var ballWidth = 60,
+	ballHeight = 60,
+	ballSpeedStart = 16,
 	ballSpeed = ballSpeedStart;
 
 // score - what are we playing to?
@@ -101,16 +101,40 @@ Events
 ==========================================*/
 
 function addEventListeners() {
+	/*
 	window.addEventListener('keydown', function(e) {
 		if(e.which === 38) { playerMoveUp = true; }
 		if(e.which === 40) { playerMoveDown = true; }
 	});
-	
+
 	window.addEventListener('keyup', function(e) {
 		if(e.which === 38) { playerMoveUp = false; }
-		if(e.which === 40) { playerMoveDown = false; }	
+		if(e.which === 40) { playerMoveDown = false; }
 	});
+	*/
+
+	window.addEventListener( 'controlUpDown', onControlUpDown );
+	window.addEventListener( 'controlDownDown', onControlDownDown );
+	window.addEventListener( 'controlUpUp', onControlUpUp );
+	window.addEventListener( 'controlDownUp', onControlDownUp );
 };
+
+function onControlUpDown() {
+	playerMoveUp = true;
+	console.log( 1 );
+}
+
+function onControlDownDown() {
+	playerMoveDown = true;
+}
+
+function onControlUpUp() {
+	playerMoveUp = false;
+}
+
+function onControlDownUp() {
+	playerMoveDown = false;
+}
 
 /*==========================================
 AABB Collision Detection
@@ -124,7 +148,7 @@ function collisionAABB( r1, r2 ) {
 		r1.y > r2.y + r2.height || // rect1 is below rect2
 		r1.y + r1.height < r2.y    // rect1 is above rect2
 	)) {
-		return true;	
+		return true;
 	}
 }
 
@@ -262,6 +286,10 @@ window.addEventListener( 'slideChange', destroy );
 
 function destroy() {
 	window.removeEventListener( 'slideChange', destroy );
+	window.removeEventListener( 'controlUpDown', onControlUpDown );
+	window.removeEventListener( 'controlDownDown', onControlDownDown );
+	window.removeEventListener( 'controlUpUp', onControlUpUp );
+	window.removeEventListener( 'controlDownUp', onControlDownUp );
 	cancelAnimationFrame( raf );
 }
 
