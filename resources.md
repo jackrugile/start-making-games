@@ -27,9 +27,6 @@
 - [Ludum Dare](http://ludumdare.com/compo/)
 - [#1GAM - One Game a Month](http://onegameamonth.com/)
 
-
-
-
 - Game engines
 - Game tutorials
 - Game jams

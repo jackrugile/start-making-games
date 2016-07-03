@@ -1085,7 +1085,7 @@ PLAYGROUND.Application = function(args) {
 
   if (typeof this.container === "string") this.container = document.querySelector(this.container);
 
-  this.container.style.background = this.background;
+  //this.container.style.background = this.background;
 
   this.updateSize();
 

@@ -1,0 +1,74 @@
+.slide {
+	//background: #222;
+}
+
+.pong,
+.pong * {
+	position: absolute;
+}
+
+.pong {
+	bottom: 0;
+	box-shadow: 0 0 0 2px white;
+	height: 900px;
+	left: 0;
+	margin: auto;
+	right: 0;
+	top: 0;
+	width: 1600px;
+}
+
+/* --- */
+
+.paddle {
+	background: white;
+	height: 120px;
+	left: 0;
+	top: 0;
+	width: 30px;
+}
+
+.paddle-player { 
+	background: dodgerblue;
+}
+
+.paddle-enemy {
+	background: tomato;
+}
+
+/* --- */
+
+.score {
+	color: white;
+	font: bold 3em/1 'Roboto Mono', monospace;
+	top: 60px;
+}
+
+.score-player {
+	color: dodgerblue;
+	left: 80px;
+}
+
+.score-enemy {
+	color: tomato;
+	right: 80px;
+}
+
+/* --- */
+
+.ball {
+	background: white;
+	height: 30px;
+	left: 0;
+	top: 0;
+	width: 30px;
+}
+
+.net {
+	border-right: 2px dashed white;
+	height: 100%;
+	left: 50%;
+	margin-left: -1px;
+	top: 0;
+	width: 1px;
+}

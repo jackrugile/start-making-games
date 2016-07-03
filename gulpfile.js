@@ -16,7 +16,7 @@ Clean
 ==============================================================================*/
 
 gulp.task( 'clean', function() {
-	gulp.src( [ 'index.html', 'css', 'js', 'img', 'fnt', 'snd' ], { 
+	gulp.src( [ 'index.html', 'css', 'js', 'img', 'fnt', 'snd', 'slides' ], { 
 			read: false
 		})
 		.pipe( p.rimraf() )
@@ -28,7 +28,7 @@ HTML
 ==============================================================================*/
 
 gulp.task('html', function() {
-	gulp.src( 'src/index.html' )
+	gulp.src( 'src/*.html' )
 	.pipe( gulp.dest( '' ) )
 	.pipe( p.notify( 'Gulp HTML Task Completed' ) );
 });
@@ -38,7 +38,7 @@ Styles
 ==============================================================================*/
 
 gulp.task( 'styles', function() {
-	return gulp.src( 'src/scss/main.scss' )
+	return gulp.src( 'src/scss/import.scss' )
 		.pipe( p.sass( {
 			style: 'expanded'
 		}))
@@ -96,7 +96,6 @@ gulp.task( 'scripts', [ 'scripts5' ], function() {
 		.pipe( p.notify( 'Gulp Scripts Task Complete' ) );
 });
 
-
 /*==============================================================================
 Images
 ==============================================================================*/
@@ -127,24 +126,34 @@ gulp.task( 'sounds', function() {
 	.pipe( p.notify( 'Gulp Sounds Task Completed' ) );
 });
 
+/*==============================================================================
+Slides
+==============================================================================*/
+
+gulp.task('slides', function() {
+	gulp.src( 'src/slides/**/*' )
+	.pipe( gulp.dest( 'slides' ) )
+	.pipe( p.notify( 'Gulp Slides Task Completed' ) );
+});
 
 /*==============================================================================
 Watch
 ==============================================================================*/
 
 gulp.task('watch', function() {
-	gulp.watch( 'src/index.html', [ 'html' ] );
+	gulp.watch( 'src/*.html', [ 'html' ] );
 	gulp.watch( 'src/scss/**/*', [ 'styles' ] );
 	gulp.watch( 'src/js/**/*', [ 'scripts' ] );
 	gulp.watch( 'src/img/**/*', [ 'images' ] );
 	gulp.watch( 'src/fnt/**/*', [ 'fonts' ] );
 	gulp.watch( 'src/snd/**/*', [ 'sounds' ] );
+	gulp.watch( 'src/slides/**/*', [ 'slides' ] );
 });
 
 /*==============================================================================
 Default
 ==============================================================================*/
 
-gulp.task( 'default', [ 'html', 'styles', 'scripts', 'images', 'fonts', 'sounds' ], function() {
+gulp.task( 'default', [ 'html', 'styles', 'scripts', 'images', 'fonts', 'sounds', 'slides' ], function() {
 	gulp.start( 'watch' );
 });

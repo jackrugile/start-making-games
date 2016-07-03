@@ -1,0 +1,57 @@
+.nav {
+	bottom: 30px;
+	display: flex;
+	position: absolute;
+	right: 30px;
+}
+
+.nav-item {
+	background: map-get( $colors, subdued );
+	display: block;
+	height: 44px;
+	opacity: 0.25;
+	position: relative;
+	transition: background 300ms;
+	transform: rotate( 45deg );
+	width: 44px;
+	&:before,
+	&:after {
+		border: 8px solid transparent;
+		content: '';
+		left: 50%;
+		margin-top: -8px;
+		position: absolute;
+		top: 50%;
+	}
+	&.nav-prev {
+		margin-right: 24px;
+		&:after {
+			border-left-width: 0;
+			border-right-color: map-get( $colors, bg );
+			margin-left: -4px;
+			transform: rotate( -45deg ) translateX( -2px );
+		}
+	}
+	&.nav-next {
+		&:after {
+			border-left-color: map-get( $colors, bg );
+			border-right-width: 0;
+			margin-left: -4px;
+			transform: rotate( -45deg ) translateX( 2px );
+		}
+	}
+	&:hover {
+		background: map-get( $colors, primary );
+		opacity: 1;
+		&.nav-prev {
+			&:after {
+				border-right-color: map-get( $colors, bg );
+			}
+		}
+		&.nav-next {
+			&:after {
+				border-left-color: map-get( $colors, bg );
+			}
+		}
+	}
+}

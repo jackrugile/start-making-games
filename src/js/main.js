@@ -1,4 +1,9 @@
+/*==============================================================================
+Slide Scaling
+==============================================================================*/
+
 var slide = document.querySelector( '.slide' ),
+	slideContent = document.querySelector( '.slide-content' ),
 	slideBcr = slide.getBoundingClientRect(),
 	slideWidth = slideBcr.width,
 	slideHeight = slideBcr.height,
@@ -11,7 +16,9 @@ var slide = document.querySelector( '.slide' ),
 		up: [ 'up', 'w' ],
 		right: [ 'right', 'd' ],
 		down: [ 'down', 's' ],
-		left: [ 'left', 'a' ]
+		left: [ 'left', 'a' ],
+		prev: [ 'openbracket', 'l1' ],
+		next: [ 'closebraket', 'r1' ],
 	},
 	keys = {
 		up: 0,
@@ -25,7 +32,7 @@ var slide = document.querySelector( '.slide' ),
 		down: document.querySelector( '.dir-down' ),
 		left: document.querySelector( '.dir-left' )
 	};
-// plwfefew
+
 function setScale() {
 	if( innerWidth > innerHeight / slideRatio ) {
 		scale = innerHeight / slideRatio / slideWidth;
@@ -44,12 +51,125 @@ function onResize( e ) {
 
 addEventListener( 'resize', onResize );
 
-playground({
+setScale();
+
+/*==============================================================================
+Slide Loading
+==============================================================================*/
+
+/*
+	possibly decouple titles/directories from order
+*/
+
+var slides = [
+	'title',
+	'demo',
+	'demo-2'
+];
+
+var slideChangeEvent = new Event( 'slideChange' );
+
+var slideTimeout = null,
+	currentSlide = location.hash ? location.hash.slice( 1 ) - 1 : 0,
+	lastSlide = null,
+	totalSlides = slides.length,
+	prevSlideButton = document.querySelector( '.nav-prev' ),
+	nextSlideButton = document.querySelector( '.nav-next' );
+
+if( currentSlide > totalSlides ) {
+	currentSlide = 0;
+}
+
+function loadSlide( i ) {
+	location.hash = ( i + 1 );
+	window.dispatchEvent( slideChangeEvent );
+	document.documentElement.classList.add( 'loading' );
+	var request = new XMLHttpRequest();
+	request.open('GET', 'slides/' + slides[ i ] + '/index.html', true);
+	request.onload = function() {
+		if (request.status >= 200 && request.status < 400) {
+			clearTimeout( slideTimeout );
+			slideTimeout = setTimeout( function() {
+				document.documentElement.classList.remove( 'loading' );
+
+				if( lastSlide !== null) {
+					// remove the old css
+					var oldStylesheet = document.querySelector( '.stylesheet-' + lastSlide );
+					oldStylesheet.parentNode.removeChild( oldStylesheet );
+
+					// remove the old js
+					var oldScript = document.querySelector( '.script-' + lastSlide );
+					oldScript.parentNode.removeChild( oldScript );
+				}
+
+				var stylesheet = document.createElement( 'link' );
+				stylesheet.rel = 'stylesheet';
+				stylesheet.href = 'slides/' + slides[ i ] + '/index.css' ;
+				stylesheet.classList.add( 'stylesheet-' + i );
+				document.getElementsByTagName( 'head' )[ 0 ].appendChild( stylesheet );
+
+				// load the content
+				slideContent.innerHTML = request.responseText;
+
+				// run per slide code
+				// syntax highlighting
+
+				// load the new js
+				var script = document.createElement( 'script' );
+				script.setAttribute( 'src', 'slides/' + slides[ i ] + '/index.js' );
+				script.classList.add( 'script-' + i );
+				document.getElementsByTagName( 'head' )[0].appendChild( script );
+			}, 20 );
+		} 
+	};
+	request.onerror = function() {};
+	request.send();
+}
+
+function prevSlide() {
+	if( currentSlide > 0 ) {
+		document.documentElement.classList.add( 'prev' );
+		document.documentElement.classList.remove( 'next' );
+		lastSlide = currentSlide;
+		currentSlide--;
+		loadSlide( currentSlide );
+	}
+}
+
+function nextSlide() {
+	if( currentSlide < totalSlides - 1 ) {
+		document.documentElement.classList.add( 'next' );
+		document.documentElement.classList.remove( 'prev' );
+		lastSlide = currentSlide;
+		currentSlide++;
+		loadSlide( currentSlide );
+	}
+}
+
+prevSlideButton.addEventListener( 'click', function( e ) {
+	e.preventDefault();
+	prevSlide();
+});
+
+nextSlideButton.addEventListener( 'click', function( e ) {
+	e.preventDefault();
+	nextSlide();
+});
+
+loadSlide( currentSlide );
+
+/*==============================================================================
+Playground Gamepad
+==============================================================================*/
+
+var overview = playground({
 	keydown: function( e ) {
 		if(      keyMap.up.indexOf( e.key ) > -1 )    { keys.up = 1; dirs.up.classList.add( 'is-active' ); }
 		else if( keyMap.right.indexOf( e.key ) > -1 ) { keys.right = 1; dirs.right.classList.add( 'is-active' ); }
 		else if( keyMap.down.indexOf( e.key ) > -1 )  { keys.down = 1; dirs.down.classList.add( 'is-active' ); }
 		else if( keyMap.left.indexOf( e.key ) > -1 )  { keys.left = 1; dirs.left.classList.add( 'is-active' ); }
+		else if( keyMap.prev.indexOf( e.key ) > -1 )  { prevSlide(); }
+		else if( keyMap.next.indexOf( e.key ) > -1 )  { nextSlide(); }
 	},
 	keyup: function( e ) {
 		if(      keyMap.up.indexOf( e.key ) > -1 )    { keys.up = 0; dirs.up.classList.remove( 'is-active' ); }
@@ -62,6 +182,8 @@ playground({
 		else if( keyMap.right.indexOf( e.button ) > -1 ) { keys.right = 1; dirs.right.classList.add( 'is-active' ); }
 		else if( keyMap.down.indexOf( e.button ) > -1 )  { keys.down = 1; dirs.down.classList.add( 'is-active' ); }
 		else if( keyMap.left.indexOf( e.button ) > -1 )  { keys.left = 1; dirs.left.classList.add( 'is-active' ); }
+		else if( keyMap.prev.indexOf( e.button ) > -1 )  { prevSlide(); }
+		else if( keyMap.next.indexOf( e.button ) > -1 )  { nextSlide(); }
 	},
 	gamepadup: function( e ) {
 		if(      keyMap.up.indexOf( e.button ) > -1 )    { keys.up = 0; dirs.up.classList.remove( 'is-active' ); }
@@ -70,5 +192,3 @@ playground({
 		else if( keyMap.left.indexOf( e.button ) > -1 )  { keys.left = 0; dirs.left.classList.remove( 'is-active' ); }
 	}
 });
-
-setScale();
