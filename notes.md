@@ -35,6 +35,8 @@
 - load fonts locally
 - check if I can disable main playground loop
 - be very careful about destroying all lingering items
+- hide mouse after inactive mouse movent?
+- get caffeine app for his laptop?
 
 ---
 

@@ -40,7 +40,7 @@ $height: 1080px;
 $padding: ceil( $width * 0.1 );
 
 $colors1: (
-	bg: #101215,
+	bg: #151c27,
 	slide-bg: #151c27,
 	primary: #f4ecd0,
 	accent: #f34,
@@ -48,7 +48,7 @@ $colors1: (
 );
 
 $colors2: (
-	bg: #000,
+	bg: #fff,
 	slide-bg: #fff,
 	primary: #333,
 	accent: #f34,
@@ -58,14 +58,13 @@ $colors2: (
 $colors3: (
 	bg: #111,
 	slide-bg: #111,
-	//slide-bg: #1c1c1c,
 	primary: #fff,
 	accent: #f34,
 	subdued: #666
 );
 
 $colors4: (
-	bg: #000,
+	bg: #202025,
 	slide-bg: #202025,
 	primary: #fec,
 	accent: #f34,
@@ -81,7 +80,7 @@ $colors5: (
 );
 
 $colors6: (
-	bg: #000,
+	bg: #181b23,
 	slide-bg: #181b23,
 	primary: hsl(50, 96%, 90%),
 	accent: hsl(130, 90%, 60%),
@@ -89,7 +88,7 @@ $colors6: (
 );
 
 $colors7: (
-	bg: #1e1e21,
+	bg: #fdf0dd,
 	slide-bg: #fdf0dd,
 	primary: #3e414e,
 	accent: #f34,

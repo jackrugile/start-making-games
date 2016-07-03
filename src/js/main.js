@@ -173,9 +173,14 @@ a
 x
 
 
+make this more dry
+
+separate dir stuff
+
+
 */
 
-var overview = playground({
+var pg = playground({
 	keydown: function( e ) {
 		if(      keyMap.up.indexOf( e.key ) > -1 )    { keys.up = 1; dirs.up.classList.add( 'is-active' ); window.dispatchEvent( controlUpDownEvent ); }
 		else if( keyMap.right.indexOf( e.key ) > -1 ) { keys.right = 1; dirs.right.classList.add( 'is-active' ); }
@@ -203,5 +208,13 @@ var overview = playground({
 		else if( keyMap.right.indexOf( e.button ) > -1 ) { keys.right = 0; dirs.right.classList.remove( 'is-active' ); }
 		else if( keyMap.down.indexOf( e.button ) > -1 )  { keys.down = 0; dirs.down.classList.remove( 'is-active' ); window.dispatchEvent( controlDownUpEvent ); }
 		else if( keyMap.left.indexOf( e.button ) > -1 )  { keys.left = 0; dirs.left.classList.remove( 'is-active' ); }
+	},
+	paths: {
+		sounds: 'snd/',
+	},
+	create: function() {
+		//this.loadSounds( 'move' );
+	},
+	step: function() {
 	}
 });
