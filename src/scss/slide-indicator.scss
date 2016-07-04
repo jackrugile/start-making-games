@@ -1,9 +1,11 @@
 .slide-indicator {
-	background: red;
-	color: #fff;
-	height: 40px;
-	line-height: 40px;
+	color: rgba(255, 255, 255, 0.2);
+	font-family: $font-roboto-mono;
+	font-size: 2.5em;
+	font-weight: 700;
+	line-height: 1;
 	position: absolute;
 	right: 30px;
-	top: 30px;
+	top: 25px;
+	z-index: 50;
 }

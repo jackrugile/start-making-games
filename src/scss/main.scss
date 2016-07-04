@@ -2,8 +2,30 @@
 	box-sizing: border-box;
 }
 
+html {
+	&:after {
+		background: rgba(255, 255, 255, 0.1);
+		bottom: 0;
+		content: '';
+		left: 0;
+		opacity: 0;
+		pointer-events: none;
+		position: absolute;
+		right: 0;
+		top: 0;
+		transition-duration: 150ms;
+		transition-property: opacity, transform;
+		z-index: 100;
+	}
+	&.loading:after {
+		opacity: 1;
+		transition-duration: 0ms;
+	}
+}
+
 body {
 	background: map-get( $colors, bg );
+	background: radial-gradient( #222, #111 );
 	color: map-get( $colors, primary );
 	font: 400 100%/1.5 $font-lato;
 	min-height: 100vh;
@@ -54,12 +76,12 @@ body {
 	position: absolute;
 	right: 5%;
 	top: 100px;
-	
+	z-index: 25;
 }
 
 .slide {
-	background: map-get( $colors, slide-bg );
-	//outline: 1px solid rgba(0, 0, 0, 0.1);
+	//background: map-get( $colors, slide-bg );
+	background: rgba(255,255,255,0.05);
 	display: flex;
 	flex-direction: column;
 	height: $height;
@@ -73,23 +95,6 @@ body {
 	transition: background 300ms;
 	width: $width;
 	//will-change: transform;
-	/*&:after {
-		background: rgba(255, 255, 255, 0.1);
-		bottom: 0;
-		content: '';
-		left: 0;
-		opacity: 0;
-		pointer-events: none;
-		position: absolute;
-		right: 0;
-		top: 0;
-		transition-duration: 150ms;
-		transition-property: opacity, transform;
-	}
-	.loading &:after {
-		opacity: 1;
-		transition-duration: 0ms;
-	}*/
 }
 
 .slide-content {
@@ -104,12 +109,12 @@ h1 {
 		color: map-get( $colors, accent );
 	}
 	em {
-		color: map-get( $colors, subdued );
+		color: map-get( $colors, accent2 );
 		font-style: italic;
 		font-weight: 300;
 	}
 	small {
-		font-size: 0.6em;
+		font-size: 0.55em;
 		font-weight: 600;
 	}
 }

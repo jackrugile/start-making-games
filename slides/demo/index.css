@@ -13,7 +13,7 @@
 
 .pong {
 	bottom: 0;
-	box-shadow: 0 0 0 2px white;
+	box-shadow: 0 0 0 2px #fff;
 	height: 1080px;
 	left: 0;
 	margin: auto;
@@ -25,7 +25,7 @@
 /* --- */
 
 .paddle {
-	background: white;
+	background: #fff;
 	height: 240px;
 	left: 0;
 	top: 0;
@@ -33,11 +33,13 @@
 }
 
 .paddle-player { 
-	background: dodgerblue;
+	/*background: #39f;*/
+	background: hsl(180, 100%, 60%);
 }
 
 .paddle-enemy {
-	background: tomato;
+	/*background: #f34;*/
+	background: hsl(0, 100%, 60%);
 }
 
 /* --- */
@@ -49,19 +51,19 @@
 }
 
 .score-player {
-	color: dodgerblue;
+	color: hsl(180, 100%, 60%);
 	left: 160px;
 }
 
 .score-enemy {
-	color: tomato;
+	color: hsl(0, 100%, 60%);
 	right: 160px;
 }
 
 /* --- */
 
 .ball {
-	background: white;
+	background: #fff;
 	height: 60px;
 	left: 0;
 	top: 0;
@@ -69,10 +71,10 @@
 }
 
 .net {
-	border-right: 2px dashed white;
+	background: #fff;
 	height: 100%;
 	left: 50%;
 	margin-left: -1px;
 	top: 0;
-	width: 1px;
+	width: 2px;
 }

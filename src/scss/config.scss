@@ -40,7 +40,9 @@ $width: 1920px;
 $height: 1080px;
 
 // spacing
-$padding: ceil( $width * 0.1 );
+//$padding: ceil( $width * 0.1 );
+$padding: ceil( $width * 0.025 );
+//$padding: 0;
 
 /*==============================================================================
 Fonts
@@ -71,9 +73,10 @@ $colors2: (
 
 $colors3: (
 	bg: #111,
-	slide-bg: #333,
+	slide-bg: #111,
 	primary: #fff,
 	accent: #f34,
+	accent2: #3bf,
 	subdued: #666
 );
 

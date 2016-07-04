@@ -97,7 +97,7 @@ function resetBall() {
 	setTimeout( function() {
 		ball.vx = ballSpeed;
 		ball.vy = ballSpeed;
-	}, 500);
+	}, 1000);
 }
 
 /*==========================================
@@ -218,11 +218,11 @@ function update() {
 	
 	if(ball.x + ball.width > gameWidth) {
 		scorePlayer.value++;
-		ballSpeed += 0.5;
+		ballSpeed += 1;
 		resetBall();
 	} else if(ball.x < 0) {
 		scoreEnemy.value++;
-		ballSpeed += 0.5;
+		ballSpeed += 1;
 		resetBall();
 	}
 	

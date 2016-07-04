@@ -38,6 +38,9 @@
 - hide mouse after inactive mouse movent?
 - get caffeine app for his laptop?
 - cancel current ajax request when skipping slides fast, could cause a race issue
+- naming convention
+	- {section}-{type}-{desc}-{index}
+	- type can be info, code, demo, or any combo of those
 
 ---
 

@@ -47,6 +47,7 @@ var slideTimeout = null,
 	totalSlides = slides.length,
 	prevSlideButton = document.querySelector( '.nav-prev' ),
 	nextSlideButton = document.querySelector( '.nav-next' ),
+	slideIndicator = document.querySelector( '.slide-indicator' ),
 	slideChangeEvent = new Event( 'slideChange' ),
 	slideRequest;
 
@@ -59,6 +60,7 @@ function loadSlide( i ) {
 		return;
 	}
 	location.hash = ( i + 1 );
+	slideIndicator.innerHTML = ( i + 1 );
 	window.dispatchEvent( slideChangeEvent );
 	document.documentElement.classList.add( 'loading' );
 	var slideRequest = new XMLHttpRequest();
@@ -90,9 +92,6 @@ function loadSlide( i ) {
 				// load the content
 				slideContent.innerHTML = slideRequest.responseText;
 
-				// run per slide code
-				// syntax highlighting
-
 				// load the new js
 				var script = document.createElement( 'script' );
 				
@@ -102,6 +101,9 @@ function loadSlide( i ) {
 				document.getElementsByTagName( 'head' )[0].appendChild( script );
 				document.documentElement.classList.remove( 'loading' );
 				slideRequest = null;
+
+				// rehighlight syntax
+				Prism.highlightAll();
 			}, 10 );
 		} 
 	};
