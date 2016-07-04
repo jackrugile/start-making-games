@@ -73,7 +73,7 @@ $colors2: (
 
 $colors3: (
 	bg: #111,
-	slide-bg: #111,
+	slide-bg: transparent,
 	primary: #fff,
 	accent: #f34,
 	accent2: #3bf,
@@ -112,4 +112,13 @@ $colors7: (
 	subdued: #847b6e
 );
 
-$colors: $colors3;
+$colors8: (
+	bg: #111,
+	slide-bg: transparent,
+	primary: #fff,
+	accent: hsl(130, 100%, 60%),
+	accent2: hsl(200, 100%, 60%),
+	subdued: #666
+);
+
+$colors: $colors8;

@@ -37,7 +37,7 @@
 - Music
 - Interactivity
 - User Interface
-- Story / Writing / Dialogue
+- Story / Writing / Dialogue / Characters
 - Cinematography
 - Artifical Intelligence
 
@@ -101,6 +101,7 @@
 - illustrate benefits of good hitboxes vs bad hitboxes
 - play against yourself
 - influence ball trajectory by moving paddle
+- rounded paddle for adding english
 
 ### Non-Gameplay Changes
 - colors
@@ -115,16 +116,16 @@
 - particles
 	- channel bob ross
 	- happy little trees = happy little particles
-- user video as background (reactions)
 - random screenshake
 - accurate screenshake
 - light flashes
 - slow motion
 - trails
-- 3d stransform based on ball pos
+- 3d transform based on ball pos
 - use svg for lines?
 - goo filter
 - add stats
+- total score and progress meter (bar)
 - all together
 
 ## V: Go Make a Game

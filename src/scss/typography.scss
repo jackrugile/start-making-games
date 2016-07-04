@@ -1,0 +1,38 @@
+strong {
+	font-weight: 900;
+}
+
+em {
+	font-style: italic;
+}
+
+h1 {
+	color: #fff;
+	font-size: 9em;
+	font-weight: 900;
+	line-height: 1;
+	margin-bottom: 2rem;
+	span {
+		color: map-get( $colors, accent );
+	}
+}
+
+h2 {
+	color: map-get( $colors, accent2 );
+	color: #fff;
+	font-size: 5em;
+	font-weight: 300;
+	line-height: 1;
+	span {
+		color: map-get( $colors, accent2 );
+		font-weight: 900;
+	}
+}
+
+h3 {
+	color: #fff;
+	font-size: 5em;
+	font-weight: 900;
+	line-height: 1.2;
+	margin-bottom: 2rem;
+}

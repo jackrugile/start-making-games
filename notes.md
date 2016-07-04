@@ -1,46 +1,32 @@
-# Slide Notes
-- New part introduction (swapped colors?)
-- General text slide
-- Code slide
-- Demo slide (gamepad + arrow indicator)
-- Code/Demo slide (gamepad + arrow indicator)
-- Keep it somewhat classy, but still funny. Avoid GIFs.
-
----
-
 # Tech Notes
-- 16:9 or 4:3
-- Large text
-- Two fonts: Lato and (monospace TBD)
-- High contrast mode
-- Swapped lightness mode
-- Control with keyboard and gamepad
-- Limit raster images (none if possible)
-- Simple transition between slides, hopefully not page reload
+- Invert HTML with filter if needed
 - Test thoroughly on laptop for performance, fullscreen, and sound
-- Bring speakers in case sound is out of sync with visuals
-- Opacity animations are causing the text to snap into a different mode (px shift)
-- Option for audio calibration?
-- Pause button
 - Pause / Step function?
 - Mute function
-- top bar
-	- dvlp dnvr logo
-	- current slide?
-- bot bar
-	- controls being pressed
-	- slide controls
-- handle double layered controls, two playgrounds?
 - setup full code, full game, and half and half view
-- load fonts locally
-- check if I can disable main playground loop
 - be very careful about destroying all lingering items
-- hide mouse after inactive mouse movent?
+- hide mouse after inactive mouse movement?
 - get caffeine app for his laptop?
+- disable all notifications
 - cancel current ajax request when skipping slides fast, could cause a race issue
+	- THIS HAPPENING - NEED TO FIGURE THIS OUT
 - naming convention
 	- {section}-{type}-{desc}-{index}
 	- type can be info, code, demo, or any combo of those
+- why aren't line number start offsets working?
+
+---
+
+# Start Talk List
+- water
+- notes
+- bathroom
+- video resolution test
+- sound test
+- change slide test
+- controller test
+- power cord
+- setup mic on shirt or stand
 
 ---
 

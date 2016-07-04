@@ -37,8 +37,11 @@ Slide Loading
 
 var slides = [
 	'title',
+	'code-test-html',
+	'code-test-css',
+	'code-test-js',
 	'demo',
-	'code-test'
+	'demo-3d'
 ];
 
 var slideTimeout = null,

@@ -10,7 +10,7 @@
  */
 
 pre[class*="language-"] {
-	font-size: 3em;
+	font-size: 2em;
 }
 
 code[class*="language-"],
@@ -80,6 +80,7 @@ pre[class*="language-"] {
 .token.keyword,
 .token.tag {
     color: #96CBFE;
+    color: map-get($colors, accent2 );
 }
 
 .token.class-name {
@@ -108,6 +109,7 @@ pre[class*="language-"] {
 .token.builtin,
 .token.inserted {
 	color: #A8FF60;
+	color: map-get($colors, accent );
 }
 
 .token.variable {
@@ -163,7 +165,7 @@ pre[class*="language-"] {
 
 pre.line-numbers {
 	position: relative;
-	padding-left: 3.8em;
+	padding-left: 2.5em;
 	counter-reset: linenumber;
 }
 
@@ -179,7 +181,7 @@ pre.line-numbers > code {
 	left: -3.8em;
 	width: 3em; /* works for line-numbers below 1000 lines */
 	letter-spacing: -1px;
-	border-right: 1px solid rgba(255,255,255,0.1);
+	border-right: 2px solid rgba(255,255,255,0.1);
 
 	-webkit-user-select: none;
 	-moz-user-select: none;

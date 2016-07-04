@@ -24,7 +24,7 @@ html {
 }
 
 body {
-	background: map-get( $colors, bg );
+	//background: map-get( $colors, bg );
 	background: radial-gradient( #222, #111 );
 	color: map-get( $colors, primary );
 	font: 400 100%/1.5 $font-lato;
@@ -81,15 +81,14 @@ body {
 
 .slide {
 	//background: map-get( $colors, slide-bg );
-	background: rgba(255,255,255,0.05);
-	display: flex;
+	//box-shadow: 0 0 0 2px rgba(255,255,255,0.05);
+	//display: flex;
 	flex-direction: column;
 	height: $height;
-	justify-content: center;
+	justify-content: top;
 	left: 50%;
 	margin: ( $height / -2 ) 0 0 ( $width / -2 );
 	opacity: 1;
-	padding: $padding;
 	position: absolute;
 	top: 50%;
 	transition: background 300ms;
@@ -98,28 +97,18 @@ body {
 }
 
 .slide-content {
+	height: $height;
+	padding: $padding;
+	position: relative;
+	width: $width;
+	perspective: 1000px;
 }
 
-h1 {
-	font-size: 9em;
-	font-weight: 900;
-	letter-spacing: -0.015em;
-	line-height: 1;
-	span {
-		color: map-get( $colors, accent );
-	}
-	em {
-		color: map-get( $colors, accent2 );
-		font-style: italic;
-		font-weight: 300;
-	}
-	small {
-		font-size: 0.55em;
-		font-weight: 600;
-	}
+.slide-grid {
+	display: flex;
+
 }
 
-
-canvas {
-	display: none;
+.slide-col {
+	width: 50%;
 }
