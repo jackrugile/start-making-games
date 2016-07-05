@@ -6,7 +6,8 @@ var pong = document.querySelector('.pong'),
 	yDeg = 0,
 	yDegTarget = 0,
 	rangeDeg = 10,
-	smoothingDeg = 0.05;
+	smoothingDeg = 0.05,
+	scale = 0.85;
 
 /*==========================================
 Config 
@@ -272,7 +273,7 @@ function render() {
 	yDegTarget = ( ( ball.x / ( gameWidth - ballWidth ) - 0.5 ) * 2 ) * rangeDeg;
 	yDeg += ( yDegTarget - yDeg ) * smoothingDeg;
 
-	pong.style.transform = 'scale( 0.8) rotateX(' + -xDeg + 'deg) rotateY(' + yDeg + 'deg) rotateZ(0deg)';
+	pong.style.transform = 'scale( ' + scale + ' ) rotateX(' + -xDeg + 'deg) rotateY(' + yDeg + 'deg) rotateZ(0deg)';
 
 	paddlePlayer.elem.style.transform = 'translate(' + paddlePlayer.x + 'px, ' + paddlePlayer.y + 'px)';
 	paddleEnemy.elem.style.transform = 'translate(' + paddleEnemy.x + 'px, ' + paddleEnemy.y + 'px)';

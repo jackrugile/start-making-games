@@ -12,8 +12,9 @@
 }
 
 .pong {
+	background: rgba(255,255,255,0.05);
 	bottom: 0;
-	box-shadow: 0 0 0 2px #666;
+	box-shadow: 0 0 0 8px #666;
 	height: 1080px;
 	left: 0;
 	margin: auto;
@@ -68,9 +69,9 @@
 	background: #666;
 	height: 100%;
 	left: 50%;
-	margin-left: -1px;
+	margin-left: -2px;
 	top: 0;
-	width: 2px;
+	width: 4px;
 }
 
 .ball {
