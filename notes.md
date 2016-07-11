@@ -14,6 +14,8 @@
 	- {section}-{type}-{desc}-{index}
 	- type can be info, code, demo, or any combo of those
 - why aren't line number start offsets working?
+- what slides need special illustrations?
+	- aabb collision detection
 
 ---
 

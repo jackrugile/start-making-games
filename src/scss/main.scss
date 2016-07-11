@@ -107,9 +107,9 @@ body {
 
 .slide-grid {
 	display: flex;
-
 }
 
 .slide-col {
+	position: relative;
 	width: 50%;
 }

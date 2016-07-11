@@ -287,9 +287,14 @@ function render() {
 
 	paddlePlayer.elem.style.transform = 'translate3d(' + paddlePlayer.x + 'px, ' + paddlePlayer.y + 'px, 60px)';
 	paddleEnemy.elem.style.transform = 'translate3d(' + paddleEnemy.x + 'px, ' + paddleEnemy.y + 'px, 60px)';
+
+	//ball.z = 60 + ( 1 - Math.abs( ( gameWidth * -0.5 + ( + ball.x + ballWidth ) ) / gameWidth * 2 ) ) * 160;
 	ball.elem.style.transform = 'translate3d(' + ball.x + 'px, ' + ball.y + 'px, 60px)';
+
 	scorePlayer.elem.innerHTML = scorePlayer.value;
+	scorePlayer.elem.setAttribute( 'data-score', scorePlayer.value );
 	scoreEnemy.elem.innerHTML = scoreEnemy.value;
+	scoreEnemy.elem.setAttribute( 'data-score', scoreEnemy.value );
 }
 
 /*==========================================

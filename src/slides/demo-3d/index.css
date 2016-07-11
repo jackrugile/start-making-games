@@ -1,15 +1,6 @@
-/*.wrap {
-	position: absolute;
-	width: 50%;
-	right: 0;
-	top: 0;
-	height: 100%;
-}*/
-
 .pong,
 .pong * {
 	position: absolute;
-	will-change: transform;
 }
 
 .pong {
@@ -22,6 +13,17 @@
 	top: 0;
 	transform-style: preserve-3d;
 	width: 1920px;
+	will-change: transform;
+}
+
+.pong:after {
+	background: linear-gradient( hsla( 0, 0%, 100%, 0 ), hsla( 0, 0%, 100%, 0.05 ) );
+	content: '';
+	left: 0;
+	right: 0;
+	position: absolute;
+	top: 0;
+	height: 50%;
 }
 
 /* --- */
@@ -113,6 +115,18 @@
 	color: white;
 	font: bold 6em/1 'Roboto Mono', monospace;
 	top: 80px;
+	transform: translateZ(60px);
+	transform-style: preserve-3d;
+}
+
+.score:after {
+	color: transparent;
+	content: attr(data-score);
+	left: 0;
+	position: absolute;
+	text-shadow: 0 0 10px hsla(0, 0%, 0%, 0.25);
+	top: 0;
+	transform: translateZ(-60px);
 }
 
 .score-player {
@@ -133,7 +147,10 @@
 	left: 50%;
 	margin-left: -2px;
 	top: 0;
+	transform: translateZ( 1px );
 	width: 4px;
+	z-index: 1;
+	backface-visibility: hidden;
 }
 
 .ball {
@@ -143,7 +160,7 @@
 	top: 0;
 	transform-style: preserve-3d;
 	width: 60px;
-	z-index: 1;
+	z-index: 2;
 }
 
 
