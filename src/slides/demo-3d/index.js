@@ -6,6 +6,10 @@ var pong = document.querySelector('.pong'),
 	yDeg = 0,
 	yDegTarget = 0,
 	rangeDeg = 10,
+	xTrans = 0,
+	xTransTarget = 0,
+	yTrans = 0,
+	yTransTarget = 0,
 	smoothingDeg = 0.05,
 	scale = 0.85;
 
@@ -273,11 +277,17 @@ function render() {
 	yDegTarget = ( ( ball.x / ( gameWidth - ballWidth ) - 0.5 ) * 2 ) * rangeDeg;
 	yDeg += ( yDegTarget - yDeg ) * smoothingDeg;
 
-	pong.style.transform = 'scale( ' + scale + ' ) rotateX(' + -xDeg + 'deg) rotateY(' + yDeg + 'deg) rotateZ(0deg)';
+	xTransTarget = ( -ball.x / 1 + gameWidth / 2 ) * 0.1;
+	xTrans += ( xTransTarget - xTrans ) * smoothingDeg;
 
-	paddlePlayer.elem.style.transform = 'translate(' + paddlePlayer.x + 'px, ' + paddlePlayer.y + 'px)';
-	paddleEnemy.elem.style.transform = 'translate(' + paddleEnemy.x + 'px, ' + paddleEnemy.y + 'px)';
-	ball.elem.style.transform = 'translate(' + ball.x + 'px, ' + ball.y + 'px)';
+	yTransTarget = ( -ball.y / 1 + gameHeight / 2 ) * 0.1;
+	yTrans += ( yTransTarget - yTrans ) * smoothingDeg;
+
+	pong.style.transform = 'scale( ' + scale + ' ) translateX(' + xTrans + 'px) translateY(' + yTrans + 'px) rotateX(' + -xDeg + 'deg) rotateY(' + yDeg + 'deg) rotateZ(0deg)';
+
+	paddlePlayer.elem.style.transform = 'translate3d(' + paddlePlayer.x + 'px, ' + paddlePlayer.y + 'px, 60px)';
+	paddleEnemy.elem.style.transform = 'translate3d(' + paddleEnemy.x + 'px, ' + paddleEnemy.y + 'px, 60px)';
+	ball.elem.style.transform = 'translate3d(' + ball.x + 'px, ' + ball.y + 'px, 60px)';
 	scorePlayer.elem.innerHTML = scorePlayer.value;
 	scoreEnemy.elem.innerHTML = scoreEnemy.value;
 }

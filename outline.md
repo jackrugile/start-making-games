@@ -113,6 +113,7 @@
 - add weather
 - rotate ball based on direction
 - dynamic sound that is affected by the game pieces! paddles and ball
+- enemy taunts with text/synth sound of text
 - particles
 	- channel bob ross
 	- happy little trees = happy little particles

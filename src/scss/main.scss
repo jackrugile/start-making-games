@@ -71,21 +71,21 @@ body {
 }
 
 .slide-wrap {
-	bottom: 100px;
-	left: 5%;
+	bottom: calc(7vh + 80px);
+	left: 7vw;
 	position: absolute;
-	right: 5%;
-	top: 100px;
+	right: 7vw;
+	top: 7vh;
 	z-index: 25;
 }
 
 .slide {
 	//background: map-get( $colors, slide-bg );
 	//box-shadow: 0 0 0 2px rgba(255,255,255,0.05);
-	//display: flex;
+	display: flex;
 	flex-direction: column;
 	height: $height;
-	justify-content: top;
+	justify-content: center;
 	left: 50%;
 	margin: ( $height / -2 ) 0 0 ( $width / -2 );
 	opacity: 1;
@@ -97,11 +97,12 @@ body {
 }
 
 .slide-content {
-	height: $height;
+	//height: $height;
 	padding: $padding;
 	position: relative;
+	transform-style: preserve-3d;
 	width: $width;
-	perspective: 1000px;
+	perspective: 2000px;
 }
 
 .slide-grid {

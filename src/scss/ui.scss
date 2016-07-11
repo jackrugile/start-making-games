@@ -1,0 +1,175 @@
+/*==============================================================================
+UI
+==============================================================================*/
+
+.ui {
+	background: rgba(255,255,255,0.05);
+	bottom: 0;
+	left: 0;
+	height: 80px;
+	overflow: hidden;
+	position: absolute;
+	right: 0;
+}
+
+/*==============================================================================
+Directions
+==============================================================================*/
+
+.dirs {
+	height: 40px;
+	left: 30px;
+	margin-top: -20px;
+	position: absolute;
+	top: 50%;
+	width: 40px;
+	z-index: 50;
+}
+
+.dir {
+	background: rgba(255, 255, 255, 0.1);
+	height: 30%;
+	//opacity: 0.25;
+	position: absolute;
+	transform: rotate( 45deg );
+	transition-duration: 600ms;
+	transition-property: background, box-shadow, transform;
+	transition-timing-function: $easeOutExpo;
+	width: 30%;
+	&.is-active {
+		//background: map-get( $colors, primary );
+		//opacity: 1;
+		background: rgba(255, 255, 255, 1);
+		transition-duration: 0ms;
+	}
+	&.dir-up,
+	&.dir-down {
+		left: 35%;
+	}
+	&.dir-right,
+	&.dir-left {
+		top: 35%;
+	}
+	&.dir-up {
+		top: 0;
+		&.is-active {
+			transform: translateY( -50% ) scale( 0.75, 1.25 ) rotate( 45deg );
+		}
+	}
+	&.dir-right {
+		right: 0;
+		&.is-active {
+			transform: translateX( 50% ) scale( 1.25, 0.75 ) rotate( 45deg );
+		}
+	}
+	&.dir-down {
+		bottom: 0;
+		&.is-active {
+			transform: translateY( 50% ) scale( 0.75, 1.25 ) rotate( 45deg );
+		}
+	}
+	&.dir-left {
+		left: 0;
+		&.is-active {
+			transform: translateX( -50% ) scale( 1.25, 0.75 ) rotate( 45deg );
+		}
+	}
+	&.dir-center {
+		background: none;
+		border: none;
+		border: 3px solid map-get( $colors, slide-bg );
+		bottom: 0;
+		display: none;
+		height: 60%;
+		left: 0;
+		margin: auto;
+		opacity: 1;
+		right: 0;
+		top: 0;
+		transform: rotate( 45deg );
+		width: 60%;
+	}
+}
+
+/*==============================================================================
+Slide Indicator
+==============================================================================*/
+
+.slide-indicator {
+	color: rgba(255, 255, 255, 0.2);
+	font-family: $font-roboto-mono;
+	font-size: 2.2em;
+	font-weight: 700;
+	line-height: 1;
+	margin-top: -18px;
+	position: absolute;
+	right: 135px;
+	top: 50%;
+	z-index: 50;
+}
+
+/*==============================================================================
+Navigations
+==============================================================================*/
+
+.nav {
+	display: flex;
+	margin-top: -20px;
+	position: absolute;
+	right: 30px;
+	top: 50%;
+	z-index: 50;
+}
+
+.nav-item {
+	background: rgba(255, 255, 255, 0.1);
+	display: block;
+	height: 40px;
+	position: relative;
+	transition-duration: 300ms;
+	transition-property: background, transform;
+	transition-timing-function: $easeOutExpo;
+	width: 40px;
+	&:before,
+	&:after {
+		border: 6px solid transparent;
+		content: '';
+		left: 50%;
+		margin-top: -6px;
+		position: absolute;
+		top: 50%;
+	}
+	&.nav-prev {
+		margin-right: 1px;
+		&:after {
+			border-left-width: 0;
+			border-right-color: map-get( $colors, bg );
+			margin-left: -3px;
+		}
+	}
+	&.nav-next {
+		&:after {
+			border-left-color: map-get( $colors, bg );
+			border-right-width: 0;
+			margin-left: -3px;
+		}
+	}
+	&:hover {
+		background: rgba(255, 255, 255, 0.5);
+		&.nav-prev {
+			&:after {
+				border-right-color: map-get( $colors, bg );
+			}
+		}
+		&.nav-next {
+			&:after {
+				border-left-color: map-get( $colors, bg );
+			}
+		}
+	}
+	&:active {
+		background: #fff;
+		transition-duration: 0ms;
+		transform: translateY( 3px );
+	}
+}
