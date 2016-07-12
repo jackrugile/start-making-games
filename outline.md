@@ -90,42 +90,53 @@
 ### Explain Juice / Polish
 
 ### Gameplay Changes
-- shooting multiple balls at you
-- trying to avoid the balls
-- change the level for round pong
 - add powerups
-- add spike move
+- moves
+	- spike
+	- defensive extend
+	- dash 
 - add increasing ai difficulty
 - add graphics that help the player visualize certain behaviors
 	- add edges to paddles to reflect collision detection
-- illustrate benefits of good hitboxes vs bad hitboxes
-- play against yourself
-- influence ball trajectory by moving paddle
 - rounded paddle for adding english
+- add acceleration and friction
+- add wind?
 
 ### Non-Gameplay Changes
-- colors
 - add characters
-- change setting
-- add effects
-- add sound
-- add music
-- add weather
+- audio
+	- sfx
+	- stereo sound
+	- music
+- ambience
+	- diagonal light streaks
+	- background grid
+		- anaglyph or chromatic shake
+		- light up panel bases on where ball is
 - rotate ball based on direction
-- dynamic sound that is affected by the game pieces! paddles and ball
-- enemy taunts with text/synth sound of text
 - particles
-	- channel bob ross
-	- happy little trees = happy little particles
-- random screenshake
-- accurate screenshake
+	- trails
+	- channel bob ross : happy little trees = happy little particles
+- screenshake
+	- subtle random
+	- accurate on big movements
+	- chromatic abberation?
 - light flashes
+	- entire screen
+	- paddles
+	- ball pulse light
+	- flash score
 - slow motion
-- trails
-- 3d transform based on ball pos
-- use svg for lines?
-- goo filter
-- add stats
+	- zoom on ball?
+- 3d
+	- level transform based on ball pos
+	- extrude game objects
+- misc polish
+	- animate ball in
+	- alternate ball direction
+	- victory screen
+	- pre game display
+	- general shadows for game objects
 - total score and progress meter (bar)
 - all together
 
@@ -144,3 +155,7 @@
 ### Resources
 
 #### Go To jackrugile.com/game-dev-resources
+
+- final slides
+- final game
+- getting started resources

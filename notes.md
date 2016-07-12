@@ -43,3 +43,5 @@
 - whole journey that other game developers have experience that you get to experience too
 	- even if you weren't the one to invent or discover a concept, it still feels great to understand it and implement it in your own way
 - compare hitbox sizes to front end dev
+- show before and after
+- developers can be lonely people, makes sense that we make ai

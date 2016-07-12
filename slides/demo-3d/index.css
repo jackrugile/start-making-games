@@ -158,6 +158,7 @@
 	height: 60px;
 	left: 0;
 	top: 0;
+	/*transform-origin: 50% 50% -30px;*/
 	transform-style: preserve-3d;
 	width: 60px;
 	z-index: 2;

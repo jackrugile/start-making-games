@@ -2,6 +2,11 @@
 	box-sizing: border-box;
 }
 
+html,
+body {
+	overflow: hidden;
+}
+
 html {
 	&:after {
 		background: rgba(255, 255, 255, 0.1);
@@ -29,7 +34,6 @@ body {
 	color: map-get( $colors, primary );
 	font: 400 100%/1.5 $font-lato;
 	min-height: 100vh;
-	overflow: hidden;
 	&:before,
 	&:after {
 		border: 30px solid transparent;
@@ -102,7 +106,7 @@ body {
 	position: relative;
 	transform-style: preserve-3d;
 	width: $width;
-	perspective: 2000px;
+	perspective: 1500px;
 }
 
 .slide-grid {

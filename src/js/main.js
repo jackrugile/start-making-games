@@ -145,6 +145,17 @@ nextSlideButton.addEventListener( 'click', function( e ) {
 
 loadSlide( currentSlide );
 
+/*==============================================================================
+Utility
+==============================================================================*/
+
+function rand( min, max ) {
+	return Math.random() * ( max - min ) + min;
+}
+
+function randInt( min, max ) {
+	return Math.floor( min + Math.random() * ( max - min + 1 ) );
+}
 
 /*==============================================================================
 Playground Gamepad
@@ -226,7 +237,15 @@ var pg = playground({
 		sounds: 'snd/',
 	},
 	create: function() {
-		//this.loadSounds( 'move' );
+		this.loadSounds([
+			'paddle-1',
+			'wall-1',
+			'score-player-1',
+			'score-enemy-1',
+			'spike-1',
+			'spike-2',
+			'spike-3'
+		]);
 	},
 	step: function() {
 	}
