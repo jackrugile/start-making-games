@@ -16,6 +16,8 @@
 - why aren't line number start offsets working?
 - what slides need special illustrations?
 	- aabb collision detection
+- make slides controllable from one hand?
+- hide cursor after inactivity
 
 ---
 

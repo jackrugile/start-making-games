@@ -240,8 +240,8 @@ function update() {
 		ball.y = 0;
 		ball.vy = -ball.vy;
 		var sound = pg.playSound( 'wall-1' );
-		pg.sound.setVolume( sound, 0.7 );
-		pg.sound.setPlaybackRate( sound, rand( 1, 1.8 ) );
+		pg.sound.setVolume( sound, 0.5 );
+		pg.sound.setPlaybackRate( sound, rand( 2, 3 ) );
 
 		var impactAngle = Math.atan2( ball.vy, ball.vx );
 		shake.translate = 10;
@@ -254,8 +254,8 @@ function update() {
 		ball.y = gameHeight - ball.height;
 		ball.vy = -ball.vy;
 		var sound = pg.playSound( 'wall-1' );
-		pg.sound.setVolume( sound, 0.7 );
-		pg.sound.setPlaybackRate( sound, rand( 1, 1.8 ) );
+		pg.sound.setVolume( sound, 0.5 );
+		pg.sound.setPlaybackRate( sound, rand( 2, 3 ) );
 
 		var impactAngle = Math.atan2( ball.vy, ball.vx );
 		shake.translate = 10;
@@ -269,8 +269,8 @@ function update() {
 		ballSpeed += 1;
 		resetBall();
 		var sound = pg.playSound( 'score-player-1' );
-		pg.sound.setVolume( sound, 0.6 );
-		pg.sound.setPlaybackRate( sound, 1.6 );
+		pg.sound.setVolume( sound, 0.3 );
+		pg.sound.setPlaybackRate( sound, 2 );
 	} else if(ball.x < 0) {
 		scoreEnemy.value++;
 		ballSpeed += 1;
