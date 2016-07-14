@@ -135,18 +135,6 @@ Events
 ==========================================*/
 
 function addEventListeners() {
-	/*
-	window.addEventListener('keydown', function(e) {
-		if(e.which === 38) { playerMoveUp = true; }
-		if(e.which === 40) { playerMoveDown = true; }
-	});
-
-	window.addEventListener('keyup', function(e) {
-		if(e.which === 38) { playerMoveUp = false; }
-		if(e.which === 40) { playerMoveDown = false; }
-	});
-	*/
-
 	window.addEventListener( 'controlUpDown', onControlUpDown );
 	window.addEventListener( 'controlDownDown', onControlDownDown );
 	window.addEventListener( 'controlUpUp', onControlUpUp );
@@ -380,6 +368,7 @@ function render() {
 
 	yTransTarget = ( -ball.y / 1 + gameHeight / 2 ) * 0.1;
 	yTrans += ( yTransTarget - yTrans ) * smoothingDeg;
+
 
 	//$.ctx.translate( $.game.width / 2 + shake.x, $.game.height / 2 + shake.y );
 	//$.ctx.rotate( shake.angle );

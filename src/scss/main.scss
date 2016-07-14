@@ -85,7 +85,7 @@ body {
 
 .slide {
 	//background: map-get( $colors, slide-bg );
-	//box-shadow: 0 0 0 2px rgba(255,255,255,0.05);
+	
 	display: flex;
 	flex-direction: column;
 	height: $height;
@@ -98,6 +98,12 @@ body {
 	transition: background 300ms;
 	width: $width;
 	//will-change: transform;
+	.dev &:hover {
+		box-shadow: 0 0 0 2px rgba(255,255,255,0.1);
+		.notes {
+			visibility: visible;
+		}
+	}
 }
 
 .slide-content {

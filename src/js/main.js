@@ -1,4 +1,31 @@
 /*==============================================================================
+Dev Class
+==============================================================================*/
+
+if( window.location.search === '?dev' ) {
+	document.documentElement.classList.add( 'dev' );
+}
+
+/*==============================================================================
+Slide Scaling
+==============================================================================*/
+var slides = [
+	// intro
+		'intro-t-title',
+		'intro-t-jack',
+		'intro-t-quotes',
+	// why
+	// build
+		'code-test-html',
+		'code-test-css',
+		'code-test-js',
+	// juice
+		'demo',
+		'demo-3d'
+	// outro
+];
+
+/*==============================================================================
 Slide Scaling
 ==============================================================================*/
 
@@ -34,15 +61,6 @@ setScale();
 /*==============================================================================
 Slide Loading
 ==============================================================================*/
-
-var slides = [
-	'title',
-	'code-test-html',
-	'code-test-css',
-	'code-test-js',
-	'demo',
-	'demo-3d'
-];
 
 var slideTimeout = null,
 	currentSlide = location.hash ? location.hash.slice( 1 ) - 1 : 0,
@@ -170,8 +188,8 @@ var controlDownDownEvent = new Event( 'controlDownDown' ),
 		right: [ 'right', 'd' ],
 		down: [ 'down', 's' ],
 		left: [ 'left', 'a' ],
-		prev: [ 'openbracket', 'l1' ],
-		next: [ 'closebraket', 'r1' ],
+		prev: [ 'openbracket', 'l2' ],
+		next: [ 'closebraket', 'l1' ],
 	},
 	keys = {
 		up: 0,

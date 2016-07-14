@@ -6,33 +6,156 @@ em {
 	font-style: italic;
 }
 
-h1 {
-	color: #fff;
-	font-size: 9em;
-	font-weight: 900;
-	line-height: 1;
-	margin-bottom: 2rem;
-	span {
-		color: map-get( $colors, accent );
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+ul,
+ol,
+p {
+	margin-bottom: 3rem;
+	&:last-child {
+		margin-bottom: 0;
 	}
 }
 
-h2 {
-	color: map-get( $colors, accent2 );
-	color: #fff;
-	font-size: 5em;
-	font-weight: 300;
-	line-height: 1;
-	span {
-		color: map-get( $colors, accent2 );
-		font-weight: 900;
-	}
-}
-
-h3 {
-	color: #fff;
-	font-size: 5em;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
 	font-weight: 900;
 	line-height: 1.2;
-	margin-bottom: 2rem;
+}
+
+h1,
+h2 {
+	font-size: 10em;
+	letter-spacing: -0.01em;
+}
+
+h3,
+h4 {
+	font-size: 8em;
+	letter-spacing: -0.01em;
+}
+
+h5,
+h6 {
+	font-size: 6em;
+	letter-spacing: -0.01em;
+}
+
+h2,
+h4,
+h6 {
+	font-weight: 400;
+}
+
+.no-marg {
+	margin-bottom: 1rem !important;
+}
+
+ul {
+	list-style: none;
+}
+
+ol {
+
+}
+
+p,
+li {
+	font-size: 4em;
+	letter-spacing: -0.01em;
+}
+
+li {
+	margin-bottom: 0.5rem;
+}
+
+ul li {
+	position: relative;
+	&:after {
+		//border: 1em solid transparent;
+		background: hsla(0, 0%, 100%, 0.25);
+		width: 0.25em;
+		height: 0.25em;
+		content: '';
+		left: 0;
+		margin-left: -0.85em;
+		position: absolute;
+		top: 0.68em;
+		transform: rotate(45deg);
+	}
+}
+
+h1 a,
+h2 a,
+h3 a,
+h4 a,
+h5 a,
+h6 a,
+p a,
+ul a,
+ol a {
+	color: map-get( $colors, accent );
+	position: relative;
+	text-decoration: none;
+	transition: color 300ms;
+	&:hover {
+		color: map-get( $colors, accent2 );
+	}
+	&:after {
+		background: hsla(0, 0%, 100%, 0.15);
+		//background: linear-gradient(90deg, hsla(0, 0%, 100%, 0.25), transparent);
+		content: '';
+		height: 3px;
+		left: 0;
+		margin-top: 3px;
+		position: absolute;
+		top: 100%;
+		width: 100%;
+	}
+}
+
+hr {
+	background: linear-gradient(90deg, hsla(0, 0%, 100%, 0.25), transparent);
+	border: none;
+	display: block;
+	height: 3px;
+	margin: 5rem 0;
+	width: 100%;
+	&.small-marg {
+		margin: 3rem 0;
+	}
+}
+
+.acc1 {
+	color: map-get( $colors, accent );
+}
+
+.acc2 {
+	color: map-get( $colors, accent2 );
+}
+
+.subdued {
+	opacity: 0.5;
+}
+
+.notes {
+	background: rgba(0, 0, 0, 0.9);
+	bottom: 0;
+	font-size: 2em;
+	left: 0;
+	padding: 5rem;
+	position: absolute;
+	right: 0;
+	top: 0;
+	visibility: hidden;
+	white-space: pre-wrap;
+	z-index: 200;
 }

@@ -18,6 +18,7 @@
 	- aabb collision detection
 - make slides controllable from one hand?
 - hide cursor after inactivity
+- test with disabled internet connection
 
 ---
 
@@ -47,3 +48,4 @@
 - compare hitbox sizes to front end dev
 - show before and after
 - developers can be lonely people, makes sense that we make ai
+- pong is good because nothing gets added or removed
