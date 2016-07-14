@@ -235,6 +235,13 @@ separate dir stuff
 */
 
 var pg = playground({
+	mousemove: function( e ) {
+		if( this.mouseIdle ) {
+			document.documentElement.classList.remove( 'mouse-idle' );
+		}
+		this.mouseIdle = false;
+		this.mouseIdleTick = this.mouseIdleTickMax;
+	},
 	keydown: function( e ) {
 		if(      keyMap.up.indexOf( e.key ) > -1 )    { keys.up = 1; dirs.up.classList.add( 'is-active' ); window.dispatchEvent( controlUpDownEvent ); }
 		else if( keyMap.right.indexOf( e.key ) > -1 ) { keys.right = 1; dirs.right.classList.add( 'is-active' ); }
@@ -267,6 +274,9 @@ var pg = playground({
 		sounds: 'snd/',
 	},
 	create: function() {
+		this.mouseIdle = false;
+		this.mouseIdleTickMax = 180;
+		this.mouseIdleTick = this.mouseIdleTickMax;
 		this.loadSounds([
 			'paddle-1',
 			'wall-1',
@@ -278,5 +288,13 @@ var pg = playground({
 		]);
 	},
 	step: function() {
+		if( !this.mouseIdle ) {
+			if( this.mouseIdleTick > 0 ) {
+				this.mouseIdleTick--;
+			} else {
+				this.mouseIdle = true;
+				document.documentElement.classList.add( 'mouse-idle' );
+			}
+		}
 	}
 });

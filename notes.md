@@ -1,11 +1,8 @@
 # Tech Notes
-- Invert HTML with filter if needed
 - Test thoroughly on laptop for performance, fullscreen, and sound
 - Pause / Step function?
 - Mute function
-- setup full code, full game, and half and half view
 - be very careful about destroying all lingering items
-- hide mouse after inactive mouse movement?
 - get caffeine app for his laptop?
 - disable all notifications
 - cancel current ajax request when skipping slides fast, could cause a race issue
@@ -32,6 +29,9 @@
 - controller test
 - power cord
 - setup mic on shirt or stand
+- visible timer
+	- have milestone checkpoints
+	- no if you're ahead or behind
 
 ---
 

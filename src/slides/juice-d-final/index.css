@@ -113,7 +113,7 @@
 
 .score {
 	color: white;
-	font: bold 6em/1 'Roboto Mono', monospace;
+	font: bold 6em/1 'robotomonowf', monospace;
 	top: 80px;
 	transform: translateZ(60px);
 	transform-style: preserve-3d;

@@ -25,14 +25,10 @@
 }
 
 .paddle-player { 
-	/*background: #39f;*/
-	/*background: hsl(180, 100%, 60%);*/
 	background: hsl(130, 100%, 60%);
 }
 
 .paddle-enemy {
-	/*background: #f34;*/
-	/*background: hsl(0, 100%, 60%);*/
 	background: hsl(200, 100%, 60%);
 }
 
@@ -40,7 +36,7 @@
 
 .score {
 	color: white;
-	font: bold 6em/1 'Roboto Mono', monospace;
+	font: bold 6em/1 'robotomonowf', monospace;
 	top: 80px;
 }
 
