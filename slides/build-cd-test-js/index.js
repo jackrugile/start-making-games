@@ -1,5 +1,43 @@
 (function(){
 
+	var gameDOM = document.querySelector( '.pong' ),
+		gameDOMWrap = gameDOM.parentNode,		
+		gameDOMBcr,
+		gameDOMWidth,
+		gameDOMHeight,
+		gameDOMRatio,
+		gameDOMScaleMin = 0,
+		gameDOMScaleMax = Infinity,
+		gameDOMScale,
+		gameDOMWrapBcr;
+
+	function setGameScale() {
+		gameDOMBcr = gameDOM.getBoundingClientRect(),
+		gameDOMWidth = gameDOMBcr.width,
+		gameDOMHeight = gameDOMBcr.height,
+		gameDOMRatio = gameDOMHeight / gameDOMWidth,
+
+		gameDOMWrapBcr = gameDOMWrap.getBoundingClientRect();
+		if( gameDOMWrapBcr.width > gameDOMWrapBcr.height / gameDOMRatio ) {
+			gameDOMScale = gameDOMWrapBcr.height / gameDOMRatio / gameDOMWidth;
+		} else {
+			gameDOMScale = gameDOMWrapBcr.width * gameDOMRatio / gameDOMHeight;
+		}
+		gameDOMScale = Math.max( Math.min( gameDOMScale, gameDOMScaleMax ), gameDOMScaleMin ) + 0.001;
+		gameDOM.style.transform = 'scale(' + gameDOMScale + ')';
+	}
+
+	function onGameResize() {
+		setGameScale();
+		setTimeout( function() {
+			setGameScale();
+		}, 100 );
+	}
+
+	addEventListener( 'resize', onGameResize );
+
+	setGameScale();
+
 /*==========================================
 Config 
 ==========================================*/
@@ -285,10 +323,7 @@ init(); // to win it!
 Destroy
 ==========================================*/
 
-window.addEventListener( 'slideChange', destroy );
-
 function destroy() {
-	window.removeEventListener( 'slideChange', destroy );
 	window.removeEventListener( 'controlUpDown', onControlUpDown );
 	window.removeEventListener( 'controlDownDown', onControlDownDown );
 	window.removeEventListener( 'controlUpUp', onControlUpUp );

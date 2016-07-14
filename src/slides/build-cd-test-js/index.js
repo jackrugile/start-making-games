@@ -323,10 +323,7 @@ init(); // to win it!
 Destroy
 ==========================================*/
 
-window.addEventListener( 'slideChange', destroy );
-
 function destroy() {
-	window.removeEventListener( 'slideChange', destroy );
 	window.removeEventListener( 'controlUpDown', onControlUpDown );
 	window.removeEventListener( 'controlDownDown', onControlDownDown );
 	window.removeEventListener( 'controlUpUp', onControlUpUp );

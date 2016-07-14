@@ -1,26 +1,29 @@
-<h3>
-	Configuration and Variables
-</h3>
+<h5>Configuration and Variables</h5>
 
 <div class="slide-grid">
 	<div class="slide-col">
 		<pre>
 			<code class="language-js">
-				// game
-				var gameWidth = 800,
-					gameHeight = 450;
-
-				// paddles
-				var paddleWidth = 30,
-					paddleHeight = 120,
-					paddleSpeed = 8;
-
-				// ball
-				var ballWidth = 30,
-					ballHeight = 30,
-					ballSpeedStart = 8,
-					ballSpeed = ballSpeedStart;
-
+			var paddlePlayer = {
+				elem: document.querySelector('.paddle-player'),
+				x: 0,
+				y: gameHeight / 2 - paddleHeight / 2,
+				width: paddleWidth,
+				height: paddleHeight,
+				speed: paddleSpeed,
+				moveUp: false,
+				moveDown: false
+			};
+			var paddleEnemy = {
+				elem: document.querySelector('.paddle-enemy'),
+				x: gameWidth - paddleWidth,
+				y: gameHeight / 2 - paddleHeight / 2,
+				width: paddleWidth,
+				height: paddleHeight,
+				speed: paddleSpeed,
+				moveUp: false,
+				moveDown: false
+			};
 			</code>
 		</pre>
 	</div>

@@ -11,6 +11,7 @@
 
 pre[class*="language-"] {
 	font-size: 2em;
+
 }
 
 code[class*="language-"],
@@ -35,6 +36,8 @@ pre[class*="language-"] {
 	-moz-hyphens: none;
 	-ms-hyphens: none;
 	hyphens: none;
+
+	letter-spacing: -0.025em;
 }
 
 /* Code blocks */
@@ -115,6 +118,11 @@ pre[class*="language-"] {
 .token.inserted {
 	//color: #A8FF60;
 	color: map-get($colors, accent );
+}
+
+.token.string {
+	color: map-get($colors, accent4 );
+	font-style: italic;
 }
 
 .token.variable {

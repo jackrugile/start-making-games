@@ -1,4 +1,14 @@
 /*==============================================================================
+Game
+==============================================================================*/
+/*
+	all demos will be tied to this variable
+	a destroy must be called anytime a slide changes
+	then set it to null
+*/
+var game = null;
+
+/*==============================================================================
 Dev Class
 ==============================================================================*/
 
@@ -16,12 +26,13 @@ var slides = [
 		'intro-t-quotes',
 	// why
 	// build
-		'code-test-html',
-		'code-test-css',
-		'code-test-js',
+		'build-c-test-html',
+		'build-c-test-css',
+		'build-cd-test-js',
+		'build-d-final',
 	// juice
-		'demo',
-		'demo-3d'
+		'juice-d-3d',
+		'juice-d-final'
 	// outro
 ];
 
@@ -69,7 +80,6 @@ var slideTimeout = null,
 	prevSlideButton = document.querySelector( '.nav-prev' ),
 	nextSlideButton = document.querySelector( '.nav-next' ),
 	slideIndicator = document.querySelector( '.slide-indicator' ),
-	slideChangeEvent = new Event( 'slideChange' ),
 	slideRequest;
 
 if( currentSlide > totalSlides ) {
@@ -82,7 +92,10 @@ function loadSlide( i ) {
 	}
 	location.hash = ( i + 1 );
 	slideIndicator.innerHTML = ( i + 1 );
-	window.dispatchEvent( slideChangeEvent );
+	if( game && typeof game.destroy == 'function' ) {
+		//game.destroy();
+	}
+	game = null;
 	document.documentElement.classList.add( 'loading' );
 	var slideRequest = new XMLHttpRequest();
 	slideRequest.open('GET', 'slides/' + slides[ i ] + '/index.html', true);
@@ -115,7 +128,6 @@ function loadSlide( i ) {
 
 				// load the new js
 				var script = document.createElement( 'script' );
-				
 				script.setAttribute( 'src', 'slides/' + slides[ i ] + '/index.js' );
 				script.async = true;
 				script.classList.add( 'script-' + i );
@@ -125,7 +137,7 @@ function loadSlide( i ) {
 
 				// rehighlight syntax
 				Prism.highlightAll();
-			}, 10 );
+			}, 20 );
 		} 
 	};
 	slideRequest.send();

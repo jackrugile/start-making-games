@@ -49,3 +49,9 @@
 - show before and after
 - developers can be lonely people, makes sense that we make ai
 - pong is good because nothing gets added or removed
+- explain request animation frame
+	- sync game updates and rendering to the browser painting process
+	- aims for 60fps
+	- prevents dropped frames
+	- stops running when browser window/tab is not in focus
+- explain why animation through loop vs animation or transition

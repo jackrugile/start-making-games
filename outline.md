@@ -90,7 +90,6 @@
 ### Explain Juice / Polish
 
 ### Gameplay Changes
-- add powerups
 - moves
 	- spike
 	- defensive extend
