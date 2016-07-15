@@ -59,6 +59,7 @@ function setScale() {
 	}
 	slideScale = Math.max( Math.min( slideScale, slideScaleMax ), slideScaleMin ) + 0.001;
 	slide.style.transform = 'scale(' + slideScale + ')';
+	//slide.style.transform = 'scale3d(' + slideScale + ', ' + slideScale + ', 1)';
 }
 
 function onResize( e ) {
@@ -92,6 +93,7 @@ function loadSlide( i ) {
 	}
 	location.hash = ( i + 1 );
 	slideIndicator.innerHTML = ( i + 1 );
+	document.title = slides[ i ] + ' // Start Making Games';
 	if( game && typeof game.destroy == 'function' ) {
 		//game.destroy();
 	}
@@ -195,6 +197,10 @@ var controlDownDownEvent = new Event( 'controlDownDown' ),
 	controlDownUpEvent = new Event( 'controlDownUp' ),
 	controlUpDownEvent = new Event( 'controlUpDown' ),
 	controlUpUpEvent = new Event( 'controlUpUp' ),
+	mouseLeftDownEvent = new Event( 'mouseLeftDown' ),
+	mouseLeftUpEvent = new Event( 'mouseLeftUp' ),
+	mouseRightDownEvent = new Event( 'mouseRightDown' ),
+	mouseRightUpEvent = new Event( 'mouseRightUp' ),
 	keyMap = {
 		up: [ 'up', 'w' ],
 		right: [ 'right', 'd' ],
@@ -242,6 +248,22 @@ var pg = playground({
 		this.mouseIdle = false;
 		this.mouseIdleTick = this.mouseIdleTickMax;
 	},
+	mousedown: function( e ) {
+		if ( e.button == 'left' ) {
+			window.dispatchEvent( mouseLeftDownEvent );
+		}
+		if ( e.button == 'right' ) {
+			window.dispatchEvent( mouseRightDownEvent );
+		}
+	},
+	mouseup: function( e ) {
+		if ( e.button == 'left' ) {
+			window.dispatchEvent( mouseLeftUpEvent );
+		}
+		if ( e.button == 'right' ) {
+			window.dispatchEvent( mouseRightUpEvent );
+		}
+	},
 	keydown: function( e ) {
 		if(      keyMap.up.indexOf( e.key ) > -1 )    { keys.up = 1; dirs.up.classList.add( 'is-active' ); window.dispatchEvent( controlUpDownEvent ); }
 		else if( keyMap.right.indexOf( e.key ) > -1 ) { keys.right = 1; dirs.right.classList.add( 'is-active' ); }
@@ -274,9 +296,17 @@ var pg = playground({
 		sounds: 'snd/',
 	},
 	create: function() {
+		this.dt = 0.016;
+		this.dtMs = 16;
+		this.dtNorm = 1;
+		this.time = 0;
+		this.timeMs = 0;
+		this.timeNorm = 0;
+
 		this.mouseIdle = false;
 		this.mouseIdleTickMax = 180;
 		this.mouseIdleTick = this.mouseIdleTickMax;
+
 		this.loadSounds([
 			'paddle-1',
 			'wall-1',
@@ -284,10 +314,13 @@ var pg = playground({
 			'score-enemy-1',
 			'spike-1',
 			'spike-2',
-			'spike-3'
+			'spike-3',
+			'slow-mo-1'
 		]);
 	},
-	step: function() {
+	step: function( dt ) {
+		this.manageTime( dt );
+
 		if( !this.mouseIdle ) {
 			if( this.mouseIdleTick > 0 ) {
 				this.mouseIdleTick--;
@@ -296,5 +329,16 @@ var pg = playground({
 				document.documentElement.classList.add( 'mouse-idle' );
 			}
 		}
+	},
+	manageTime: function( dt ) {
+		this.dt = dt;
+		this.dtMs = this.dt * 1000;
+		this.dtNorm = this.dt * 60;
+		this.time += this.dt;
+		this.timeMs += this.dtMs;
+		this.timeNorm += this.dtNorm;
+	},
+	getDt: function() {
+		return this.dtNorm == undefined ? 1 : this.dtNorm;
 	}
 });

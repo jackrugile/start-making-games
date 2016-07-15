@@ -10,12 +10,21 @@
 - naming convention
 	- {section}-{type}-{desc}-{index}
 	- type can be info, code, demo, or any combo of those
-- why aren't line number start offsets working?
 - what slides need special illustrations?
 	- aabb collision detection
 - make slides controllable from one hand?
 - hide cursor after inactivity
 - test with disabled internet connection
+- test gamepad controls at work - on system with no gamepad apps
+- preload all fonts to prevent fout
+- use scale3d intsead of scale on both wrap and pong?
+	- this is in place, not sure if it is more performant though. need test environment on laptop and retina
+	- if 3d caused texture, maybe a smaller starting point makes more sense
+- tennis ball sounds?
+	- https://audiojungle.net/user/sound-ideas/portfolio?page=1&term=tennis&utf8=%E2%9C%93
+- grunt sounds?
+	- https://audiojungle.net/item/male-grunts/12294357?s_rank=14
+- integrate timescale for dt and slow motion
 
 ---
 
@@ -42,7 +51,6 @@
 - hide it away in a utility/helper function
 - pythagoreans theorem? totally useful!
 - I don't learn all the math because of pythagoreasons
-- show "where" we are when zoomed in on code
 - whole journey that other game developers have experience that you get to experience too
 	- even if you weren't the one to invent or discover a concept, it still feels great to understand it and implement it in your own way
 - compare hitbox sizes to front end dev
@@ -55,3 +63,4 @@
 	- prevents dropped frames
 	- stops running when browser window/tab is not in focus
 - explain why animation through loop vs animation or transition
+- bang for your buck with playrate on audio

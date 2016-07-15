@@ -27,19 +27,20 @@ Directions
 }
 
 .dir {
-	background: rgba(255, 255, 255, 0.1);
+	//background: rgba(255, 255, 255, 0.1);
+	background: #fff;
 	height: 30%;
-	//opacity: 0.25;
+	opacity: 0.1;
 	position: absolute;
 	transform: rotate( 45deg );
 	transition-duration: 600ms;
-	transition-property: background, box-shadow, transform;
+	transition-property: opacity, transform;
 	transition-timing-function: $easeOutExpo;
 	width: 30%;
+	will-change: transform;
 	&.is-active {
-		//background: map-get( $colors, primary );
-		//opacity: 1;
-		background: rgba(255, 255, 255, 1);
+		//background: #fff;
+		opacity: 1;
 		transition-duration: 0ms;
 	}
 	&.dir-up,
@@ -77,7 +78,7 @@ Directions
 	&.dir-center {
 		background: none;
 		border: none;
-		border: 3px solid map-get( $colors, slide-bg );
+		border: 2px solid rgba(255, 255, 255, 0.1);
 		bottom: 0;
 		display: none;
 		height: 60%;
@@ -105,6 +106,7 @@ Slide Indicator
 	position: absolute;
 	right: 135px;
 	top: 50%;
+	will-change: transform;
 	z-index: 50;
 }
 
@@ -122,14 +124,16 @@ Navigations
 }
 
 .nav-item {
-	background: rgba(255, 255, 255, 0.1);
+	background: #fff;
+	opacity: 0.1;
 	display: block;
 	height: 40px;
 	position: relative;
 	transition-duration: 300ms;
-	transition-property: background, transform;
+	transition-property: opacity, transform;
 	transition-timing-function: $easeOutExpo;
 	width: 40px;
+	will-change: transform;
 	&:before,
 	&:after {
 		border: 6px solid transparent;
@@ -155,20 +159,10 @@ Navigations
 		}
 	}
 	&:hover {
-		background: rgba(255, 255, 255, 0.5);
-		&.nav-prev {
-			&:after {
-				border-right-color: map-get( $colors, bg );
-			}
-		}
-		&.nav-next {
-			&:after {
-				border-left-color: map-get( $colors, bg );
-			}
-		}
+		opacity: 0.5;
 	}
 	&:active {
-		background: #fff;
+		opacity: 1;
 		transition-duration: 0ms;
 		transform: translateY( 3px );
 	}

@@ -1,4 +1,4 @@
-(function(){
+//(function(){
 
 var pong = document.querySelector('.pong'),
 	xDeg = 0,
@@ -25,6 +25,14 @@ var pong = document.querySelector('.pong'),
 		angle: 0,
 		angleTarget: 0
 	};
+
+	var timescaleTarget = 0.2,
+		timescale = 1,
+		timescaleTimer = 0,
+		timescaleTimerMax = 180,
+		timescaleInDuration = 0.4,
+		timescaleOutDuration = 1,
+		isSlow = false;
 
 /*==========================================
 Config 
@@ -91,11 +99,13 @@ var paddlePlayer = {
 	},
 	scorePlayer = {
 		elem: document.querySelector('.score-player'),
-		value: 0	
+		value: 0,
+		flag: true
 	},
 	scoreEnemy = {
 		elem: document.querySelector('.score-enemy'),
-		value: 0	
+		value: 0,
+		flag: true
 	};
 
 /*==========================================
@@ -139,6 +149,11 @@ function addEventListeners() {
 	window.addEventListener( 'controlDownDown', onControlDownDown );
 	window.addEventListener( 'controlUpUp', onControlUpUp );
 	window.addEventListener( 'controlDownUp', onControlDownUp );
+
+	window.addEventListener( 'mouseLeftDown', onMouseLeftDown );
+	window.addEventListener( 'mouseRightDown', onMouseRightDown );
+	window.addEventListener( 'mouseLeftUp', onMouseLeftUp);
+	window.addEventListener( 'mouseRightUp', onMouseRightUp );
 };
 
 function onControlUpDown() {
@@ -155,6 +170,19 @@ function onControlUpUp() {
 
 function onControlDownUp() {
 	playerMoveDown = false;
+}
+
+function onMouseLeftDown() {
+	slowMo();
+}
+
+function onMouseRightDown() {
+}
+
+function onMouseLeftUp() {
+}
+
+function onMouseRightUp() {
 }
 
 /*==========================================
@@ -183,11 +211,15 @@ function update() {
 	Apply Controls and Forces
 	==========================================*/
 	
-	if(playerMoveUp) { paddlePlayer.y -= paddlePlayer.speed; }
-	if(playerMoveDown) { paddlePlayer.y += paddlePlayer.speed; }
+	if (playerMoveUp) {
+		paddlePlayer.y -= paddlePlayer.speed * getDt();
+	}
+	if (playerMoveDown) {
+		paddlePlayer.y += paddlePlayer.speed * getDt();
+	}
 	
-	ball.x += ball.vx;
-	ball.y += ball.vy;
+	ball.x += ball.vx * getDt();
+	ball.y += ball.vy * getDt();
 	
 	/*==========================================
 	Enemy Behavior
@@ -204,10 +236,10 @@ function update() {
 	}
 	
 	if(enemyMoveUp) {
-		paddleEnemy.y -= paddleEnemy.speed;
+		paddleEnemy.y -= paddleEnemy.speed * getDt();
 	}
 	if(enemyMoveDown) {
-		paddleEnemy.y += paddleEnemy.speed;
+		paddleEnemy.y += paddleEnemy.speed * getDt();
 	}
 	
 	/*==========================================
@@ -251,9 +283,10 @@ function update() {
 		shake.xBias = Math.cos( impactAngle ) * 0;
 		shake.yBias = Math.sin( impactAngle ) * -75;
 	}
-	
+
 	if(ball.x + ball.width > gameWidth) {
 		scorePlayer.value++;
+		scorePlayer.flag = true;
 		ballSpeed += 1;
 		resetBall();
 		var sound = pg.playSound( 'score-player-1' );
@@ -261,6 +294,7 @@ function update() {
 		pg.sound.setPlaybackRate( sound, 2 );
 	} else if(ball.x < 0) {
 		scoreEnemy.value++;
+		scoreEnemy.flag = true;
 		ballSpeed += 1;
 		resetBall();
 		var sound = pg.playSound( 'score-enemy-1' );
@@ -323,9 +357,33 @@ function update() {
 		resetGame();
 	}
 
-
 	handleScreenShake();
+
+	if( isSlow ) {
+		if( timescaleTimer < timescaleTimerMax ) {
+			timescaleTimer++;
+		} else {
+			timescaleTimer = 0;
+			isSlow = false;
+			pg.tween( window ).to(
+				{
+					timescale: 1
+				},
+				timescaleOutDuration,
+				'inQuad'
+			);
+		}
+
+	}
+
+	console.log( timescale );
+
+
 }
+
+/*==========================================
+Screenshake
+==========================================*/
 
 function handleScreenShake() {
 	shake.xBias *= 0.9;
@@ -353,6 +411,31 @@ function handleScreenShake() {
 }
 
 /*==========================================
+Timescale and DT
+==========================================*/
+
+function slowMo() {
+	if ( !isSlow ) {
+		var sound = pg.playSound( 'slow-mo-1' );
+		pg.sound.setVolume( sound, 0.8 );
+
+		isSlow = true;
+		pg.tween( window ).to(
+			{
+				timescale: timescaleTarget
+			},
+			timescaleInDuration,
+			'outQuad'
+		);
+	}
+}
+
+function getDt() {
+	var dt = pg.getDt();
+	return dt * timescale;
+}
+
+/*==========================================
 Render
 ==========================================*/
 
@@ -377,7 +460,9 @@ function render() {
 	//pong.style.transform = 'scale( ' + scale + ' ) translateX(' + xTrans + 'px) translateY(' + yTrans + 'px) rotateX(' + -xDeg + 'deg) rotateY(' + yDeg + 'deg) rotateZ(0deg)';
 
 	// with shake
-	pong.style.transform = 'scale( ' + scale + ' ) translateX(' + ( xTrans + shake.x) + 'px) translateY(' + ( yTrans + shake.y ) + 'px) rotateX(' + -xDeg + 'deg) rotateY(' + yDeg + 'deg) rotateZ('+shake.angle+'rad)';
+	//pong.style.transform = 'scale( ' + scale + ' ) translateX(' + ( xTrans + shake.x) + 'px) translateY(' + ( yTrans + shake.y ) + 'px) rotateX(' + -xDeg + 'deg) rotateY(' + yDeg + 'deg) rotateZ('+shake.angle+'rad)';
+	pong.style.transform = 'scale( ' + scale + ' ) translateX(' + ( xTrans) + 'px) translateY(' + ( yTrans) + 'px) rotateX(' + -xDeg + 'deg) rotateY(' + yDeg + 'deg)';
+	//pong.style.transform = 'scale3d(' + scale + ', ' + scale + ', 1) translateX(' + ( xTrans + shake.x) + 'px) translateY(' + ( yTrans + shake.y ) + 'px) rotateX(' + -xDeg + 'deg) rotateY(' + yDeg + 'deg) rotateZ('+shake.angle+'rad)';
 	slideContent.style.perspectiveOrigin = ( 50 + xTrans/6 ) + '% ' + ( 50 + yTrans/6 ) + '%';
 
 	paddlePlayer.elem.style.transform = 'translate3d(' + paddlePlayer.x + 'px, ' + paddlePlayer.y + 'px, 60px)';
@@ -402,10 +487,16 @@ function render() {
 
 	ball.elem.style.transform = 'translate3d(' + ball.x + 'px, ' + ball.y + 'px, 60px)';
 
-	scorePlayer.elem.innerHTML = scorePlayer.value;
-	scorePlayer.elem.setAttribute( 'data-score', scorePlayer.value );
-	scoreEnemy.elem.innerHTML = scoreEnemy.value;
-	scoreEnemy.elem.setAttribute( 'data-score', scoreEnemy.value );
+	if ( scorePlayer.flag ) {
+		scorePlayer.elem.innerHTML = scorePlayer.value;
+		scorePlayer.elem.setAttribute( 'data-score', scorePlayer.value );
+		scorePlayer.flag = false;
+	}
+	if ( scoreEnemy.flag ) {
+		scoreEnemy.elem.innerHTML = scoreEnemy.value;
+		scoreEnemy.elem.setAttribute( 'data-score', scoreEnemy.value );
+		scoreEnemy.flag = false;
+	}
 }
 
 /*==========================================
@@ -436,4 +527,4 @@ function destroy() {
 	cancelAnimationFrame( raf );
 }
 
-})();
+//})();
