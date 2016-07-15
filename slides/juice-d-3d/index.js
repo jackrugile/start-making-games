@@ -30,7 +30,7 @@ var pong = document.querySelector('.pong'),
 		timescale = 1,
 		timescaleTimer = 0,
 		timescaleTimerMax = 180,
-		timescaleInDuration = 0.4,
+		timescaleInDuration = 0.6,
 		timescaleOutDuration = 1,
 		isSlow = false;
 
@@ -376,9 +376,6 @@ function update() {
 
 	}
 
-	console.log( timescale );
-
-
 }
 
 /*==========================================
@@ -417,7 +414,7 @@ Timescale and DT
 function slowMo() {
 	if ( !isSlow ) {
 		var sound = pg.playSound( 'slow-mo-1' );
-		pg.sound.setVolume( sound, 0.8 );
+		pg.sound.setVolume( sound, 1 );
 
 		isSlow = true;
 		pg.tween( window ).to(
@@ -446,24 +443,26 @@ function render() {
 	yDegTarget = ( ( ball.x / ( gameWidth - ballWidth ) - 0.5 ) * 2 ) * rangeDeg;
 	yDeg += ( yDegTarget - yDeg ) * smoothingDeg;
 
-	xTransTarget = ( -ball.x / 1 + gameWidth / 2 ) * 0.1;
+	xTransTarget = ( -ball.x / 1 + gameWidth / 2 ) * 0.1 * ( ( 1- timescale ) * 10 );
 	xTrans += ( xTransTarget - xTrans ) * smoothingDeg;
 
-	yTransTarget = ( -ball.y / 1 + gameHeight / 2 ) * 0.1;
+	yTransTarget = ( -ball.y / 1 + gameHeight / 2 ) * 0.1 * ( ( 1- timescale ) * 10 );
 	yTrans += ( yTransTarget - yTrans ) * smoothingDeg;
+
+	var calcScale = scale + ( ( 1 - timescale ) * 0.3 )
 
 
 	//$.ctx.translate( $.game.width / 2 + shake.x, $.game.height / 2 + shake.y );
 	//$.ctx.rotate( shake.angle );
 
 	// no shake
-	//pong.style.transform = 'scale( ' + scale + ' ) translateX(' + xTrans + 'px) translateY(' + yTrans + 'px) rotateX(' + -xDeg + 'deg) rotateY(' + yDeg + 'deg) rotateZ(0deg)';
+	//pong.style.transform = 'scale( ' + calcScale + ' ) translateX(' + xTrans + 'px) translateY(' + yTrans + 'px) rotateX(' + -xDeg + 'deg) rotateY(' + yDeg + 'deg) rotateZ(0deg)';
 
 	// with shake
-	//pong.style.transform = 'scale( ' + scale + ' ) translateX(' + ( xTrans + shake.x) + 'px) translateY(' + ( yTrans + shake.y ) + 'px) rotateX(' + -xDeg + 'deg) rotateY(' + yDeg + 'deg) rotateZ('+shake.angle+'rad)';
-	pong.style.transform = 'scale( ' + scale + ' ) translateX(' + ( xTrans) + 'px) translateY(' + ( yTrans) + 'px) rotateX(' + -xDeg + 'deg) rotateY(' + yDeg + 'deg)';
-	//pong.style.transform = 'scale3d(' + scale + ', ' + scale + ', 1) translateX(' + ( xTrans + shake.x) + 'px) translateY(' + ( yTrans + shake.y ) + 'px) rotateX(' + -xDeg + 'deg) rotateY(' + yDeg + 'deg) rotateZ('+shake.angle+'rad)';
-	slideContent.style.perspectiveOrigin = ( 50 + xTrans/6 ) + '% ' + ( 50 + yTrans/6 ) + '%';
+	//pong.style.transform = 'scale( ' + calcScale + ' ) translateX(' + ( xTrans + shake.x) + 'px) translateY(' + ( yTrans + shake.y ) + 'px) rotateX(' + -xDeg + 'deg) rotateY(' + yDeg + 'deg) rotateZ('+shake.angle+'rad)';
+	pong.style.transform = 'scale( ' + calcScale + ' ) translateX(' + ( xTrans) + 'px) translateY(' + ( yTrans) + 'px) rotateX(' + -xDeg + 'deg) rotateY(' + yDeg + 'deg)';
+	//pong.style.transform = 'scale3d(' + calcScale + ', ' + calcScale + ', 1) translateX(' + ( xTrans + shake.x) + 'px) translateY(' + ( yTrans + shake.y ) + 'px) rotateX(' + -xDeg + 'deg) rotateY(' + yDeg + 'deg) rotateZ('+shake.angle+'rad)';
+	//slideContent.style.perspectiveOrigin = ( 50 + xTrans/6 ) + '% ' + ( 50 + yTrans/6 ) + '%';
 
 	paddlePlayer.elem.style.transform = 'translate3d(' + paddlePlayer.x + 'px, ' + paddlePlayer.y + 'px, 60px)';
 	paddleEnemy.elem.style.transform = 'translate3d(' + paddleEnemy.x + 'px, ' + paddleEnemy.y + 'px, 60px)';
