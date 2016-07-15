@@ -361,7 +361,7 @@ function update() {
 
 	if( isSlow ) {
 		if( timescaleTimer < timescaleTimerMax ) {
-			timescaleTimer++;
+			timescaleTimer += 1 * getNormalDt();
 		} else {
 			timescaleTimer = 0;
 			isSlow = false;
@@ -428,8 +428,15 @@ function slowMo() {
 }
 
 function getDt() {
-	var dt = pg.getDt();
-	return dt * timescale;
+	return pg.getDt() * timescale;
+}
+
+function getInverseDt() {
+	return 1 - pg.getDt();
+}
+
+function getNormalDt() {
+	return pg.getDt();
 }
 
 /*==========================================
@@ -459,8 +466,8 @@ function render() {
 	//pong.style.transform = 'scale( ' + calcScale + ' ) translateX(' + xTrans + 'px) translateY(' + yTrans + 'px) rotateX(' + -xDeg + 'deg) rotateY(' + yDeg + 'deg) rotateZ(0deg)';
 
 	// with shake
-	//pong.style.transform = 'scale( ' + calcScale + ' ) translateX(' + ( xTrans + shake.x) + 'px) translateY(' + ( yTrans + shake.y ) + 'px) rotateX(' + -xDeg + 'deg) rotateY(' + yDeg + 'deg) rotateZ('+shake.angle+'rad)';
-	pong.style.transform = 'scale( ' + calcScale + ' ) translateX(' + ( xTrans) + 'px) translateY(' + ( yTrans) + 'px) rotateX(' + -xDeg + 'deg) rotateY(' + yDeg + 'deg)';
+	pong.style.transform = 'scale( ' + calcScale + ' ) translateX(' + ( xTrans + shake.x) + 'px) translateY(' + ( yTrans + shake.y ) + 'px) rotateX(' + -xDeg + 'deg) rotateY(' + yDeg + 'deg) rotateZ('+shake.angle+'rad)';
+	//pong.style.transform = 'scale( ' + calcScale + ' ) translateX(' + ( xTrans) + 'px) translateY(' + ( yTrans) + 'px) rotateX(' + -xDeg + 'deg) rotateY(' + yDeg + 'deg)';
 	//pong.style.transform = 'scale3d(' + calcScale + ', ' + calcScale + ', 1) translateX(' + ( xTrans + shake.x) + 'px) translateY(' + ( yTrans + shake.y ) + 'px) rotateX(' + -xDeg + 'deg) rotateY(' + yDeg + 'deg) rotateZ('+shake.angle+'rad)';
 	//slideContent.style.perspectiveOrigin = ( 50 + xTrans/6 ) + '% ' + ( 50 + yTrans/6 ) + '%';
 
