@@ -357,7 +357,15 @@ function update() {
 		resetGame();
 	}
 
+	/*==========================================
+	Handle Screenshake
+	==========================================*/
+
 	handleScreenShake();
+
+	/*==========================================
+	Slow Motion
+	==========================================*/
 
 	if( isSlow ) {
 		if( timescaleTimer < timescaleTimerMax ) {
@@ -373,6 +381,18 @@ function update() {
 				'inQuad'
 			);
 		}
+	}
+
+	/*==========================================
+	Ball Rotation
+	==========================================*/
+
+	if ( ball.vx == 0 ) {
+		ball.rotation = 45;
+	} else if ( ball.vx > 0 ) {
+		ball.rotation += 5 * getDt();
+	} else {
+		ball.rotation -= 5 * getDt();
 	}
 
 }
@@ -489,7 +509,7 @@ function render() {
 	//ball.rotation += ( Math.PI / 4 + Math.atan2(ball.vy, ball.vx) - ball.rotation )* 0.1;
 	//ball.elem.style.transform = 'translate3d(' + ball.x + 'px, ' + ball.y + 'px, 60px) rotateZ(' + ball.rotation + 'rad)';
 
-	ball.elem.style.transform = 'translate3d(' + ball.x + 'px, ' + ball.y + 'px, 60px)';
+	ball.elem.style.transform = 'translate3d(' + ball.x + 'px, ' + ball.y + 'px, 60px) rotateZ(' + ball.rotation + 'deg)';
 
 	if ( scorePlayer.flag ) {
 		scorePlayer.elem.innerHTML = scorePlayer.value;
@@ -533,7 +553,7 @@ function destroy() {
 	window.removeEventListener( 'mouseRightDown', onMouseRightDown );
 	window.removeEventListener( 'mouseLeftUp', onMouseLeftUp);
 	window.removeEventListener( 'mouseRightUp', onMouseRightUp );
-	
+
 	cancelAnimationFrame( raf );
 }
 

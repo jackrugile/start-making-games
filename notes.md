@@ -33,6 +33,7 @@
 - circle or rotate rectangle for paddle
 	- settle back to original rotation when not holding left or right
 	- rotated rect collision detection?
+- charge spike, rumble, particle explosion, and slow mo on mega spike
 
 ---
 
