@@ -373,7 +373,6 @@ function update() {
 				'inQuad'
 			);
 		}
-
 	}
 
 }
@@ -467,7 +466,6 @@ function render() {
 
 	// with shake
 	pong.style.transform = 'scale( ' + calcScale + ' ) translateX(' + ( xTrans + shake.x) + 'px) translateY(' + ( yTrans + shake.y ) + 'px) rotateX(' + -xDeg + 'deg) rotateY(' + yDeg + 'deg) rotateZ('+shake.angle+'rad)';
-	//pong.style.transform = 'scale( ' + calcScale + ' ) translateX(' + ( xTrans) + 'px) translateY(' + ( yTrans) + 'px) rotateX(' + -xDeg + 'deg) rotateY(' + yDeg + 'deg)';
 	//pong.style.transform = 'scale3d(' + calcScale + ', ' + calcScale + ', 1) translateX(' + ( xTrans + shake.x) + 'px) translateY(' + ( yTrans + shake.y ) + 'px) rotateX(' + -xDeg + 'deg) rotateY(' + yDeg + 'deg) rotateZ('+shake.angle+'rad)';
 	//slideContent.style.perspectiveOrigin = ( 50 + xTrans/6 ) + '% ' + ( 50 + yTrans/6 ) + '%';
 
@@ -530,6 +528,12 @@ function destroy() {
 	window.removeEventListener( 'controlDownDown', onControlDownDown );
 	window.removeEventListener( 'controlUpUp', onControlUpUp );
 	window.removeEventListener( 'controlDownUp', onControlDownUp );
+
+	window.removeEventListener( 'mouseLeftDown', onMouseLeftDown );
+	window.removeEventListener( 'mouseRightDown', onMouseRightDown );
+	window.removeEventListener( 'mouseLeftUp', onMouseLeftUp);
+	window.removeEventListener( 'mouseRightUp', onMouseRightUp );
+	
 	cancelAnimationFrame( raf );
 }
 

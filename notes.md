@@ -25,6 +25,14 @@
 - grunt sounds?
 	- https://audiojungle.net/item/male-grunts/12294357?s_rank=14
 - integrate timescale for dt and slow motion
+	- issue with screenshake not being affected by it?
+	- match sfx to timescale? maybe not as intense of a drop down
+- if enemy on edge, always calc new trajectory
+- image for background?
+- drag vs friction?
+- circle or rotate rectangle for paddle
+	- settle back to original rotation when not holding left or right
+	- rotated rect collision detection?
 
 ---
 
@@ -64,3 +72,4 @@
 	- stops running when browser window/tab is not in focus
 - explain why animation through loop vs animation or transition
 - bang for your buck with playrate on audio
+- judge the end result before you even think about juding the code
