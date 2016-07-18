@@ -32,7 +32,6 @@ html {
 }
 
 body {
-	//background: map-get( $colors, bg );
 	background: radial-gradient( #222, #111 );
 	color: map-get( $colors, primary );
 	font: 400 100%/1.5 $font-lato;
@@ -75,13 +74,53 @@ body {
 		opacity: 1;
 		transform: translateX( 0 ) scale( 1 );
 	}
+	.paused & {
+		//background: #000;
+	}
 }
 
+.font-load {
+	left: 0;
+	opacity: 0;
+	pointer-events: none;
+	position: absolute;
+	top: 0;
+	visibility: hidden;
+}
+
+.lato-100 { font-family: $font-lato; font-weight: 100; }
+.lato-200 { font-family: $font-lato; font-weight: 200; }
+.lato-300 { font-family: $font-lato; font-weight: 300; }
+.lato-400 { font-family: $font-lato; font-weight: 400; }
+.lato-500 { font-family: $font-lato; font-weight: 500; }
+.lato-600 { font-family: $font-lato; font-weight: 600; }
+.lato-700 { font-family: $font-lato; font-weight: 700; }
+.lato-800 { font-family: $font-lato; font-weight: 800; }
+.lato-900 { font-family: $font-lato; font-weight: 900; }
+.lato-100-italic { font-family: $font-lato; font-weight: 100; font-style: italic; }
+.lato-200-italic { font-family: $font-lato; font-weight: 200; font-style: italic; }
+.lato-300-italic { font-family: $font-lato; font-weight: 300; font-style: italic; }
+.lato-400-italic { font-family: $font-lato; font-weight: 400; font-style: italic; }
+.lato-500-italic { font-family: $font-lato; font-weight: 500; font-style: italic; }
+.lato-600-italic { font-family: $font-lato; font-weight: 600; font-style: italic; }
+.lato-700-italic { font-family: $font-lato; font-weight: 700; font-style: italic; }
+.lato-800-italic { font-family: $font-lato; font-weight: 800; font-style: italic; }
+.lato-900-italic { font-family: $font-lato; font-weight: 900; font-style: italic; }
+.roboto-mono-100 { font-family: $font-roboto-mono; font-weight: 100; }
+.roboto-mono-300 { font-family: $font-roboto-mono; font-weight: 300; }
+.roboto-mono-400 { font-family: $font-roboto-mono; font-weight: 400; }
+.roboto-mono-500 { font-family: $font-roboto-mono; font-weight: 500; }
+.roboto-mono-700 { font-family: $font-roboto-mono; font-weight: 600; }
+.roboto-mono-100-italic { font-family: $font-roboto-mono; font-weight: 100; font-style: italic; }
+.roboto-mono-300-italic { font-family: $font-roboto-mono; font-weight: 300; font-style: italic; }
+.roboto-mono-400-italic { font-family: $font-roboto-mono; font-weight: 400; font-style: italic; }
+.roboto-mono-500-italic { font-family: $font-roboto-mono; font-weight: 500; font-style: italic; }
+.roboto-mono-700-italic { font-family: $font-roboto-mono; font-weight: 700; font-style: italic; }
 
 .pause {
 	align-items: flex-end;
 	background: #fff;
-	box-shadow: 0 0 0 9999px rgba(255, 255, 255, 0.1);
+	//box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.35);
 	color: #222;
 	display: flex;
 	font-size: 2.5em;

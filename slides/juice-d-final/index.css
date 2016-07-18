@@ -19,7 +19,7 @@
 .pong:before {
 	/*background: linear-gradient( hsla( 0, 0%, 100%, 0 ), hsla( 0, 0%, 100%, 0.05 ) );*/
 	/*background: linear-gradient( 90deg, hsla( 0, 0%, 100%, 0 ), hsla( 0, 0%, 100%, 0.05 ) );*/
-	background: linear-gradient( 90deg, hsla( 0, 0%, 100%, 0 ), #2c2c2c, hsla( 0, 0%, 100%, 0 ) );
+	background: linear-gradient( 90deg, hsla( 0, 0%, 100%, 0 ), #333, hsla( 0, 0%, 100%, 0 ) );
 	/*border-top: 4px solid #222;*/
 	content: '';
 	left: 0;
@@ -34,7 +34,7 @@
 .pong:after {
 	/*background: linear-gradient( hsla( 0, 0%, 100%, 0 ), hsla( 0, 0%, 100%, 0.05 ) );*/
 	/*background: linear-gradient( 90deg, hsla( 0, 0%, 100%, 0 ), hsla( 0, 0%, 100%, 0.05 ) );*/
-	background: linear-gradient( 90deg, hsla( 0, 0%, 100%, 0 ), #2c2c2c, hsla( 0, 0%, 100%, 0 ) );
+	background: linear-gradient( 90deg, hsla( 0, 0%, 100%, 0 ), #333, hsla( 0, 0%, 100%, 0 ) );
 	/*border-top: 4px solid #222;*/
 	content: '';
 	left: 0;
@@ -163,6 +163,7 @@
 
 .net {
 	background: #666;
+	background: linear-gradient( 0deg, hsla( 0, 0%, 100%, 0 ), #666, hsla( 0, 0%, 100%, 0 ) );
 	height: 100%;
 	left: 50%;
 	margin-left: -2px;
