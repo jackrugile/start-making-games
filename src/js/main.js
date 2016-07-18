@@ -1,11 +1,7 @@
 /*==============================================================================
 Game
 ==============================================================================*/
-/*
-	all demos will be tied to this variable
-	a destroy must be called anytime a slide changes
-	then set it to null
-*/
+
 var game = null;
 
 /*==============================================================================
@@ -14,6 +10,7 @@ Dev Class
 
 if( window.location.search === '?dev' ) {
 	document.documentElement.classList.add( 'dev' );
+	var isDev = true;
 }
 
 /*==============================================================================
@@ -31,7 +28,7 @@ var slides = [
 		'build-cd-test-js',
 		'build-d-final',
 	// juice
-		'juice-d-3d',
+		'intro-t-quotes',
 		'juice-d-final'
 	// outro
 ];
@@ -59,7 +56,6 @@ function setScale() {
 	}
 	slideScale = Math.max( Math.min( slideScale, slideScaleMax ), slideScaleMin ) + 0.001;
 	slide.style.transform = 'scale(' + slideScale + ')';
-	//slide.style.transform = 'scale3d(' + slideScale + ', ' + slideScale + ', 1)';
 }
 
 function onResize( e ) {
@@ -93,9 +89,11 @@ function loadSlide( i ) {
 	}
 	location.hash = ( i + 1 );
 	slideIndicator.innerHTML = ( i + 1 );
-	document.title = slides[ i ] + ' // Start Making Games';
-	if( game && typeof game.destroy == 'function' ) {
-		//game.destroy();
+	if( isDev ) {
+		document.title = slides[ i ] + ' // Start Making Games';
+	}
+	if( game && typeof game.kill == 'function' ) {
+		game.kill();
 	}
 	game = null;
 	document.documentElement.classList.add( 'loading' );
