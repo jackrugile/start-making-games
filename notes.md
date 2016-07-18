@@ -1,23 +1,10 @@
 # Tech Notes
-- Test thoroughly on laptop for performance, fullscreen, and sound
-- Pause / Step function?
-- Mute function
 - be very careful about destroying all lingering items
-- get caffeine app for his laptop?
-- disable all notifications
-- cancel current ajax request when skipping slides fast, could cause a race issue
-	- THIS HAPPENING - NEED TO FIGURE THIS OUT
-- naming convention
-	- {section}-{type}-{desc}-{index}
-	- type can be info, code, demo, or any combo of those
 - what slides need special illustrations?
 	- aabb collision detection
-- make slides controllable from one hand?
-- hide cursor after inactivity
 - test with disabled internet connection
 - test gamepad controls at work - on system with no gamepad apps
-- preload all fonts to prevent fout
-- use scale3d intsead of scale on both wrap and pong?
+- use scale3d insead of scale on both wrap and pong?
 	- this is in place, not sure if it is more performant though. need test environment on laptop and retina
 	- if 3d caused texture, maybe a smaller starting point makes more sense
 - tennis ball sounds?
@@ -27,13 +14,8 @@
 - integrate timescale for dt and slow motion
 	- issue with screenshake not being affected by it?
 	- match sfx to timescale? maybe not as intense of a drop down
-- image for background?
-- circle or rotate rectangle for paddle
-	- settle back to original rotation when not holding left or right
-	- rotated rect collision detection?
 - charge spike, rumble, particle explosion, and slow mo on mega spike
-- mute / pause
-	- start each demo unmuted and unpaused? or carry through all slides?
+	- slow down paddle when charging?
 - bind page refresh to controller?
 - add pause to basic build demo?
 
@@ -49,6 +31,8 @@
 - controller test
 - power cord
 - setup mic on shirt or stand
+- disable all notifications
+- run caffeine app?
 - visible timer
 	- have milestone checkpoints
 	- no if you're ahead or behind
@@ -76,3 +60,4 @@
 - explain why animation through loop vs animation or transition
 - bang for your buck with playrate on audio
 - judge the end result before you even think about juding the code
+- always give a reason not to press a button

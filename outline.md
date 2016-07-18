@@ -90,14 +90,9 @@
 ### Explain Juice / Polish
 
 ### Gameplay Changes
-- moves
-	- spike
-	- defensive extend
-	- dash 
+- spike move
 - add increasing ai difficulty
-- add graphics that help the player visualize certain behaviors
-	- add edges to paddles to reflect collision detection
-- rounded paddle for adding english
+- angle changes depending on where on paddle it hits
 - add acceleration and friction
 - add wind?
 

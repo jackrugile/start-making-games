@@ -126,6 +126,7 @@ G.prototype.Ball = function( g ) {
 	this.width = this.g.config.ball.width;
 	this.height = this.g.config.ball.height;
 	this.rotation = Math.PI / 4;
+	this.opacity = 1;
 };
 
 G.prototype.Ball.prototype.reset = function() {
@@ -199,20 +200,23 @@ G.prototype.Ball.prototype.step = function() {
 			this.vy = this.speed;
 		}
 		this.rotation = Math.PI / 4;
+		//this.opacity = this.servingTimer / this.servingTimerMax;
 	} else {
 		if ( this.vx > 0 ) {
-			this.rotation += 0.1 * this.g.timescale.getDt();
+			this.rotation += 0.005 * Math.abs( this.vx ) * this.g.timescale.getDt();
 		} else {
-			this.rotation -= 0.1 * this.g.timescale.getDt();
+			this.rotation -= 0.005 * Math.abs( this.vx ) * this.g.timescale.getDt();
 		}
 		this.x += this.vx * this.g.timescale.getDt();
 		this.y += this.vy * this.g.timescale.getDt();
+		//this.opacity = 1;
 	}
 
 	this.contain();
 };
 
 G.prototype.Ball.prototype.draw = function() {
+	this.elem.style.opacity = this.opacity;
 	this.elem.style.transform = 'translate3d(' + this.x + 'px, ' + this.y + 'px, ' + this.z + 'px) rotateZ(' + this.rotation + 'rad)';
 };
 

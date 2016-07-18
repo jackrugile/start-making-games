@@ -28,7 +28,6 @@ var slides = [
 		'build-cd-test-js',
 		'build-d-final',
 	// juice
-		'intro-t-quotes',
 		'juice-d-final'
 	// outro
 ];
