@@ -90,10 +90,10 @@ G.prototype.Stage.prototype.step = function() {
 	this.yDegTarget = ( ( this.g.ball.x / ( this.width - this.g.ball.width ) - 0.5 ) * 2 ) * this.rangeDeg;
 	this.yDeg += ( this.yDegTarget - this.yDeg ) * this.smoothingDeg;
 
-	this.xTransTarget = ( -this.g.ball.x + this.width / 2 ) * 0.1 * ( ( 1 - this.g.timescale.current ) * 10 ) + this.g.screenshake.x;
+	this.xTransTarget = ( -this.g.ball.x + this.width / 2 ) * 0.1 * ( ( 1 - this.g.timescale.current ) * 10 );
 	this.xTrans += ( this.xTransTarget - this.xTrans ) * this.smoothingDeg;
 
-	this.yTransTarget = ( -this.g.ball.y + this.height / 2 ) * 0.1 * ( ( 1 - this.g.timescale.current ) * 10 ) + this.g.screenshake.y;
+	this.yTransTarget = ( -this.g.ball.y + this.height / 2 ) * 0.1 * ( ( 1 - this.g.timescale.current ) * 10 );
 	this.yTrans += ( this.yTransTarget - this.yTrans ) * this.smoothingDeg;
 
 	this.rotation = this.g.screenshake.angle;
@@ -102,7 +102,7 @@ G.prototype.Stage.prototype.step = function() {
 };
 
 G.prototype.Stage.prototype.draw = function() {
-	this.elem.style.transform = 'scale( ' + this.scale + ' ) translateX(' + this.xTrans + 'px) translateY(' + this.yTrans + 'px) rotateX(' + -this.xDeg + 'deg) rotateY(' + this.yDeg + 'deg) rotateZ(' + this.rotation + 'rad)';
+	this.elem.style.transform = 'scale( ' + this.scale + ' ) translateX(' + ( this.xTrans + this.g.screenshake.x ) + 'px) translateY(' + ( this.yTrans + this.g.screenshake.y ) + 'px) rotateX(' + -this.xDeg + 'deg) rotateY(' + this.yDeg + 'deg) rotateZ(' + this.rotation + 'rad)';
 };
 
 /*==============================================================================
@@ -134,6 +134,8 @@ G.prototype.Ball.prototype.reset = function() {
 	this.y = this.g.stage.height / 2 - this.height / 2;
 	this.vx = 0;
 	this.vy = 0;
+	this.g.paddlePlayer.hasHit = false;
+	this.g.paddleEnemy.hasHit = false;
 };
 
 G.prototype.Ball.prototype.contain = function() {
@@ -149,7 +151,7 @@ G.prototype.Ball.prototype.contain = function() {
 		pg.soundPlay({
 			name: 'wall-1',
 			volume: 0.5,
-			rate: rand( 2, 3 )
+			rate: rand( 2, 3 ) * ( 1 - ( 1 - this.g.timescale.current ) * 0.4 )
 		});
 
 		var angle = Math.atan2( this.vy, this.vx );
@@ -169,7 +171,7 @@ G.prototype.Ball.prototype.contain = function() {
 		pg.soundPlay({
 			name: 'score-player-1',
 			volume: 0.3,
-			rate: 2
+			rate: 2 * ( 1 - ( 1 - this.g.timescale.current ) * 0.4 )
 		});
 	}
 
@@ -180,7 +182,8 @@ G.prototype.Ball.prototype.contain = function() {
 		this.reset();
 		pg.soundPlay({
 			name: 'score-enemy-1',
-			volume: 0.7
+			volume: 0.7,
+			rate: 1 * ( 1 - ( 1 - this.g.timescale.current ) * 0.4 )
 		});
 	}
 };
@@ -230,6 +233,7 @@ G.prototype.Paddle = function( g, isPlayer ) {
 	this.speed = this.g.config.paddle.speed;
 	this.moveUp = false;
 	this.moveDown = false;
+	this.hasHit = false;
 
 	if ( this.isPlayer) {
 		this.elem = document.querySelector( '.paddle-player' );
@@ -253,6 +257,7 @@ G.prototype.Paddle.prototype.checkCollisions = function() {
 			this.g.ball.x = this.x - this.g.ball.width;
 		}
 		this.g.ball.vx = -this.g.ball.vx;
+		this.hasHit = true;
 
 		var angle = Math.atan2( this.g.ball.vy, this.g.ball.vx );
 		this.g.screenshake.apply({
@@ -266,23 +271,23 @@ G.prototype.Paddle.prototype.checkCollisions = function() {
 			pg.soundPlay({
 				name: 'spike-1',
 				volume: 0.7,
-				rate: rand( 1, 1.6 )
+				rate: rand( 1, 1.6 ) * ( 1 - ( 1 - this.g.timescale.current ) * 0.4 )
 			});
 			pg.soundPlay({
 				name: 'spike-2',
 				volume: 0.7,
-				rate: rand( 1, 1.6 )
+				rate: rand( 1, 1.6 ) * ( 1 - ( 1 - this.g.timescale.current ) * 0.4 )
 			});
 			pg.soundPlay({
 				name: 'spike-3',
 				volume: 0.7,
-				rate: rand( 1, 1.6 )
+				rate: rand( 1, 1.6 ) * ( 1 - ( 1 - this.g.timescale.current ) * 0.4 )
 			});
 		} else {
 			pg.soundPlay({
 				name: 'paddle-1',
 				volume: 0.7,
-				rate: rand( 1, 1.6 )
+				rate: rand( 1, 1.6 ) * ( 1 - ( 1 - this.g.timescale.current ) * 0.4 )
 			});
 		}
 	}
@@ -290,7 +295,7 @@ G.prototype.Paddle.prototype.checkCollisions = function() {
 
 G.prototype.Paddle.prototype.step = function() {
 	if ( this.isEnemy ) {
-		if ( Math.random() < 0.2 ) {
+		if ( !this.hasHit || Math.random() < 0.2 ) {
 			this.moveUp = false;
 			this.moveDown = false;
 			if ( this.g.ball.y + this.g.ball.height < this.y + this.height / 2 ) {
@@ -381,8 +386,8 @@ G.prototype.Screenshake.prototype.step = function() {
 
 	if ( this.translate > 0 ) {
 		this.translate *= 0.9;
-		this.xTarget = rand( -this.translate, this.translate ) + this.xBias;
-		this.yTarget = rand( -this.translate, this.translate ) + this.yBias;
+		this.xTarget = ( rand( -this.translate, this.translate ) + this.xBias );
+		this.yTarget =( rand( -this.translate, this.translate ) + this.yBias );
 	} else {
 		this.xTarget = 0;
 		this.yTarget = 0;
@@ -409,7 +414,7 @@ Timescale Object
 G.prototype.Timescale = function( g ) {
 	this.g = g;
 	this.current = 1;
-	this.target = 0.2;
+	this.target = 0.15;
 	this.timer =0;
 	this.timerMax = 180;
 	this.inDuration = 0.6;
