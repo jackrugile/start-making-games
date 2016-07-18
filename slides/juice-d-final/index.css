@@ -16,14 +16,34 @@
 	will-change: transform;
 }
 
-.pong:after {
-	background: linear-gradient( hsla( 0, 0%, 100%, 0 ), hsla( 0, 0%, 100%, 0.05 ) );
+.pong:before {
+	/*background: linear-gradient( hsla( 0, 0%, 100%, 0 ), hsla( 0, 0%, 100%, 0.05 ) );*/
+	/*background: linear-gradient( 90deg, hsla( 0, 0%, 100%, 0 ), hsla( 0, 0%, 100%, 0.05 ) );*/
+	background: linear-gradient( 90deg, hsla( 0, 0%, 100%, 0 ), #2c2c2c, hsla( 0, 0%, 100%, 0 ) );
+	/*border-top: 4px solid #222;*/
 	content: '';
 	left: 0;
+	margin-top: -2px;
 	right: 0;
 	position: absolute;
-	top: 0;
+	top: 33.333%;
 	height: 50%;
+	height: 4px;
+}
+
+.pong:after {
+	/*background: linear-gradient( hsla( 0, 0%, 100%, 0 ), hsla( 0, 0%, 100%, 0.05 ) );*/
+	/*background: linear-gradient( 90deg, hsla( 0, 0%, 100%, 0 ), hsla( 0, 0%, 100%, 0.05 ) );*/
+	background: linear-gradient( 90deg, hsla( 0, 0%, 100%, 0 ), #2c2c2c, hsla( 0, 0%, 100%, 0 ) );
+	/*border-top: 4px solid #222;*/
+	content: '';
+	left: 0;
+	margin-top: -2px;
+	right: 0;
+	position: absolute;
+	top: 66.666%;
+	height: 50%;
+	height: 4px;
 }
 
 /* --- */

@@ -63,7 +63,7 @@ gulp.task( 'scripts1', function() {
 gulp.task( 'scripts2', [ 'scripts1' ], function() {
 	return gulp.src( 'src/js/lib/imports.js' )
 		.pipe( p.imports() )
-		.pipe( p.uglify() )
+		//.pipe( p.uglify() )
 		.pipe( p.rename( 'imports.lib.min.js' ) )
 		.pipe( gulp.dest( 'temp' ) );
 });
@@ -71,7 +71,7 @@ gulp.task( 'scripts2', [ 'scripts1' ], function() {
 gulp.task( 'scripts3', [ 'scripts2' ], function() {
 	return gulp.src( 'src/js/imports.js' )
 		.pipe( p.imports() )
-		.pipe( p.uglify() )
+		//.pipe( p.uglify() )
 		.on( 'error', handleError )
 		.pipe( p.rename( 'imports.min.js' ) )
 		.pipe( gulp.dest( 'temp' ) );

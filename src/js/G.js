@@ -1,10 +1,11 @@
 /*==============================================================================
 
-Configuration
+Creation
 
 ==============================================================================*/
 
 var G = function( opt ) {
+	// configuration
 	this.config = {
 		paddle: {
 			width: 60,
@@ -14,7 +15,7 @@ var G = function( opt ) {
 		ball: {
 			width: 60,
 			height: 60,
-			speed: 1,
+			speed: 16,
 			inc: 1
 		},
 		score: {
@@ -24,12 +25,11 @@ var G = function( opt ) {
 
 	// general
 	this.raf = null;
-
-	// movement
-	/*var	playerMoveUp = false,
-		playerMoveDown = false,
-		enemyMoveUp = false,
-		enemyMoveDown = false;*/
+	this.muted = false;
+	this.paused = false;
+	this.pausedTime = 0;
+	this.pausedStartTime = null;
+	this.pausedEndTime = null;
 
 	// level / stage / world
 	this.stage = new this.Stage( this );
@@ -51,19 +51,11 @@ var G = function( opt ) {
 	this.screenshake = new this.Screenshake( this );
 
 	// time / time scaling / timescale
-	this.timescale = {
-		current: 1,
-		target: 0.2,
-		timer: 0,
-		timerMax: 180,
-		inDuration: 0.6,
-		outDuration: 1,
-		isSlow: false
-	}
+	this.timescale = new this.Timescale( this );
 
-	
-
-}
+	// initialize on creation
+	this.init();
+};
 
 /*==============================================================================
 
@@ -91,26 +83,26 @@ G.prototype.Stage = function( g ) {
 	this.height = 1080;
 };
 
-G.prototype.Stage.step = function() {
-	this.xDegTarget = ( ( g.ball.y / ( this.height - g.ball.height ) - 0.5 ) * 2 ) * this.rangeDeg;
+G.prototype.Stage.prototype.step = function() {
+	this.xDegTarget = ( ( this.g.ball.y / ( this.height - this.g.ball.height ) - 0.5 ) * 2 ) * this.rangeDeg;
 	this.xDeg += ( this.xDegTarget - this.xDeg ) * this.smoothingDeg;
 
-	this.yDegTarget = ( ( g.ball.x / ( this.width - g.ball.width ) - 0.5 ) * 2 ) * this.rangeDeg;
+	this.yDegTarget = ( ( this.g.ball.x / ( this.width - this.g.ball.width ) - 0.5 ) * 2 ) * this.rangeDeg;
 	this.yDeg += ( this.yDegTarget - this.yDeg ) * this.smoothingDeg;
 
-	this.xTransTarget = ( -g.ball.x + this.width / 2 ) * 0.1 * ( ( 1 - g.timescale.current ) * 10 ) + shake.x;
+	this.xTransTarget = ( -this.g.ball.x + this.width / 2 ) * 0.1 * ( ( 1 - this.g.timescale.current ) * 10 ) + this.g.screenshake.x;
 	this.xTrans += ( this.xTransTarget - this.xTrans ) * this.smoothingDeg;
 
-	this.yTransTarget = ( -g.ball.y + this.height / 2 ) * 0.1 * ( ( 1 - g.timescale.current ) * 10 ) + shake.y;
+	this.yTransTarget = ( -this.g.ball.y + this.height / 2 ) * 0.1 * ( ( 1 - this.g.timescale.current ) * 10 ) + this.g.screenshake.y;
 	this.yTrans += ( this.yTransTarget - this.yTrans ) * this.smoothingDeg;
 
-	this.rotation = shake.angle;
+	this.rotation = this.g.screenshake.angle;
 
-	this.scale = this.scaleBase + ( ( 1 - g.timescale.current ) * 0.3 );
+	this.scale = this.scaleBase + ( ( 1 - this.g.timescale.current ) * 0.3 );
 };
 
-G.prototype.Stage.draw = function() {
-	this.style.transform = 'scale( ' + this.scale + ' ) translateX(' + this.xTrans + 'px) translateY(' + this.yTrans + 'px) rotateX(' + -this.xDeg + 'deg) rotateY(' + this.yDeg + 'deg) rotateZ(' + this.rotation + 'rad)';
+G.prototype.Stage.prototype.draw = function() {
+	this.elem.style.transform = 'scale( ' + this.scale + ' ) translateX(' + this.xTrans + 'px) translateY(' + this.yTrans + 'px) rotateX(' + -this.xDeg + 'deg) rotateY(' + this.yDeg + 'deg) rotateZ(' + this.rotation + 'rad)';
 };
 
 /*==============================================================================
@@ -125,44 +117,99 @@ G.prototype.Ball = function( g ) {
 	this.serving = true;
 	this.servingTimer = 0;
 	this.servingTimerMax = 60;
-	this.x = g.stage.width / 2 - g.config.ball.width / 2;
-	this.y = g.stage.height / 2 - g.config.ball.height / 2;
+	this.x = this.g.stage.width / 2 - this.g.config.ball.width / 2;
+	this.y = this.g.stage.height / 2 - this.g.config.ball.height / 2;
 	this.z = 60;
-	this.vx = g.config.ball.speed;
-	this.vy = g.config.ball.speed;
-	this.width = g.config.ball.width;
-	this.height = g.config.ball.height;
+	this.speed = this.g.config.ball.speed;
+	this.vx = this.g.config.ball.speed;
+	this.vy = this.g.config.ball.speed;
+	this.width = this.g.config.ball.width;
+	this.height = this.g.config.ball.height;
 	this.rotation = Math.PI / 4;
 };
 
-G.prototype.reset = function() {
-	this.ball.serving = true;
-	this.ball.x = this.stage.width / 2 - this.ball.width / 2;
-	this.ball.y = this.stage.height / 2 - this.ball.height / 2;
-	this.ball.vx = 0;
-	this.ball.vy = 0;
-	
+G.prototype.Ball.prototype.reset = function() {
+	this.serving = true;
+	this.x = this.g.stage.width / 2 - this.width / 2;
+	this.y = this.g.stage.height / 2 - this.height / 2;
+	this.vx = 0;
+	this.vy = 0;
 };
 
-G.prototype.Ball.step = function() {
+G.prototype.Ball.prototype.contain = function() {
+	// wall was hit
+	if ( this.y <= 0 || this.y + this.height >= this.g.stage.height ) {
+		if ( this.y <= 0 ) {
+			this.y = 0;
+		} else {
+			this.y = this.g.stage.height - this.height;
+		}
+		this.vy = -this.vy;
+
+		pg.soundPlay({
+			name: 'wall-1',
+			volume: 0.5,
+			rate: rand( 2, 3 )
+		});
+
+		var angle = Math.atan2( this.vy, this.vx );
+		this.g.screenshake.apply({
+			translate: 10,
+			rotate: 0.15,
+			xBias: Math.cos( angle ) * 0,
+			yBias: Math.sin( angle ) * -75
+		});
+	}
+
+	// player scored
+	if ( this.x + this.width > this.g.stage.width ) {
+		this.g.scorePlayer.setValue( this.g.scorePlayer.value + 1 );
+		this.speed += this.g.config.ball.inc;
+		this.reset();
+		pg.soundPlay({
+			name: 'score-player-1',
+			volume: 0.3,
+			rate: 2
+		});
+	}
+
+	// enemy scored
+	if ( this.x < 0 ) {
+		this.g.scoreEnemy.setValue( this.g.scoreEnemy.value + 1 );
+		this.speed += this.g.config.ball.inc;
+		this.reset();
+		pg.soundPlay({
+			name: 'score-enemy-1',
+			volume: 0.7
+		});
+	}
+};
+
+G.prototype.Ball.prototype.step = function() {
 	if ( this.serving ) {
 		if ( this.servingTimer < this.servingTimerMax ) {
 			this.servingTimer++;
 		} else {
 			this.serving = false;
 			this.servingTimer = 0;
+			this.vx = this.speed;
+			this.vy = this.speed;
 		}
-		this.ball.rotation = Math.PI / 4;
+		this.rotation = Math.PI / 4;
 	} else {
-		if ( ball.vx > 0 ) {
-			this.rotation += 0.2 * g.getDt();
+		if ( this.vx > 0 ) {
+			this.rotation += 0.1 * this.g.timescale.getDt();
 		} else {
-			this.rotation -= 0.2 * g.getDt();
+			this.rotation -= 0.1 * this.g.timescale.getDt();
 		}
+		this.x += this.vx * this.g.timescale.getDt();
+		this.y += this.vy * this.g.timescale.getDt();
 	}
+
+	this.contain();
 };
 
-G.prototype.Ball.draw = function() {
+G.prototype.Ball.prototype.draw = function() {
 	this.elem.style.transform = 'translate3d(' + this.x + 'px, ' + this.y + 'px, ' + this.z + 'px) rotateZ(' + this.rotation + 'rad)';
 };
 
@@ -176,27 +223,96 @@ G.prototype.Paddle = function( g, isPlayer ) {
 	this.g = g;
 	this.isPlayer = isPlayer;
 	this.isEnemy = !isPlayer;
-	this.y = g.stage.height / 2 - g.config.paddle.height / 2;
+	this.y = this.g.stage.height / 2 - this.g.config.paddle.height / 2;
 	this.z = 60;
-	this.width = g.config.paddle.width;
-	this.height = g.config.paddle.height;
-	this.speed = g.config.paddle.speed;
+	this.width = this.g.config.paddle.width;
+	this.height = this.g.config.paddle.height;
+	this.speed = this.g.config.paddle.speed;
+	this.moveUp = false;
+	this.moveDown = false;
 
 	if ( this.isPlayer) {
 		this.elem = document.querySelector( '.paddle-player' );
 		this.x = 0;
 	} else {
 		this.elem = document.querySelector( '.paddle-enemy' );
-		this.x = g.stage.width - g.config.paddle.width;
+		this.x = this.g.stage.width - this.g.config.paddle.width;
 	}
 };
 
-G.prototype.Paddle.step = function() {
-
+G.prototype.Paddle.prototype.contain = function() {
+	this.y = Math.max( 0, this.y );
+	this.y = Math.min( this.g.stage.height - this.height, this.y );
 };
 
-G.prototype.Paddle.draw = function() {
-	this.elem.style.transform = 'translate3d(' + this.x + 'px, ' + this.y + 'px, ' + this.z +'px)';
+G.prototype.Paddle.prototype.checkCollisions = function() {
+	if ( this.g.collisionAABB( this.g.ball, this ) ) {
+		if ( this.isPlayer ) {
+			this.g.ball.x = this.x + this.width;
+		} else {
+			this.g.ball.x = this.x - this.g.ball.width;
+		}
+		this.g.ball.vx = -this.g.ball.vx;
+
+		var angle = Math.atan2( this.g.ball.vy, this.g.ball.vx );
+		this.g.screenshake.apply({
+			translate: 10,
+			rotate: 0.3,
+			xBias: Math.cos( angle ) * 400,
+			yBias: Math.sin( angle ) * 0
+		});
+
+		if ( this.isPlayer ) {
+			pg.soundPlay({
+				name: 'spike-1',
+				volume: 0.7,
+				rate: rand( 1, 1.6 )
+			});
+			pg.soundPlay({
+				name: 'spike-2',
+				volume: 0.7,
+				rate: rand( 1, 1.6 )
+			});
+			pg.soundPlay({
+				name: 'spike-3',
+				volume: 0.7,
+				rate: rand( 1, 1.6 )
+			});
+		} else {
+			pg.soundPlay({
+				name: 'paddle-1',
+				volume: 0.7,
+				rate: rand( 1, 1.6 )
+			});
+		}
+	}
+};
+
+G.prototype.Paddle.prototype.step = function() {
+	if ( this.isEnemy ) {
+		if ( Math.random() < 0.2 ) {
+			this.moveUp = false;
+			this.moveDown = false;
+			if ( this.g.ball.y + this.g.ball.height < this.y + this.height / 2 ) {
+				this.moveUp = true;
+			} else if ( this.g.ball.y > this.y + this.height / 2 ) {
+				this.moveDown = true;
+			}
+		}
+	}
+
+	if ( this.moveUp ) {
+		this.y -= this.speed * this.g.timescale.getDt();
+	} else if ( this.moveDown ) {
+		this.y += this.speed * this.g.timescale.getDt();
+	}
+
+	this.contain();
+	this.checkCollisions();
+};
+
+G.prototype.Paddle.prototype.draw = function() {
+	this.elem.style.transform = 'translate3d(' + this.x + 'px, ' + this.y + 'px, ' + this.z + 'px)';
 };
 
 /*==============================================================================
@@ -219,11 +335,12 @@ G.prototype.Score = function( g, isPlayer ) {
 	}
 };
 
-G.prototype.Score.step = function() {
-
+G.prototype.Score.prototype.setValue = function( value ) {
+	this.value = value;
+	this.flag = true;
 };
 
-G.prototype.Score.draw = function() {
+G.prototype.Score.prototype.draw = function() {
 	if ( this.flag ) {
 		this.elem.innerHTML = this.value;
 		this.elem.setAttribute( 'data-score', this.value );
@@ -251,11 +368,18 @@ G.prototype.Screenshake = function( g ) {
 	this.angleTarget = 0;
 };
 
-G.prototype.Screenshake.step = function() {
+G.prototype.Screenshake.prototype.apply = function( opt ) {
+	this.translate = opt.translate;
+	this.rotate = opt.rotate;
+	this.xBias = opt.xBias;
+	this.yBias = opt.yBias;
+};
+
+G.prototype.Screenshake.prototype.step = function() {
 	this.xBias *= 0.9;
 	this.yBias *= 0.9;
 
-	if( this.translate > 0 ) {
+	if ( this.translate > 0 ) {
 		this.translate *= 0.9;
 		this.xTarget = rand( -this.translate, this.translate ) + this.xBias;
 		this.yTarget = rand( -this.translate, this.translate ) + this.yBias;
@@ -264,7 +388,7 @@ G.prototype.Screenshake.step = function() {
 		this.yTarget = 0;
 	}
 
-	if( this.rotate > 0 ) {
+	if ( this.rotate > 0 ) {
 		this.rotate *= 0.9;
 		this.angleTarget = rand( -this.rotate, this.rotate );
 	} else {
@@ -276,7 +400,70 @@ G.prototype.Screenshake.step = function() {
 	this.angle += ( this.angleTarget - this.angle ) * 0.1;
 };
 
-G.prototype.Screenshake.draw = function() {
+/*==============================================================================
+
+Timescale Object
+
+==============================================================================*/
+
+G.prototype.Timescale = function( g ) {
+	this.g = g;
+	this.current = 1;
+	this.target = 0.2;
+	this.timer =0;
+	this.timerMax = 180;
+	this.inDuration = 0.6;
+	this.outDuration = 1;
+	this.isSlow = false;
+};
+
+G.prototype.Timescale.prototype.step = function() {
+	if ( this.isSlow ) {
+		if ( this.timer < this.timerMax ) {
+			this.timer += this.getCoreDt();
+		} else {
+			this.timer = 0;
+			this.isSlow = false;
+			pg.tween( this ).to(
+				{
+					current: 1
+				},
+				this.outDuration,
+				'inQuad'
+			);
+		}
+	}
+};
+
+G.prototype.Timescale.prototype.triggerSlowMo = function() {
+	if ( !this.isSlow ) {
+		var sound = pg.playSound( 'slow-mo-1' );
+		pg.sound.setVolume( sound, 1 );
+		this.isSlow = true;
+		pg.tween( this ).to(
+			{
+				current: this.target
+			},
+			this.inDuration,
+			'outQuad'
+		);
+	}
+};
+
+G.prototype.Timescale.prototype.getDt = function() {
+	return pg.getDt() * this.current;
+};
+
+G.prototype.Timescale.prototype.getInverseDt = function() {
+	return 1 - pg.getDt() * this.current;
+};
+
+G.prototype.Timescale.prototype.getCoreDt = function() {
+	return pg.getDt();
+};
+
+G.prototype.Timescale.prototype.getCoreInverseDt = function() {
+	return 1 - pg.getDt();
 };
 
 /*==============================================================================
@@ -297,8 +484,8 @@ Reset
 ==============================================================================*/
 
 G.prototype.reset = function() {
-	this.scorePlayer.value = 0;
-	this.scoreEnemy.value = 0;
+	this.scorePlayer.setValue( 0 );
+	this.scoreEnemy.setValue( 0 );
 	this.ball.speed = this.config.ball.speed;
 	this.ball.reset();
 };
@@ -310,47 +497,52 @@ Events / Add Event Listeners / Remove Event Listeners
 ==============================================================================*/
 
 G.prototype.addEventListeners = function() {
-	window.addEventListener( 'controlUpDown', onControlUpDown );
-	window.addEventListener( 'controlDownDown', onControlDownDown );
-	window.addEventListener( 'controlUpUp', onControlUpUp );
-	window.addEventListener( 'controlDownUp', onControlDownUp );
+	window.addEventListener( 'controlUpDown', this.onControlUpDown.bind( this ) );
+	window.addEventListener( 'controlDownDown', this.onControlDownDown.bind( this ) );
+	window.addEventListener( 'controlUpUp', this.onControlUpUp.bind( this ) );
+	window.addEventListener( 'controlDownUp', this.onControlDownUp.bind( this ) );
 
-	window.addEventListener( 'mouseLeftDown', onMouseLeftDown );
-	window.addEventListener( 'mouseRightDown', onMouseRightDown );
-	window.addEventListener( 'mouseLeftUp', onMouseLeftUp);
-	window.addEventListener( 'mouseRightUp', onMouseRightUp );
+	window.addEventListener( 'mouseLeftDown', this.onMouseLeftDown.bind( this ) );
+	window.addEventListener( 'mouseRightDown', this.onMouseRightDown.bind( this ) );
+	window.addEventListener( 'mouseLeftUp', this.onMouseLeftUp.bind( this ) );
+	window.addEventListener( 'mouseRightUp', this.onMouseRightUp.bind( this ) );
+
+	window.addEventListener( 'controlMuteDown', this.onControlMuteDown.bind( this ) );
+	window.addEventListener( 'controlPauseDown', this.onControlPauseDown.bind( this ) );
 };
 
 G.prototype.removeEventListeners = function() {
-	window.removeEventListener( 'controlUpDown', onControlUpDown );
-	window.removeEventListener( 'controlDownDown', onControlDownDown );
-	window.removeEventListener( 'controlUpUp', onControlUpUp );
-	window.removeEventListener( 'controlDownUp', onControlDownUp );
+	window.removeEventListener( 'controlUpDown', this.onControlUpDown.bind( this ) );
+	window.removeEventListener( 'controlDownDown', this.onControlDownDown.bind( this ) );
+	window.removeEventListener( 'controlUpUp', this.onControlUpUp.bind( this ) );
+	window.removeEventListener( 'controlDownUp', this.onControlDownUp.bind( this ) );
 
-	window.removeEventListener( 'mouseLeftDown', onMouseLeftDown );
-	window.removeEventListener( 'mouseRightDown', onMouseRightDown );
-	window.removeEventListener( 'mouseLeftUp', onMouseLeftUp);
-	window.removeEventListener( 'mouseRightUp', onMouseRightUp );
+	window.removeEventListener( 'mouseLeftDown', this.onMouseLeftDown.bind( this ) );
+	window.removeEventListener( 'mouseRightDown', this.onMouseRightDown.bind( this ) );
+	window.removeEventListener( 'mouseLeftUp', this.onMouseLeftUp.bind( this ) );
+	window.removeEventListener( 'mouseRightUp', this.onMouseRightUp.bind( this ) );
 };
 
 G.prototype.onControlUpDown = function() {
-	//playerMoveUp = true;
+	this.paddlePlayer.moveUp = true;
 };
 
 G.prototype.onControlDownDown = function() {
-	//playerMoveDown = true;
+	this.paddlePlayer.moveDown = true;
 };
 
 G.prototype.onControlUpUp = function() {
-	//playerMoveUp = false;
+	this.paddlePlayer.moveUp = false;
 };
 
 G.prototype.onControlDownUp = function() {
-	//playerMoveDown = false;
+	this.paddlePlayer.moveDown = false;
 };
 
 G.prototype.onMouseLeftDown = function() {
-	slowMo();
+	if( !this.paused ) {
+		this.timescale.triggerSlowMo();
+	}
 };
 
 G.prototype.onMouseRightDown = function() {
@@ -360,6 +552,14 @@ G.prototype.onMouseLeftUp = function() {
 };
 
 G.prototype.onMouseRightUp = function() {
+};
+
+G.prototype.onControlMuteDown = function() {
+	this.muteToggle();
+};
+
+G.prototype.onControlPauseDown = function() {
+	this.pauseToggle();
 };
 
 /*==============================================================================
@@ -379,7 +579,69 @@ G.prototype.collisionAABB = function( r1, r2 ) {
 	}
 };
 
+/*==============================================================================
 
+Check Win State
+
+==============================================================================*/
+
+G.prototype.checkWinState = function() {
+	if ( this.scorePlayer.value >= this.config.score.max ) {
+		console.log( 'You Won!' );
+		this.reset();
+	} else if ( this.scoreEnemy.value >= this.config.score.max  ) {
+		console.log( 'You Lost!' );
+		this.reset();
+	}
+};
+
+/*==============================================================================
+
+Mute / Umute / Mute Toggle
+
+==============================================================================*/
+
+G.prototype.muteToggle = function() {
+	if( this.muted ) {
+		this.unmute();
+	} else {
+		this.mute();
+	}
+};
+
+G.prototype.mute = function() {
+	this.muted = true;
+	pg.sound.setMaster( 0 );
+};
+
+G.prototype.unmute = function() {
+	this.muted = false;
+	pg.sound.setMaster( 1 );
+};
+
+/*==============================================================================
+
+Pause / Unpause / Pause Toggle
+
+==============================================================================*/
+
+G.prototype.pauseToggle = function() {
+	if( this.paused ) {
+		this.unpause();
+	} else {
+		this.pause();
+	}
+};
+
+G.prototype.pause = function() {
+	this.paused = true;
+	document.documentElement.classList.add( 'paused' );
+};
+
+G.prototype.unpause = function() {
+	this.paused = false;
+	document.documentElement.classList.remove( 'paused' );
+};
 
 /*==============================================================================
 
@@ -388,7 +650,17 @@ Step / Update
 ==============================================================================*/
 
 G.prototype.step = function() {
-}
+	if( this.paused ) {
+		return;
+	}
+	this.stage.step();
+	this.paddlePlayer.step();
+	this.paddleEnemy.step();
+	this.ball.step();
+	this.screenshake.step();
+	this.timescale.step();
+	this.checkWinState();
+};
 
 /*==============================================================================
 
@@ -403,7 +675,7 @@ G.prototype.draw = function() {
 	this.ball.draw();
 	this.scorePlayer.draw();
 	this.scoreEnemy.draw();
-}
+};
 
 /*==============================================================================
 
@@ -424,6 +696,7 @@ Kill / Destroy
 ==============================================================================*/
 
 G.prototype.kill = function() {
+	this.unpause();
 	this.removeEventListeners();
 	cancelAnimationFrame( this.raf );
 };

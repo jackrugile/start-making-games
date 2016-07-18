@@ -34,6 +34,9 @@
 	- settle back to original rotation when not holding left or right
 	- rotated rect collision detection?
 - charge spike, rumble, particle explosion, and slow mo on mega spike
+- mute / pause
+	- start each demo unmuted and unpaused? or carry through all slides?
+- bind page refresh to controller?
 
 ---
 

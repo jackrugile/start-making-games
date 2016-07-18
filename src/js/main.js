@@ -201,6 +201,8 @@ var controlDownDownEvent = new Event( 'controlDownDown' ),
 	mouseLeftUpEvent = new Event( 'mouseLeftUp' ),
 	mouseRightDownEvent = new Event( 'mouseRightDown' ),
 	mouseRightUpEvent = new Event( 'mouseRightUp' ),
+	controlMuteDownEvent = new Event( 'controlMuteDown' ),
+	controlPauseDownEvent = new Event( 'controlPauseDown' ),
 	keyMap = {
 		up: [ 'up', 'w' ],
 		right: [ 'right', 'd' ],
@@ -208,6 +210,8 @@ var controlDownDownEvent = new Event( 'controlDownDown' ),
 		left: [ 'left', 'a' ],
 		prev: [ 'openbracket', 'l2' ],
 		next: [ 'closebraket', 'l1' ],
+		mute: [ 'm', 'r2' ],
+		pause: [ 'p', 'r1' ]
 	},
 	keys = {
 		up: 0,
@@ -240,6 +244,10 @@ separate dir stuff
 
 */
 
+/*==============================================================================
+Playground General
+==============================================================================*/
+
 var pg = playground({
 	mousemove: function( e ) {
 		if( this.mouseIdle ) {
@@ -271,6 +279,8 @@ var pg = playground({
 		else if( keyMap.left.indexOf( e.key ) > -1 )  { keys.left = 1; dirs.left.classList.add( 'is-active' ); }
 		else if( keyMap.prev.indexOf( e.key ) > -1 )  { prevSlide(); }
 		else if( keyMap.next.indexOf( e.key ) > -1 )  { nextSlide(); }
+		else if( keyMap.mute.indexOf( e.key ) > -1 )  { window.dispatchEvent( controlMuteDownEvent ); }
+		else if( keyMap.pause.indexOf( e.key ) > -1 ) { window.dispatchEvent( controlPauseDownEvent ); }
 	},
 	keyup: function( e ) {
 		if(      keyMap.up.indexOf( e.key ) > -1 )    { keys.up = 0; dirs.up.classList.remove( 'is-active' ); window.dispatchEvent( controlUpUpEvent ); }
@@ -285,6 +295,8 @@ var pg = playground({
 		else if( keyMap.left.indexOf( e.button ) > -1 )  { keys.left = 1; dirs.left.classList.add( 'is-active' ); }
 		else if( keyMap.prev.indexOf( e.button ) > -1 )  { prevSlide(); }
 		else if( keyMap.next.indexOf( e.button ) > -1 )  { nextSlide(); }
+		else if( keyMap.mute.indexOf( e.button ) > -1 )  { window.dispatchEvent( controlMuteDownEvent ); }
+		else if( keyMap.pause.indexOf( e.button ) > -1 ) { window.dispatchEvent( controlPauseDownEvent ); }
 	},
 	gamepadup: function( e ) {
 		if(      keyMap.up.indexOf( e.button ) > -1 )    { keys.up = 0; dirs.up.classList.remove( 'is-active' ); window.dispatchEvent( controlUpUpEvent ); }
@@ -339,6 +351,16 @@ var pg = playground({
 		this.timeNorm += this.dtNorm;
 	},
 	getDt: function() {
-		return this.dtNorm == undefined ? 1 : this.dtNorm;
+		return this.dtNorm === undefined ? 1 : this.dtNorm;
+	},
+	soundPlay: function( opt ) {
+		var name = opt.name === undefined ? null : opt.name;
+		var volume = opt.volume === undefined ? 1 : opt.volume;
+		var rate = opt.rate === undefined ? 1 : opt.rate;
+		if ( name ) {
+			var sound = pg.playSound( name );
+			pg.sound.setVolume( sound, volume );
+			pg.sound.setPlaybackRate( sound, rate );
+		}
 	}
 });
