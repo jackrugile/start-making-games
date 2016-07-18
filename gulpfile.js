@@ -44,7 +44,10 @@ gulp.task( 'styles', function() {
 		}))
 		.on( 'error', p.sass.logError)
 		.pipe( p.autoprefixer() )
-		.pipe( p.cssnano( { advanced: false } ) )
+		.pipe( p.cssnano( { 
+			advanced: false,
+			zindex: false
+		} ) )
 		.pipe( p.rename( 'main.min.css' ) )
 		.pipe( gulp.dest( 'css' ) )
 		.pipe( p.notify( 'Gulp Styles Task Completed' ) );

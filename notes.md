@@ -27,9 +27,7 @@
 - integrate timescale for dt and slow motion
 	- issue with screenshake not being affected by it?
 	- match sfx to timescale? maybe not as intense of a drop down
-- if enemy on edge, always calc new trajectory
 - image for background?
-- drag vs friction?
 - circle or rotate rectangle for paddle
 	- settle back to original rotation when not holding left or right
 	- rotated rect collision detection?
@@ -37,6 +35,7 @@
 - mute / pause
 	- start each demo unmuted and unpaused? or carry through all slides?
 - bind page refresh to controller?
+- add pause to basic build demo?
 
 ---
 
