@@ -23,10 +23,11 @@ var slides = [
 		'intro-t-quotes',
 	// why
 	// build
-		'build-c-test-html',
-		'build-c-test-css',
-		'build-cd-test-js',
-		'build-d-final',
+		//'build-c-test-html',
+		//'build-c-test-css',
+		//'build-cd-test-js',
+		'build-c-html-1',
+		'build-d-js-check-win-state-1',
 	// juice
 		'juice-d-final'
 	// outro

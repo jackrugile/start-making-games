@@ -94,8 +94,10 @@
 	- not using an engine
 	- coordinate system
 	- drawing from top left
+
+
 - html
-	- build-c-html-1
+	-* build-c-html-1
 		- perfect since nothing gets added or removed from the game
 		- can add more elements later
 - css
