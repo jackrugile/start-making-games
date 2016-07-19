@@ -57,20 +57,6 @@
 
 ### Being able to control something on the screen and have an effect on the game world is pretty gosh darn delightful.
 
-
-
-
-
-
-
-
-
-
-
-
-
-## III: Let's Build a Game
-
 ### Similarities between Front End Dev and Game Dev
 
 #### context/position aware
@@ -88,18 +74,30 @@
 - how many people mute the game?
 - how many people are experiencing a low frame rate?
 
-### What We're Making
 
-#### The DOM (The tools you know and love)
 
-### Coordinate System
 
-### Drawing from Top Left of Shapes
+
+
+
+
+
+
+
+
+
+## III: Let's Build a Game
 
 - explanation
-
+	- we're building pong
+	- DOM renderer with html, css, and js
+	- not using an engine
+	- coordinate system
+	- drawing from top left
 - html
 	- build-c-html-1
+		- perfect since nothing gets added or removed from the game
+		- can add more elements later
 - css
 	- build-c-css-pong-1
 	- build-d-css-pong-1
@@ -114,31 +112,41 @@
 		- show the stubs for each function
 		- also show it being called with init to win it
 	- build-c-js-config-1
+		 - explain that ballSpeed will change
 	- build-c-js-object-paddle-player-1
 	- build-c-js-object-paddle-enemy-1
 	- build-c-js-object-ball-scores-1
 	- build-c-js-render-1
-		- explain why transforms
+		- explain why transforms hardware accelerated (GPU)
+		- only affects composite layer
+		- not painting or redoing layout on each frame, subpixel rendering
 	- build-d-js-render-1
 	- build-c-js-move-ball-1
 		- explain about adding a negative value
 	- build-c-js-update-1
 	- build-d-js-update-1
 	- build-c-js-loop-1
+		- explain frame based animation
 		- explain request animation frame
+			- syncs with a browsers refresh, target of 60 fps
+			- prevents possible queued or out of sync operations caused by setInterval() and setTimeout()
+			- stops running when browser window/tab is not in focus
+			- results in a smoother animation overall
 	- build-c-js-init-1
 	- build-d-js-loop-1
 	- build-c-js-contain-ball-1
-		- place holder bounce off walls on left and right
+		- placeholder bounce off walls on left and right
 	- build-c-js-update-2
 	- build-d-js-contain-ball-1
 	- build-c-js-move-player-1
 	- build-c-js-update-3
 	- build-c-js-add-event-listeners-1
+		 - explain keycodes
 	- build-c-js-init-2
 	- build-d-js-move-player-1
 	- build-c-js-move-enemy-1
 		- not making skynet
+		- explain temporary blindness
 	- build-c-js-update-4
 	- build-d-js-move-enemy-1
 	- build-c-js-contain-paddles-1
@@ -150,22 +158,23 @@
 		- possibly supplement with illustrative slide explaining
 		- explain why x has to be explicitly set so that it doesn't collide again
 	- build-c-js-collide-ball-paddles-1
+		- not checking angle, just checking for a boolean of it hit or not
 	- build-c-js-update-6
 	- build-d-js-collide-ball-paddles-1
 	- build-c-js-contain-ball-2
-		- add on scoring logic, still bounce of left and right walls, no speed inc
+		- add on scoring logic, still bounce off left and right walls, no speed inc
 		- explain score updating
 	- build-d-js-contain-ball-2
 	- build-c-js-reset-ball-1
-		- add on and explain speed inc
 	- build-c-js-contain-ball-3
-		- just add on reset function
-	- build-c-js-reset-ball-1
+		- add on reset function
+		- add and explain speed inc
 	- build-d-js-reset-ball-1
 	- build-c-js-check-win-state-1
 	- build-c-js-update-7
 	- build-c-js-reset-game-1
 	- build-d-js-check-win-state-1
+		- profit
 
 
 
