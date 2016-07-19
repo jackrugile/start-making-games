@@ -1,189 +1,138 @@
-(function(){
-
-	var gameDOM = document.querySelector( '.pong' ),
-		gameDOMWrap = gameDOM.parentNode,		
-		gameDOMBcr,
-		gameDOMWidth,
-		gameDOMHeight,
-		gameDOMRatio,
-		gameDOMScaleMin = 0,
-		gameDOMScaleMax = Infinity,
-		gameDOMScale,
-		gameDOMWrapBcr;
-
-	function setGameScale() {
-		gameDOMBcr = gameDOM.getBoundingClientRect(),
-		gameDOMWidth = gameDOMBcr.width,
-		gameDOMHeight = gameDOMBcr.height,
-		gameDOMRatio = gameDOMHeight / gameDOMWidth,
-
-		gameDOMWrapBcr = gameDOMWrap.getBoundingClientRect();
-		if( gameDOMWrapBcr.width > gameDOMWrapBcr.height / gameDOMRatio ) {
-			gameDOMScale = gameDOMWrapBcr.height / gameDOMRatio / gameDOMWidth;
-		} else {
-			gameDOMScale = gameDOMWrapBcr.width * gameDOMRatio / gameDOMHeight;
-		}
-		gameDOMScale = Math.max( Math.min( gameDOMScale, gameDOMScaleMax ), gameDOMScaleMin ) + 0.001;
-		gameDOM.style.transform = 'scale(' + gameDOMScale + ')';
-	}
-
-	function onGameResize() {
-		setGameScale();
-		setTimeout( function() {
-			setGameScale();
-		}, 100 );
-	}
-
-	addEventListener( 'resize', onGameResize );
-
-	setGameScale();
-
 /*==========================================
 Config 
 ==========================================*/
 
-// loop
-var raf;
+game = {};
+game.raf = null;
 
 // game
-var gameWidth = 1920,
-	gameHeight = 1080;
+game.gameWidth = 1920;
+game.gameHeight = 1080;
 
 // paddles
-var paddleWidth = 60,
-	paddleHeight = 240,
-	paddleSpeed = 16;
-	
+game.paddleWidth = 60;
+game.paddleHeight = 240;
+game.paddleSpeed = 16;
+
 // ball
-var ballWidth = 60,
-	ballHeight = 60,
-	ballSpeedStart = 16,
-	ballSpeed = ballSpeedStart;
+game.ballWidth = 60;
+game.ballHeight = 60;
+game.ballSpeedStart = 16;
+game.ballSpeed = game.ballSpeedStart;
 
 // score - what are we playing to?
-var scoreMax = 5;
-
-// movement
-var	playerMoveUp = false,
-	playerMoveDown = false,
-	enemyMoveUp = false,
-	enemyMoveDown = false;
+game.scoreMax = 5;
 
 /*==========================================
-Entities 
+Objects 
 ==========================================*/
 
-var paddlePlayer = {
-		elem: document.querySelector('.paddle-player'),
-		x: paddleWidth,
-		y: gameHeight / 2 - paddleHeight / 2,
-		width: paddleWidth,
-		height: paddleHeight,
-		speed: paddleSpeed
-	},
-	paddleEnemy = {
-		elem: document.querySelector('.paddle-enemy'),
-		x: gameWidth - paddleWidth - paddleWidth,
-		y: gameHeight / 2 - paddleHeight / 2,
-		width: paddleWidth,
-		height: paddleHeight,
-		speed: paddleSpeed
-	},
-	ball = {
-		elem: document.querySelector('.ball'),
-		x: gameWidth / 2 - ballWidth / 2,
-		y: gameHeight / 2 - ballHeight / 2,
-		vx: ballSpeed,
-		vy: ballSpeed,
-		width: ballWidth,
-		height: ballHeight
-	},
-	scorePlayer = {
-		elem: document.querySelector('.score-player'),
-		value: 0	
-	},
-	scoreEnemy = {
-		elem: document.querySelector('.score-enemy'),
-		value: 0	
-	};
+game.paddlePlayer = {
+	elem: document.querySelector('.paddle-player'),
+	x: 0,
+	y: game.gameHeight / 2 - game.paddleHeight / 2,
+	width: game.paddleWidth,
+	height: game.paddleHeight,
+	speed: game.paddleSpeed,
+	moveUp: false,
+	moveDown: false
+};
+
+game.paddleEnemy = {
+	elem: document.querySelector('.paddle-enemy'),
+	x: game.gameWidth - game.paddleWidth,
+	y: game.gameHeight / 2 - game.paddleHeight / 2,
+	width: game.paddleWidth,
+	height: game.paddleHeight,
+	speed: game.paddleSpeed,
+	moveUp: false,
+	moveDown: false
+};
+	
+game.ball = {
+	elem: document.querySelector('.ball'),
+	x: game.gameWidth / 2 - game.ballWidth / 2,
+	y: game.gameHeight / 2 - game.ballHeight / 2,
+	vx: game.ballSpeed,
+	vy: game.ballSpeed,
+	width: game.ballWidth,
+	height: game.ballHeight
+};
+
+game.scorePlayer = {
+	elem: document.querySelector('.score-player'),
+	value: 0
+};
+
+game.scoreEnemy = {
+	elem: document.querySelector('.score-enemy'),
+	value: 0
+};
 
 /*==========================================
 Initialize 
 ==========================================*/
 
-function init() {
-	addEventListeners();
-	loop();
-}
+game.init = function() {
+	game.addEventListeners();
+	game.loop();
+};
 
 /*==========================================
 Resets
 ==========================================*/
 
-function resetGame() {
-	ballSpeed = ballSpeedStart;
-	scorePlayer.value = 0;
-	scoreEnemy.value = 0;
-	resetBall();
-}
+game.resetGame = function() {
+	game.ballSpeed = game.ballSpeedStart;
+	game.scorePlayer.value = 0;
+	game.scoreEnemy.value = 0;
+	game.resetBall();
+};
 
-function resetBall() {
-	ball.x = gameWidth / 2 - ballWidth / 2;
-	ball.y = gameHeight / 2 - ballHeight / 2;
-	ball.vx = 0;
-	ball.vy = 0;
-	setTimeout( function() {
-		ball.vx = ballSpeed;
-		ball.vy = ballSpeed;
+game.resetBall = function() {
+	game.ball.x = game.gameWidth / 2 - game.ballWidth / 2;
+	game.ball.y = game.gameHeight / 2 - game.ballHeight / 2;
+	game.ball.vx = 0;
+	game.ball.vy = 0;
+	setTimeout(function() {
+		game.ball.vx = game.ballSpeed;
+		game.ball.vy = game.ballSpeed;
 	}, 1000);
-}
+};
 
 /*==========================================
 Events 
 ==========================================*/
 
-function addEventListeners() {
-	/*
-	window.addEventListener('keydown', function(e) {
-		if(e.which === 38) { playerMoveUp = true; }
-		if(e.which === 40) { playerMoveDown = true; }
-	});
-
-	window.addEventListener('keyup', function(e) {
-		if(e.which === 38) { playerMoveUp = false; }
-		if(e.which === 40) { playerMoveDown = false; }
-	});
-	*/
-
-	window.addEventListener( 'controlUpDown', onControlUpDown );
-	window.addEventListener( 'controlDownDown', onControlDownDown );
-	window.addEventListener( 'controlUpUp', onControlUpUp );
-	window.addEventListener( 'controlDownUp', onControlDownUp );
+game.addEventListeners = function() {
+	window.addEventListener( 'controlUpDown', game.onControlUpDown );
+	window.addEventListener( 'controlDownDown', game.onControlDownDown );
+	window.addEventListener( 'controlUpUp', game.onControlUpUp );
+	window.addEventListener( 'controlDownUp', game.onControlDownUp );
 };
 
-function onControlUpDown() {
-	playerMoveUp = true;
-}
+game.onControlUpDown = function() {
+	game.paddlePlayer.moveUp = true;
+};
 
-function onControlDownDown() {
-	playerMoveDown = true;
-}
+game.onControlDownDown = function() {
+	game.paddlePlayer.moveDown = true;
+};
 
-function onControlUpUp() {
-	playerMoveUp = false;
-}
+game.onControlUpUp = function() {
+	game.paddlePlayer.moveUp = false;
+};
 
-function onControlDownUp() {
-	playerMoveDown = false;
-}
+game.onControlDownUp = function() {
+	game.paddlePlayer.moveDown = false;
+};
 
 /*==========================================
 AABB Collision Detection
-Axis Aligned Bounding Box
 ==========================================*/
 
-function collisionAABB( r1, r2 ) {
-	if(!(
+game.collisionAABB = function(r1, r2) {
+	if (!(
 		r1.x > r2.x + r2.width ||  // rect1 is on the right of rect2
 		r1.x + r1.width < r2.x ||  // rect1 is on the left of rect2
 		r1.y > r2.y + r2.height || // rect1 is below rect2
@@ -191,144 +140,176 @@ function collisionAABB( r1, r2 ) {
 	)) {
 		return true;
 	}
-}
+};
+
+/*==========================================
+Move Ball
+==========================================*/
+
+game.moveBall = function() {
+	game.ball.x += game.ball.vx;
+	game.ball.y += game.ball.vy;
+};
+
+/*==========================================
+Move Player
+==========================================*/
+
+game.movePlayer = function() {
+	if (game.paddlePlayer.moveUp) {
+		game.paddlePlayer.y -= game.paddlePlayer.speed;
+	} else if (game.paddlePlayer.moveDown) {
+		game.paddlePlayer.y += game.paddlePlayer.speed;
+	}
+};
+
+/*==========================================
+Move Enemy
+==========================================*/
+
+game.moveEnemy = function() {
+	if (Math.random() < 0.2) {
+		game.paddleEnemy.moveUp = false;
+		game.paddleEnemy.moveDown = false;
+		if (game.ball.y + game.ballHeight < game.paddleEnemy.y + game.paddleEnemy.height / 2) {
+			game.paddleEnemy.moveUp = true;
+		} else if (game.ball.y > game.paddleEnemy.y + game.paddleEnemy.height / 2) {
+			game.paddleEnemy.moveDown = true;
+		}
+	}
+	
+	if (game.paddleEnemy.moveUp) {
+		game.paddleEnemy.y -= game.paddleEnemy.speed;
+	} else if (game.paddleEnemy.moveDown) {
+		game.paddleEnemy.y += game.paddleEnemy.speed;
+	}
+};
+
+/*==========================================
+Contain Ball
+==========================================*/
+
+game.containBall = function() {
+	if (game.ball.y <= 0) {
+		game.ball.y = 0;
+		game.ball.vy = -game.ball.vy;
+	}
+	
+	if (game.ball.y + game.ball.height >= game.gameHeight) {
+		game.ball.y = game.gameHeight - game.ball.height;
+		game.ball.vy = -game.ball.vy;
+	}
+	
+	if (game.ball.x + game.ball.width > game.gameWidth) {
+		game.scorePlayer.value++;
+		game.ballSpeed += 1;
+		game.resetBall();
+	} else if (game.ball.x < 0) {
+		game.scoreEnemy.value++;
+		game.ballSpeed += 1;
+		game.resetBall();
+	}
+};
+
+/*==========================================
+Contain Paddles
+==========================================*/
+
+game.containPaddles = function() {
+	game.paddlePlayer.y = Math.max(0, game.paddlePlayer.y);
+	game.paddlePlayer.y = Math.min(game.gameHeight - game.paddlePlayer.height, game.paddlePlayer.y);
+	
+	game.paddleEnemy.y = Math.max(0, game.paddleEnemy.y);
+	game.paddleEnemy.y = Math.min(game.gameHeight - game.paddleEnemy.height, game.paddleEnemy.y);
+};
+
+/*==========================================
+Collide Ball Paddles
+==========================================*/
+
+game.collideBallPaddles = function() {
+	if (game.collisionAABB(game.ball, game.paddlePlayer)) {
+		game.ball.x = game.paddlePlayer.x + game.paddlePlayer.width;
+		game.ball.vx = -game.ball.vx;
+	}
+	
+	if (game.collisionAABB(game.ball, game.paddleEnemy)) {
+		game.ball.x = game.paddleEnemy.x - game.ball.width;
+		game.ball.vx = -game.ball.vx;
+	}
+};
+
+/*==========================================
+Check Win State
+==========================================*/
+
+game.checkWinState = function() {
+	if (game.scorePlayer.value >= game.scoreMax) {
+		console.log( 'You Won!' );
+		game.resetGame();
+	} else if (game.scoreEnemy.value >= game.scoreMax) {
+		console.log( 'You Lost!' );
+		game.resetGame();
+	}
+};
 
 /*==========================================
 Update
 ==========================================*/
 
-function update() {
-	
-	/*==========================================
-	Apply Controls and Forces
-	==========================================*/
-	
-	if(playerMoveUp) { paddlePlayer.y -= paddlePlayer.speed; }
-	if(playerMoveDown) { paddlePlayer.y += paddlePlayer.speed; }
-	
-	ball.x += ball.vx;
-	ball.y += ball.vy;
-	
-	/*==========================================
-	Enemy Behavior
-	==========================================*/
-	
-	if( Math.random() < 0.2 ) {
-		enemyMoveUp = false;
-		enemyMoveDown = false;
-		if(ball.y + ballHeight < paddleEnemy.y + paddleEnemy.height / 2) {
-			enemyMoveUp = true;
-		} else if(ball.y > paddleEnemy.y + paddleEnemy.height / 2) {
-			enemyMoveDown = true;
-		}
-	}
-	
-	if(enemyMoveUp) {
-		paddleEnemy.y -= paddleEnemy.speed;
-	}
-	if(enemyMoveDown) {
-		paddleEnemy.y += paddleEnemy.speed;
-	}
-	
-	/*==========================================
-	Contain Paddles
-	==========================================*/
-	
-	paddlePlayer.y = Math.max(0, paddlePlayer.y);
-	paddlePlayer.y = Math.min(gameHeight - paddlePlayer.height, paddlePlayer.y);
-	
-	paddleEnemy.y = Math.max(0, paddleEnemy.y);
-	paddleEnemy.y = Math.min(gameHeight - paddleEnemy.height, paddleEnemy.y);
-	
-	/*==========================================
-	Contain Ball
-	==========================================*/
-	
-	if(ball.y <= 0) {
-		ball.y = 0;
-		ball.vy = -ball.vy;
-	}
-	
-	if(ball.y + ball.height >= gameHeight) {
-		ball.y = gameHeight - ball.height;
-		ball.vy = -ball.vy;
-	}
-	
-	if(ball.x + ball.width > gameWidth) {
-		scorePlayer.value++;
-		ballSpeed += 1;
-		resetBall();
-	} else if(ball.x < 0) {
-		scoreEnemy.value++;
-		ballSpeed += 1;
-		resetBall();
-	}
-	
-	/*==========================================
-	Paddle Ball Collisions
-	==========================================*/
-	
-	if(collisionAABB(ball, paddlePlayer)) {
-		ball.x = paddlePlayer.x + paddlePlayer.width;
-		ball.vx = -ball.vx;
-	}
-	
-	if(collisionAABB(ball, paddleEnemy)) {
-		ball.x = paddleEnemy.x - ball.width;
-		ball.vx = -ball.vx;
-	}
-	
-	/*==========================================
-	Check Win State
-	==========================================*/
-	
-	if(scorePlayer.value >= scoreMax) {
-		console.log( 'You Won!' );
-		resetGame();
-	} else if(scoreEnemy.value >= scoreMax) {
-		console.log( 'You Lost!' );
-		resetGame();
-	}
-}
+game.update = function() {
+	game.moveBall();
+	game.movePlayer();
+	game.moveEnemy();
+	game.containBall();
+	game.containPaddles();
+	game.collideBallPaddles();
+	game.checkWinState();
+};
 
 /*==========================================
 Render
 ==========================================*/
 
-function render() {
-	paddlePlayer.elem.style.transform = 'translate(' + paddlePlayer.x + 'px, ' + paddlePlayer.y + 'px)';
-	paddleEnemy.elem.style.transform = 'translate(' + paddleEnemy.x + 'px, ' + paddleEnemy.y + 'px)';
-	ball.elem.style.transform = 'translate(' + ball.x + 'px, ' + ball.y + 'px)';
-	scorePlayer.elem.innerHTML = scorePlayer.value;
-	scoreEnemy.elem.innerHTML = scoreEnemy.value;
-}
+game.render = function() {
+	game.paddlePlayer.elem.style.transform = 'translate(' + game.paddlePlayer.x + 'px, ' + game.paddlePlayer.y + 'px)';
+	game.paddleEnemy.elem.style.transform = 'translate(' + game.paddleEnemy.x + 'px, ' + game.paddleEnemy.y + 'px)';
+	game.ball.elem.style.transform = 'translate(' + game.ball.x + 'px, ' + game.ball.y + 'px)';
+	game.scorePlayer.elem.innerHTML = game.scorePlayer.value;
+	game.scoreEnemy.elem.innerHTML = game.scoreEnemy.value;
+};
 
 /*==========================================
-Game Loop 
+Loop 
 ==========================================*/
 
-function loop() {
-	raf = requestAnimationFrame(loop);
-	update();
-	render();
-}
+game.loop = function() {
+	if( game ) {
+		game.raf = requestAnimationFrame(game.loop);
+		game.update();
+		game.render();
+	}
+};
+
+/*==========================================
+Kill
+==========================================*/
+
+game.kill = function() {
+	cancelAnimationFrame( game.raf );
+	game.paddlePlayer = null;
+	game.paddleEnemy = null;
+	game.ball = null;
+	game.scorePlayer = null;
+	game.scoreEnemy = null;
+	window.removeEventListener( 'controlUpDown', game.onControlUpDown );
+	window.removeEventListener( 'controlDownDown', game.onControlDownDown );
+	window.removeEventListener( 'controlUpUp', game.onControlUpUp );
+	window.removeEventListener( 'controlDownUp', game.onControlDownUp );
+};
 
 /*==========================================
 Let's Play! 
 ==========================================*/
 
-init(); // to win it!
-
-/*==========================================
-Destroy
-==========================================*/
-
-function destroy() {
-	window.removeEventListener( 'controlUpDown', onControlUpDown );
-	window.removeEventListener( 'controlDownDown', onControlDownDown );
-	window.removeEventListener( 'controlUpUp', onControlUpUp );
-	window.removeEventListener( 'controlDownUp', onControlDownUp );
-	cancelAnimationFrame( raf );
-}
-
-})();
+game.init(); // to win it!

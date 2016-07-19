@@ -24,7 +24,7 @@ game.ballSpeed = game.ballSpeedStart;
 game.scoreMax = 5;
 
 /*==========================================
-Entities 
+Objects 
 ==========================================*/
 
 game.paddlePlayer = {
@@ -193,9 +193,7 @@ game.containBall = function() {
 	if (game.ball.y <= 0) {
 		game.ball.y = 0;
 		game.ball.vy = -game.ball.vy;
-	}
-	
-	if (game.ball.y + game.ball.height >= game.gameHeight) {
+	} else if (game.ball.y + game.ball.height >= game.gameHeight) {
 		game.ball.y = game.gameHeight - game.ball.height;
 		game.ball.vy = -game.ball.vy;
 	}
@@ -284,9 +282,28 @@ Loop
 ==========================================*/
 
 game.loop = function() {
-	game.raf = requestAnimationFrame(game.loop);
-	game.update();
-	game.render();
+	if( game ) {
+		game.raf = requestAnimationFrame(game.loop);
+		game.update();
+		game.render();
+	}
+};
+
+/*==========================================
+Kill
+==========================================*/
+
+game.kill = function() {
+	cancelAnimationFrame( game.raf );
+	game.paddlePlayer = null;
+	game.paddleEnemy = null;
+	game.ball = null;
+	game.scorePlayer = null;
+	game.scoreEnemy = null;
+	window.removeEventListener( 'controlUpDown', game.onControlUpDown );
+	window.removeEventListener( 'controlDownDown', game.onControlDownDown );
+	window.removeEventListener( 'controlUpUp', game.onControlUpUp );
+	window.removeEventListener( 'controlDownUp', game.onControlDownUp );
 };
 
 /*==========================================
@@ -294,15 +311,3 @@ Let's Play!
 ==========================================*/
 
 game.init(); // to win it!
-
-/*==========================================
-Destroy
-==========================================*/
-
-game.destroy = function() {
-	window.removeEventListener( 'controlUpDown', game.onControlUpDown );
-	window.removeEventListener( 'controlDownDown', game.onControlDownDown );
-	window.removeEventListener( 'controlUpUp', game.onControlUpUp );
-	window.removeEventListener( 'controlDownUp', game.onControlDownUp );
-	cancelAnimationFrame( game.raf );
-};

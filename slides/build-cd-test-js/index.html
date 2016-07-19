@@ -4,52 +4,34 @@
 	<div class="slide-col">
 		<pre>
 			<code class="language-js">
-			var paddlePlayer = {
-				elem: document.querySelector('.paddle-player'),
-				x: 0,
-				y: gameHeight / 2 - paddleHeight / 2,
-				width: paddleWidth,
-				height: paddleHeight,
-				speed: paddleSpeed,
-				moveUp: false,
-				moveDown: false
-			};
-			var paddleEnemy = {
-				elem: document.querySelector('.paddle-enemy'),
-				x: gameWidth - paddleWidth,
-				y: gameHeight / 2 - paddleHeight / 2,
-				width: paddleWidth,
-				height: paddleHeight,
-				speed: paddleSpeed,
-				moveUp: false,
-				moveDown: false
-			};
+				var paddlePlayer = {
+					elem: document.querySelector('.paddle-player'),
+					x: 0,
+					y: gameHeight / 2 - paddleHeight / 2,
+					width: paddleWidth,
+					height: paddleHeight,
+					speed: paddleSpeed,
+					moveUp: false,
+					moveDown: false
+				};
 			</code>
 		</pre>
 	</div>
 
 	<div class="slide-col">
-		<!--<pre>
+		<pre>
 			<code class="language-js">
-				
-				// score - what are we playing to?
-				var scoreMax = 5;
-
-				// movement
-				var	playerMoveUp = false,
-					playerMoveDown = false,
-					enemyMoveUp = false,
-					enemyMoveDown = false;
+				var paddleEnemy = {
+					elem: document.querySelector('.paddle-enemy'),
+					x: gameWidth - paddleWidth,
+					y: gameHeight / 2 - paddleHeight / 2,
+					width: paddleWidth,
+					height: paddleHeight,
+					speed: paddleSpeed,
+					moveUp: false,
+					moveDown: false
+				};
 			</code>
 		</pre>
-		-->
-		<div class="pong">
-			<div class="paddle paddle-player"></div>
-			<div class="paddle paddle-enemy"></div>
-			<div class="score score-player"></div>
-			<div class="score score-enemy"></div>
-			<div class="net"></div>
-			<div class="ball"></div>
-		</div>
 	</div>
 </div>

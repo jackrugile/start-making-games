@@ -179,7 +179,6 @@ body {
 	transform-style: preserve-3d;
 	width: $width;
 	perspective: 1500px;
-
 }
 
 .slide-grid {
@@ -189,4 +188,9 @@ body {
 .slide-col {
 	position: relative;
 	width: 50%;
+	&:last-child {
+		align-items: center;
+		display: flex;
+		justify-content: center;
+	}
 }

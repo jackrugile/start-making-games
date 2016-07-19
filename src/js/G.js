@@ -786,6 +786,7 @@ Kill / Destroy
 ==============================================================================*/
 
 G.prototype.kill = function() {
+	cancelAnimationFrame( this.raf );
 	this.config = null;
 	this.stage = null;
 	this.ball = null;
@@ -797,5 +798,4 @@ G.prototype.kill = function() {
 	this.timescale = null;
 	this.unpause();
 	this.removeEventListeners();
-	cancelAnimationFrame( this.raf );
 };

@@ -18,6 +18,7 @@
 	- slow down paddle when charging?
 - bind page refresh to controller?
 - add pause to basic build demo?
+- still getting weird errors when navigation slides fast
 
 ---
 

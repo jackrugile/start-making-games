@@ -96,7 +96,7 @@ function loadSlide( i ) {
 	}
 	game = null;
 	document.documentElement.classList.add( 'loading' );
-	var slideRequest = new XMLHttpRequest();
+	slideRequest = new XMLHttpRequest();
 	slideRequest.open('GET', 'slides/' + slides[ i ] + '/index.html', true);
 	slideRequest.onload = function() {
 		if (slideRequest.status >= 200 && slideRequest.status < 400) {
@@ -128,7 +128,7 @@ function loadSlide( i ) {
 				// load the new js
 				var script = document.createElement( 'script' );
 				script.setAttribute( 'src', 'slides/' + slides[ i ] + '/index.js' );
-				script.async = true;
+				//script.async = true;
 				script.classList.add( 'script-' + i );
 				document.getElementsByTagName( 'head' )[0].appendChild( script );
 				document.documentElement.classList.remove( 'loading' );

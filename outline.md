@@ -24,6 +24,20 @@
 - Get you to start making games
 - Already do? Make more games. Make better games.
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## II: Game Dev is Amazing
 
 ### It's also painful, frustrating, exhausting
@@ -42,6 +56,18 @@
 - Artifical Intelligence
 
 ### Being able to control something on the screen and have an effect on the game world is pretty gosh darn delightful.
+
+
+
+
+
+
+
+
+
+
+
+
 
 ## III: Let's Build a Game
 
@@ -84,7 +110,71 @@
 ### Not making Skynet
 
 ### AABB Collision Detection
-	
+
+
+- html
+	- build-c-html-1
+- css
+	- build-c-css-pong-1
+	- build-d-css-pong-1
+	- build-c-css-paddles-1
+	- build-d-css-paddles-1
+	- build-c-css-score-1
+	- build-d-css-score-1
+	- build-c-css-net-ball-1
+	- build-d-css-net-ball-1
+- js
+	- build-c-js-structure-1
+		- show the stubs for each function
+	- build-c-js-config-1
+	- build-c-js-object-paddle-player-1
+	- build-c-js-object-paddle-enemy-1
+	- build-c-js-object-ball-scores-1
+	- build-c-js-render-1
+	- build-d-js-render-1
+	- build-c-js-move-ball-1
+	- build-c-js-update-1
+	- build-d-js-update-1
+	- build-c-js-loop-1
+	- build-c-js-init-1
+	- build-d-js-loop-1
+	- build-c-js-contain-ball-1
+		- place holder bounce off walls on left and right
+	- build-d-js-contain-ball-1
+	- build-c-js-move-player-1
+	- build-c-js-update-2
+	- build-c-js-add-event-listeners-1
+	- build-c-js-init-2
+	- build-d-js-move-player-1
+	- build-c-js-move-enemy-1
+	- build-c-js-update-3
+	- build-d-js-move-enemy-1
+	- build-c-js-contain-paddles-1
+	- build-c-js-update-4
+	- build-d-js-contain-paddles-1
+	- build-c-js-collision-aabb-1
+		- possibly supplement with illustrative slide explaining
+	- build-c-js-collide-ball-paddles-1
+	- build-c-js-update-5
+	- build-d-js-collide-ball-paddles-1
+	- build-c-js-contain-ball-2
+		- add on scoring logic
+	- build-d-js-contain-ball-2
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## IV: Game Juice / Polish: Enhance That
 
 ### Explain Juice / Polish
@@ -133,6 +223,26 @@
 	- general shadows for game objects
 - total score and progress meter (bar)
 - all together
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ## V: Go Make a Game
 

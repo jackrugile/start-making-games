@@ -21,7 +21,7 @@ var ballWidth = 60,
 var scoreMax = 5;
 
 /*==========================================
-Entities 
+Objects 
 ==========================================*/
 
 var paddlePlayer = {
@@ -187,12 +187,18 @@ function containBall() {
 	if (ball.y <= 0) {
 		ball.y = 0;
 		ball.vy = -ball.vy;
-	}
-	
-	if (ball.y + ball.height >= gameHeight) {
+	} else if (ball.y + ball.height >= gameHeight) {
 		ball.y = gameHeight - ball.height;
 		ball.vy = -ball.vy;
 	}
+
+	/*if (ball.x <= 0) {
+		ball.x = 0;
+		ball.vx = -ball.vx;
+	} else if (ball.x + ball.width >= gameWidth) {
+		ball.x = gameWidth - ball.width;
+		ball.vx = -ball.vx;
+	}*/
 	
 	if (ball.x + ball.width > gameWidth) {
 		scorePlayer.value++;
