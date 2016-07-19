@@ -90,27 +90,13 @@
 
 ### What We're Making
 
-#### Bare Bones Pong! 
-- Cosmic Paddle Warfare 2084: Wimbledon in Ruins
-- The Medieval Racketeer: A Tale from Love to Deuce
-- Volley of the Vikings: A Quest for Valhalla
-
 #### The DOM (The tools you know and love)
 
 ### Coordinate System
 
 ### Drawing from Top Left of Shapes
 
-### HTML: Set the Stage
-
-### CSS: Style the Game Objects
-
-### JS: Game Logic
-
-### Not making Skynet
-
-### AABB Collision Detection
-
+- explanation
 
 - html
 	- build-c-html-1
@@ -126,40 +112,62 @@
 - js
 	- build-c-js-structure-1
 		- show the stubs for each function
+		- also show it being called with init to win it
 	- build-c-js-config-1
 	- build-c-js-object-paddle-player-1
 	- build-c-js-object-paddle-enemy-1
 	- build-c-js-object-ball-scores-1
 	- build-c-js-render-1
+		- explain why transforms
 	- build-d-js-render-1
 	- build-c-js-move-ball-1
+		- explain about adding a negative value
 	- build-c-js-update-1
 	- build-d-js-update-1
 	- build-c-js-loop-1
+		- explain request animation frame
 	- build-c-js-init-1
 	- build-d-js-loop-1
 	- build-c-js-contain-ball-1
 		- place holder bounce off walls on left and right
+	- build-c-js-update-2
 	- build-d-js-contain-ball-1
 	- build-c-js-move-player-1
-	- build-c-js-update-2
+	- build-c-js-update-3
 	- build-c-js-add-event-listeners-1
 	- build-c-js-init-2
 	- build-d-js-move-player-1
 	- build-c-js-move-enemy-1
-	- build-c-js-update-3
+		- not making skynet
+	- build-c-js-update-4
 	- build-d-js-move-enemy-1
 	- build-c-js-contain-paddles-1
-	- build-c-js-update-4
+		- explain math min/max
+		- could use if condition on both sides, but is not needed
+	- build-c-js-update-5
 	- build-d-js-contain-paddles-1
 	- build-c-js-collision-aabb-1
 		- possibly supplement with illustrative slide explaining
+		- explain why x has to be explicitly set so that it doesn't collide again
 	- build-c-js-collide-ball-paddles-1
-	- build-c-js-update-5
+	- build-c-js-update-6
 	- build-d-js-collide-ball-paddles-1
 	- build-c-js-contain-ball-2
-		- add on scoring logic
+		- add on scoring logic, still bounce of left and right walls, no speed inc
+		- explain score updating
 	- build-d-js-contain-ball-2
+	- build-c-js-reset-ball-1
+		- add on and explain speed inc
+	- build-c-js-contain-ball-3
+		- just add on reset function
+	- build-c-js-reset-ball-1
+	- build-d-js-reset-ball-1
+	- build-c-js-check-win-state-1
+	- build-c-js-update-7
+	- build-c-js-reset-game-1
+	- build-d-js-check-win-state-1
+
+
 
 
 
@@ -187,6 +195,10 @@
 - add wind?
 
 ### Non-Gameplay Changes
+- title
+	- The Medieval Racketeer: A Tale from Love to Deuce
+	- Volley of the Vikings: A Quest for Valhalla
+	- Cosmic Paddle Warfare 2084: Wimbledon in Ruins
 - add characters
 - audio
 	- sfx

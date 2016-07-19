@@ -199,13 +199,13 @@ function containBall() {
 		ball.x = gameWidth - ball.width;
 		ball.vx = -ball.vx;
 	}*/
-	
-	if (ball.x + ball.width > gameWidth) {
-		scorePlayer.value++;
+
+	if (ball.x <= 0) {
+		scoreEnemy.value++;
 		ballSpeed += 1;
 		resetBall();
-	} else if (ball.x < 0) {
-		scoreEnemy.value++;
+	} else if (ball.x + ball.width >= gameWidth) {
+		scorePlayer.value++;
 		ballSpeed += 1;
 		resetBall();
 	}

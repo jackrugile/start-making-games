@@ -197,13 +197,21 @@ game.containBall = function() {
 		game.ball.y = game.gameHeight - game.ball.height;
 		game.ball.vy = -game.ball.vy;
 	}
+
+	/*if (game.ball.x <= 0) {
+		game.ball.x = 0;
+		game.ball.vx = -game.ball.vx;
+	} else if (game.ball.x + game.ball.width >= game.gameWidth) {
+		game.ball.x = game.gameWidth - game.ball.width;
+		game.ball.vx = -game.ball.vx;
+	}*/
 	
-	if (game.ball.x + game.ball.width > game.gameWidth) {
-		game.scorePlayer.value++;
+	if (game.ball.x <= 0) {
+		game.scoreEnemy.value++;
 		game.ballSpeed += 1;
 		game.resetBall();
-	} else if (game.ball.x < 0) {
-		game.scoreEnemy.value++;
+	} else if (game.ball.x + game.ball.width >= game.gameWidth) {
+		game.scorePlayer.value++;
 		game.ballSpeed += 1;
 		game.resetBall();
 	}
