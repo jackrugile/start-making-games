@@ -20,6 +20,7 @@
 - add pause to basic build demo?
 - still getting weird errors when navigation slides fast
 - set max score to 3 for faster rounds?
+- add way to zoom?
 
 ---
 

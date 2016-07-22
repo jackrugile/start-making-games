@@ -97,20 +97,20 @@
 
 
 - html
-	-* build-c-html-1
+	- *** build-c-html-1
 		- perfect since nothing gets added or removed from the game
 		- can add more elements later
 - css
-	- build-c-css-pong-1
-	- build-d-css-pong-1
-	- build-c-css-paddles-1
-	- build-d-css-paddles-1
-	- build-c-css-score-1
-	- build-d-css-score-1
-	- build-c-css-net-ball-1
-	- build-d-css-net-ball-1
+	- *** build-c-css-pong-1
+	- *** build-d-css-pong-1
+	- *** build-c-css-paddles-1
+	- *** build-d-css-paddles-1
+	- *** build-c-css-score-1
+	- *** build-d-css-score-1
+	- *** build-c-css-net-ball-1
+	- *** build-d-css-net-ball-1
 - js
-	- build-c-js-structure-1
+	- *** build-c-js-structure-1
 		- show the stubs for each function
 		- also show it being called with init to win it
 	- build-c-js-config-1

@@ -188,9 +188,15 @@ body {
 .slide-col {
 	position: relative;
 	width: 50%;
-	&:last-child {
+	&.slide-center {
 		align-items: center;
 		display: flex;
 		justify-content: center;
+	}
+	&:first-child {
+		padding-right: 2%;
+	}
+	&:last-child {
+		padding-left: 2%;
 	}
 }

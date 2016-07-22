@@ -23,10 +23,18 @@ var slides = [
 		'intro-t-quotes',
 	// why
 	// build
-		//'build-c-test-html',
-		//'build-c-test-css',
-		//'build-cd-test-js',
 		'build-c-html-1',
+		'build-c-css-pong-1',
+		'build-d-css-pong-1',
+		'build-c-css-paddles-1',
+		'build-d-css-paddles-1',
+		'build-c-css-score-1',
+		'build-d-css-score-1',
+		'build-c-css-net-ball-1',
+		'build-d-css-net-ball-1',
+		'build-c-js-structure-1',
+		'build-c-js-config-1',
+
 		'build-d-js-check-win-state-1',
 	// juice
 		'juice-d-final'
