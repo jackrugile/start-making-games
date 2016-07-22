@@ -123,7 +123,7 @@
 		- only affects composite layer
 		- not painting or redoing layout on each frame, subpixel rendering
 	- *** build-d-js-render-1
-	- build-c-js-move-ball-1
+	- *** build-c-js-move-ball-1
 		- explain about adding a negative value
 	- build-c-js-update-1
 	- build-d-js-update-1

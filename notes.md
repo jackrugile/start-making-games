@@ -11,17 +11,27 @@
 	- https://audiojungle.net/user/sound-ideas/portfolio?page=1&term=tennis&utf8=%E2%9C%93
 - grunt sounds?
 	- https://audiojungle.net/item/male-grunts/12294357?s_rank=14
-- integrate timescale for dt and slow motion
-	- issue with screenshake not being affected by it?
-	- match sfx to timescale? maybe not as intense of a drop down
+- match sfx to timescale? maybe not as intense of a drop down
 - charge spike, rumble, particle explosion, and slow mo on mega spike
 	- slow down paddle when charging?
 - bind page refresh to controller?
 - add pause to basic build demo?
 - still getting weird errors when navigation slides fast
 - set max score to 3 for faster rounds?
-- add way to zoom?
+- bind zoom toggle to 'Z' and other button on gamepad
+	- animate zoom in case needed live
 - remove modernizr
+- all controls
+	- mute
+	- pause
+	- reload
+	- zoom
+	- prev slide
+	- next slide
+	- up
+	- down
+	- spike (hold)
+- if time is running low, ditch the step by step juice/polish and add it all at once
 
 ---
 
@@ -65,3 +75,4 @@
 - bang for your buck with playrate on audio
 - judge the end result before you even think about juding the code
 - always give a reason not to press a button
+- getting to watch people play and react to your game is awesome
