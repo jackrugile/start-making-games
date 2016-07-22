@@ -8,7 +8,7 @@ body {
 }
 
 html {
-	&:after {
+	/*&:after {
 		background: rgba(255, 255, 255, 0.1);
 		bottom: 0;
 		content: '';
@@ -25,7 +25,7 @@ html {
 	&.loading:after {
 		opacity: 1;
 		transition-duration: 0ms;
-	}
+	}*/
 	&.mouse-idle {
 		cursor: none;
 	}
@@ -146,12 +146,29 @@ body {
 	position: absolute;
 	right: 7vw;
 	top: 7vh;
+	transition-duration: 1200ms;
+	transition-property: opacity, transform;
+	transition-timing-function: $easeOutExpo;
 	z-index: 25;
+	.loading & {
+		opacity: 0;
+		transition-duration: 0ms;
+	}
+	.loading.prev & {
+		transform: translateX( -2% );
+	}
+	.loading.next & {
+		transform: translateX( 2% );
+	}
+	.zoom & {
+		bottom: 3vh;
+		left: 3vw;
+		right: 3vw;
+		top: 3vh;
+	}
 }
 
 .slide {
-	//background: map-get( $colors, slide-bg );
-	
 	display: flex;
 	flex-direction: column;
 	height: $height;

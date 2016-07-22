@@ -113,16 +113,16 @@
 	- *** build-c-js-structure-1
 		- show the stubs for each function
 		- also show it being called with init to win it
-	- build-c-js-config-1
+	- *** build-c-js-config-1
 		 - explain that ballSpeed will change
-	- build-c-js-object-paddle-player-1
-	- build-c-js-object-paddle-enemy-1
-	- build-c-js-object-ball-scores-1
-	- build-c-js-render-1
+	- *** build-c-js-object-paddle-player-1
+	- *** build-c-js-object-paddle-enemy-1
+	- *** build-c-js-object-ball-score-1
+	- *** build-c-js-render-1
 		- explain why transforms hardware accelerated (GPU)
 		- only affects composite layer
 		- not painting or redoing layout on each frame, subpixel rendering
-	- build-d-js-render-1
+	- *** build-d-js-render-1
 	- build-c-js-move-ball-1
 		- explain about adding a negative value
 	- build-c-js-update-1

@@ -21,6 +21,7 @@
 - still getting weird errors when navigation slides fast
 - set max score to 3 for faster rounds?
 - add way to zoom?
+- remove modernizr
 
 ---
 
@@ -38,7 +39,7 @@
 - run caffeine app?
 - visible timer
 	- have milestone checkpoints
-	- no if you're ahead or behind
+	- know if you're ahead or behind
 
 ---
 

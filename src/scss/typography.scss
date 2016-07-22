@@ -90,6 +90,10 @@ ul li {
 		position: absolute;
 		top: 0.68em;
 		transform: rotate(45deg);
+		.zoom & {
+			margin-left: -0.65em;
+			transform: scale(0.7) rotate(45deg) ;
+		}
 	}
 }
 

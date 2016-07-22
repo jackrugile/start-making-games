@@ -8,9 +8,18 @@ var game = null;
 Dev Class
 ==============================================================================*/
 
-if( window.location.search === '?dev' ) {
+if( window.location.search.indexOf( 'dev' ) > -1 ) {
 	document.documentElement.classList.add( 'dev' );
 	var isDev = true;
+}
+
+/*==============================================================================
+Zoom Class
+==============================================================================*/
+
+if( window.location.search.indexOf( 'zoom' ) > -1 ) {
+	document.documentElement.classList.add( 'zoom' );
+	var isZoom = true;
 }
 
 /*==============================================================================
@@ -34,6 +43,12 @@ var slides = [
 		'build-d-css-net-ball-1',
 		'build-c-js-structure-1',
 		'build-c-js-config-1',
+		'build-c-js-object-paddle-player-1',
+		'build-c-js-object-paddle-enemy-1',
+		'build-c-js-object-ball-score-1',
+		'build-c-js-render-1',
+		'build-d-js-render-1',
+		'build-c-js-move-ball-1',
 
 		'build-d-js-check-win-state-1',
 	// juice
@@ -145,7 +160,7 @@ function loadSlide( i ) {
 
 				// rehighlight syntax
 				Prism.highlightAll();
-			}, 20 );
+			}, 32 );
 		} 
 	};
 	slideRequest.send();

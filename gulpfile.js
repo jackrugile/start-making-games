@@ -20,7 +20,7 @@ gulp.task( 'clean', function() {
 			read: false
 		})
 		.pipe( p.rimraf() )
-		.pipe( p.notify( 'Gulp Clean Task Complete' ) );
+		//.pipe( p.notify( 'Gulp Clean Task Complete' ) );
 });
 
 /*==============================================================================
@@ -30,7 +30,7 @@ HTML
 gulp.task('html', function() {
 	gulp.src( 'src/*.html' )
 	.pipe( gulp.dest( '' ) )
-	.pipe( p.notify( 'Gulp HTML Task Completed' ) );
+	//.pipe( p.notify( 'Gulp HTML Task Completed' ) );
 });
 
 /*==============================================================================
@@ -50,7 +50,7 @@ gulp.task( 'styles', function() {
 		} ) )
 		.pipe( p.rename( 'main.min.css' ) )
 		.pipe( gulp.dest( 'css' ) )
-		.pipe( p.notify( 'Gulp Styles Task Completed' ) );
+		//.pipe( p.notify( 'Gulp Styles Task Completed' ) );
 });
 
 /*==============================================================================
@@ -96,7 +96,7 @@ gulp.task( 'scripts5', [ 'scripts4' ], function() {
 gulp.task( 'scripts', [ 'scripts5' ], function() {
 	return gulp.src( 'src/js/lib/modernizr.min.js' )
 		.pipe( gulp.dest( 'js' ) )
-		.pipe( p.notify( 'Gulp Scripts Task Complete' ) );
+		//.pipe( p.notify( 'Gulp Scripts Task Complete' ) );
 });
 
 /*==============================================================================
@@ -106,7 +106,7 @@ Images
 gulp.task( 'images', function() {
 	gulp.src( 'src/img/**/*' )
 	.pipe( gulp.dest( 'img' ) )
-	.pipe( p.notify( 'Gulp Images Task Completed' ) );
+	//.pipe( p.notify( 'Gulp Images Task Completed' ) );
 });
 
 /*==============================================================================
@@ -116,7 +116,7 @@ Fonts
 gulp.task( 'fonts', function() {
 	gulp.src( 'src/fnt/**/*' )
 	.pipe( gulp.dest( 'fnt' ) )
-	.pipe( p.notify( 'Gulp Fonts Task Completed' ) );
+	//.pipe( p.notify( 'Gulp Fonts Task Completed' ) );
 });
 
 /*==============================================================================
@@ -126,7 +126,7 @@ Sounds
 gulp.task( 'sounds', function() {
 	gulp.src( 'src/snd/**/*' )
 	.pipe( gulp.dest( 'snd' ) )
-	.pipe( p.notify( 'Gulp Sounds Task Completed' ) );
+	//.pipe( p.notify( 'Gulp Sounds Task Completed' ) );
 });
 
 /*==============================================================================
@@ -136,7 +136,7 @@ Slides
 gulp.task('slides', function() {
 	gulp.src( 'src/slides/**/*' )
 	.pipe( gulp.dest( 'slides' ) )
-	.pipe( p.notify( 'Gulp Slides Task Completed' ) );
+	//.pipe( p.notify( 'Gulp Slides Task Completed' ) );
 });
 
 /*==============================================================================
