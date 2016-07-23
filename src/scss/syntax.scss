@@ -18,7 +18,7 @@ code[class*="language-"],
 pre[class*="language-"] {
 	//color: #c5c8c6;
 	color: #fff;
-    font-family: $font-roboto-mono, monospace;
+	font-family: $font-roboto-mono, monospace;
 	direction: ltr;
 	display: block;
 	text-align: left;
@@ -231,12 +231,13 @@ pre.line-numbers > code {
 	//margin-top: 1em; /* Same as .prism’s padding-top */
 
 	background: hsla(0, 0%, 100%,.1);
+	background: linear-gradient( 90deg, hsla(0, 0%, 100%, 0.1), hsla(0, 0%, 100%, 0) );
 
 	pointer-events: none;
 
 	line-height: inherit;
 	white-space: pre;
-	box-shadow: 0 0 0 9999px rgba(0,0,0,0.35);
+	//box-shadow: 0 0 0 9999px rgba(0,0,0,0.35);
 }
 
 	.line-highlight:before,

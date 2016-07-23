@@ -125,20 +125,19 @@
 	- *** build-d-js-render-1
 	- *** build-c-js-move-ball-1
 		- explain about adding a negative value
-	- build-c-js-update-1
-	- build-d-js-update-1
-	- build-c-js-loop-1
+	- *** build-c-js-update-1
+	- *** build-c-js-loop-1
 		- explain frame based animation
 		- explain request animation frame
 			- syncs with a browsers refresh, target of 60 fps
 			- prevents possible queued or out of sync operations caused by setInterval() and setTimeout()
 			- stops running when browser window/tab is not in focus
 			- results in a smoother animation overall
-	- build-c-js-init-1
-	- build-d-js-loop-1
-	- build-c-js-contain-ball-1
+	- *** build-c-js-init-1
+	- *** build-d-js-loop-1
+	- *** build-c-js-contain-ball-1
 		- placeholder bounce off walls on left and right
-	- build-c-js-update-2
+	- *** build-c-js-update-2
 	- build-d-js-contain-ball-1
 	- build-c-js-move-player-1
 	- build-c-js-update-3
