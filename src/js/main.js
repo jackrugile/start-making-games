@@ -36,10 +36,10 @@ if( window.location.search.indexOf( 'zoom' ) > -1 ) {
 function toggleZoom() {
 	isZoom = !isZoom;
 	document.documentElement.classList.toggle( 'zoom' );
-	clearTimeout( zoomTimeout );
-	zoomTimeout = setTimeout( function() {
+	//clearTimeout( zoomTimeout );
+	//zoomTimeout = setTimeout( function() {
 		setScale();
-	}, 332 );
+	//}, 332 );
 }
 
 /*==============================================================================
@@ -84,6 +84,18 @@ var slides = [
 		'build-d-js-move-player-1',
 		'build-c-js-move-enemy-1',
 		'build-c-js-update-4',
+		'build-d-js-move-enemy-1',
+		'build-c-js-contain-paddles-1',
+		'build-c-js-update-5',
+		'build-d-js-contain-paddles-1',
+		'build-c-js-collision-aabb-1',
+		'build-c-js-collide-ball-paddles-1',
+		'build-c-js-update-6',
+		'build-d-js-collide-ball-paddles-1',
+		'build-c-js-contain-ball-2',
+		'build-d-js-contain-ball-2',
+		'build-c-js-reset-ball-1',
+		'build-c-js-contain-ball-3',
 
 		'build-d-js-check-win-state-1',
 	// juice
@@ -104,9 +116,10 @@ var slideWrap = document.querySelector( '.slide-wrap' ),
 	slideRatio = slideHeight / slideWidth,
 	slideScaleMin = 0,
 	slideScaleMax = Infinity,
-	slideScale;
+	slideScale,
+	slideScaleTimeout;
 
-function setScale() {
+function applyScale() {
 	if( slideWrap.offsetWidth > slideWrap.offsetHeight / slideRatio ) {
 		slideScale = slideWrap.offsetHeight / slideRatio / slideWidth;
 	} else {
@@ -114,6 +127,12 @@ function setScale() {
 	}
 	slideScale = Math.max( Math.min( slideScale, slideScaleMax ), slideScaleMin ) + 0.001;
 	slide.style.transform = 'scale(' + slideScale + ')';
+}
+
+function setScale() {
+	applyScale();
+	clearTimeout( slideScaleTimeout );
+	slideScaleTimeout = setTimeout( applyScale, 332 );
 }
 
 function onResize( e ) {

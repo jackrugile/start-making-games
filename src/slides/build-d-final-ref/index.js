@@ -201,11 +201,11 @@ function containBall() {
 	}*/
 
 	if (ball.x <= 0) {
-		scoreEnemy.value++;
+		scoreEnemy.value += 1;
 		ballSpeed += 1;
 		resetBall();
 	} else if (ball.x + ball.width >= gameWidth) {
-		scorePlayer.value++;
+		scorePlayer.value += 1;
 		ballSpeed += 1;
 		resetBall();
 	}

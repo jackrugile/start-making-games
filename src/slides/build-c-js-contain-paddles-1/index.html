@@ -1,0 +1,20 @@
+<div class="notes">
+- explain math min/max
+- could use if condition on both sides, but is not needed
+</div>
+
+<h5>JS <span class="subdued">//</span> <span class="acc1">Contain Paddles</span></h5>
+
+<hr>
+
+<pre>
+	<code class="language-js">
+		function containPaddles() {
+			paddlePlayer.y = Math.max(0, paddlePlayer.y);
+			paddlePlayer.y = Math.min(gameHeight - paddlePlayer.height, paddlePlayer.y);
+			
+			paddleEnemy.y = Math.max(0, paddleEnemy.y);
+			paddleEnemy.y = Math.min(gameHeight - paddleEnemy.height, paddleEnemy.y);
+		}
+	</code>
+</pre>

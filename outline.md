@@ -94,6 +94,7 @@
 	- not using an engine
 	- coordinate system
 	- drawing from top left
+	- to be used as a reference later, don't memorize
 
 
 - html
@@ -150,25 +151,25 @@
 		- not making skynet
 		- explain temporary blindness
 	- *** build-c-js-update-4
-	- build-d-js-move-enemy-1
-	- build-c-js-contain-paddles-1
+	- *** build-d-js-move-enemy-1
+	- *** build-c-js-contain-paddles-1
 		- explain math min/max
 		- could use if condition on both sides, but is not needed
-	- build-c-js-update-5
-	- build-d-js-contain-paddles-1
-	- build-c-js-collision-aabb-1
+	- *** build-c-js-update-5
+	- *** build-d-js-contain-paddles-1
+	- *** build-c-js-collision-aabb-1
 		- possibly supplement with illustrative slide explaining
+	- *** build-c-js-collide-ball-paddles-1
 		- explain why x has to be explicitly set so that it doesn't collide again
-	- build-c-js-collide-ball-paddles-1
 		- not checking angle, just checking for a boolean of it hit or not
-	- build-c-js-update-6
-	- build-d-js-collide-ball-paddles-1
-	- build-c-js-contain-ball-2
+	- *** build-c-js-update-6
+	- *** build-d-js-collide-ball-paddles-1
+	- *** build-c-js-contain-ball-2
 		- add on scoring logic, still bounce off left and right walls, no speed inc
 		- explain score updating
-	- build-d-js-contain-ball-2
-	- build-c-js-reset-ball-1
-	- build-c-js-contain-ball-3
+	- *** build-d-js-contain-ball-2
+	- *** build-c-js-reset-ball-1
+	- ***build-c-js-contain-ball-3
 		- add on reset function
 		- add and explain speed inc
 	- build-d-js-reset-ball-1
