@@ -26,8 +26,7 @@ if( window.location.search.indexOf( 'invert' ) > -1 ) {
 Zoom Class
 ==============================================================================*/
 
-var isZoom = false,
-	zoomTimeout = null;
+var isZoom = false;
 
 if( window.location.search.indexOf( 'zoom' ) > -1 ) {
 	toggleZoom();
@@ -36,10 +35,7 @@ if( window.location.search.indexOf( 'zoom' ) > -1 ) {
 function toggleZoom() {
 	isZoom = !isZoom;
 	document.documentElement.classList.toggle( 'zoom' );
-	//clearTimeout( zoomTimeout );
-	//zoomTimeout = setTimeout( function() {
-		setScale();
-	//}, 332 );
+	setScale();
 }
 
 /*==============================================================================
@@ -96,7 +92,10 @@ var slides = [
 		'build-d-js-contain-ball-2',
 		'build-c-js-reset-ball-1',
 		'build-c-js-contain-ball-3',
-
+		'build-d-js-reset-ball-1',
+		'build-c-js-check-win-state-1',
+		'build-c-js-update-7',
+		'build-c-js-reset-game-1',
 		'build-d-js-check-win-state-1',
 	// juice
 		'juice-d-final'

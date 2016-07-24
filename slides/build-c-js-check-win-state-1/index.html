@@ -1,0 +1,20 @@
+<div class="notes">
+</div>
+
+<h5>JS <span class="subdued">//</span> <span class="acc1">Check Win State</span></h5>
+
+<hr>
+
+<pre>
+	<code class="language-js">
+		function checkWinState() {
+			if (scorePlayer.value >= scoreMax) {
+				console.log('You Won!');
+				resetGame();
+			} else if (scoreEnemy.value >= scoreMax) {
+				console.log('You Lost!');
+				resetGame();
+			}
+		}
+	</code>
+</pre>

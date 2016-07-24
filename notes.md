@@ -14,9 +14,6 @@
 - match sfx to timescale? maybe not as intense of a drop down
 - charge spike, rumble, particle explosion, and slow mo on mega spike
 	- slow down paddle when charging?
-- bind page refresh to controller?
-- add pause to basic build demo?
-- set max score to 3 for faster rounds?
 - all controls
 	- mute
 	- pause
@@ -30,6 +27,8 @@
 - if time is running low, ditch the step by step juice/polish and add it all at once
 - at end, determine if code font-size can be bumped up
 - make paddle rotate/react to ball hit
+- check code formatting consistency
+- check typos
 
 ---
 

@@ -172,13 +172,11 @@
 	- ***build-c-js-contain-ball-3
 		- add on reset function
 		- add and explain speed inc
-	- build-d-js-reset-ball-1
-	- build-c-js-check-win-state-1
-	- build-c-js-update-7
-	- build-c-js-reset-game-1
-	- build-d-js-check-win-state-1
-		- profit
-
+	- *** build-d-js-reset-ball-1
+	- *** build-c-js-check-win-state-1
+	- *** build-c-js-update-7
+	- *** build-c-js-reset-game-1
+	- *** build-d-js-check-win-state-1
 
 
 
