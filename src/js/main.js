@@ -210,7 +210,9 @@ function loadSlide( i ) {
 				//script.async = true;
 				script.classList.add( 'script-' + i );
 				document.getElementsByTagName( 'head' )[0].appendChild( script );
-				document.documentElement.classList.remove( 'loading' );
+				setTimeout( function() {
+					document.documentElement.classList.remove( 'loading' );
+				}, 32 );
 				slideRequest = null;
 
 				// rehighlight syntax

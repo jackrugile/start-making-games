@@ -1,19 +1,142 @@
 .random-wrap {
-	background: #222;
-	height: 30em;
+	height: 20em;
 	position: relative;
 }
 
 .random-gauge {
 	background: #000;
-	height: 6em;
+	background: hsla(0, 0%, 100%, 0.1);
+	bottom: 7em;
+	height: 5em;
 	left: 0;
-	margin: -3em 0 0;
+	position: absolute;
 	right: 0;
-	top: 50%;
 }
 
-.aabb-condition-a strong { color: hsl(130, 100%, 60%); }
-.aabb-condition-b strong { color: hsl(200, 100%, 60%); }
-.aabb-condition-c strong { color: hsl(330, 100%, 60%); }
-.aabb-condition-d strong { color: hsl(40, 100%, 60%); }
+.random-gauge-20 {
+	background: hsl(200, 100%, 60%);
+	height: 100%;
+	left: 0;
+	position: absolute;
+	top: 0;
+	transform: scaleX( 0 );
+	transform-origin: 0% 50%;
+	transition-duration: 100ms;
+	transition-property: transform;
+	width: 100%;
+}
+
+.random-label {
+	font-size: 4em;
+	font-weight: 900;
+	position: absolute;
+	top: 150%;
+}
+
+.random-label:after {
+	background: #fff;
+	bottom: 100%;
+	content: '';
+	height: 25px;
+	
+	position: absolute;
+	width: 4px;
+}
+
+.random-label-start {
+	left: 0;
+}
+
+	.random-label-start:after {
+		left: 0;
+	}
+
+.random-label-middle {
+	left: 17.5%;
+}
+
+	.random-label-middle:after {
+		left: 50%;
+		margin: 0 0 0 -2px;
+	}
+
+.random-label-end {
+	right: 0;
+}
+
+	.random-label-end:after {
+		right: 0;
+	}
+
+.random-percent {
+	color: hsl(130, 100%, 60%);
+	color: #fff;
+	font-family: 'robotomonowf', monospace;
+	font-size: 2.5em;
+	/*font-style: italic;*/
+	font-weight: 900;
+	letter-spacing: -0.05em;
+	line-height: 1;
+	position: absolute;
+	/*text-align: center;*/
+	top: 25%;
+	z-index: 1;
+}
+
+.random-percent-20 {
+	color: #222;
+	left: 50px;
+	//width: 100%;
+}
+
+.random-percent-80 {
+	color: #fff;
+	right: 50px;
+	//width: 100%;
+}
+
+.random-elems {
+	bottom: 10em;
+	height: 10px;
+	left: 0;
+	position: absolute;
+	right: 0;
+}
+
+.random-elems div {
+	animation: random-pulse-reg 500ms forwards;
+	background: hsla(0, 0%, 100%, 0.25);
+	height: 10px;
+	left: 0;
+	position: absolute;
+	top: 0;
+	transform-origin: 50% 50%;
+	width: 10px;
+}
+
+.random-elems div.in-range {
+	animation: random-pulse-alt 500ms forwards;
+	background: hsla(200, 100%, 60%, 0.25);
+}
+
+@keyframes random-pulse-reg {
+	0% {
+		background: hsla(0, 0%, 100%, 1);
+		transform: scaleY( 8 );
+	}
+	100% {
+		background: hsla(0, 0%, 100%, 0.25);
+		transform: scaleY( 1 );
+	}
+}
+
+@keyframes random-pulse-alt {
+	0% {
+		background: hsla(200, 100%, 60%, 1);
+		transform: scaleY( 8 );
+	}
+	100% {
+		background: hsla(200, 100%, 60%, 0.25)
+		transform: scaleY( 1 );
+	}
+}
