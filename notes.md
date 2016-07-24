@@ -2,6 +2,8 @@
 - be very careful about destroying all lingering items
 - what slides need special illustrations?
 	- aabb collision detection
+	- request animation frame
+	- math random
 - test with disabled internet connection
 - test gamepad controls at work - on system with no gamepad apps
 - use scale3d insead of scale on both wrap and pong?
@@ -73,3 +75,4 @@
 - judge the end result before you even think about juding the code
 - always give a reason not to press a button
 - getting to watch people play and react to your game is awesome
+- build is roughly ~300 LOC

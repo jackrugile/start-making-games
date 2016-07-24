@@ -146,7 +146,9 @@ pre[class*="language-"] {
 
 .language-css .token.string,
 .style .token.string {
-	color: #87C38A;
+	//color: #87C38A;
+	color: map-get($colors, accent4 );
+	font-style: italic;
 }
 
 .token.atrule,

@@ -245,10 +245,10 @@ Check Win State
 
 function checkWinState() {
 	if (scorePlayer.value >= scoreMax) {
-		console.log('You Won!');
+		console.log('You win!');
 		resetGame();
 	} else if (scoreEnemy.value >= scoreMax) {
-		console.log('You Lost!');
+		console.log('You get nothing! You lose! Good day, sir!');
 		resetGame();
 	}
 }
