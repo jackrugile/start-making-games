@@ -280,13 +280,17 @@ G.prototype.Paddle.prototype.contain = function() {
 
 G.prototype.Paddle.prototype.checkCollisions = function() {
 	if ( this.g.collisionAABB( this.g.ball, this ) ) {
+		var ballAngle,
+			ballSpeed,
+			speed;
+
 		if ( this.isPlayer ) {
 			this.g.ball.x = this.x + this.width;
 
-			var ballAngle = -Math.PI / 4,
-				ballSpeed = Math.sqrt( this.g.ball.vx * this.g.ball.vx + this.g.ball.vy * this.g.ball.vy ),
+			ballAngle = -Math.PI / 4;
+			ballSpeed = Math.sqrt( this.g.ball.vx * this.g.ball.vx + this.g.ball.vy * this.g.ball.vy );
 				//paddleSpeed = Math.max( 0, Math.abs( game.state.paddleHero.vx ) * 1.2 );
-				speed = ballSpeed;// + paddleSpeed;
+			speed = ballSpeed;// + paddleSpeed;
 
 			ballAngle = -Math.PI * 0.35 + ( ( this.g.ball.y + this.g.ball.height - this.y ) / ( this.height + this.g.ball.height ) ) * Math.PI * 0.7;
 
@@ -296,10 +300,10 @@ G.prototype.Paddle.prototype.checkCollisions = function() {
 		} else {
 			this.g.ball.x = this.x - this.g.ball.width;
 
-			var ballAngle = -Math.PI / 4,
-				ballSpeed = Math.sqrt( this.g.ball.vx * this.g.ball.vx + this.g.ball.vy * this.g.ball.vy ),
+			ballAngle = -Math.PI / 4;
+			ballSpeed = Math.sqrt( this.g.ball.vx * this.g.ball.vx + this.g.ball.vy * this.g.ball.vy );
 				//paddleSpeed = Math.max( 0, Math.abs( game.state.paddleHero.vx ) * 1.2 );
-				speed = ballSpeed;// + paddleSpeed;
+			speed = ballSpeed;// + paddleSpeed;
 
 			ballAngle = -Math.PI * 0.35 + ( ( this.g.ball.y + this.g.ball.height - this.y ) / ( this.height + this.g.ball.height ) ) * Math.PI * 0.7;
 

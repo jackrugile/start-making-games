@@ -14,12 +14,32 @@ if( window.location.search.indexOf( 'dev' ) > -1 ) {
 }
 
 /*==============================================================================
+Invert Class
+==============================================================================*/
+
+if( window.location.search.indexOf( 'invert' ) > -1 ) {
+	document.documentElement.classList.add( 'invert' );
+	var isInverted = true;
+}
+
+/*==============================================================================
 Zoom Class
 ==============================================================================*/
 
+var isZoom = false,
+	zoomTimeout = null;
+
 if( window.location.search.indexOf( 'zoom' ) > -1 ) {
-	document.documentElement.classList.add( 'zoom' );
-	var isZoom = true;
+	toggleZoom();
+}
+
+function toggleZoom() {
+	isZoom = !isZoom;
+	document.documentElement.classList.toggle( 'zoom' );
+	clearTimeout( zoomTimeout );
+	zoomTimeout = setTimeout( function() {
+		setScale();
+	}, 332 );
 }
 
 /*==============================================================================
@@ -45,7 +65,8 @@ var slides = [
 		'build-c-js-config-1',
 		'build-c-js-object-paddle-player-1',
 		'build-c-js-object-paddle-enemy-1',
-		'build-c-js-object-ball-score-1',
+		'build-c-js-object-ball-1',
+		'build-c-js-object-score-1',
 		'build-c-js-render-1',
 		'build-d-js-render-1',
 		'build-c-js-move-ball-1',
@@ -56,6 +77,10 @@ var slides = [
 		'build-c-js-contain-ball-1',
 		'build-c-js-update-2',
 		'build-d-js-contain-ball-1',
+		'build-c-js-move-player-1',
+		'build-c-js-update-3',
+		'build-c-js-add-event-listeners-1',
+		'build-c-js-init-2',
 
 		'build-d-js-check-win-state-1',
 	// juice
@@ -240,7 +265,8 @@ var controlDownDownEvent = new Event( 'controlDownDown' ),
 		next: [ 'closebraket', 'l1' ],
 		mute: [ 'm', 'r2' ],
 		pause: [ 'p', 'r1' ],
-		refresh: [ '4' ]
+		refresh: [ '4' ],
+		zoom: [ 'z', '2' ]
 	},
 	keys = {
 		up: 0,
@@ -310,6 +336,7 @@ var pg = playground({
 		else if( keyMap.next.indexOf( e.key ) > -1 )  { nextSlide(); }
 		else if( keyMap.mute.indexOf( e.key ) > -1 )  { window.dispatchEvent( controlMuteDownEvent ); }
 		else if( keyMap.pause.indexOf( e.key ) > -1 ) { window.dispatchEvent( controlPauseDownEvent ); }
+		else if( keyMap.zoom.indexOf( e.key ) > -1 ) { toggleZoom(); }
 	},
 	keyup: function( e ) {
 		if(      keyMap.up.indexOf( e.key ) > -1 )    { keys.up = 0; dirs.up.classList.remove( 'is-active' ); window.dispatchEvent( controlUpUpEvent ); }
@@ -327,6 +354,7 @@ var pg = playground({
 		else if( keyMap.mute.indexOf( e.button ) > -1 )  { window.dispatchEvent( controlMuteDownEvent ); }
 		else if( keyMap.pause.indexOf( e.button ) > -1 ) { window.dispatchEvent( controlPauseDownEvent ); }
 		else if( keyMap.refresh.indexOf( e.button ) > -1 ) { this.refreshTick++; if( this.refreshTick > 1 ) { location.reload(true); } }
+		else if( keyMap.zoom.indexOf( e.button ) > -1 ) { toggleZoom(); }
 	},
 	gamepadup: function( e ) {
 		if(      keyMap.up.indexOf( e.button ) > -1 )    { keys.up = 0; dirs.up.classList.remove( 'is-active' ); window.dispatchEvent( controlUpUpEvent ); }
@@ -385,12 +413,12 @@ var pg = playground({
 		this.timeNorm += this.dtNorm;
 	},
 	getDt: function() {
-		return this.dtNorm === undefined ? 1 : this.dtNorm;
+		return typeof this.dtNorm === 'undefined' ? 1 : this.dtNorm;
 	},
 	soundPlay: function( opt ) {
-		var name = opt.name === undefined ? null : opt.name;
-		var volume = opt.volume === undefined ? 1 : opt.volume;
-		var rate = opt.rate === undefined ? 1 : opt.rate;
+		var name = typeof opt.name === 'undefined' ? null : opt.name;
+		var volume = typeof opt.volume === 'undefined' ? 1 : opt.volume;
+		var rate = typeof opt.rate === 'undefined' ? 1 : opt.rate;
 		if ( name ) {
 			var sound = pg.playSound( name );
 			pg.sound.setVolume( sound, volume );

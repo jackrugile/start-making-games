@@ -117,7 +117,8 @@
 		 - explain that ballSpeed will change
 	- *** build-c-js-object-paddle-player-1
 	- *** build-c-js-object-paddle-enemy-1
-	- *** build-c-js-object-ball-score-1
+	- *** build-c-js-object-ball-1
+	- *** build-c-js-object-score-1
 	- *** build-c-js-render-1
 		- explain why transforms hardware accelerated (GPU)
 		- only affects composite layer
@@ -138,10 +139,10 @@
 	- *** build-c-js-contain-ball-1
 		- placeholder bounce off walls on left and right
 	- *** build-c-js-update-2
-	- build-d-js-contain-ball-1
-	- build-c-js-move-player-1
-	- build-c-js-update-3
-	- build-c-js-add-event-listeners-1
+	- *** build-d-js-contain-ball-1
+	- *** build-c-js-move-player-1
+	- *** build-c-js-update-3
+	- *** build-c-js-add-event-listeners-1
 		 - explain keycodes
 	- build-c-js-init-2
 	- build-d-js-move-player-1

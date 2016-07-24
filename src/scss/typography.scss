@@ -89,9 +89,11 @@ ul li {
 		margin-left: -0.85em;
 		position: absolute;
 		top: 0.68em;
+		transition-duration: 300ms;
+		transition-property: margin, transform;
 		transform: rotate(45deg);
 		.zoom & {
-			margin-left: -0.65em;
+			margin-left: -0.55em;
 			transform: scale(0.7) rotate(45deg) ;
 		}
 	}
@@ -131,10 +133,10 @@ hr {
 	border: none;
 	display: block;
 	height: 3px;
-	margin: 5rem 0;
+	margin: 4rem 0;
 	width: 100%;
 	&.small-marg {
-		margin: 4rem 0;
+		margin: 3rem 0;
 	}
 }
 

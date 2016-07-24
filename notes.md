@@ -16,11 +16,7 @@
 	- slow down paddle when charging?
 - bind page refresh to controller?
 - add pause to basic build demo?
-- still getting weird errors when navigation slides fast
 - set max score to 3 for faster rounds?
-- bind zoom toggle to 'Z' and other button on gamepad
-	- animate zoom in case needed live
-- remove modernizr
 - all controls
 	- mute
 	- pause
@@ -32,6 +28,8 @@
 	- down
 	- spike (hold)
 - if time is running low, ditch the step by step juice/polish and add it all at once
+- at end, determine if code font-size can be bumped up
+- make paddle rotate/react to ball hit
 
 ---
 

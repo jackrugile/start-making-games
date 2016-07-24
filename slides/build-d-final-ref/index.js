@@ -119,7 +119,7 @@ function addEventListeners() {
 			paddlePlayer.moveDown = false;
 		}
 	});
-};
+}
 
 /*==========================================
 AABB Collision Detection

@@ -32,6 +32,7 @@ html {
 }
 
 body {
+	background: #111;
 	background: radial-gradient( #222, #111 );
 	color: map-get( $colors, primary );
 	font: 400 100%/1.5 $font-lato;
@@ -73,6 +74,10 @@ body {
 	.loading.next &:after {
 		opacity: 1;
 		transform: translateX( 0 ) scale( 1 );
+	}
+	.invert & {
+		background: #fff;
+		-webkit-filter: invert( 1 );
 	}
 }
 
@@ -146,8 +151,8 @@ body {
 	position: absolute;
 	right: 7vw;
 	top: 7vh;
-	transition-duration: 1200ms;
-	transition-property: opacity, transform;
+	transition-duration: 1200ms, 1200ms, 1200ms, 300ms, 300ms, 300ms, 300ms;
+	transition-property: opacity, transform, -webkit-transform, bottom, left, right, top;
 	transition-timing-function: $easeOutExpo;
 	z-index: 25;
 	.loading & {
@@ -178,7 +183,7 @@ body {
 	opacity: 1;
 	position: absolute;
 	top: 50%;
-	transition: background 300ms;
+	transition: background 300ms, transform 300ms;
 	width: $width;
 	//will-change: transform;
 	.dev &:hover {

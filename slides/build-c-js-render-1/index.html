@@ -12,10 +12,14 @@
 <pre>
 	<code class="language-js">
 		function render() {
-			paddlePlayer.elem.style.transform = 'translate(' + paddlePlayer.x + 'px, ' + paddlePlayer.y + 'px)';
-			paddleEnemy.elem.style.transform = 'translate(' + paddleEnemy.x + 'px, ' + paddleEnemy.y + 'px)';
-			
-			ball.elem.style.transform = 'translate(' + ball.x + 'px, ' + ball.y + 'px)';
+			paddlePlayer.elem.style.transform = 
+				'translate(' + paddlePlayer.x + 'px, ' + paddlePlayer.y + 'px)';
+
+			paddleEnemy.elem.style.transform = 
+				'translate(' + paddleEnemy.x + 'px, ' + paddleEnemy.y + 'px)';
+				
+			ball.elem.style.transform =
+				'translate(' + ball.x + 'px, ' + ball.y + 'px)';
 
 			scorePlayer.elem.innerHTML = scorePlayer.value;
 			scoreEnemy.elem.innerHTML = scoreEnemy.value;

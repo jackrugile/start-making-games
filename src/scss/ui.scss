@@ -10,9 +10,12 @@ UI
 	overflow: hidden;
 	position: absolute;
 	right: 0;
+	transition-duration: 300ms;
+	transition-property: opacity, transform;
 	z-index: 100;
 	.zoom & {
-		display: none;
+		opacity: 0;
+		transform: translateY( 80px );
 	}
 }
 
