@@ -213,6 +213,7 @@ body {
 	&.slide-center {
 		align-items: center;
 		display: flex;
+		flex-direction: column;
 		justify-content: center;
 	}
 	&:first-child {

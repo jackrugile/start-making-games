@@ -1,0 +1,19 @@
+.random-wrap {
+	background: #222;
+	height: 30em;
+	position: relative;
+}
+
+.random-gauge {
+	background: #000;
+	height: 6em;
+	left: 0;
+	margin: -3em 0 0;
+	right: 0;
+	top: 50%;
+}
+
+.aabb-condition-a strong { color: hsl(130, 100%, 60%); }
+.aabb-condition-b strong { color: hsl(200, 100%, 60%); }
+.aabb-condition-c strong { color: hsl(330, 100%, 60%); }
+.aabb-condition-d strong { color: hsl(40, 100%, 60%); }

@@ -150,6 +150,7 @@
 	- *** build-c-js-move-enemy-1
 		- not making skynet
 		- explain temporary blindness
+	- build-i-js-random-1
 	- *** build-c-js-update-4
 	- *** build-d-js-move-enemy-1
 	- *** build-c-js-contain-paddles-1
@@ -159,6 +160,7 @@
 	- *** build-d-js-contain-paddles-1
 	- *** build-c-js-collision-aabb-1
 		- possibly supplement with illustrative slide explaining
+	- *** build-i-js-aabb-separation-conditions-1
 	- *** build-c-js-collide-ball-paddles-1
 		- explain why x has to be explicitly set so that it doesn't collide again
 		- not checking angle, just checking for a boolean of it hit or not
