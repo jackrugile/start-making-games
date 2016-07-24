@@ -81,6 +81,9 @@ var slides = [
 		'build-c-js-update-3',
 		'build-c-js-add-event-listeners-1',
 		'build-c-js-init-2',
+		'build-d-js-move-player-1',
+		'build-c-js-move-enemy-1',
+		'build-c-js-update-4',
 
 		'build-d-js-check-win-state-1',
 	// juice

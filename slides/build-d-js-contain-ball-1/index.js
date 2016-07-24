@@ -74,7 +74,7 @@ Initialize
 ==========================================*/
 
 game.init = function() {
-	this.loop();
+	game.loop();
 };
 
 /*==========================================
@@ -113,8 +113,8 @@ Update
 ==========================================*/
 
 game.update = function() {
-	this.moveBall();
-	this.containBall();
+	game.moveBall();
+	game.containBall();
 };
 
 /*==========================================

@@ -144,12 +144,12 @@
 	- *** build-c-js-update-3
 	- *** build-c-js-add-event-listeners-1
 		 - explain keycodes
-	- build-c-js-init-2
-	- build-d-js-move-player-1
-	- build-c-js-move-enemy-1
+	- *** build-c-js-init-2
+	- *** build-d-js-move-player-1
+	- *** build-c-js-move-enemy-1
 		- not making skynet
 		- explain temporary blindness
-	- build-c-js-update-4
+	- *** build-c-js-update-4
 	- build-d-js-move-enemy-1
 	- build-c-js-contain-paddles-1
 		- explain math min/max

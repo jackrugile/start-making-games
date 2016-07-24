@@ -74,7 +74,38 @@ Initialize
 ==========================================*/
 
 game.init = function() {
-	game.render();
+	this.loop();
+};
+
+/*==========================================
+Move Ball
+==========================================*/
+
+game.moveBall = function() {
+	game.ball.x += game.ball.vx;
+	game.ball.y += game.ball.vy;
+};
+
+/*==========================================
+Contain Ball
+==========================================*/
+
+game.containBall = function() {
+	if (game.ball.y <= 0) {
+		game.ball.y = 0;
+		game.ball.vy = -game.ball.vy;
+	} else if (game.ball.y + game.ball.height >= game.gameHeight) {
+		game.ball.y = game.gameHeight - game.ball.height;
+		game.ball.vy = -game.ball.vy;
+	}
+
+	if (game.ball.x <= 0) {
+		game.ball.x = 0;
+		game.ball.vx = -game.ball.vx;
+	} else if (game.ball.x + game.ball.width >= game.gameWidth) {
+		game.ball.x = game.gameWidth - game.ball.width;
+		game.ball.vx = -game.ball.vx;
+	}
 };
 
 /*==========================================
@@ -82,6 +113,8 @@ Update
 ==========================================*/
 
 game.update = function() {
+	this.moveBall();
+	this.containBall();
 };
 
 /*==========================================
@@ -94,6 +127,18 @@ game.render = function() {
 	game.ball.elem.style.transform = 'translate(' + game.ball.x + 'px, ' + game.ball.y + 'px)';
 	game.scorePlayer.elem.innerHTML = game.scorePlayer.value;
 	game.scoreEnemy.elem.innerHTML = game.scoreEnemy.value;
+};
+
+/*==========================================
+Loop 
+==========================================*/
+
+game.loop = function() {
+	if( game ) {
+		game.raf = requestAnimationFrame(game.loop);
+		game.update();
+		game.render();
+	}
 };
 
 /*==========================================

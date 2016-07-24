@@ -74,7 +74,78 @@ Initialize
 ==========================================*/
 
 game.init = function() {
-	game.render();
+	game.addEventListeners();
+	game.loop();
+};
+
+/*==========================================
+Events 
+==========================================*/
+
+game.addEventListeners = function() {
+	window.addEventListener( 'controlUpDown', game.onControlUpDown );
+	window.addEventListener( 'controlDownDown', game.onControlDownDown );
+	window.addEventListener( 'controlUpUp', game.onControlUpUp );
+	window.addEventListener( 'controlDownUp', game.onControlDownUp );
+};
+
+game.onControlUpDown = function() {
+	game.paddlePlayer.moveUp = true;
+};
+
+game.onControlDownDown = function() {
+	game.paddlePlayer.moveDown = true;
+};
+
+game.onControlUpUp = function() {
+	game.paddlePlayer.moveUp = false;
+};
+
+game.onControlDownUp = function() {
+	game.paddlePlayer.moveDown = false;
+};
+
+/*==========================================
+Move Ball
+==========================================*/
+
+game.moveBall = function() {
+	game.ball.x += game.ball.vx;
+	game.ball.y += game.ball.vy;
+};
+
+/*==========================================
+Move Player
+==========================================*/
+
+game.movePlayer = function() {
+	if (game.paddlePlayer.moveUp) {
+		game.paddlePlayer.y -= game.paddlePlayer.speed;
+	} else if (game.paddlePlayer.moveDown) {
+		game.paddlePlayer.y += game.paddlePlayer.speed;
+	}
+};
+
+/*==========================================
+Contain Ball
+==========================================*/
+
+game.containBall = function() {
+	if (game.ball.y <= 0) {
+		game.ball.y = 0;
+		game.ball.vy = -game.ball.vy;
+	} else if (game.ball.y + game.ball.height >= game.gameHeight) {
+		game.ball.y = game.gameHeight - game.ball.height;
+		game.ball.vy = -game.ball.vy;
+	}
+
+	if (game.ball.x <= 0) {
+		game.ball.x = 0;
+		game.ball.vx = -game.ball.vx;
+	} else if (game.ball.x + game.ball.width >= game.gameWidth) {
+		game.ball.x = game.gameWidth - game.ball.width;
+		game.ball.vx = -game.ball.vx;
+	}
 };
 
 /*==========================================
@@ -82,6 +153,9 @@ Update
 ==========================================*/
 
 game.update = function() {
+	game.moveBall();
+	game.movePlayer();
+	game.containBall();
 };
 
 /*==========================================
@@ -94,6 +168,18 @@ game.render = function() {
 	game.ball.elem.style.transform = 'translate(' + game.ball.x + 'px, ' + game.ball.y + 'px)';
 	game.scorePlayer.elem.innerHTML = game.scorePlayer.value;
 	game.scoreEnemy.elem.innerHTML = game.scoreEnemy.value;
+};
+
+/*==========================================
+Loop 
+==========================================*/
+
+game.loop = function() {
+	if( game ) {
+		game.raf = requestAnimationFrame(game.loop);
+		game.update();
+		game.render();
+	}
 };
 
 /*==========================================
