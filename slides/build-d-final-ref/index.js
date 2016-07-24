@@ -224,10 +224,10 @@ function containPaddles() {
 }
 
 /*==========================================
-Collide Ball Paddles
+Check Collisions
 ==========================================*/
 
-function collideBallPaddles() {
+function checkCollisions() {
 	if (collisionAABB(ball, paddlePlayer)) {
 		ball.x = paddlePlayer.x + paddlePlayer.width;
 		ball.vx = -ball.vx;
@@ -263,7 +263,7 @@ function update() {
 	moveEnemy();
 	containBall();
 	containPaddles();
-	collideBallPaddles();
+	checkCollisions();
 	checkWinState();
 }
 

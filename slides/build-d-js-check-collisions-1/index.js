@@ -198,10 +198,10 @@ game.containPaddles = function() {
 };
 
 /*==========================================
-Collide Ball Paddles
+Check Collisions
 ==========================================*/
 
-game.collideBallPaddles = function() {
+game.checkCollisions = function() {
 	if (game.collisionAABB(game.ball, game.paddlePlayer)) {
 		game.ball.x = game.paddlePlayer.x + game.paddlePlayer.width;
 		game.ball.vx = -game.ball.vx;
@@ -223,7 +223,7 @@ game.update = function() {
 	game.moveEnemy();
 	game.containBall();
 	game.containPaddles();
-	game.collideBallPaddles();
+	game.checkCollisions();
 };
 
 /*==========================================

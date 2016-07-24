@@ -161,11 +161,11 @@
 	- *** build-c-js-collision-aabb-1
 		- possibly supplement with illustrative slide explaining
 	- *** build-i-js-aabb-separation-conditions-1
-	- *** build-c-js-collide-ball-paddles-1
+	- *** build-c-js-check-collisions-1
 		- explain why x has to be explicitly set so that it doesn't collide again
 		- not checking angle, just checking for a boolean of it hit or not
 	- *** build-c-js-update-6
-	- *** build-d-js-collide-ball-paddles-1
+	- *** build-d-js-check-collisions-1
 	- *** build-c-js-contain-ball-2
 		- add on scoring logic, still bounce off left and right walls, no speed inc
 		- explain score updating

@@ -31,6 +31,7 @@
 - make paddle rotate/react to ball hit
 - check code formatting consistency
 - check typos
+- make score max 3?
 
 ---
 

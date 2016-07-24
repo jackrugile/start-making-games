@@ -40,6 +40,9 @@ game.loop = function() {
 game.kill = function() {
 	cancelAnimationFrame( game.raf );
 	game.wrapper = null;
+	game.random20 = null;
+	game.random80 = null;
+	game.randomGauge20 = null;
 };
 
 game.init();
