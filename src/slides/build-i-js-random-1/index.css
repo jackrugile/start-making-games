@@ -1,5 +1,5 @@
 .random-wrap {
-	height: 20em;
+	height: 22em;
 	position: relative;
 }
 
@@ -96,7 +96,7 @@
 }
 
 .random-elems {
-	bottom: 10em;
+	bottom: 12em;
 	height: 10px;
 	left: 0;
 	position: absolute;

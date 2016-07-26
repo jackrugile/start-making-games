@@ -1,11 +1,70 @@
+# Timeline
+- 2016-07-26 // Tuesday
+	- denverscript
+	- titles for juice
+	- wall, ball, and paddle highlights on hit, entire screen on score and spike
+		- core shape yes, and possibly expanding pulse (directional from walls)
+		- flash/shake score numbers on score
+- 2016-07-27 // Wednesday
+	- particles
+		- ball trail
+		- ball hit wall
+		- paddle colors
+	- animate ball to start position after score
+- 2016-07-28 // Thursday
+	- spike move
+		- charge
+		- slow down char
+		- trigger slow mo
+- 2016-07-29 // Friday
+	- victory screen
+	- start screen
+- 2016-07-30 // Saturday
+	- explore sound and music, stereo sound, tennis, grunts?
+	- compile configs, order, and slide intros for juice build
+	- initial content slides - why?
+	- intro of build slides (explanations)
+- 2016-07-31 // Sunday
+	- initial content slides - why?
+	- intro of build slides (explanations)
+- 2016-08-01 // Monday
+	- setup online resource
+	- /start-making-games/
+		- link to slides
+		- link to starter game
+			- demo
+			- code
+		- link to juicy game
+			- demo
+			- code
+		- game dev resources
+- 2016-08-02 // Tuesday
+	- haircut
+	- check typos
+	- check consistency
+	- run through talk one time
+- 2016-08-03 // Wednesday
+	- meet with thomas for testing
+	- meet with dan for testing
+	- run through talk two times
+	- film talk
+- 2016-08-04 // Thursday
+	- run through talk three times in full
+	- lots of rest
+- 2016-08-05 // Friday
+	- talk!
+
+- non-essential bonus features if I have time
+	- add character faces
+	- ball chromatic abberation
+	- background grid
+		- light up panel bases on where ball is
+	- diagonal light streaks
+	- total score and progress meter (bar)
+
+---
+
 # Tech Notes
-- be very careful about destroying all lingering items
-- what slides need special illustrations?
-	- aabb collision detection
-	- request animation frame
-	- math random
-- test with disabled internet connection
-- test gamepad controls at work - on system with no gamepad apps
 - use scale3d insead of scale on both wrap and pong?
 	- this is in place, not sure if it is more performant though. need test environment on laptop and retina
 	- if 3d caused texture, maybe a smaller starting point makes more sense
@@ -16,21 +75,8 @@
 - match sfx to timescale? maybe not as intense of a drop down
 - charge spike, rumble, particle explosion, and slow mo on mega spike
 	- slow down paddle when charging?
-- all controls
-	- mute
-	- pause
-	- reload
-	- zoom
-	- prev slide
-	- next slide
-	- up
-	- down
-	- spike (hold)
 - if time is running low, ditch the step by step juice/polish and add it all at once
-- at end, determine if code font-size can be bumped up
 - make paddle rotate/react to ball hit
-- check code formatting consistency
-- check typos
 - make score max 3?
 
 ---
@@ -47,9 +93,12 @@
 - setup mic on shirt or stand
 - disable all notifications
 - run caffeine app?
+- cycle through all slides (caching?)
 - visible timer
 	- have milestone checkpoints
 	- know if you're ahead or behind
+- php -S localhost:9001
+- python -m SimpleHTTPServer 9001
 
 ---
 

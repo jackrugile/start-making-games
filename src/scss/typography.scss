@@ -28,7 +28,7 @@ h4,
 h5,
 h6 {
 	font-weight: 900;
-	line-height: 1.2;
+	line-height: 1;
 }
 
 h1,
@@ -55,8 +55,16 @@ h6 {
 	font-weight: 400;
 }
 
+.med-marg {
+	margin-bottom: 3rem !important;
+}
+
+.small-marg {
+	margin-bottom: 2rem !important;
+}
+
 .no-marg {
-	margin-bottom: 1rem !important;
+	margin-bottom: 0rem !important;
 }
 
 ul {
@@ -73,11 +81,9 @@ li {
 	letter-spacing: -0.01em;
 }
 
-li {
-	margin-bottom: 0.5rem;
-}
-
 ul li {
+	line-height: 1;
+	margin-bottom: 2rem;
 	position: relative;
 	&:after {
 		//border: 1em solid transparent;
@@ -88,7 +94,7 @@ ul li {
 		left: 0;
 		margin-left: -0.85em;
 		position: absolute;
-		top: 0.68em;
+		top: 0.42em;
 		transition-duration: 300ms;
 		transition-property: margin, transform;
 		transform: rotate(45deg);
@@ -96,6 +102,9 @@ ul li {
 			margin-left: -0.55em;
 			transform: scale(0.7) rotate(45deg) ;
 		}
+	}
+	&:last-child {
+		margin-bottom: 0;
 	}
 }
 
@@ -129,14 +138,14 @@ ol a {
 }
 
 hr {
-	background: linear-gradient(90deg, hsla(0, 0%, 100%, 0.25), transparent);
+	background: linear-gradient(90deg, hsla(0, 0%, 100%, 0.15), transparent);
 	border: none;
 	display: block;
 	height: 3px;
-	margin: 4rem 0;
+	margin: 5rem 0;
 	width: 100%;
 	&.small-marg {
-		margin: 2rem 0;
+		margin: 2rem 0 !important;
 	}
 }
 
@@ -158,6 +167,8 @@ hr {
 	bottom: 0;
 	font-size: 2em;
 	left: 0;
+	margin: auto;
+	min-height: 540px;
 	padding: 5rem;
 	position: absolute;
 	right: 0;

@@ -16,19 +16,11 @@
 - [Playground.js](http://playgroundjs.com/)
 - [Bfxr](http://www.bfxr.net/)
 
-## People
-- [Justin Gitlin - @cacheflowe](http://twitter.com/cacheflowe)
-- [Keith Peters - @bit101](http://twitter.com/bit101)
-- [Przemysław Sikorski - @rezoner](http://twitter.com/rezoner)
+## Community
+- [HTML5 Game Devs Forum](http://www.html5gamedevs.com/)
 
 ## Competitions and Challenges
 - [js13k](http://js13kgames.com/)
 - [js1k](http://js1k.com/)
 - [Ludum Dare](http://ludumdare.com/compo/)
 - [#1GAM - One Game a Month](http://onegameamonth.com/)
-
-- Game engines
-- Game tutorials
-- Game jams
-- Denver MeetUps
-- Canvas and DOM versions available after

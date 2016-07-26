@@ -1,51 +1,13 @@
 /*==============================================================================
-Game
-==============================================================================*/
-
-var game = null;
-
-/*==============================================================================
-Dev Class
-==============================================================================*/
-
-if( window.location.search.indexOf( 'dev' ) > -1 ) {
-	document.documentElement.classList.add( 'dev' );
-	var isDev = true;
-}
-
-/*==============================================================================
-Invert Class
-==============================================================================*/
-
-if( window.location.search.indexOf( 'invert' ) > -1 ) {
-	document.documentElement.classList.add( 'invert' );
-	var isInverted = true;
-}
-
-/*==============================================================================
-Zoom Class
-==============================================================================*/
-
-var isZoom = false;
-
-if( window.location.search.indexOf( 'zoom' ) > -1 ) {
-	toggleZoom();
-}
-
-function toggleZoom() {
-	isZoom = !isZoom;
-	document.documentElement.classList.toggle( 'zoom' );
-	setScale();
-}
-
-/*==============================================================================
-Slide Scaling
+Slides
 ==============================================================================*/
 var slides = [
 	// intro
-		'intro-t-title',
-		'intro-t-jack',
-		'intro-t-quotes',
+		'intro-t-title-1',
+		'intro-t-jack-1',
+		'intro-t-quotes-1',
+		'intro-t-poll-1',
+		'intro-t-poll-2',
 	// why
 	// build
 		'build-c-html-1',
@@ -100,9 +62,49 @@ var slides = [
 		'build-c-js-reset-game-1',
 		'build-d-js-check-win-state-1',
 	// juice
-		'juice-d-final'
+		'juice-d-final-1'
 	// outro
 ];
+
+/*==============================================================================
+Game
+==============================================================================*/
+
+var game = null;
+
+/*==============================================================================
+Dev Class
+==============================================================================*/
+
+if( window.location.search.indexOf( 'dev' ) > -1 ) {
+	document.documentElement.classList.add( 'dev' );
+	var isDev = true;
+}
+
+/*==============================================================================
+Invert Class
+==============================================================================*/
+
+if( window.location.search.indexOf( 'invert' ) > -1 ) {
+	document.documentElement.classList.add( 'invert' );
+	var isInverted = true;
+}
+
+/*==============================================================================
+Zoom Class
+==============================================================================*/
+
+var isZoom = false;
+
+if( window.location.search.indexOf( 'zoom' ) > -1 ) {
+	toggleZoom();
+}
+
+function toggleZoom() {
+	isZoom = !isZoom;
+	document.documentElement.classList.toggle( 'zoom' );
+	setScale();
+}
 
 /*==============================================================================
 Slide Scaling
