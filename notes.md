@@ -1,7 +1,6 @@
 # Timeline
 - 2016-07-26 // Tuesday
-	- denverscript
-	- titles for juice
+	- *** titles for juice
 	- wall, ball, and paddle highlights on hit, entire screen on score and spike
 		- core shape yes, and possibly expanding pulse (directional from walls)
 		- flash/shake score numbers on score
@@ -12,6 +11,8 @@
 		- paddle colors
 	- animate ball to start position after score
 - 2016-07-28 // Thursday
+	- paddle kick back
+	- paddle rotations
 	- spike move
 		- charge
 		- slow down char
@@ -27,6 +28,7 @@
 - 2016-07-31 // Sunday
 	- initial content slides - why?
 	- intro of build slides (explanations)
+	- outro slides
 - 2016-08-01 // Monday
 	- setup online resource
 	- /start-making-games/

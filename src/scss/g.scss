@@ -1,0 +1,292 @@
+/*==============================================================================
+
+Game
+
+==============================================================================*/
+
+.g-pong,
+.g-pong * {
+	position: absolute;
+}
+
+.g-pong {
+	bottom: 0;
+	box-shadow: 0 0 0 8px #666;
+	height: 1080px;
+	left: 0;
+	margin: auto;
+	right: 0;
+	top: 0;
+	transform-style: preserve-3d;
+	width: 1920px;
+	will-change: transform;
+}
+
+.g-pong:before {
+	/*background: linear-gradient( hsla( 0, 0%, 100%, 0 ), hsla( 0, 0%, 100%, 0.05 ) );*/
+	/*background: linear-gradient( 90deg, hsla( 0, 0%, 100%, 0 ), hsla( 0, 0%, 100%, 0.05 ) );*/
+	background: linear-gradient( 90deg, hsla( 0, 0%, 100%, 0 ), #333, hsla( 0, 0%, 100%, 0 ) );
+	/*border-top: 4px solid #222;*/
+	content: '';
+	left: 0;
+	margin-top: -2px;
+	right: 0;
+	position: absolute;
+	top: 33.333%;
+	height: 50%;
+	height: 4px;
+}
+
+.g-pong:after {
+	/*background: linear-gradient( hsla( 0, 0%, 100%, 0 ), hsla( 0, 0%, 100%, 0.05 ) );*/
+	/*background: linear-gradient( 90deg, hsla( 0, 0%, 100%, 0 ), hsla( 0, 0%, 100%, 0.05 ) );*/
+	background: linear-gradient( 90deg, hsla( 0, 0%, 100%, 0 ), #333, hsla( 0, 0%, 100%, 0 ) );
+	/*border-top: 4px solid #222;*/
+	content: '';
+	left: 0;
+	margin-top: -2px;
+	right: 0;
+	position: absolute;
+	top: 66.666%;
+	height: 50%;
+	height: 4px;
+}
+
+/*==============================================================================
+
+Paddles
+
+==============================================================================*/
+
+.g-paddle {
+	background: #fff;
+	height: 240px;
+	left: 0;
+	top: 0;
+	transform-style: preserve-3d;
+	width: 60px;
+}
+
+.g-paddle-player { 
+	background: hsl(130, 100%, 60%);
+}
+
+.g-paddle-enemy {
+	background: hsl(200, 100%, 60%);
+}
+
+.g-paddle-panel {
+	position: absolute;
+}
+
+.g-paddle-panel:after {
+	bottom: 0;
+	content: '';
+	left: 0;
+	position: absolute;
+	right: 0;
+	top: 0;
+}
+
+.g-paddle-panel-top {
+	background: inherit;
+	bottom: 100%;
+	height: 60px;
+	left: 0;
+	transform: rotateX(90deg);
+	transform-origin: 50% 100%;
+	width: 60px;
+}
+
+.g-paddle-panel-top:after {
+	background: hsla(0, 0%, 100%, 0.2);
+}
+
+.g-paddle-panel-bot {
+	background: inherit;
+	height: 60px;
+	left: 0;
+	top: 100%;
+	transform: rotateX(-90deg);
+	transform-origin: 50% 0%;
+	width: 60px;
+}
+
+.g-paddle-panel-bot:after {
+	background: hsla(0, 0%, 0%, 0.6);
+}
+
+.g-paddle-panel-side {
+	background: inherit;
+	height: 240px;
+	top: 0;
+	width: 60px;
+}
+
+.g-paddle-panel-side:after {
+	background: hsla(0, 0%, 0%, 0.3);
+}
+
+	.g-paddle-player .g-paddle-panel-side {
+		left: 100%;
+		transform: rotateY(90deg);
+		transform-origin: 0% 50%;
+	}
+
+	.g-paddle-enemy .g-paddle-panel-side {
+		right: 100%;
+		transform: rotateY(-90deg);
+		transform-origin: 100% 50%;
+	}
+
+/*==============================================================================
+
+Score
+
+==============================================================================*/
+
+.g-score {
+	color: white;
+	font: bold 6em/1 'robotomonowf', monospace;
+	top: 80px;
+	transform: translateZ(120px);
+	transform-style: preserve-3d;
+}
+
+.g-score:after {
+	color: transparent;
+	content: attr(data-score);
+	left: 0;
+	position: absolute;
+	text-shadow: 0 0 10px hsla(0, 0%, 0%, 0.35);
+	top: 0;
+	transform: translateZ(-120px);
+}
+
+.g-score-player {
+	color: hsl(130, 100%, 60%);
+	left: 180px;
+}
+
+.g-score-enemy {
+	color: hsl(200, 100%, 60%);
+	right: 180px;
+}
+
+/*==============================================================================
+
+Net
+
+==============================================================================*/
+
+.g-net {
+	background: #666;
+	background: linear-gradient( 0deg, hsla( 0, 0%, 100%, 0 ), #666, hsla( 0, 0%, 100%, 0 ) );
+	height: 100%;
+	left: 50%;
+	margin-left: -2px;
+	top: 0;
+	transform: translateZ( 1px );
+	width: 4px;
+	z-index: 1;
+	backface-visibility: hidden;
+}
+
+/*==============================================================================
+
+Ball
+
+==============================================================================*/
+
+.g-ball {
+	background: #eee;
+	height: 60px;
+	left: 0;
+	top: 0;
+	/*transform-origin: 50% 50% -30px;*/
+	transform-style: preserve-3d;
+	width: 60px;
+	z-index: 2;
+}
+
+
+.g-ball-panel {
+	position: absolute;
+}
+
+.g-ball-panel:after {
+	bottom: 0;
+	content: '';
+	left: 0;
+	position: absolute;
+	right: 0;
+	top: 0;
+}
+
+.g-ball-panel-top {
+	background: inherit;
+	bottom: 100%;
+	height: 60px;
+	left: 0;
+	transform: rotateX(90deg);
+	transform-origin: 50% 100%;
+	width: 60px;
+}
+
+.g-ball-panel-top:after {
+	background: hsla(0, 0%, 100%, 1);
+}
+
+.g-ball-panel-bot {
+	background: inherit;
+	height: 60px;
+	left: 0;
+	top: 100%;
+	transform: rotateX(-90deg);
+	transform-origin: 50% 0%;
+	width: 60px;
+}
+
+.g-ball-panel-bot:after {
+	background: hsla(0, 0%, 0%, 0.6);
+}
+
+.g-ball-panel-left {
+	background: inherit;
+	height: 60px;
+	left: 100%;
+	top: 0;
+	transform: rotateY(90deg);
+	transform-origin: 0% 50%;
+	width: 60px;
+}
+
+.g-ball-panel-left:after {
+	background: hsla(0, 0%, 0%, 0.3);
+}
+
+.g-ball-panel-right {
+	background: inherit;
+	height: 60px;
+	right: 100%;
+	top: 0;
+	transform: rotateY(-90deg);
+	transform-origin: 100% 50%;
+	width: 60px;
+}
+
+.g-ball-panel-right:after {
+	background: hsla(0, 0%, 0%, 0.3);
+}
+
+/*==============================================================================
+
+Particles
+
+==============================================================================*/
+
+.g-particle {
+	background: #fff;
+	left: 0;
+	top: 0;
+}

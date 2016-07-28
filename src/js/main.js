@@ -62,6 +62,7 @@ var slides = [
 		'build-c-js-reset-game-1',
 		'build-d-js-check-win-state-1',
 	// juice
+		'juice-t-titles-1',
 		'juice-d-final-1'
 	// outro
 ];
@@ -261,13 +262,13 @@ loadSlide( currentSlide );
 Utility
 ==============================================================================*/
 
-function rand( min, max ) {
+/*function rand( min, max ) {
 	return Math.random() * ( max - min ) + min;
 }
 
 function randInt( min, max ) {
 	return Math.floor( min + Math.random() * ( max - min + 1 ) );
-}
+}*/
 
 /*==============================================================================
 Playground Gamepad

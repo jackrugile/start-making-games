@@ -1,2 +1,15 @@
 //import( 'main.js' );
-//import( 'G.js' );
+//import( 'G/game.js' );
+//import( 'G/stage.js' );
+//import( 'G/ball.js' );
+//import( 'G/paddle.js' );
+//import( 'G/score.js' );
+//import( 'G/screenshake.js' );
+//import( 'G/timescale.js' );
+//import( 'G/events.js' );
+//import( 'G/mute.js' );
+//import( 'G/pause.js' );
+//import( 'G/util.js' );
+//import( 'G/pool.js' );
+//import( 'G/dom.js' );
+//import( 'G/particle.js' );
