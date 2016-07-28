@@ -16,7 +16,7 @@ var G = function( opt ) {
 			width: 60,
 			height: 60,
 			speed: 16,
-			inc: 1
+			inc: 1.5
 		},
 		score: {
 			max: 5
@@ -34,14 +34,14 @@ var G = function( opt ) {
 	// level / stage / world
 	this.stage = new this.Stage( this );
 
-	// ball
-	this.ball = new this.Ball( this );
-
 	// paddle player
 	this.paddlePlayer = new this.Paddle( this, true );
 
 	// paddle enemy
 	this.paddleEnemy = new this.Paddle( this, false );
+
+	// ball
+	this.ball = new this.Ball( this );
 
 	// score / scoring
 	this.scorePlayer = new this.Score( this, true );
@@ -53,8 +53,16 @@ var G = function( opt ) {
 	// time / time scaling / timescale
 	this.timescale = new this.Timescale( this );
 
+	// edges
+	this.edgeTop = document.querySelector( '.g-pong-edge-top' );
+	this.edgeRight = document.querySelector( '.g-pong-edge-right' );
+	this.edgeBot = document.querySelector( '.g-pong-edge-bot' );
+	this.edgeLeft = document.querySelector( '.g-pong-edge-left' );
+
 	// particles
-	this.particles = new this.Pool( this, this.Particle, 50 );
+	this.particlesWhite = new this.Pool( this, this.ParticleWhite, 50 );
+	this.particlesGreen = new this.Pool( this, this.ParticleGreen, 50 );
+	this.particlesBlue = new this.Pool( this, this.ParticleBlue, 50 );
 
 	// initialize on creation
 	this.init();
@@ -116,7 +124,9 @@ G.prototype.step = function() {
 	this.ball.step();
 	this.screenshake.step();
 	this.timescale.step();
-	this.particles.each( 'step' );
+	this.particlesWhite.each( 'step' );
+	this.particlesGreen.each( 'step' );
+	this.particlesBlue.each( 'step' );
 	this.checkWinState();
 };
 
@@ -133,7 +143,9 @@ G.prototype.draw = function() {
 	this.ball.draw();
 	this.scorePlayer.draw();
 	this.scoreEnemy.draw();
-	this.particles.each( 'draw' );
+	this.particlesWhite.each( 'draw' );
+	this.particlesGreen.each( 'draw' );
+	this.particlesBlue.each( 'draw' );
 };
 
 /*==============================================================================

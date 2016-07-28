@@ -28,8 +28,6 @@ G.prototype.Paddle = function( g, isPlayer ) {
 	this.isSpiking = false;
 	this.canSpike = true;
 
-	
-
 	if ( this.isPlayer) {
 		this.elem = document.querySelector( '.g-paddle-player' );
 		this.x = 0;
@@ -75,6 +73,26 @@ G.prototype.Paddle.prototype.checkCollisions = function() {
 			this.g.ball.vx = Math.cos( ballAngle ) * speed;
 			this.g.ball.vy = Math.sin( ballAngle ) * speed;
 
+			for( var i = 0; i < 15; i++ ) {
+				var size = this.g.rand( 10, 20 );
+				this.g.particlesGreen.create({
+					width: size,
+					height: size,
+					x: this.x + this.g.rand( 0, this.width ) - size / 2,
+					y: this.y + this.g.rand( 0, this.height ) - size / 2,
+					z: this.g.rand( 60, 120 ),
+					vx: this.g.rand( -8, -4 ),
+					vy: this.g.rand( -1, 1 ),
+					vz: this.g.rand( -4, 4 ),
+					rx: this.g.rand( 0, Math.PI * 2 ),
+					ry: this.g.rand( 0, Math.PI * 2 ),
+					rz: this.g.rand( 0, Math.PI * 2 ),
+					decay: this.g.rand( 0.01, 0.05 ),
+					friction: 0.95,
+					shrink: true,
+					opacity: 1
+				});
+			}
 		} else {
 			this.g.ball.x = this.x - this.g.ball.width;
 
@@ -87,6 +105,49 @@ G.prototype.Paddle.prototype.checkCollisions = function() {
 
 			this.g.ball.vx = Math.cos( ballAngle ) * -speed;
 			this.g.ball.vy = Math.sin( ballAngle ) * speed;
+
+			for( var i = 0; i < 15; i++ ) {
+				var size = this.g.rand( 10, 20 );
+				this.g.particlesBlue.create({
+					width: size,
+					height: size,
+					x: this.x + this.g.rand( 0, this.width ) - size / 2,
+					y: this.y + this.g.rand( 0, this.height ) - size / 2,
+					z: this.g.rand( 60, 120 ),
+					vx: this.g.rand( 4, 8 ),
+					vy: this.g.rand( -1, 1 ),
+					vz: this.g.rand( -4, 4 ),
+					rx: this.g.rand( 0, Math.PI * 2 ),
+					ry: this.g.rand( 0, Math.PI * 2 ),
+					rz: this.g.rand( 0, Math.PI * 2 ),
+					decay: this.g.rand( 0.01, 0.05 ),
+					friction: 0.95,
+					shrink: true,
+					opacity: 1
+				});
+			}
+		}
+
+		// ball particles
+		for( var i = 0; i < 15; i++ ) {
+			var size = this.g.rand( 10, 20 );
+			this.g.particlesWhite.create({
+				width: size,
+				height: size,
+				x: this.g.ball.x + this.g.rand( 0, this.g.ball.width ) - size / 2,
+				y: this.g.ball.y + this.g.rand( 0, this.g.ball.height ) - size / 2,
+				z: this.g.rand( 0, 60 ),
+				vx: this.g.rand( -3, 3 ),
+				vy: this.g.rand( -3, 3 ),
+				vz: this.g.rand( -2, 2 ),
+				rx: this.g.rand( 0, Math.PI * 2 ),
+				ry: this.g.rand( 0, Math.PI * 2 ),
+				rz: this.g.rand( 0, Math.PI * 2 ),
+				decay: this.g.rand( 0.01, 0.05 ),
+				friction: 0.99,
+				shrink: true,
+				opacity: 1
+			});
 		}
 
 		this.hasHit = true;

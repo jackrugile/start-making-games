@@ -28,10 +28,10 @@ G.prototype.text = function( elem, content ) {
 	elem.firstChild.nodeValue = content;
 };
 
-G.prototype.resetAnim = function( elem ) {
-	this.removeClass( elem, 'anim' );
+G.prototype.triggerClass = function( elem, class ) {
+	this.addClass( elem, class );
 	elem.offsetWidth = elem.offsetWidth;
-	this.addClass( elem, 'anim' );
+	this.removeClass( elem, class );
 };
 
 // credit: Julian Shapiro - http://julian.com/research/velocity/

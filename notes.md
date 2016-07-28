@@ -5,10 +5,10 @@
 		- core shape yes, and possibly expanding pulse (directional from walls)
 		- flash/shake score numbers on score
 - 2016-07-27 // Wednesday
-	- particles
-		- ball trail
-		- ball hit wall
-		- paddle colors
+	- *** particles
+		- *** ball trail
+		- *** ball hit wall
+		- *** paddle colors
 	- animate ball to start position after score
 - 2016-07-28 // Thursday
 	- paddle kick back

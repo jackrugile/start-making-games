@@ -19,7 +19,7 @@ G.prototype.Pool = function( g, base, preallocateAmount ) {
 
 G.prototype.Pool.prototype.preallocate = function() {
 	for( var i = 0; i < this.preallocateAmount; i++ ) {
-		this.dead.push( new this.base( this.g ) );
+		this.dead.push( new this.base( this.g, this ) );
 		this.deadLength++;
 	}
 };
@@ -33,7 +33,7 @@ G.prototype.Pool.prototype.create = function( opt ) {
 		this.length++;
 		return obj;
 	} else {
-		var newItem = new this.base( this.g );
+		var newItem = new this.base( this.g, this );
 		newItem.init( opt );
 		this.alive.push( newItem );
 		this.length++;

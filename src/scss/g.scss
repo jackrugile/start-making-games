@@ -6,12 +6,13 @@ Game
 
 .g-pong,
 .g-pong * {
+	pointer-events: none;
 	position: absolute;
 }
 
 .g-pong {
 	bottom: 0;
-	box-shadow: 0 0 0 8px #666;
+	box-shadow: 0 0 0 8px #444;
 	height: 1080px;
 	left: 0;
 	margin: auto;
@@ -50,6 +51,66 @@ Game
 	top: 66.666%;
 	height: 50%;
 	height: 4px;
+}
+
+.g-pong-edge {
+	background: #fff;
+	opacity: 0;
+	transition-duration: 2000ms;
+	transition-property: opacity, transform;
+	transition-timing-function: $easeOutExpo;
+	&.hit {
+		opacity: 1;
+		transition-duration: 0ms;
+	}
+}
+
+.g-pong-edge-top {
+	height: 8px;
+	left: -8px;
+	right: -8px;
+	top: -8px;
+	transform: scaleY(0) translateZ(1px);
+	transform-origin: 50% 0%;
+	&.hit {
+		transform: scaleY(1) translateZ(1px);
+	}
+}
+
+.g-pong-edge-right {
+	bottom: -8px;
+	right: -8px;
+	top: -8px;
+	transform: scaleX(0) translateZ(1px);
+	transform-origin: 100% 50%;
+	width: 8px;
+	&.hit {
+		transform: scaleX(1) translateZ(1px);
+	}
+}
+
+.g-pong-edge-bot {
+	bottom: -8px;
+	height: 8px;
+	left: -8px;
+	right: -8px;
+	transform: scaleY(0) translateZ(1px);
+	transform-origin: 50% 100%;
+	&.hit {
+		transform: scaleY(1) translateZ(1px);
+	}
+}
+
+.g-pong-edge-left {
+	bottom: -8px;
+	left: -8px;
+	top: -8px;
+	transform: scaleX(0) translateZ(1px);
+	transform-origin: 0% 50%;
+	width: 8px;
+	&.hit {
+		transform: scaleX(1) translateZ(1px);
+	}
 }
 
 /*==============================================================================
@@ -286,7 +347,9 @@ Particles
 ==============================================================================*/
 
 .g-particle {
-	background: #fff;
+	height: 1px;
 	left: 0;
 	top: 0;
+	width: 1px;
+	will-change: transform;
 }

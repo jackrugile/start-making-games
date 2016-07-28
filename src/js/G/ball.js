@@ -20,14 +20,27 @@ G.prototype.Ball = function( g ) {
 	this.height = this.g.config.ball.height;
 	this.rotation = Math.PI / 4;
 	this.opacity = 1;
+	this.reset();
 };
 
 G.prototype.Ball.prototype.reset = function() {
 	this.serving = true;
 	this.x = this.g.stage.width / 2 - this.width / 2;
-	this.y = this.g.stage.height / 2 - this.height / 2;
+	this.y = this.g.stage.height / 2 - this.height / 2 + this.g.stage.height / 3;
+	this.opacity = 0;
+
+	var k = pg.tween( this ).to(
+		{
+			y: this.g.stage.height / 2 - this.height / 2,
+			opacity: 1
+		},
+		0.65,
+		'inOutExpo'
+	);
+
 	this.vx = 0;
 	this.vy = 0;
+	//this.opacity = 0;
 	this.g.paddlePlayer.hasHit = false;
 	this.g.paddleEnemy.hasHit = false;
 };
@@ -37,8 +50,10 @@ G.prototype.Ball.prototype.contain = function() {
 	if ( this.y <= 0 || this.y + this.height >= this.g.stage.height ) {
 		if ( this.y <= 0 ) {
 			this.y = 0;
+			this.g.triggerClass( this.g.edgeTop, 'hit' );
 		} else {
 			this.y = this.g.stage.height - this.height;
+			this.g.triggerClass( this.g.edgeBot, 'hit' );
 		}
 		this.vy = -this.vy;
 
@@ -56,12 +71,24 @@ G.prototype.Ball.prototype.contain = function() {
 			yBias: Math.sin( angle ) * -75
 		});
 
-		for( var i = 0; i < 50; i++ ) {
-			this.g.particles.create({
-				color: '#fff',
-				x: this.x + this.g.rand( 0, this.width ),
-				y: this.y + this.g.rand( 0, this.height ),
-				z: this.g.rand( 0, 120 )
+		for( var i = 0; i < 15; i++ ) {
+			var size = this.g.rand( 10, 20 );
+			this.g.particlesWhite.create({
+				width: size,
+				height: size,
+				x: this.x + this.g.rand( 0, this.width ) - size / 2,
+				y: this.y + this.g.rand( 0, this.height ) - size / 2,
+				z: this.g.rand( 0, 60 ),
+				vx: this.g.rand( -3, 3 ),
+				vy: this.g.rand( -3, 3 ),
+				vz: this.g.rand( -2, 2 ),
+				rx: this.g.rand( 0, Math.PI * 2 ),
+				ry: this.g.rand( 0, Math.PI * 2 ),
+				rz: this.g.rand( 0, Math.PI * 2 ),
+				decay: this.g.rand( 0.01, 0.05 ),
+				friction: 0.99,
+				shrink: true,
+				opacity: 1
 			});
 		}
 	}
@@ -70,6 +97,7 @@ G.prototype.Ball.prototype.contain = function() {
 	if ( this.x + this.width > this.g.stage.width ) {
 		this.g.scorePlayer.setValue( this.g.scorePlayer.value + 1 );
 		this.speed += this.g.config.ball.inc;
+		this.g.triggerClass( this.g.edgeRight, 'hit' );
 		this.reset();
 		pg.soundPlay({
 			name: 'score-player-1',
@@ -82,6 +110,7 @@ G.prototype.Ball.prototype.contain = function() {
 	if ( this.x < 0 ) {
 		this.g.scoreEnemy.setValue( this.g.scoreEnemy.value + 1 );
 		this.speed += this.g.config.ball.inc;
+		this.g.triggerClass( this.g.edgeLeft, 'hit' );
 		this.reset();
 		pg.soundPlay({
 			name: 'score-enemy-1',
@@ -112,6 +141,27 @@ G.prototype.Ball.prototype.step = function() {
 		this.x += this.vx * this.g.timescale.getDt();
 		this.y += this.vy * this.g.timescale.getDt();
 		//this.opacity = 1;
+
+		if( Math.random() < 0.25 * this.g.timescale.getDt() ) {
+			var size = this.g.rand( 10, 20 );
+			this.g.particlesWhite.create({
+				width: size,
+				height: size,
+				x: this.x + this.g.rand( 0, this.width ) - size / 2,
+				y: this.y + this.g.rand( 0, this.height ) - size / 2,
+				z: this.g.rand( 0, 60 ),
+				vx: -this.vx / 3,
+				vy: -this.vy / 3,
+				vz: this.g.rand( -2, 2 ),
+				rx: this.g.rand( 0, Math.PI * 2 ),
+				ry: this.g.rand( 0, Math.PI * 2 ),
+				rz: this.g.rand( 0, Math.PI * 2 ),
+				decay: this.g.rand( 0.01, 0.1 ),
+				friction: 0.95,
+				shrink: true,
+				opacity: 1
+			});
+		}
 	}
 
 	this.contain();
