@@ -98,6 +98,8 @@ G.prototype.Ball.prototype.contain = function() {
 		this.g.scorePlayer.setValue( this.g.scorePlayer.value + 1 );
 		this.speed += this.g.config.ball.inc;
 		this.g.triggerClass( this.g.edgeRight, 'hit' );
+		this.g.triggerClass( this.g.scorePlayer.elem, 'scored' );
+		this.g.triggerClass( this.g.overlay, 'flash' );
 		this.reset();
 		pg.soundPlay({
 			name: 'score-player-1',
@@ -111,6 +113,8 @@ G.prototype.Ball.prototype.contain = function() {
 		this.g.scoreEnemy.setValue( this.g.scoreEnemy.value + 1 );
 		this.speed += this.g.config.ball.inc;
 		this.g.triggerClass( this.g.edgeLeft, 'hit' );
+		this.g.triggerClass( this.g.scoreEnemy.elem, 'scored' );
+		this.g.triggerClass( this.g.overlay, 'flash' );
 		this.reset();
 		pg.soundPlay({
 			name: 'score-enemy-1',
@@ -142,7 +146,7 @@ G.prototype.Ball.prototype.step = function() {
 		this.y += this.vy * this.g.timescale.getDt();
 		//this.opacity = 1;
 
-		if( Math.random() < 0.25 * this.g.timescale.getDt() ) {
+		/*if( Math.random() < 0.25 * this.g.timescale.getDt() ) {
 			var size = this.g.rand( 10, 20 );
 			this.g.particlesWhite.create({
 				width: size,
@@ -161,7 +165,7 @@ G.prototype.Ball.prototype.step = function() {
 				shrink: true,
 				opacity: 1
 			});
-		}
+		}*/
 	}
 
 	this.contain();

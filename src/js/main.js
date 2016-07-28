@@ -74,40 +74,6 @@ Game
 var game = null;
 
 /*==============================================================================
-Dev Class
-==============================================================================*/
-
-if( window.location.search.indexOf( 'dev' ) > -1 ) {
-	document.documentElement.classList.add( 'dev' );
-	var isDev = true;
-}
-
-/*==============================================================================
-Invert Class
-==============================================================================*/
-
-if( window.location.search.indexOf( 'invert' ) > -1 ) {
-	document.documentElement.classList.add( 'invert' );
-	var isInverted = true;
-}
-
-/*==============================================================================
-Zoom Class
-==============================================================================*/
-
-var isZoom = false;
-
-if( window.location.search.indexOf( 'zoom' ) > -1 ) {
-	toggleZoom();
-}
-
-function toggleZoom() {
-	isZoom = !isZoom;
-	document.documentElement.classList.toggle( 'zoom' );
-	setScale();
-}
-
-/*==============================================================================
 Slide Scaling
 ==============================================================================*/
 
@@ -146,6 +112,41 @@ function onResize( e ) {
 addEventListener( 'resize', onResize );
 
 setScale();
+
+/*==============================================================================
+Dev Class
+==============================================================================*/
+
+if( window.location.search.indexOf( 'dev' ) > -1 ) {
+	document.documentElement.classList.add( 'dev' );
+	var isDev = true;
+}
+
+/*==============================================================================
+Invert Class
+==============================================================================*/
+
+if( window.location.search.indexOf( 'invert' ) > -1 ) {
+	document.documentElement.classList.add( 'invert' );
+	var isInverted = true;
+}
+
+/*==============================================================================
+Zoom Class
+==============================================================================*/
+
+var isZoom = false;
+
+if( window.location.search.indexOf( 'zoom' ) > -1 ) {
+	toggleZoom();
+}
+
+function toggleZoom() {
+	isZoom = !isZoom;
+	document.documentElement.classList.toggle( 'zoom' );
+	setScale();
+}
+
 
 /*==============================================================================
 Slide Loading

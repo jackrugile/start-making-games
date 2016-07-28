@@ -150,6 +150,8 @@ G.prototype.Paddle.prototype.checkCollisions = function() {
 			});
 		}
 
+		this.g.triggerClass( this.elem, 'hit' );
+
 		this.hasHit = true;
 
 		var angle = Math.atan2( this.g.ball.vy, this.g.ball.vx );

@@ -6,7 +6,7 @@ Game
 
 .g-pong,
 .g-pong * {
-	pointer-events: none;
+	//pointer-events: none;
 	position: absolute;
 }
 
@@ -53,10 +53,40 @@ Game
 	height: 4px;
 }
 
-.g-pong-edge {
+/*==============================================================================
+
+Overlays
+
+==============================================================================*/
+
+.g-overlay {
+	background: #fff;
+	bottom: 0;
+	left: 0;
+	opacity: 0;
+	right: 0;
+	top: 0;
+	transform: translateZ( 1px ) scale( 1 );
+	transition-duration: 500ms;
+	transition-property: opacity, transform;
+	z-index: 100;
+	&.flash {
+		opacity: 0.25;
+		transform: translateZ( 1px ) scale( 1 );
+		transition-duration: 0ms;
+	}
+}
+
+/*==============================================================================
+
+Edges
+
+==============================================================================*/
+
+.g-edge {
 	background: #fff;
 	opacity: 0;
-	transition-duration: 2000ms;
+	transition-duration: 2500ms;
 	transition-property: opacity, transform;
 	transition-timing-function: $easeOutExpo;
 	&.hit {
@@ -65,51 +95,51 @@ Game
 	}
 }
 
-.g-pong-edge-top {
+.g-edge-top {
 	height: 8px;
 	left: -8px;
 	right: -8px;
 	top: -8px;
 	transform: scaleY(0) translateZ(1px);
-	transform-origin: 50% 0%;
+	//transform-origin: 50% 0%;
 	&.hit {
-		transform: scaleY(1) translateZ(1px);
+		transform: scaleY(2) translateZ(1px);
 	}
 }
 
-.g-pong-edge-right {
+.g-edge-right {
 	bottom: -8px;
 	right: -8px;
 	top: -8px;
 	transform: scaleX(0) translateZ(1px);
-	transform-origin: 100% 50%;
+	//transform-origin: 100% 50%;
 	width: 8px;
 	&.hit {
-		transform: scaleX(1) translateZ(1px);
+		transform: scaleX(2) translateZ(1px);
 	}
 }
 
-.g-pong-edge-bot {
+.g-edge-bot {
 	bottom: -8px;
 	height: 8px;
 	left: -8px;
 	right: -8px;
 	transform: scaleY(0) translateZ(1px);
-	transform-origin: 50% 100%;
+	//transform-origin: 50% 100%;
 	&.hit {
-		transform: scaleY(1) translateZ(1px);
+		transform: scaleY(2) translateZ(1px);
 	}
 }
 
-.g-pong-edge-left {
+.g-edge-left {
 	bottom: -8px;
 	left: -8px;
 	top: -8px;
 	transform: scaleX(0) translateZ(1px);
-	transform-origin: 0% 50%;
+	//transform-origin: 0% 50%;
 	width: 8px;
 	&.hit {
-		transform: scaleX(1) translateZ(1px);
+		transform: scaleX(2) translateZ(1px);
 	}
 }
 
@@ -120,7 +150,6 @@ Paddles
 ==============================================================================*/
 
 .g-paddle {
-	background: #fff;
 	height: 240px;
 	left: 0;
 	top: 0;
@@ -138,6 +167,21 @@ Paddles
 
 .g-paddle-panel {
 	position: absolute;
+	transform-style: preserve-3d;
+}
+
+.g-paddle-panel-flash {
+	background: #fff !important;
+	opacity: 0;
+	transition-delay: 150ms;
+	transition-duration: 100ms;
+	transition-property: opacity;
+	//transition-timing-function: $easeOutExpo;
+	.hit & {
+		opacity: 1;
+		transition-delay: 0ms;
+		transition-duration: 0ms;
+	}
 }
 
 .g-paddle-panel:after {
@@ -200,6 +244,15 @@ Paddles
 		transform-origin: 100% 50%;
 	}
 
+.g-paddle-panel-front {
+	background: inherit;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	top: 0;
+	transform: translateZ( 1px );
+}
+
 /*==============================================================================
 
 Score
@@ -207,11 +260,18 @@ Score
 ==============================================================================*/
 
 .g-score {
-	color: white;
+	color: #fff;
 	font: bold 6em/1 'robotomonowf', monospace;
 	top: 80px;
 	transform: translateZ(120px);
 	transform-style: preserve-3d;
+	transition-duration: 3000ms;
+	transition-property: color;
+	transition-timing-function: $easeOutExpo;
+	&.scored {
+		color: #fff !important;
+		transition-duration: 0ms;
+	}
 }
 
 .g-score:after {
@@ -264,7 +324,6 @@ Ball
 	height: 60px;
 	left: 0;
 	top: 0;
-	/*transform-origin: 50% 50% -30px;*/
 	transform-style: preserve-3d;
 	width: 60px;
 	z-index: 2;
@@ -338,6 +397,16 @@ Ball
 
 .g-ball-panel-right:after {
 	background: hsla(0, 0%, 0%, 0.3);
+}
+
+.g-ball-panel-front {
+	background: inherit;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	top: 0;
+
+	display: none;
 }
 
 /*==============================================================================

@@ -1,9 +1,13 @@
 # Timeline
 - 2016-07-26 // Tuesday
 	- *** titles for juice
-	- wall, ball, and paddle highlights on hit, entire screen on score and spike
+	- highlights
+		- walls
+		- ball
+		- paddles
+		- entire screen on score and spike
 		- core shape yes, and possibly expanding pulse (directional from walls)
-		- flash/shake score numbers on score
+		- *** flash/shake score numbers on score
 - 2016-07-27 // Wednesday
 	- *** particles
 		- *** ball trail
@@ -23,6 +27,7 @@
 - 2016-07-30 // Saturday
 	- explore sound and music, stereo sound, tennis, grunts?
 	- compile configs, order, and slide intros for juice build
+	- clean up ALL resources in kill method (objects, pools, loop, etc.)
 	- initial content slides - why?
 	- intro of build slides (explanations)
 - 2016-07-31 // Sunday
@@ -80,6 +85,7 @@
 - if time is running low, ditch the step by step juice/polish and add it all at once
 - make paddle rotate/react to ball hit
 - make score max 3?
+- cuboid issues on firefox
 
 ---
 

@@ -53,11 +53,14 @@ var G = function( opt ) {
 	// time / time scaling / timescale
 	this.timescale = new this.Timescale( this );
 
+	// overlay
+	this.overlay = document.querySelector( '.g-overlay' );
+
 	// edges
-	this.edgeTop = document.querySelector( '.g-pong-edge-top' );
-	this.edgeRight = document.querySelector( '.g-pong-edge-right' );
-	this.edgeBot = document.querySelector( '.g-pong-edge-bot' );
-	this.edgeLeft = document.querySelector( '.g-pong-edge-left' );
+	this.edgeTop = document.querySelector( '.g-edge-top' );
+	this.edgeRight = document.querySelector( '.g-edge-right' );
+	this.edgeBot = document.querySelector( '.g-edge-bot' );
+	this.edgeLeft = document.querySelector( '.g-edge-left' );
 
 	// particles
 	this.particlesWhite = new this.Pool( this, this.ParticleWhite, 50 );
