@@ -13,7 +13,7 @@ G.prototype.Paddle = function( g, isPlayer ) {
 	this.vx = 0;
 	this.vy = 0;
 	this.vxMax = 100;
-	this.vyMax = 20;
+	this.vyMax = 25;
 	this.ax = 2;
 	this.ay = 2;
 	this.friction = 0.85;
@@ -35,6 +35,8 @@ G.prototype.Paddle = function( g, isPlayer ) {
 		this.elem = document.querySelector( '.g-paddle-enemy' );
 		this.x = this.g.stage.width - this.g.config.paddle.width;
 	}
+
+	this.xOrigin = this.x;
 };
 
 G.prototype.Paddle.prototype.contain = function() {
@@ -56,6 +58,15 @@ G.prototype.Paddle.prototype.contain = function() {
 
 G.prototype.Paddle.prototype.checkCollisions = function() {
 	if ( this.g.collisionAABB( this.g.ball, this ) ) {
+
+		if ( this.isPlayer && this.g.ball.vx > 0 ) {
+			return;
+		}
+
+		if ( this.isEnemy && this.g.ball.vx < 0 ) {
+			return;
+		}
+
 		var ballAngle,
 			ballSpeed,
 			speed;
@@ -72,6 +83,9 @@ G.prototype.Paddle.prototype.checkCollisions = function() {
 
 			this.g.ball.vx = Math.cos( ballAngle ) * speed;
 			this.g.ball.vy = Math.sin( ballAngle ) * speed;
+
+			this.angle = ballAngle / 2;
+			this.x -= this.g.ball.speed * 2;
 
 			for( var i = 0; i < 15; i++ ) {
 				var size = this.g.rand( 10, 20 );
@@ -93,6 +107,19 @@ G.prototype.Paddle.prototype.checkCollisions = function() {
 					opacity: 1
 				});
 			}
+
+			size = 60;
+			this.g.pulsesGreen.create({
+				width: size,
+				height: size,
+				x: this.g.ball.x + this.g.ball.width / 2 - size / 2,
+				y: this.g.ball.y + this.g.ball.height / 2 - size / 2,
+				z: 1,
+				r: Math.PI / 4,
+				shrink: false,
+				decay: 0.05,
+				opacity: 1
+			});
 		} else {
 			this.g.ball.x = this.x - this.g.ball.width;
 
@@ -105,6 +132,9 @@ G.prototype.Paddle.prototype.checkCollisions = function() {
 
 			this.g.ball.vx = Math.cos( ballAngle ) * -speed;
 			this.g.ball.vy = Math.sin( ballAngle ) * speed;
+
+			this.angle = -ballAngle / 2;
+			this.x += this.g.ball.speed * 2;
 
 			for( var i = 0; i < 15; i++ ) {
 				var size = this.g.rand( 10, 20 );
@@ -126,6 +156,19 @@ G.prototype.Paddle.prototype.checkCollisions = function() {
 					opacity: 1
 				});
 			}
+
+			size = 60;
+			this.g.pulsesBlue.create({
+				width: size,
+				height: size,
+				x: this.g.ball.x + this.g.ball.width / 2 - size / 2,
+				y: this.g.ball.y + this.g.ball.height / 2 - size / 2,
+				z: 1,
+				r: Math.PI / 4,
+				shrink: false,
+				decay: 0.05,
+				opacity: 1
+			});
 		}
 
 		// ball particles
@@ -211,9 +254,8 @@ G.prototype.Paddle.prototype.step = function() {
 		this.vy *= this.friction;
 	}
 
-	//this.angle = -Math.PI * 0.35 + ( ( this.g.ball.y + this.g.ball.height - this.y ) / ( this.height + this.g.ball.height ) ) * Math.PI * 0.7;
-	//this.angle = Math.max( -Math.PI * 0.1, this.angle );
-	//this.angle = Math.min( Math.PI * 0.1, this.angle );
+	this.angle += ( 0 - this.angle ) * 0.1;
+	this.x += ( this.xOrigin - this.x ) * 0.1;
 
 	if( this.vx < -this.vxMax ) {
 		this.vx = -this.vxMax;

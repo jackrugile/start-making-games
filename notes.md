@@ -2,21 +2,20 @@
 - 2016-07-26 // Tuesday
 	- *** titles for juice
 	- highlights
-		- walls
+		- *** walls
 		- ball
-		- paddles
-		- entire screen on score and spike
-		- core shape yes, and possibly expanding pulse (directional from walls)
+		- *** paddles
+		- *** entire screen on score and spike
 		- *** flash/shake score numbers on score
 - 2016-07-27 // Wednesday
 	- *** particles
 		- *** ball trail
 		- *** ball hit wall
 		- *** paddle colors
-	- animate ball to start position after score
+	- *** animate ball to start position after score
 - 2016-07-28 // Thursday
-	- paddle kick back
-	- paddle rotations
+	- *** paddle kick back
+	- *** paddle rotations
 	- spike move
 		- charge
 		- slow down char

@@ -91,6 +91,19 @@ G.prototype.Ball.prototype.contain = function() {
 				opacity: 1
 			});
 		}
+
+		size = 60;
+		this.g.pulsesWhite.create({
+			width: size,
+			height: size,
+			x: this.x + this.width / 2 - size / 2,
+			y: this.y + this.height / 2 - size / 2,
+			z: 1,
+			r: Math.PI / 4,
+			shrink: false,
+			decay: 0.05,
+			opacity: 1
+		});
 	}
 
 	// player scored
@@ -135,7 +148,6 @@ G.prototype.Ball.prototype.step = function() {
 			this.vy = this.speed;
 		}
 		this.rotation = Math.PI / 4;
-		//this.opacity = this.servingTimer / this.servingTimerMax;
 	} else {
 		if ( this.vx > 0 ) {
 			this.rotation += 0.005 * Math.abs( this.vx ) * this.g.timescale.getDt();
@@ -144,9 +156,23 @@ G.prototype.Ball.prototype.step = function() {
 		}
 		this.x += this.vx * this.g.timescale.getDt();
 		this.y += this.vy * this.g.timescale.getDt();
-		//this.opacity = 1;
 
-		/*if( Math.random() < 0.25 * this.g.timescale.getDt() ) {
+		if( Math.random() < 0.5 * this.g.timescale.getDt() ) {
+			var size = 60;
+			this.g.pulsesWhite.create({
+				width: size,
+				height: size,
+				x: this.x + this.width / 2 - size / 2,
+				y: this.y + this.height / 2 - size / 2,
+				z: 1 + this.g.rand( 0, 60 ),
+				r: this.rotation,
+				shrink: true,
+				decay: 0.06,
+				opacity: 0.25
+			});
+		}
+
+		if( Math.random() < 0.5 * this.g.timescale.getDt() ) {
 			var size = this.g.rand( 10, 20 );
 			this.g.particlesWhite.create({
 				width: size,
@@ -165,7 +191,7 @@ G.prototype.Ball.prototype.step = function() {
 				shrink: true,
 				opacity: 1
 			});
-		}*/
+		}
 	}
 
 	this.contain();

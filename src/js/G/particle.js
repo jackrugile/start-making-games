@@ -8,7 +8,10 @@ G.prototype.Particle = function( g, parent ) {
 	this.g = g;
 	this.parent = parent;
 	this.elem = this.g.cE( this.g.stage.elem, 'g-particle' );
-	this.g.css( this.elem, 'transform', 'translate3d(-999px , -999px, 0)');
+	this.g.css( this.elem, {
+		opacity: 0,
+		transform: 'translate3d(-999px , -999px, 0)'
+	});
 };
 
 G.prototype.Particle.prototype.init = function( opt ) {
@@ -59,7 +62,10 @@ G.prototype.Particle.prototype.draw = function() {
 };
 
 G.prototype.Particle.prototype.destroy = function() {
-	this.g.css( this.elem, 'transform', 'translate3d(-999px , -999px, 0)');
+	this.g.css( this.elem, {
+		opacity: 0,
+		transform: 'translate3d(-999px , -999px, 0)'
+	});
 	this.parent.release( this );
 };
 

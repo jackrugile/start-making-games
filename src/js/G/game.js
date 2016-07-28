@@ -16,7 +16,7 @@ var G = function( opt ) {
 			width: 60,
 			height: 60,
 			speed: 16,
-			inc: 1.5
+			inc: 1
 		},
 		score: {
 			max: 5
@@ -63,9 +63,14 @@ var G = function( opt ) {
 	this.edgeLeft = document.querySelector( '.g-edge-left' );
 
 	// particles
-	this.particlesWhite = new this.Pool( this, this.ParticleWhite, 50 );
-	this.particlesGreen = new this.Pool( this, this.ParticleGreen, 50 );
-	this.particlesBlue = new this.Pool( this, this.ParticleBlue, 50 );
+	this.particlesWhite = new this.Pool( this, this.ParticleWhite, 30 );
+	this.particlesGreen = new this.Pool( this, this.ParticleGreen, 30 );
+	this.particlesBlue = new this.Pool( this, this.ParticleBlue, 30 );
+
+	// pulses
+	this.pulsesWhite = new this.Pool( this, this.PulseWhite, 30 );
+	this.pulsesGreen = new this.Pool( this, this.PulseGreen, 30 );
+	this.pulsesBlue = new this.Pool( this, this.PulseBlue, 30 );
 
 	// initialize on creation
 	this.init();
@@ -130,6 +135,9 @@ G.prototype.step = function() {
 	this.particlesWhite.each( 'step' );
 	this.particlesGreen.each( 'step' );
 	this.particlesBlue.each( 'step' );
+	this.pulsesWhite.each( 'step' );
+	this.pulsesGreen.each( 'step' );
+	this.pulsesBlue.each( 'step' );
 	this.checkWinState();
 };
 
@@ -149,6 +157,9 @@ G.prototype.draw = function() {
 	this.particlesWhite.each( 'draw' );
 	this.particlesGreen.each( 'draw' );
 	this.particlesBlue.each( 'draw' );
+	this.pulsesWhite.each( 'draw' );
+	this.pulsesGreen.each( 'draw' );
+	this.pulsesBlue.each( 'draw' );
 };
 
 /*==============================================================================

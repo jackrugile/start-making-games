@@ -418,7 +418,24 @@ Particles
 .g-particle {
 	height: 1px;
 	left: 0;
+	opacity: 0;
 	top: 0;
 	width: 1px;
-	will-change: transform;
+}
+
+/*==============================================================================
+
+Pulse
+
+==============================================================================*/
+
+.g-pulse {
+	border-width: 10px;
+	border-style: solid;
+	border: 10px solid white;
+	height: 60px;
+	left: 0;
+	opacity: 0;
+	top: 0;
+	width: 60px;
 }
