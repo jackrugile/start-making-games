@@ -71,7 +71,7 @@ Overlays
 	transition-property: opacity, transform;
 	z-index: 100;
 	&.flash {
-		opacity: 0.25;
+		opacity: 0.35;
 		transform: translateZ( 1px ) scale( 1 );
 		transition-duration: 0ms;
 	}

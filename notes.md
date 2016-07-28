@@ -1,9 +1,9 @@
 # Timeline
 - 2016-07-26 // Tuesday
 	- *** titles for juice
-	- highlights
+	- *** highlights
 		- *** walls
-		- ball
+		- *** ball
 		- *** paddles
 		- *** entire screen on score and spike
 		- *** flash/shake score numbers on score

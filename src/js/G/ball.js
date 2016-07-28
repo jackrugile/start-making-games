@@ -106,14 +106,14 @@ G.prototype.Ball.prototype.contain = function() {
 		});
 	}
 
+	var hasScored = false;
+
 	// player scored
 	if ( this.x + this.width > this.g.stage.width ) {
+		hasScored = true;
 		this.g.scorePlayer.setValue( this.g.scorePlayer.value + 1 );
-		this.speed += this.g.config.ball.inc;
 		this.g.triggerClass( this.g.edgeRight, 'hit' );
 		this.g.triggerClass( this.g.scorePlayer.elem, 'scored' );
-		this.g.triggerClass( this.g.overlay, 'flash' );
-		this.reset();
 		pg.soundPlay({
 			name: 'score-player-1',
 			volume: 0.3,
@@ -123,17 +123,56 @@ G.prototype.Ball.prototype.contain = function() {
 
 	// enemy scored
 	if ( this.x < 0 ) {
+		hasScored = true;
 		this.g.scoreEnemy.setValue( this.g.scoreEnemy.value + 1 );
-		this.speed += this.g.config.ball.inc;
 		this.g.triggerClass( this.g.edgeLeft, 'hit' );
 		this.g.triggerClass( this.g.scoreEnemy.elem, 'scored' );
-		this.g.triggerClass( this.g.overlay, 'flash' );
-		this.reset();
 		pg.soundPlay({
 			name: 'score-enemy-1',
 			volume: 0.7,
 			rate: 1 * ( 1 - ( 1 - this.g.timescale.current ) * 0.4 )
 		});
+	}
+
+	if( hasScored ) {
+		this.speed += this.g.config.ball.inc;
+		this.g.triggerClass( this.g.overlay, 'flash' );
+
+		for( var i = 0; i < 15; i++ ) {
+			var size = this.g.rand( 10, 20 );
+			this.g.particlesWhite.create({
+				width: size,
+				height: size,
+				x: this.x + this.g.rand( 0, this.width ) - size / 2,
+				y: this.y + this.g.rand( 0, this.height ) - size / 2,
+				z: this.g.rand( 0, 60 ),
+				vx: this.g.rand( -3, 3 ),
+				vy: this.g.rand( -3, 3 ),
+				vz: this.g.rand( -2, 2 ),
+				rx: this.g.rand( 0, Math.PI * 2 ),
+				ry: this.g.rand( 0, Math.PI * 2 ),
+				rz: this.g.rand( 0, Math.PI * 2 ),
+				decay: this.g.rand( 0.01, 0.05 ),
+				friction: 0.99,
+				shrink: true,
+				opacity: 1
+			});
+		}
+
+		size = 60;
+		this.g.pulsesWhite.create({
+			width: size,
+			height: size,
+			x: this.x + this.width / 2 - size / 2,
+			y: this.y + this.height / 2 - size / 2,
+			z: 1,
+			r: Math.PI / 4,
+			shrink: false,
+			decay: 0.05,
+			opacity: 1
+		});
+
+		this.reset();
 	}
 };
 
