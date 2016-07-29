@@ -16,6 +16,7 @@ G.prototype.Ball = function( g ) {
 	this.speed = this.g.config.ball.speed;
 	this.vx = 0;
 	this.vy = 0;
+	this.friction = 0.95;
 	this.width = this.g.config.ball.width;
 	this.height = this.g.config.ball.height;
 	this.rotation = Math.PI / 4;
@@ -195,6 +196,12 @@ G.prototype.Ball.prototype.step = function() {
 		}
 		this.x += this.vx * this.g.timescale.getDt();
 		this.y += this.vy * this.g.timescale.getDt();
+
+		// lock velocity
+		if( Math.sqrt( this.vx * this.vx + this.vy * this.vy ) > this.speed ) {
+			this.vx *= this.friction;
+			this.vy *= this.friction;
+		}
 
 		if( Math.random() < 0.5 * this.g.timescale.getDt() ) {
 			var size = 60;

@@ -14,7 +14,7 @@ G.prototype.Paddle = function( g, isPlayer ) {
 	this.vy = 0;
 	this.vxMax = 100;
 	this.vyMax = 25;
-	this.ax = 2;
+	this.ax = 20;
 	this.ay = 2;
 	this.friction = 0.85;
 	this.width = this.g.config.paddle.width;
@@ -27,6 +27,12 @@ G.prototype.Paddle = function( g, isPlayer ) {
 
 	this.isSpiking = false;
 	this.canSpike = true;
+	this.isCharging = false;
+	this.currentCharge = 0;
+	this.spikeRange = 200;
+	this.spikeTarget = 0;
+	this.chargeRate = 0.01;
+	this.chargeDecay = 0.075;
 
 	if ( this.isPlayer) {
 		this.elem = document.querySelector( '.g-paddle-player' );
@@ -36,13 +42,12 @@ G.prototype.Paddle = function( g, isPlayer ) {
 		this.x = this.g.stage.width - this.g.config.paddle.width;
 	}
 
+	this.chargeElem = document.querySelector( '.g-charge' );
+
 	this.xOrigin = this.x;
 };
 
 G.prototype.Paddle.prototype.contain = function() {
-	//this.y = Math.max( 0, this.y );
-	//this.y = Math.min( this.g.stage.height - this.height, this.y );
-
 	if ( this.y < 0 ) {
 		this.y = 0;
 		this.vy = 0;
@@ -56,28 +61,38 @@ G.prototype.Paddle.prototype.contain = function() {
 	}
 };
 
+G.prototype.Paddle.prototype.spike = function() {
+	if( this.canSpike ) {
+		this.isSpiking = true;
+		this.spikeTarget = this.spikeRange * this.currentCharge;
+		if( this.currentCharge >= 1 ) {
+			this.g.timescale.triggerSlowMo();
+			this.g.triggerClass( this.g.edgeBot, 'hit' );
+		}
+	}
+};
+
 G.prototype.Paddle.prototype.checkCollisions = function() {
 	if ( this.g.collisionAABB( this.g.ball, this ) ) {
 
-		if ( this.isPlayer && this.g.ball.vx > 0 ) {
+		/*if ( this.isPlayer && this.g.ball.vx > 0 ) {
 			return;
 		}
 
 		if ( this.isEnemy && this.g.ball.vx < 0 ) {
 			return;
-		}
+		}*/
 
 		var ballAngle,
 			ballSpeed,
+			paddleSpeed,
 			speed;
 
 		if ( this.isPlayer ) {
-			this.g.ball.x = this.x + this.width;
-
 			ballAngle = -Math.PI / 4;
 			ballSpeed = Math.sqrt( this.g.ball.vx * this.g.ball.vx + this.g.ball.vy * this.g.ball.vy );
-				//paddleSpeed = Math.max( 0, Math.abs( game.state.paddleHero.vx ) * 1.2 );
-			speed = ballSpeed;// + paddleSpeed;
+			paddleSpeed = Math.max( 0, Math.abs( this.g.paddlePlayer.vx ) * 2 );
+			speed = ballSpeed + paddleSpeed;
 
 			ballAngle = -Math.PI * 0.35 + ( ( this.g.ball.y + this.g.ball.height - this.y ) / ( this.height + this.g.ball.height ) ) * Math.PI * 0.7;
 
@@ -85,7 +100,6 @@ G.prototype.Paddle.prototype.checkCollisions = function() {
 			this.g.ball.vy = Math.sin( ballAngle ) * speed;
 
 			this.angle = ballAngle / 2;
-			this.x -= this.g.ball.speed * 2;
 
 			for( var i = 0; i < 15; i++ ) {
 				var size = this.g.rand( 10, 20 );
@@ -134,7 +148,6 @@ G.prototype.Paddle.prototype.checkCollisions = function() {
 			this.g.ball.vy = Math.sin( ballAngle ) * speed;
 
 			this.angle = -ballAngle / 2;
-			this.x += this.g.ball.speed * 2;
 
 			for( var i = 0; i < 15; i++ ) {
 				var size = this.g.rand( 10, 20 );
@@ -245,17 +258,21 @@ G.prototype.Paddle.prototype.step = function() {
 	}
 
 	if ( this.moveUp ) {
-		//this.y -= this.speed * this.g.timescale.getDt();
 		this.vy -= this.ay * this.g.timescale.getDt();
 	} else if ( this.moveDown ) {
-		//this.y += this.speed * this.g.timescale.getDt();
 		this.vy += this.ay * this.g.timescale.getDt();
 	} else {
 		this.vy *= this.friction;
 	}
 
 	this.angle += ( 0 - this.angle ) * 0.1;
-	this.x += ( this.xOrigin - this.x ) * 0.1;
+
+	if( this.isSpiking ) {
+		this.canSpike = false;
+		this.vx += this.ax;
+	} else {
+		this.vx -= this.ax / 20;
+	}
 
 	if( this.vx < -this.vxMax ) {
 		this.vx = -this.vxMax;
@@ -271,7 +288,36 @@ G.prototype.Paddle.prototype.step = function() {
 	}
 
 	this.x += this.vx * this.g.timescale.getDt();
-	this.y += this.vy * this.g.timescale.getDt();
+	if( this.isCharging ) {
+		this.y += this.vy / 4 * this.g.timescale.getDt();
+	} else {
+		this.y += this.vy * this.g.timescale.getDt();
+	}
+
+	if( this.isCharging && this.currentCharge < 1 ) {
+		this.currentCharge += this.chargeRate * this.g.timescale.getDt();
+	}
+
+	if( !this.isCharging && this.currentCharge > 0 && !this.isSpiking ) {
+		this.currentCharge -= this.chargeDecay * this.g.timescale.getDt();
+	}
+
+	this.currentCharge = Math.max( 0, this.currentCharge );
+	this.currentCharge = Math.min( 1, this.currentCharge );
+
+	// lock x bounds
+	if( this.x > this.spikeTarget ) {
+		this.x = this.spikeTarget;
+		this.vx = 0;
+		this.isSpiking = false;
+	}
+	if( this.x < this.xOrigin ) {
+		this.x = this.xOrigin;
+		this.vx = 0;
+		if( !this.canSpike ) {
+			this.canSpike = true;
+		}
+	}
 
 	this.contain();
 	this.checkCollisions();
@@ -279,4 +325,10 @@ G.prototype.Paddle.prototype.step = function() {
 
 G.prototype.Paddle.prototype.draw = function() {
 	this.g.css( this.elem, 'transform', 'translate3d(' + this.x + 'px, ' + this.y + 'px, ' + this.z + 'px) rotateZ(' + this.angle + 'rad)' );
+	if( this.isPlayer ) {
+		this.g.css( this.chargeElem, {
+			opacity: this.currentCharge,
+			transform: 'scaleX(' + ( 0.23 + this.currentCharge * 0.77 ) + ') translateZ( 1px )'
+		});
+	}
 };

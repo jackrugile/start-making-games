@@ -85,6 +85,7 @@
 - make paddle rotate/react to ball hit
 - make score max 3?
 - cuboid issues on firefox
+- make enemy faster and more accurate as points go up?
 
 ---
 

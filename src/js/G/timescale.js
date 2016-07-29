@@ -8,10 +8,10 @@ G.prototype.Timescale = function( g ) {
 	this.g = g;
 	this.current = 1;
 	this.target = 0.15;
-	this.timer =0;
-	this.timerMax = 180;
-	this.inDuration = 0.6;
-	this.outDuration = 1;
+	this.timer = 0;
+	this.timerMax = 120; //180;
+	this.inDuration = 0.4; //0.6;
+	this.outDuration = 1; //1;
 	this.isSlow = false;
 };
 

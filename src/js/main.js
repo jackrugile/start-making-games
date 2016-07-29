@@ -279,6 +279,8 @@ var controlDownDownEvent = new Event( 'controlDownDown' ),
 	controlDownUpEvent = new Event( 'controlDownUp' ),
 	controlUpDownEvent = new Event( 'controlUpDown' ),
 	controlUpUpEvent = new Event( 'controlUpUp' ),
+	controlSpikeDownEvent = new Event( 'controlSpikeDown' ),
+	controlSpikeUpEvent = new Event( 'controlSpikeUp' ),
 	mouseLeftDownEvent = new Event( 'mouseLeftDown' ),
 	mouseLeftUpEvent = new Event( 'mouseLeftUp' ),
 	mouseRightDownEvent = new Event( 'mouseRightDown' ),
@@ -290,6 +292,7 @@ var controlDownDownEvent = new Event( 'controlDownDown' ),
 		right: [ 'right', 'd' ],
 		down: [ 'down', 's' ],
 		left: [ 'left', 'a' ],
+		spike: [ 'space', '1' ],
 		prev: [ 'openbracket', 'l2' ],
 		next: [ 'closebraket', 'l1' ],
 		mute: [ 'm', 'r2' ],
@@ -361,6 +364,7 @@ var pg = playground({
 		else if( keyMap.right.indexOf( e.key ) > -1 ) { keys.right = 1; dirs.right.classList.add( 'is-active' ); }
 		else if( keyMap.down.indexOf( e.key ) > -1 )  { keys.down = 1; dirs.down.classList.add( 'is-active' ); window.dispatchEvent( controlDownDownEvent ); }
 		else if( keyMap.left.indexOf( e.key ) > -1 )  { keys.left = 1; dirs.left.classList.add( 'is-active' ); }
+		else if( keyMap.spike.indexOf( e.key ) > -1 ) { window.dispatchEvent( controlSpikeDownEvent ); }
 		else if( keyMap.prev.indexOf( e.key ) > -1 )  { prevSlide(); }
 		else if( keyMap.next.indexOf( e.key ) > -1 )  { nextSlide(); }
 		else if( keyMap.mute.indexOf( e.key ) > -1 )  { window.dispatchEvent( controlMuteDownEvent ); }
@@ -372,12 +376,14 @@ var pg = playground({
 		else if( keyMap.right.indexOf( e.key ) > -1 ) { keys.right = 0; dirs.right.classList.remove( 'is-active' ); }
 		else if( keyMap.down.indexOf( e.key ) > -1 )  { keys.down = 0; dirs.down.classList.remove( 'is-active' ); window.dispatchEvent( controlDownUpEvent ); }
 		else if( keyMap.left.indexOf( e.key ) > -1 )  { keys.left = 0; dirs.left.classList.remove( 'is-active' ); }
+		else if( keyMap.spike.indexOf( e.key ) > -1 ) { window.dispatchEvent( controlSpikeUpEvent ); }
 	},
 	gamepaddown: function( e ) {
 		if(      keyMap.up.indexOf( e.button ) > -1 )    { console.log( e.button );keys.up = 1; dirs.up.classList.add( 'is-active' ); window.dispatchEvent( controlUpDownEvent ); }
 		else if( keyMap.right.indexOf( e.button ) > -1 ) { keys.right = 1; dirs.right.classList.add( 'is-active' ); }
 		else if( keyMap.down.indexOf( e.button ) > -1 )  { keys.down = 1; dirs.down.classList.add( 'is-active' ); window.dispatchEvent( controlDownDownEvent ); }
 		else if( keyMap.left.indexOf( e.button ) > -1 )  { keys.left = 1; dirs.left.classList.add( 'is-active' ); }
+		else if( keyMap.spike.indexOf( e.button ) > -1 ) { window.dispatchEvent( controlSpikeDownEvent ); }
 		else if( keyMap.prev.indexOf( e.button ) > -1 )  { prevSlide(); }
 		else if( keyMap.next.indexOf( e.button ) > -1 )  { nextSlide(); }
 		else if( keyMap.mute.indexOf( e.button ) > -1 )  { window.dispatchEvent( controlMuteDownEvent ); }
@@ -390,6 +396,7 @@ var pg = playground({
 		else if( keyMap.right.indexOf( e.button ) > -1 ) { keys.right = 0; dirs.right.classList.remove( 'is-active' ); }
 		else if( keyMap.down.indexOf( e.button ) > -1 )  { keys.down = 0; dirs.down.classList.remove( 'is-active' ); window.dispatchEvent( controlDownUpEvent ); }
 		else if( keyMap.left.indexOf( e.button ) > -1 )  { keys.left = 0; dirs.left.classList.remove( 'is-active' ); }
+		else if( keyMap.spike.indexOf( e.button ) > -1 ) { window.dispatchEvent( controlSpikeUpEvent ); }
 	},
 	paths: {
 		sounds: 'snd/',

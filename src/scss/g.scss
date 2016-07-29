@@ -4,9 +4,25 @@ Game
 
 ==============================================================================*/
 
+/*html {
+	&:after {
+		background: linear-gradient( hsla(0, 0%, 0%, 0.25) 50%, transparent 50% );
+		background-size: 100% 4px;
+		bottom: 0;
+		content: '';
+		left: 0;
+		//opacity: 0;
+		pointer-events: none;
+		position: absolute;
+		right: 0;
+		top: 0;
+		z-index: 1000;
+	}
+}*/
+
 .g-pong,
 .g-pong * {
-	//pointer-events: none;
+	pointer-events: none;
 	position: absolute;
 }
 
@@ -142,6 +158,32 @@ Edges
 		transform: scaleX(2) translateZ(1px);
 	}
 }
+
+/*==============================================================================
+
+Charge
+
+==============================================================================*/
+
+.g-charge {
+	//animation: charge 300ms infinite alternate;
+	background: linear-gradient( 90deg, hsla( 130, 100%, 60%, 0), hsla( 130, 100%, 60%, 0.25) );
+	bottom: 0;
+	box-shadow: inset -8px 0 0 hsla( 130, 100%, 60%, 1);
+	left: 0;
+	top: 0;
+	transform-origin: 0% 50%;
+	width: 260px;
+}
+/*
+@keyframes charge {
+	0% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 0.2;
+	}
+}*/
 
 /*==============================================================================
 
