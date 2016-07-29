@@ -166,24 +166,18 @@ Charge
 ==============================================================================*/
 
 .g-charge {
-	//animation: charge 300ms infinite alternate;
-	background: linear-gradient( 90deg, hsla( 130, 100%, 60%, 0), hsla( 130, 100%, 60%, 0.25) );
+	/*background: linear-gradient( 90deg, hsla( 130, 0%, 100%, 0), hsla( 130, 0%, 100%, 0.25) );
 	bottom: 0;
-	box-shadow: inset -8px 0 0 hsla( 130, 100%, 60%, 1);
+	box-shadow: inset -8px 0 0 hsla( 130, 0%, 100%, 1);*/
+
+	background: linear-gradient( 90deg, hsla( 130, 50%, 60%, 0), hsla( 130, 50%, 60%, 0.25) );
+	bottom: 0;
+	box-shadow: inset -8px 0 0 hsla( 130, 75%, 60%, 1);
 	left: 0;
 	top: 0;
 	transform-origin: 0% 50%;
 	width: 260px;
 }
-/*
-@keyframes charge {
-	0% {
-		opacity: 1;
-	}
-	100% {
-		opacity: 0.2;
-	}
-}*/
 
 /*==============================================================================
 

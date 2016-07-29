@@ -16,11 +16,12 @@ G.prototype.Ball = function( g ) {
 	this.speed = this.g.config.ball.speed;
 	this.vx = 0;
 	this.vy = 0;
-	this.friction = 0.95;
+	this.friction = 0.9;
 	this.width = this.g.config.ball.width;
 	this.height = this.g.config.ball.height;
 	this.rotation = Math.PI / 4;
 	this.opacity = 1;
+	this.wasSpiked = false;
 	this.reset();
 };
 
@@ -138,6 +139,7 @@ G.prototype.Ball.prototype.contain = function() {
 	if( hasScored ) {
 		this.speed += this.g.config.ball.inc;
 		this.g.triggerClass( this.g.overlay, 'flash' );
+		this.wasSpiked = false;
 
 		for( var i = 0; i < 15; i++ ) {
 			var size = this.g.rand( 10, 20 );
@@ -199,44 +201,87 @@ G.prototype.Ball.prototype.step = function() {
 
 		// lock velocity
 		if( Math.sqrt( this.vx * this.vx + this.vy * this.vy ) > this.speed ) {
-			this.vx *= this.friction;
-			this.vy *= this.friction;
+			// this.vx *= this.friction;
+			// this.vy *= this.friction;
+
+			this.vx *= Math.pow( this.friction, this.g.timescale.getDt() );
+			this.vy *= Math.pow( this.friction, this.g.timescale.getDt() );
+
+			console.log( Math.pow( this.friction, this.g.timescale.getDt() ) ); 
+
+
+			//this.vx *= this.friction + ( ( 1 - this.friction ) * this.g.timescale.getInverseDt() );
+			//this.vy *= this.friction + ( ( 1 - this.friction ) * this.g.timescale.getInverseDt() );
 		}
 
 		if( Math.random() < 0.5 * this.g.timescale.getDt() ) {
 			var size = 60;
-			this.g.pulsesWhite.create({
-				width: size,
-				height: size,
-				x: this.x + this.width / 2 - size / 2,
-				y: this.y + this.height / 2 - size / 2,
-				z: 1 + this.g.rand( 0, 60 ),
-				r: this.rotation,
-				shrink: true,
-				decay: 0.06,
-				opacity: 0.25
-			});
+			if( this.wasSpiked ) {
+				this.g.pulsesGreen.create({
+					width: size,
+					height: size,
+					x: this.x + this.width / 2 - size / 2,
+					y: this.y + this.height / 2 - size / 2,
+					z: 1 + this.g.rand( 0, 60 ),
+					r: this.rotation,
+					shrink: true,
+					decay: 0.06,
+					opacity: 0.25
+				});
+			} else {
+				this.g.pulsesWhite.create({
+					width: size,
+					height: size,
+					x: this.x + this.width / 2 - size / 2,
+					y: this.y + this.height / 2 - size / 2,
+					z: 1 + this.g.rand( 0, 60 ),
+					r: this.rotation,
+					shrink: true,
+					decay: 0.06,
+					opacity: 0.25
+				});
+			}
 		}
 
 		if( Math.random() < 0.5 * this.g.timescale.getDt() ) {
 			var size = this.g.rand( 10, 20 );
-			this.g.particlesWhite.create({
-				width: size,
-				height: size,
-				x: this.x + this.g.rand( 0, this.width ) - size / 2,
-				y: this.y + this.g.rand( 0, this.height ) - size / 2,
-				z: this.g.rand( 0, 60 ),
-				vx: -this.vx / 3,
-				vy: -this.vy / 3,
-				vz: this.g.rand( -2, 2 ),
-				rx: this.g.rand( 0, Math.PI * 2 ),
-				ry: this.g.rand( 0, Math.PI * 2 ),
-				rz: this.g.rand( 0, Math.PI * 2 ),
-				decay: this.g.rand( 0.01, 0.1 ),
-				friction: 0.95,
-				shrink: true,
-				opacity: 1
-			});
+			if( this.wasSpiked ) {
+				this.g.particlesGreen.create({
+					width: size,
+					height: size,
+					x: this.x + this.g.rand( 0, this.width ) - size / 2,
+					y: this.y + this.g.rand( 0, this.height ) - size / 2,
+					z: this.g.rand( 0, 60 ),
+					vx: -this.vx / 3,
+					vy: -this.vy / 3,
+					vz: this.g.rand( -2, 2 ),
+					rx: this.g.rand( 0, Math.PI * 2 ),
+					ry: this.g.rand( 0, Math.PI * 2 ),
+					rz: this.g.rand( 0, Math.PI * 2 ),
+					decay: this.g.rand( 0.01, 0.1 ),
+					friction: 0.95,
+					shrink: true,
+					opacity: 1
+				});
+			} else {
+				this.g.particlesWhite.create({
+					width: size,
+					height: size,
+					x: this.x + this.g.rand( 0, this.width ) - size / 2,
+					y: this.y + this.g.rand( 0, this.height ) - size / 2,
+					z: this.g.rand( 0, 60 ),
+					vx: -this.vx / 3,
+					vy: -this.vy / 3,
+					vz: this.g.rand( -2, 2 ),
+					rx: this.g.rand( 0, Math.PI * 2 ),
+					ry: this.g.rand( 0, Math.PI * 2 ),
+					rz: this.g.rand( 0, Math.PI * 2 ),
+					decay: this.g.rand( 0.01, 0.1 ),
+					friction: 0.95,
+					shrink: true,
+					opacity: 1
+				});
+			}
 		}
 	}
 

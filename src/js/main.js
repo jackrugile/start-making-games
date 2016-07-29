@@ -379,7 +379,7 @@ var pg = playground({
 		else if( keyMap.spike.indexOf( e.key ) > -1 ) { window.dispatchEvent( controlSpikeUpEvent ); }
 	},
 	gamepaddown: function( e ) {
-		if(      keyMap.up.indexOf( e.button ) > -1 )    { console.log( e.button );keys.up = 1; dirs.up.classList.add( 'is-active' ); window.dispatchEvent( controlUpDownEvent ); }
+		if(      keyMap.up.indexOf( e.button ) > -1 )    { keys.up = 1; dirs.up.classList.add( 'is-active' ); window.dispatchEvent( controlUpDownEvent ); }
 		else if( keyMap.right.indexOf( e.button ) > -1 ) { keys.right = 1; dirs.right.classList.add( 'is-active' ); }
 		else if( keyMap.down.indexOf( e.button ) > -1 )  { keys.down = 1; dirs.down.classList.add( 'is-active' ); window.dispatchEvent( controlDownDownEvent ); }
 		else if( keyMap.left.indexOf( e.button ) > -1 )  { keys.left = 1; dirs.left.classList.add( 'is-active' ); }

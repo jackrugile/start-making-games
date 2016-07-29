@@ -15,7 +15,7 @@ var G = function( opt ) {
 		ball: {
 			width: 60,
 			height: 60,
-			speed: 16,
+			speed: 24,
 			inc: 1
 		},
 		score: {

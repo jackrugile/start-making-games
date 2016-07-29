@@ -16,10 +16,10 @@
 - 2016-07-28 // Thursday
 	- *** paddle kick back
 	- *** paddle rotations
-	- spike move
-		- charge
-		- slow down char
-		- trigger slow mo
+	- *** spike move
+		- *** charge
+		- *** slow down char
+		- *** trigger slow mo
 - 2016-07-29 // Friday
 	- victory screen
 	- start screen
@@ -86,6 +86,7 @@
 - make score max 3?
 - cuboid issues on firefox
 - make enemy faster and more accurate as points go up?
+- figure out friction issue, real problem for slow mo and ball
 
 ---
 
