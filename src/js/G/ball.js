@@ -207,8 +207,6 @@ G.prototype.Ball.prototype.step = function() {
 			this.vx *= Math.pow( this.friction, this.g.timescale.getDt() );
 			this.vy *= Math.pow( this.friction, this.g.timescale.getDt() );
 
-			console.log( Math.pow( this.friction, this.g.timescale.getDt() ) ); 
-
 
 			//this.vx *= this.friction + ( ( 1 - this.friction ) * this.g.timescale.getInverseDt() );
 			//this.vy *= this.friction + ( ( 1 - this.friction ) * this.g.timescale.getInverseDt() );
