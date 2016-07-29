@@ -26,9 +26,7 @@ G.prototype.Score.prototype.setValue = function( value ) {
 G.prototype.Score.prototype.draw = function() {
 	if ( this.flag ) {
 		this.g.text( this.elem, this.value );
-		this.g.attr( this.elem, 'data-score', this.value );
-		//this.elem.innerHTML = this.value;
-		//this.elem.setAttribute( 'data-score', this.value );
+		this.g.attr( this.elem, 'data-score', this.value.toString() );
 		this.flag = false;
 	}
 };

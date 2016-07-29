@@ -21,6 +21,7 @@
 		- *** slow down char
 		- *** trigger slow mo
 - 2016-07-29 // Friday
+	- fix friction delta time issue
 	- victory screen
 	- start screen
 - 2016-07-30 // Saturday
