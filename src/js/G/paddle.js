@@ -71,6 +71,7 @@ G.prototype.Paddle.prototype.spike = function() {
 			this.g.timescale.triggerSlowMo();
 			this.g.triggerClass( this.g.overlay, 'flash' );
 		}
+		this.g.removeClass( this.elem, 'hit' );
 	}
 };
 
@@ -95,7 +96,26 @@ G.prototype.Paddle.prototype.checkCollisions = function() {
 			ballSpeed = Math.sqrt( this.g.ball.vx * this.g.ball.vx + this.g.ball.vy * this.g.ball.vy );
 			//paddleSpeed = Math.max( 0, Math.abs( this.g.paddlePlayer.vx ) * 2 );
 			if( this.isSpiking ) {
-				paddleSpeed = this.lastCharge * 150;
+				pg.soundPlay({
+					name: 'spike-1',
+					volume: this.lastCharge * 0.7,
+					rate: this.g.rand( 1, 1.6 ) * ( 1 - ( 1 - this.g.timescale.current ) * 0.4 )
+				});
+				pg.soundPlay({
+					name: 'spike-2',
+					volume: this.lastCharge * 0.7,
+					rate: this.g.rand( 1, 1.6 ) * ( 1 - ( 1 - this.g.timescale.current ) * 0.4 )
+				});
+				pg.soundPlay({
+					name: 'spike-3',
+					volume: this.lastCharge * 0.7,
+					rate: this.g.rand( 1, 1.6 ) * ( 1 - ( 1 - this.g.timescale.current ) * 0.4 )
+				});
+				if( this.lastCharge >= 1 ) {
+					paddleSpeed = this.lastCharge * 200;
+				} else {
+					paddleSpeed = this.lastCharge * 150;
+				}
 			} else {
 				paddleSpeed = 0;
 			}
@@ -243,29 +263,11 @@ G.prototype.Paddle.prototype.checkCollisions = function() {
 			});
 		}
 
-		if ( this.isPlayer ) {
-			pg.soundPlay({
-				name: 'spike-1',
-				volume: 0.7,
-				rate: this.g.rand( 1, 1.6 ) * ( 1 - ( 1 - this.g.timescale.current ) * 0.4 )
-			});
-			pg.soundPlay({
-				name: 'spike-2',
-				volume: 0.7,
-				rate: this.g.rand( 1, 1.6 ) * ( 1 - ( 1 - this.g.timescale.current ) * 0.4 )
-			});
-			pg.soundPlay({
-				name: 'spike-3',
-				volume: 0.7,
-				rate: this.g.rand( 1, 1.6 ) * ( 1 - ( 1 - this.g.timescale.current ) * 0.4 )
-			});
-		} else {
-			pg.soundPlay({
-				name: 'paddle-1',
-				volume: 0.7,
-				rate: this.g.rand( 1, 1.6 ) * ( 1 - ( 1 - this.g.timescale.current ) * 0.4 )
-			});
-		}
+		pg.soundPlay({
+			name: 'paddle-1',
+			volume: 0.7,
+			rate: this.g.rand( 1, 1.6 ) * ( 1 - ( 1 - this.g.timescale.current ) * 0.4 )
+		});
 	}
 };
 
@@ -363,6 +365,17 @@ G.prototype.Paddle.prototype.step = function() {
 		this.vx = 0;
 		if( !this.canSpike ) {
 			this.canSpike = true;
+		}
+	}
+
+	if( this.isPlayer ) {
+		pg.sound.setVolume( pg.humLoop, this.currentCharge );
+		pg.sound.setPlaybackRate( pg.humLoop, this.currentCharge * 6 );
+	}
+
+	if( this.isPlayer ) {
+		if( this.currentCharge >= 1 ) {
+			this.g.addClass( this.elem, 'hit' );
 		}
 	}
 

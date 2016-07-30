@@ -15,6 +15,7 @@ G.prototype.pauseToggle = function() {
 G.prototype.pause = function() {
 	this.paused = true;
 	document.documentElement.classList.add( 'paused' );
+	pg.sound.setVolume( pg.humLoop, 0 );
 };
 
 G.prototype.unpause = function() {

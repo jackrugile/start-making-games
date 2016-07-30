@@ -66,14 +66,16 @@ G.prototype.onControlDownUp = function() {
 };
 
 G.prototype.onControlSpikeUp = function() {
-	this.paddlePlayer.isCharging = false;
-	this.paddlePlayer.spike();
+	if( !this.paused ) {
+		this.paddlePlayer.isCharging = false;
+		this.paddlePlayer.spike();
+	}
 };
 
 G.prototype.onMouseLeftDown = function() {
-	if( !this.paused ) {
+	/*if( !this.paused ) {
 		this.timescale.triggerSlowMo();
-	}
+	}*/
 };
 
 /*

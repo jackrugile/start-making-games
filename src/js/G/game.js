@@ -123,10 +123,11 @@ Step / Update
 ==============================================================================*/
 
 G.prototype.step = function() {
+	this.stage.step();
 	if( this.paused ) {
 		return;
 	}
-	this.stage.step();
+	
 	this.paddlePlayer.step();
 	this.paddleEnemy.step();
 	this.ball.step();

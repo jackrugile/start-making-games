@@ -401,7 +401,21 @@ var pg = playground({
 	paths: {
 		sounds: 'snd/',
 	},
+	preferedAudioFormat: 'mp3',
 	create: function() {
+		this.loadSounds([
+			'paddle-1',
+			'wall-1',
+			'score-player-1',
+			'score-enemy-1',
+			'spike-1',
+			'spike-2',
+			'spike-3',
+			'slow-mo-1',
+			'hum-1'
+		]);
+	},
+	ready: function() {
 		this.dt = 0.016;
 		this.dtMs = 16;
 		this.dtNorm = 1;
@@ -417,16 +431,11 @@ var pg = playground({
 		// button gets stuck on and a refresh loop occurs
 		this.refreshTick = 0;
 
-		this.loadSounds([
-			'paddle-1',
-			'wall-1',
-			'score-player-1',
-			'score-enemy-1',
-			'spike-1',
-			'spike-2',
-			'spike-3',
-			'slow-mo-1'
-		]);
+		
+
+		this.humLoop = this.playSound( 'hum-1', true );
+		this.sound.setVolume( this.humLoop, 0 );
+		this.sound.setPlaybackRate( this.humLoop, 1 );
 	},
 	step: function( dt ) {
 		this.manageTime( dt );
