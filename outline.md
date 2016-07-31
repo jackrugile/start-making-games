@@ -55,60 +55,6 @@
 
 ### Explain Juice / Polish
 
-### Gameplay Changes
-- spike move - slows character (charging slows character actually)
-- add increasing ai difficulty
-- angle changes depending on where on paddle it hits
-- add acceleration and friction
-- add wind?
-
-### Non-Gameplay Changes
-- title
-	- The Medieval Racketeer: A Tale from Love to Deuce
-	- Volley of the Vikings: A Quest for Valhalla
-	- Cosmic Paddle Warfare 2084: Wimbledon in Ruins
-	- Developong
-- add characters
-- audio
-	- sfx
-	- stereo sound
-	- music
-- ambience
-	- diagonal light streaks
-	- background grid
-		- anaglyph or chromatic shake
-		- light up panel bases on where ball is
-- rotate ball based on direction
-- particles
-	- trails
-	- channel bob ross: happy little trees = happy little particles
-- screenshake
-	- subtle random
-	- accurate on big movements
-	- chromatic abberation?
-- light flashes
-	- entire screen
-	- paddles
-	- ball pulse light
-	- flash score
-- slow motion
-	- zoom on ball?
-- 3d
-	- level transform based on ball pos
-	- extrude game objects
-- misc polish
-	- animate ball in
-	- alternate ball direction
-	- victory screen
-	- pre game display
-	- general shadows for game objects
-- total score and progress meter (bar)
-- all together
-
-
-
-
-
 
 
 

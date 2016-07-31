@@ -12,7 +12,7 @@ G.prototype.Ball = function( g ) {
 	this.servingTimerMax = 60;
 	this.x = this.g.stage.width / 2 - this.g.config.ball.width / 2;
 	this.y = this.g.stage.height / 2 - this.g.config.ball.height / 2;
-	this.z = 60;
+	this.z = this.g.opt.extrude ? 60 : 1;
 	this.speed = this.g.config.ball.speed;
 	this.vx = 0;
 	this.vy = 0;
@@ -66,6 +66,7 @@ G.prototype.Ball.prototype.reset = function() {
 	this.g.paddleEnemy.hasHit = false;
 
 	pg.soundPlay({
+		active: this.g.opt.sound,
 		name: 'whoosh-1',
 		volume: 1.3,
 		rate: 1 * ( 1 - ( 1 - this.g.timescale.current ) * 0.4 )
@@ -89,9 +90,10 @@ G.prototype.Ball.prototype.contain = function() {
 		this.vy = -this.vy;
 
 		pg.soundPlay({
+			active: this.g.opt.sound,
 			name: 'wall-1',
 			volume: 0.5,
-			rate: this.g.rand( 2, 3 ) * ( 1 - ( 1 - this.g.timescale.current ) * 0.4 )
+			rate: this.g.rand( 2.5, 4 ) * ( 1 - ( 1 - this.g.timescale.current ) * 0.4 )
 		});
 
 		var angle = Math.atan2( this.vy, this.vx );
@@ -161,6 +163,7 @@ G.prototype.Ball.prototype.contain = function() {
 		this.g.enemyBlind += this.g.config.enemy.blindInc;
 		this.g.enemyForesight += this.g.config.enemy.foresightInc;
 		pg.soundPlay({
+			active: this.g.opt.sound,
 			name: 'score-player-2',
 			volume: 0.9,
 			rate: 1 * ( 1 - ( 1 - this.g.timescale.current ) * 0.4 )
@@ -184,6 +187,7 @@ G.prototype.Ball.prototype.contain = function() {
 			this.g.triggerClass( this.g.scoreEnemy.elem, 'scored' );
 		}
 		pg.soundPlay({
+			active: this.g.opt.sound,
 			name: 'score-enemy-2',
 			volume: 0.5,
 			rate: 1 * ( 1 - ( 1 - this.g.timescale.current ) * 0.4 )

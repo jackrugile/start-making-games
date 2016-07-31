@@ -478,6 +478,10 @@ var pg = playground({
 		return typeof this.dtNorm === 'undefined' ? 1 : this.dtNorm;
 	},
 	soundPlay: function( opt ) {
+		var active = typeof opt.active === 'undefined' ? false : opt.active;
+		if( !active ) {
+			return;
+		}
 		var name = typeof opt.name === 'undefined' ? null : opt.name;
 		var volume = typeof opt.volume === 'undefined' ? 1 : opt.volume;
 		var rate = typeof opt.rate === 'undefined' ? 1 : opt.rate;

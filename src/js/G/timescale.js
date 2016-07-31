@@ -35,8 +35,13 @@ G.prototype.Timescale.prototype.step = function() {
 
 G.prototype.Timescale.prototype.triggerSlowMo = function() {
 	if ( !this.isSlow ) {
-		var sound = pg.playSound( 'slow-mo-1' );
-		pg.sound.setVolume( sound, 1 );
+		pg.soundPlay({
+			active: this.g.opt.sound,
+			name: 'slow-mo-1',
+			volume: 1,
+			rate: 1
+		});
+
 		this.isSlow = true;
 		pg.tween( this ).to(
 			{

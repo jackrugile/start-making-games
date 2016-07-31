@@ -52,6 +52,9 @@ var G = function( opt ) {
 
 	// level / stage / world
 	this.stage = new this.Stage( this );
+	if( this.opt.extrude ) {
+		this.addClass( this.stage.elem, 'g-extrude' );
+	}
 
 	// paddle player
 	this.paddlePlayer = new this.Paddle( this, true );

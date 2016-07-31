@@ -22,20 +22,20 @@
 		- *** trigger slow mo
 - 2016-07-29 // Friday
 	- *** fix friction delta time issue
-	- victory screen
-	- start screen
 - 2016-07-30 // Saturday
 	- *** explore sound and music, stereo sound
-	- compile configs, order, and slide intros for juice build
 	- *** clean up ALL resources in kill method (objects, pools, loop, etc.)
-	- initial content slides - why?
-	- intro of build slides (explanations)
 - 2016-07-31 // Sunday
+	- victory screen
+	- start screen
+	- 5 block indicator for score
+	- compile configs, order, and slide intros for juice build
 	- initial content slides - why?
 	- intro of build slides (explanations)
 	- outro slides
 - 2016-08-01 // Monday
 	- setup online resource
+		- ditch and make dead simple if running out of time
 	- /start-making-games/
 		- link to slides
 		- link to starter game
@@ -49,7 +49,7 @@
 	- haircut
 	- check typos
 	- check consistency
-	- run through talk one time
+	- run through talk two times
 - 2016-08-03 // Wednesday
 	- meet with thomas for testing
 	- meet with dan for testing
@@ -60,6 +60,8 @@
 	- lots of rest
 - 2016-08-05 // Friday
 	- talk!
+
+
 
 - non-essential bonus features if I have time
 	- add character faces
@@ -72,7 +74,7 @@
 ---
 
 # Tech Notes
-- use scale3d insead of scale on both wrap and pong?
+- use scale3d instead of scale on both wrap and pong?
 	- this is in place, not sure if it is more performant though. need test environment on laptop and retina
 	- if 3d caused texture, maybe a smaller starting point makes more sense
 - if time is running low, ditch the step by step juice/polish and add it all at once
@@ -80,6 +82,8 @@
 - figure out friction issue, use math.pow version on ball or no?
 - prefetch slides? choppy when loading in at first
 - perf mode, fewer particles
+- prep codepen demo too! (one aspect of game?) or chromatic abberation
+- change dir display? remove left and right, add spike charge indicator
 
 ---
 

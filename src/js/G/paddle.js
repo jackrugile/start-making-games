@@ -9,7 +9,7 @@ G.prototype.Paddle = function( g, isPlayer ) {
 	this.isPlayer = isPlayer;
 	this.isEnemy = !isPlayer;
 	this.y = this.g.stage.height / 2 - this.g.config.paddle.height / 2;
-	this.z = 60;
+	this.z = this.g.opt.extrude ? 60 : 1;
 	this.vx = 0;
 	this.vy = 0;
 	this.vxMax = 100;
@@ -31,7 +31,7 @@ G.prototype.Paddle = function( g, isPlayer ) {
 	this.currentCharge = 0;
 	this.spikeRange = 200;
 	this.spikeTarget = 0;
-	this.chargeRate = 0.0075;//0.01;
+	this.chargeRate = 0.0075;
 	this.chargeDecay = 0.075;
 	this.lastCharge = 0;
 
@@ -115,16 +115,19 @@ G.prototype.Paddle.prototype.checkCollisions = function() {
 			ballSpeed = Math.sqrt( this.g.ball.vx * this.g.ball.vx + this.g.ball.vy * this.g.ball.vy );
 			if( this.isSpiking ) {
 				pg.soundPlay({
+					active: this.g.opt.sound,
 					name: 'spike-1',
 					volume: this.lastCharge * 0.8,
 					rate: this.g.rand( 1, 1.6 ) * ( 1 - ( 1 - this.g.timescale.current ) * 0.4 )
 				});
 				pg.soundPlay({
+					active: this.g.opt.sound,
 					name: 'spike-2',
 					volume: this.lastCharge * 0.8,
 					rate: this.g.rand( 1, 1.6 ) * ( 1 - ( 1 - this.g.timescale.current ) * 0.4 )
 				});
 				pg.soundPlay({
+					active: this.g.opt.sound,
 					name: 'spike-3',
 					volume: this.lastCharge * 0.8,
 					rate: this.g.rand( 1, 1.6 ) * ( 1 - ( 1 - this.g.timescale.current ) * 0.4 )
@@ -301,9 +304,10 @@ G.prototype.Paddle.prototype.checkCollisions = function() {
 		}
 
 		pg.soundPlay({
+			active: this.g.opt.sound,
 			name: 'paddle-1',
 			volume: 0.7,
-			rate: this.g.rand( 1.2, 1.8 ) * ( 1 - ( 1 - this.g.timescale.current ) * 0.4 )
+			rate: this.g.rand( 1.4, 2 ) * ( 1 - ( 1 - this.g.timescale.current ) * 0.4 )
 			//pan: this.isPlayer ? -1 : 1
 		});
 
@@ -345,12 +349,21 @@ G.prototype.Paddle.prototype.step = function() {
 		}
 	}
 
-	if ( this.moveUp ) {
-		this.vy -= this.ay * this.g.timescale.getDt();
-	} else if ( this.moveDown ) {
-		this.vy += this.ay * this.g.timescale.getDt();
+
+	if( this.g.opt.accel ) {
+		if ( this.moveUp ) {
+			this.vy -= this.ay * this.g.timescale.getDt();
+		} else if ( this.moveDown ) {
+			this.vy += this.ay * this.g.timescale.getDt();
+		} else {
+			this.vy *= this.friction;
+		}
 	} else {
-		this.vy *= this.friction;
+		if ( this.moveUp ) {
+			this.y -= this.speed * this.g.timescale.getDt();
+		} else if ( this.moveDown ) {
+			this.y += this.speed * this.g.timescale.getDt();
+		}
 	}
 
 	this.angle += ( 0 - this.angle ) * 0.1;
@@ -429,7 +442,7 @@ G.prototype.Paddle.prototype.step = function() {
 		}
 	}
 
-	if( this.isPlayer ) {
+	if( this.isPlayer && this.g.opt.sound ) {
 		pg.sound.setVolume( pg.humLoop, this.currentCharge * 0.6 );
 		pg.sound.setPlaybackRate( pg.humLoop, this.currentCharge * 5  );
 
