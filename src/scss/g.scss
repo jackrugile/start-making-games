@@ -363,8 +363,10 @@ Ball
 	transform-style: preserve-3d;
 	width: 60px;
 	z-index: 2;
+	&.g-ball-ghost {
+		opacity: 0;
+	}
 }
-
 
 .g-ball-panel {
 	position: absolute;

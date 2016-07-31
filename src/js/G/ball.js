@@ -6,7 +6,7 @@ Ball Object
 
 G.prototype.Ball = function( g ) {
 	this.g = g;
-	this.elem = document.querySelector('.g-ball');
+	this.elem = document.querySelector('.g-ball-normal');
 	this.serving = true;
 	this.servingTimer = 0;
 	this.servingTimerMax = 60;
@@ -22,6 +22,18 @@ G.prototype.Ball = function( g ) {
 	this.rotation = Math.PI / 4;
 	this.opacity = 1;
 	this.wasSpiked = false;
+
+	this.ghost = {
+		elem: document.querySelector('.g-ball-ghost'),
+		x: this.x,
+		y: this.y,
+		z: 60,
+		vx: 0,
+		vy: 0,
+		rotation: Math.PI / 4,
+		active: false
+	}
+
 	this.reset();
 };
 
@@ -30,6 +42,7 @@ G.prototype.Ball.prototype.reset = function() {
 	this.x = this.g.stage.width / 2 - this.width / 2;
 	this.y = this.g.stage.height / 2 - this.height / 2 + this.g.stage.height / 3;
 	this.opacity = 0;
+	this.ghost.active = false;
 
 	var k = pg.tween( this ).to(
 		{
@@ -108,6 +121,15 @@ G.prototype.Ball.prototype.contain = function() {
 		});
 	}
 
+	if ( this.ghost.y <= 0 || this.ghost.y + this.height >= this.g.stage.height ) {
+		if ( this.ghost.y <= 0 ) {
+			this.ghost.y = 0;
+		} else {
+			this.ghost.y = this.g.stage.height - this.height;
+		}
+		this.ghost.vy = -this.ghost.vy;
+	}
+
 	var hasScored = false;
 
 	// player scored
@@ -121,6 +143,13 @@ G.prototype.Ball.prototype.contain = function() {
 			volume: 0.3,
 			rate: 2 * ( 1 - ( 1 - this.g.timescale.current ) * 0.4 )
 		});
+	}
+
+	// ghost scored
+	if ( this.ghost.active && this.ghost.x + this.width > this.g.stage.width ) {
+		//this.ghost.active = false;
+		this.ghost.vx = 0;
+		this.ghost.vy = 0;
 	}
 
 	// enemy scored
@@ -193,23 +222,25 @@ G.prototype.Ball.prototype.step = function() {
 	} else {
 		if ( this.vx > 0 ) {
 			this.rotation += 0.005 * Math.abs( this.vx ) * this.g.timescale.getDt();
+			this.ghost.rotation += 0.005 * Math.abs( this.ghost.vx ) * this.g.timescale.getDt();
 		} else {
 			this.rotation -= 0.005 * Math.abs( this.vx ) * this.g.timescale.getDt();
+			this.ghost.rotation -= 0.005 * Math.abs( this.ghost.vx ) * this.g.timescale.getDt();
 		}
 		this.x += this.vx * this.g.timescale.getDt();
 		this.y += this.vy * this.g.timescale.getDt();
 
+		this.ghost.x += this.ghost.vx * this.g.timescale.getDt();
+		this.ghost.y += this.ghost.vy * this.g.timescale.getDt();
+
 		// lock velocity
 		if( Math.sqrt( this.vx * this.vx + this.vy * this.vy ) > this.speed ) {
-			// this.vx *= this.friction;
-			// this.vy *= this.friction;
 
 			this.vx *= Math.pow( this.friction, this.g.timescale.getDt() );
 			this.vy *= Math.pow( this.friction, this.g.timescale.getDt() );
 
-
-			//this.vx *= this.friction + ( ( 1 - this.friction ) * this.g.timescale.getInverseDt() );
-			//this.vy *= this.friction + ( ( 1 - this.friction ) * this.g.timescale.getInverseDt() );
+			this.ghost.vx *= Math.pow( this.friction, this.g.timescale.getDt() );
+			this.ghost.vy *= Math.pow( this.friction, this.g.timescale.getDt() );
 		}
 
 		if( Math.random() < 0.5 * this.g.timescale.getDt() ) {
@@ -291,4 +322,9 @@ G.prototype.Ball.prototype.draw = function() {
 		opacity: this.opacity,
 		transform: 'translate3d(' + this.x + 'px, ' + this.y + 'px, ' + this.z + 'px) rotateZ(' + this.rotation + 'rad)'
 	});
+
+	/*this.g.css( this.ghost.elem, {
+		opacity: this.ghost.active ? 0.5 : 0,
+		transform: 'translate3d(' + this.ghost.x + 'px, ' + this.ghost.y + 'px, ' + this.ghost.z + 'px) rotateZ(' + this.ghost.rotation + 'rad)'
+	});*/
 };

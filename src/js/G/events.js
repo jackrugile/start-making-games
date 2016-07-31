@@ -37,6 +37,7 @@ G.prototype.removeEventListeners = function() {
 	window.removeEventListener( 'controlSpikeDown', this.controlSpikeDownBound );
 	window.removeEventListener( 'controlUpUp', this.controlUpUpBound );
 	window.removeEventListener( 'controlDownUp', this.controlDownUpBound );
+	window.removeEventListener( 'controlSpikeUp', this.controlSpikeUpBound );
 	window.removeEventListener( 'mouseLeftDown', this.mouseLeftDownBound );
 	/*window.removeEventListener( 'mouseRightDown', this.onMouseRightDown.bind( this ) );
 	window.removeEventListener( 'mouseLeftUp', this.onMouseLeftUp.bind( this ) );

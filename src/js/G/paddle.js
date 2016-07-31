@@ -268,18 +268,37 @@ G.prototype.Paddle.prototype.checkCollisions = function() {
 			volume: 0.7,
 			rate: this.g.rand( 1, 1.6 ) * ( 1 - ( 1 - this.g.timescale.current ) * 0.4 )
 		});
+
+		if( this.isPlayer ) {
+			this.g.ball.ghost.active = true;
+			this.g.ball.ghost.x = this.g.ball.x;
+			this.g.ball.ghost.y = this.g.ball.y;
+
+			this.g.ball.ghost.vx = Math.cos( ballAngle ) * ( speed * 2 );
+			this.g.ball.ghost.vy = Math.sin( ballAngle ) * ( speed * 2 );
+		} else {
+			this.g.ball.ghost.active = false;
+		}
 	}
 };
 
 G.prototype.Paddle.prototype.step = function() {
 	if ( this.isEnemy ) {
-		if ( !this.hasHit || Math.random() < 0.2 ) {
+		if ( !this.hasHit || Math.random() < 0.4 ) {
 			this.moveUp = false;
 			this.moveDown = false;
-			if ( this.g.ball.y + this.g.ball.height < this.y + this.height / 2 ) {
-				this.moveUp = true;
-			} else if ( this.g.ball.y > this.y + this.height / 2 ) {
-				this.moveDown = true;
+			if ( this.g.ball.ghost.active ) {
+				if ( this.g.ball.ghost.y + this.g.ball.height < this.y + this.height / 2 ) {
+					this.moveUp = true;
+				} else if ( this.g.ball.ghost.y > this.y + this.height / 2 ) {
+					this.moveDown = true;
+				}
+			} else {
+				if ( this.g.ball.y + this.g.ball.height < this.y + this.height / 2 ) {
+					this.moveUp = true;
+				} else if ( this.g.ball.y > this.y + this.height / 2 ) {
+					this.moveDown = true;
+				}
 			}
 		}
 	}
@@ -369,8 +388,17 @@ G.prototype.Paddle.prototype.step = function() {
 	}
 
 	if( this.isPlayer ) {
-		pg.sound.setVolume( pg.humLoop, this.currentCharge );
+		pg.sound.setVolume( pg.humLoop, this.currentCharge * 0.6 );
 		pg.sound.setPlaybackRate( pg.humLoop, this.currentCharge * 6 );
+
+		pg.sound.setVolume( pg.alarmLoop, this.currentCharge * 0.5 );
+		pg.sound.setPlaybackRate( pg.alarmLoop, this.currentCharge * 3 );
+
+		//pg.sound.setVolume( pg.humLoop2, this.currentCharge );
+		//pg.sound.setPlaybackRate( pg.humLoop2, this.currentCharge * 6 );
+
+		//pg.sound.setVolume( pg.humLoop2, this.currentCharge );
+		//pg.sound.setPlaybackRate( pg.humLoop2, 12 - this.currentCharge * 3 );
 	}
 
 	if( this.isPlayer ) {

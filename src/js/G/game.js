@@ -31,6 +31,9 @@ var G = function( opt ) {
 	this.pausedStartTime = null;
 	this.pausedEndTime = null;
 
+	// restart music
+	pg.startMusic();
+
 	// level / stage / world
 	this.stage = new this.Stage( this );
 
@@ -183,6 +186,7 @@ Kill / Destroy
 
 G.prototype.kill = function() {
 	cancelAnimationFrame( this.raf );
+	pg.stopMusic();
 	this.config = null;
 	this.stage = null;
 	this.ball = null;

@@ -257,8 +257,6 @@ nextSlideButton.addEventListener( 'click', function( e ) {
 	nextSlide();
 });
 
-loadSlide( currentSlide );
-
 /*==============================================================================
 Utility
 ==============================================================================*/
@@ -412,7 +410,9 @@ var pg = playground({
 			'spike-2',
 			'spike-3',
 			'slow-mo-1',
-			'hum-1'
+			'hum-1',
+			'alarm-3',
+			'music-1'
 		]);
 	},
 	ready: function() {
@@ -431,11 +431,15 @@ var pg = playground({
 		// button gets stuck on and a refresh loop occurs
 		this.refreshTick = 0;
 
-		
-
 		this.humLoop = this.playSound( 'hum-1', true );
 		this.sound.setVolume( this.humLoop, 0 );
 		this.sound.setPlaybackRate( this.humLoop, 1 );
+
+		this.alarmLoop = this.playSound( 'alarm-3', true );
+		this.sound.setVolume( this.alarmLoop, 0 );
+		this.sound.setPlaybackRate( this.alarmLoop, 1 );
+
+		loadSlide( currentSlide );
 	},
 	step: function( dt ) {
 		this.manageTime( dt );
@@ -448,6 +452,14 @@ var pg = playground({
 				document.documentElement.classList.add( 'mouse-idle' );
 			}
 		}
+	},
+	startMusic: function() {
+		this.song = this.music.play( 'music-1', true );
+		this.music.setVolume( this.song, 0.4 );
+	},
+	stopMusic: function() {
+		this.music.fadeOut( this.song );
+		this.song = null;
 	},
 	manageTime: function( dt ) {
 		this.dt = dt;
