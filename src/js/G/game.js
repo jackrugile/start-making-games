@@ -43,6 +43,9 @@ var G = function( opt ) {
 	// paddle enemy
 	this.paddleEnemy = new this.Paddle( this, false );
 
+	// paddle collision
+	this.paddleCollision = false;
+
 	// ball
 	this.ball = new this.Ball( this );
 
@@ -126,11 +129,12 @@ Step / Update
 ==============================================================================*/
 
 G.prototype.step = function() {
+	pg.music.setMaster( this.timescale.current );
+
 	this.stage.step();
 	if( this.paused ) {
 		return;
 	}
-	
 	this.paddlePlayer.step();
 	this.paddleEnemy.step();
 	this.ball.step();
@@ -143,6 +147,7 @@ G.prototype.step = function() {
 	this.pulsesGreen.each( 'step' );
 	this.pulsesBlue.each( 'step' );
 	this.checkWinState();
+	this.paddleCollision = false;
 };
 
 /*==============================================================================

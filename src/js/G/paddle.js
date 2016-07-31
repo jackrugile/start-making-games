@@ -31,7 +31,7 @@ G.prototype.Paddle = function( g, isPlayer ) {
 	this.currentCharge = 0;
 	this.spikeRange = 200;
 	this.spikeTarget = 0;
-	this.chargeRate = 0.01;
+	this.chargeRate = 0.0075;//0.01;
 	this.chargeDecay = 0.075;
 	this.lastCharge = 0;
 
@@ -67,16 +67,33 @@ G.prototype.Paddle.prototype.spike = function() {
 		this.isSpiking = true;
 		this.spikeTarget = this.spikeRange * this.currentCharge;
 		this.lastCharge = this.currentCharge;
-		if( this.currentCharge >= 1 ) {
+		/*if( this.currentCharge >= 1 ) {
 			this.g.timescale.triggerSlowMo();
 			this.g.triggerClass( this.g.overlay, 'flash' );
-		}
+		}*/
 		this.g.removeClass( this.elem, 'hit' );
 	}
 };
 
 G.prototype.Paddle.prototype.checkCollisions = function() {
-	if ( this.g.collisionAABB( this.g.ball, this ) ) {
+	var tempRect;
+	if( this.isPlayer ) {
+		tempRect = {
+			x: this.x - 1000,
+			y: this.y,
+			width: this.width + 1000,
+			height: this.height
+		}
+	} else {
+		tempRect = {
+			x: this.x,
+			y: this.y,
+			width: this.width + 1000,
+			height: this.height
+		}
+	}
+
+	if ( this.g.collisionAABB( this.g.ball, tempRect ) ) {
 
 		if ( this.isPlayer && this.g.ball.vx > 0 ) {
 			return;
@@ -86,6 +103,8 @@ G.prototype.Paddle.prototype.checkCollisions = function() {
 			return;
 		}
 
+		this.g.paddleCollision = true;
+
 		var ballAngle,
 			ballSpeed,
 			paddleSpeed,
@@ -94,21 +113,20 @@ G.prototype.Paddle.prototype.checkCollisions = function() {
 		if ( this.isPlayer ) {
 			ballAngle = -Math.PI / 4;
 			ballSpeed = Math.sqrt( this.g.ball.vx * this.g.ball.vx + this.g.ball.vy * this.g.ball.vy );
-			//paddleSpeed = Math.max( 0, Math.abs( this.g.paddlePlayer.vx ) * 2 );
 			if( this.isSpiking ) {
 				pg.soundPlay({
 					name: 'spike-1',
-					volume: this.lastCharge * 0.7,
+					volume: this.lastCharge * 0.8,
 					rate: this.g.rand( 1, 1.6 ) * ( 1 - ( 1 - this.g.timescale.current ) * 0.4 )
 				});
 				pg.soundPlay({
 					name: 'spike-2',
-					volume: this.lastCharge * 0.7,
+					volume: this.lastCharge * 0.8,
 					rate: this.g.rand( 1, 1.6 ) * ( 1 - ( 1 - this.g.timescale.current ) * 0.4 )
 				});
 				pg.soundPlay({
 					name: 'spike-3',
-					volume: this.lastCharge * 0.7,
+					volume: this.lastCharge * 0.8,
 					rate: this.g.rand( 1, 1.6 ) * ( 1 - ( 1 - this.g.timescale.current ) * 0.4 )
 				});
 				if( this.lastCharge >= 1 ) {
@@ -123,12 +141,17 @@ G.prototype.Paddle.prototype.checkCollisions = function() {
 
 			if( this.isSpiking && this.lastCharge >= 1  ) {
 				this.g.ball.wasSpiked = true;
+				//if( this.currentCharge >= 1 ) {
+					this.g.timescale.triggerSlowMo();
+					this.g.triggerClass( this.g.overlay, 'flash' );
+				//}
 			} else {
 				this.g.ball.wasSpiked = false;
 			}
 
 			ballAngle = -Math.PI * 0.35 + ( ( this.g.ball.y + this.g.ball.height - this.y ) / ( this.height + this.g.ball.height ) ) * Math.PI * 0.7;
 
+			this.g.ball.x = this.x + this.width;
 			this.g.ball.vx = Math.cos( ballAngle ) * speed;
 			this.g.ball.vy = Math.sin( ballAngle ) * speed;
 
@@ -178,7 +201,7 @@ G.prototype.Paddle.prototype.checkCollisions = function() {
 			this.g.ball.wasSpiked = false;
 
 			ballAngle = -Math.PI * 0.35 + ( ( this.g.ball.y + this.g.ball.height - this.y ) / ( this.height + this.g.ball.height ) ) * Math.PI * 0.7;
-
+			this.g.ball.x = this.x - this.g.ball.width;
 			this.g.ball.vx = Math.cos( ballAngle ) * -speed;
 			this.g.ball.vy = Math.sin( ballAngle ) * speed;
 
@@ -334,8 +357,8 @@ G.prototype.Paddle.prototype.step = function() {
 	}
 
 	this.x += this.vx * this.g.timescale.getDt();
-	if( this.isCharging ) {
-		this.y += this.vy / 8 * this.g.timescale.getDt();
+	if( this.isCharging && this.currentCharge > 0 && this.currentCharge <= 1 ) {
+		this.y += (this.vy / ( 1 + this.currentCharge * 7 )) * this.g.timescale.getDt();
 	} else {
 		this.y += this.vy * this.g.timescale.getDt();
 	}
@@ -389,7 +412,7 @@ G.prototype.Paddle.prototype.step = function() {
 
 	if( this.isPlayer ) {
 		pg.sound.setVolume( pg.humLoop, this.currentCharge * 0.6 );
-		pg.sound.setPlaybackRate( pg.humLoop, this.currentCharge * 6 );
+		pg.sound.setPlaybackRate( pg.humLoop, this.currentCharge * 5  );
 
 		pg.sound.setVolume( pg.alarmLoop, this.currentCharge * 0.5 );
 		pg.sound.setPlaybackRate( pg.alarmLoop, this.currentCharge * 3 );

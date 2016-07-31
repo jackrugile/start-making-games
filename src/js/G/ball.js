@@ -55,7 +55,6 @@ G.prototype.Ball.prototype.reset = function() {
 
 	this.vx = 0;
 	this.vy = 0;
-	//this.opacity = 0;
 	this.g.paddlePlayer.hasHit = false;
 	this.g.paddleEnemy.hasHit = false;
 };
@@ -133,7 +132,7 @@ G.prototype.Ball.prototype.contain = function() {
 	var hasScored = false;
 
 	// player scored
-	if ( this.x + this.width > this.g.stage.width ) {
+	if ( !this.g.paddleCollision && this.x + this.width > this.g.stage.width ) {
 		hasScored = true;
 		this.g.scorePlayer.setValue( this.g.scorePlayer.value + 1 );
 		this.g.triggerClass( this.g.edgeRight, 'hit' );
@@ -153,7 +152,7 @@ G.prototype.Ball.prototype.contain = function() {
 	}
 
 	// enemy scored
-	if ( this.x < 0 ) {
+	if ( !this.g.paddleCollision && this.x < 0 ) {
 		hasScored = true;
 		this.g.scoreEnemy.setValue( this.g.scoreEnemy.value + 1 );
 		this.g.triggerClass( this.g.edgeLeft, 'hit' );
@@ -209,6 +208,8 @@ G.prototype.Ball.prototype.contain = function() {
 };
 
 G.prototype.Ball.prototype.step = function() {
+	this.contain();
+
 	if ( this.serving ) {
 		if ( this.servingTimer < this.servingTimerMax ) {
 			this.servingTimer++;
@@ -241,6 +242,11 @@ G.prototype.Ball.prototype.step = function() {
 
 			this.ghost.vx *= Math.pow( this.friction, this.g.timescale.getDt() );
 			this.ghost.vy *= Math.pow( this.friction, this.g.timescale.getDt() );
+
+			/*this.vx *= this.friction;
+			this.vy *= this.friction;
+			this.ghost.vx *= this.friction;
+			this.ghost.vy *= this.friction;*/
 		}
 
 		if( Math.random() < 0.5 * this.g.timescale.getDt() ) {
@@ -313,8 +319,6 @@ G.prototype.Ball.prototype.step = function() {
 			}
 		}
 	}
-
-	this.contain();
 };
 
 G.prototype.Ball.prototype.draw = function() {
