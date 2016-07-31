@@ -21,11 +21,11 @@
 		- *** slow down char
 		- *** trigger slow mo
 - 2016-07-29 // Friday
-	- fix friction delta time issue
+	- *** fix friction delta time issue
 	- victory screen
 	- start screen
 - 2016-07-30 // Saturday
-	- explore sound and music, stereo sound, tennis, grunts?
+	- explore sound and music, stereo sound
 	- compile configs, order, and slide intros for juice build
 	- clean up ALL resources in kill method (objects, pools, loop, etc.)
 	- initial content slides - why?
@@ -75,22 +75,11 @@
 - use scale3d insead of scale on both wrap and pong?
 	- this is in place, not sure if it is more performant though. need test environment on laptop and retina
 	- if 3d caused texture, maybe a smaller starting point makes more sense
-- tennis ball sounds?
-	- https://audiojungle.net/user/sound-ideas/portfolio?page=1&term=tennis&utf8=%E2%9C%93
-- grunt sounds?
-	- https://audiojungle.net/item/male-grunts/12294357?s_rank=14
-- match sfx to timescale? maybe not as intense of a drop down
-- charge spike, rumble, particle explosion, and slow mo on mega spike
-	- slow down paddle when charging?
 - if time is running low, ditch the step by step juice/polish and add it all at once
-- make paddle rotate/react to ball hit
-- make score max 3?
 - cuboid issues on firefox
-- make enemy faster and more accurate as points go up?
-- figure out friction issue, real problem for slow mo and ball
-	- use math.pow version on ball or no?
-- add ghost to first serve
-- increase difficulty of ai by foresight and blindess
+- figure out friction issue, use math.pow version on ball or no?
+- prefetch slides? choppy when loading in at first
+- perf mode, fewer particles
 
 ---
 

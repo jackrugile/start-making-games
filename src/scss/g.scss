@@ -4,21 +4,20 @@ Game
 
 ==============================================================================*/
 
-/*html {
-	&:after {
+html {
+	/*&:after {
 		background: linear-gradient( hsla(0, 0%, 0%, 0.25) 50%, transparent 50% );
 		background-size: 100% 4px;
 		bottom: 0;
 		content: '';
 		left: 0;
-		//opacity: 0;
 		pointer-events: none;
 		position: absolute;
 		right: 0;
 		top: 0;
-		z-index: 1000;
-	}
-}*/
+		z-index: 999;
+	}*/
+}
 
 .g-pong,
 .g-pong * {
@@ -170,7 +169,8 @@ Charge
 	bottom: 0;
 	box-shadow: inset -8px 0 0 hsla( 130, 0%, 100%, 1);*/
 
-	background: linear-gradient( 90deg, hsla( 130, 50%, 60%, 0), hsla( 130, 50%, 60%, 0.25) );
+	//background: linear-gradient( 90deg, hsla( 130, 50%, 60%, 0), hsla( 130, 50%, 60%, 0.25) );
+	background: linear-gradient( 90deg, hsla( 130, 100%, 60%, 0), hsla( 130, 100%, 60%, 0.25) );
 	bottom: 0;
 	box-shadow: inset -8px 0 0 hsla( 130, 75%, 60%, 1);
 	left: 0;

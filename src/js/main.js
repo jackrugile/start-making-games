@@ -257,6 +257,22 @@ nextSlideButton.addEventListener( 'click', function( e ) {
 	nextSlide();
 });
 
+slides.forEach( function( elem, i ) {
+	console.log( elem );
+
+	var html = new XMLHttpRequest();
+	html.open('GET', 'slides/' + elem + '/index.html', true);
+	html.send();
+
+	var css = new XMLHttpRequest();
+	css.open('GET', 'slides/' + elem + '/index.css', true);
+	css.send();
+
+	var js = new XMLHttpRequest();
+	js.open('GET', 'slides/' + elem + '/index.js', true);
+	js.send();
+});
+
 /*==============================================================================
 Utility
 ==============================================================================*/
@@ -414,6 +430,7 @@ var pg = playground({
 			'slow-mo-1',
 			'hum-1',
 			'alarm-1',
+			'whoosh-1',
 			'music-1'
 		]);
 	},
@@ -478,10 +495,12 @@ var pg = playground({
 		var name = typeof opt.name === 'undefined' ? null : opt.name;
 		var volume = typeof opt.volume === 'undefined' ? 1 : opt.volume;
 		var rate = typeof opt.rate === 'undefined' ? 1 : opt.rate;
+		var pan = typeof opt.pan === 'undefined' ? 0 : opt.pan;
 		if ( name ) {
 			var sound = pg.playSound( name );
 			pg.sound.setVolume( sound, volume );
 			pg.sound.setPlaybackRate( sound, rate );
+			pg.sound.setPanning( sound, pan );
 		}
 	}
 });

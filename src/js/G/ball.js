@@ -57,6 +57,12 @@ G.prototype.Ball.prototype.reset = function() {
 	this.vy = 0;
 	this.g.paddlePlayer.hasHit = false;
 	this.g.paddleEnemy.hasHit = false;
+
+	pg.soundPlay({
+		name: 'whoosh-1',
+		volume: 1.3,
+		rate: 1 * ( 1 - ( 1 - this.g.timescale.current ) * 0.4 )
+	});
 };
 
 G.prototype.Ball.prototype.contain = function() {
@@ -141,7 +147,7 @@ G.prototype.Ball.prototype.contain = function() {
 		this.g.enemyForesight += this.g.config.enemy.foresightInc;
 		pg.soundPlay({
 			name: 'score-player-2',
-			volume: 0.8,
+			volume: 0.9,
 			rate: 1 * ( 1 - ( 1 - this.g.timescale.current ) * 0.4 )
 			//rate: 2 * ( 1 - ( 1 - this.g.timescale.current ) * 0.4 )
 		});
@@ -222,7 +228,7 @@ G.prototype.Ball.prototype.step = function() {
 			this.servingTimer = 0;
 			this.vx = this.speed;
 			this.vy = this.speed;
-			
+
 			this.ghost.x = this.x;
 			this.ghost.y = this.y;
 			this.ghost.vx = this.speed * this.g.enemyForesight;

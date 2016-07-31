@@ -40,6 +40,12 @@ var G = function( opt ) {
 	// restart music
 	pg.startMusic();
 
+	// screenshake
+	this.screenshake = new this.Screenshake( this );
+
+	// time / time scaling / timescale
+	this.timescale = new this.Timescale( this );
+
 	// level / stage / world
 	this.stage = new this.Stage( this );
 
@@ -60,12 +66,6 @@ var G = function( opt ) {
 	// score / scoring
 	this.scorePlayer = new this.Score( this, true );
 	this.scoreEnemy = new this.Score( this, false );
-
-	// screenshake
-	this.screenshake = new this.Screenshake( this );
-
-	// time / time scaling / timescale
-	this.timescale = new this.Timescale( this );
 
 	// overlay
 	this.overlay = document.querySelector( '.g-overlay' );
