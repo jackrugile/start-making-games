@@ -5,6 +5,8 @@ Creation
 ==============================================================================*/
 
 var G = function( opt ) {
+	this.opt = opt;
+
 	// configuration
 	this.config = {
 		paddle: {
@@ -150,7 +152,9 @@ G.prototype.step = function() {
 	this.paddlePlayer.step();
 	this.paddleEnemy.step();
 	this.ball.step();
-	this.screenshake.step();
+	if( this.opt.screenshake ) {
+		this.screenshake.step();
+	}
 	this.timescale.step();
 	this.particlesWhite.each( 'step' );
 	this.particlesGreen.each( 'step' );
@@ -213,6 +217,23 @@ G.prototype.kill = function() {
 	this.scoreEnemy = null;
 	this.screenshake = null;
 	this.timescale = null;
+	this.overlay = null;
+	this.edgeTop = null;
+	this.edgeRight = null;
+	this.edgeBot = null;
+	this.edgeLeft = null;
+	this.particlesWhite.kill();
+	this.particlesWhite = null;
+	this.particlesGreen.kill();
+	this.particlesGreen = null;
+	this.particlesBlue.kill();
+	this.particlesBlue = null;
+	this.pulsesWhite.kill();
+	this.pulsesWhite = null;
+	this.pulsesGreen.kill();
+	this.pulsesGreen = null;
+	this.pulsesBlue.kill();
+	this.pulsesBlue = null;
 	this.unpause();
 	this.removeEventListeners();
 };

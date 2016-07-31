@@ -25,9 +25,9 @@
 	- victory screen
 	- start screen
 - 2016-07-30 // Saturday
-	- explore sound and music, stereo sound
+	- *** explore sound and music, stereo sound
 	- compile configs, order, and slide intros for juice build
-	- clean up ALL resources in kill method (objects, pools, loop, etc.)
+	- *** clean up ALL resources in kill method (objects, pools, loop, etc.)
 	- initial content slides - why?
 	- intro of build slides (explanations)
 - 2016-07-31 // Sunday

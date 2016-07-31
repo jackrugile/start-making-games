@@ -289,8 +289,8 @@ G.prototype.Paddle.prototype.checkCollisions = function() {
 		pg.soundPlay({
 			name: 'paddle-1',
 			volume: 0.7,
-			rate: this.g.rand( 1.2, 1.8 ) * ( 1 - ( 1 - this.g.timescale.current ) * 0.4 ),
-			pan: this.isPlayer ? -1 : 1
+			rate: this.g.rand( 1.2, 1.8 ) * ( 1 - ( 1 - this.g.timescale.current ) * 0.4 )
+			//pan: this.isPlayer ? -1 : 1
 		});
 
 		if( this.isPlayer ) {

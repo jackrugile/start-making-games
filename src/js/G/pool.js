@@ -63,3 +63,10 @@ G.prototype.Pool.prototype.each = function( action, asc ) {
 		this.alive[ i ][ action ]( i );
 	}
 };
+
+G.prototype.Pool.prototype.kill = function() {
+	this.alive.length = 0;
+	this.alive = null;
+	this.dead.lengh = 0;
+	this.dead = null;
+};

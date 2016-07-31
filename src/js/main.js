@@ -258,8 +258,6 @@ nextSlideButton.addEventListener( 'click', function( e ) {
 });
 
 slides.forEach( function( elem, i ) {
-	console.log( elem );
-
 	var html = new XMLHttpRequest();
 	html.open('GET', 'slides/' + elem + '/index.html', true);
 	html.send();
@@ -272,18 +270,6 @@ slides.forEach( function( elem, i ) {
 	js.open('GET', 'slides/' + elem + '/index.js', true);
 	js.send();
 });
-
-/*==============================================================================
-Utility
-==============================================================================*/
-
-/*function rand( min, max ) {
-	return Math.random() * ( max - min ) + min;
-}
-
-function randInt( min, max ) {
-	return Math.floor( min + Math.random() * ( max - min + 1 ) );
-}*/
 
 /*==============================================================================
 Playground Gamepad
