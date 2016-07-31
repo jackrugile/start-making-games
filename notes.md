@@ -28,7 +28,7 @@
 - 2016-07-31 // Sunday
 	- victory screen
 	- start screen
-	- 5 block indicator for score
+	- *** 5 block indicator for score
 	- compile configs, order, and slide intros for juice build
 	- initial content slides - why?
 	- intro of build slides (explanations)

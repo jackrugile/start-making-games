@@ -311,10 +311,10 @@ Score
 }
 
 .g-score-text {
-	position: static;
+	position: relative;
 }
 
-.g-score:after {
+/*.g-score-text:after {
 	color: transparent;
 	content: attr(data-score);
 	display: none;
@@ -327,7 +327,7 @@ Score
 		display: block;
 		transform: translateZ(120px);
 	}
-}
+}*/
 
 .g-score-bullets {
 	left: 160%;
@@ -345,6 +345,7 @@ Score
 	margin-bottom: 6px;
 	opacity: 0.25;
 	position: static;
+	transform: translateZ( 0 ) scaleX( 1 );
 	transition-duration: 400ms;
 	transition-property: opacity, transform;
 	width: 8px;
@@ -377,18 +378,20 @@ Score
 .g-score[data-score="5"] .g-score-bullet:nth-child( 2 ),
 .g-score[data-score="5"] .g-score-bullet:nth-child( 1 ) {
 	opacity: 1;
-	transform: scaleX( 4 );
+	transform: translateZ( 0 ) scaleX( 4 );
 	transition-timing-function: $easeOutBack;
 }
 
 .g-score-player {
 	color: hsl(130, 100%, 60%);
 	left: 790px;
+	//left: 180px;
 }
 
 .g-score-enemy {
 	color: hsl(200, 100%, 60%);
 	right: 790px;
+	//right: 180px;
 }
 
 /*==============================================================================
