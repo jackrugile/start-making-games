@@ -289,7 +289,7 @@ G.prototype.Paddle.prototype.checkCollisions = function() {
 		pg.soundPlay({
 			name: 'paddle-1',
 			volume: 0.7,
-			rate: this.g.rand( 1, 1.6 ) * ( 1 - ( 1 - this.g.timescale.current ) * 0.4 )
+			rate: this.g.rand( 1.2, 1.8 ) * ( 1 - ( 1 - this.g.timescale.current ) * 0.4 )
 		});
 
 		if( this.isPlayer ) {
@@ -297,8 +297,11 @@ G.prototype.Paddle.prototype.checkCollisions = function() {
 			this.g.ball.ghost.x = this.g.ball.x;
 			this.g.ball.ghost.y = this.g.ball.y;
 
-			this.g.ball.ghost.vx = Math.cos( ballAngle ) * ( speed * 2 );
-			this.g.ball.ghost.vy = Math.sin( ballAngle ) * ( speed * 2 );
+			// this.g.ball.ghost.vx = Math.cos( ballAngle ) * ( speed * 2 );
+			// this.g.ball.ghost.vy = Math.sin( ballAngle ) * ( speed * 2 );
+
+			this.g.ball.ghost.vx = Math.cos( ballAngle ) * ( speed * this.g.enemyForesight );
+			this.g.ball.ghost.vy = Math.sin( ballAngle ) * ( speed * this.g.enemyForesight );
 		} else {
 			this.g.ball.ghost.active = false;
 		}
@@ -307,7 +310,8 @@ G.prototype.Paddle.prototype.checkCollisions = function() {
 
 G.prototype.Paddle.prototype.step = function() {
 	if ( this.isEnemy ) {
-		if ( !this.hasHit || Math.random() < 0.4 ) {
+		//if ( !this.hasHit || Math.random() < 0.2 ) {
+		if ( !this.hasHit || Math.random() < this.g.enemyBlind ) {
 			this.moveUp = false;
 			this.moveDown = false;
 			if ( this.g.ball.ghost.active ) {

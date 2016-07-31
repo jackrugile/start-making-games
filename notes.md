@@ -89,6 +89,8 @@
 - make enemy faster and more accurate as points go up?
 - figure out friction issue, real problem for slow mo and ball
 	- use math.pow version on ball or no?
+- add ghost to first serve
+- increase difficulty of ai by foresight and blindess
 
 ---
 

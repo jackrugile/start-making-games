@@ -16,7 +16,7 @@ G.prototype.Ball = function( g ) {
 	this.speed = this.g.config.ball.speed;
 	this.vx = 0;
 	this.vy = 0;
-	this.friction = 0.9;
+	this.friction = 0.92;
 	this.width = this.g.config.ball.width;
 	this.height = this.g.config.ball.height;
 	this.rotation = Math.PI / 4;
@@ -137,10 +137,13 @@ G.prototype.Ball.prototype.contain = function() {
 		this.g.scorePlayer.setValue( this.g.scorePlayer.value + 1 );
 		this.g.triggerClass( this.g.edgeRight, 'hit' );
 		this.g.triggerClass( this.g.scorePlayer.elem, 'scored' );
+		this.g.enemyBlind += this.g.config.enemy.blindInc;
+		this.g.enemyForesight += this.g.config.enemy.foresightInc;
 		pg.soundPlay({
-			name: 'score-player-1',
-			volume: 0.3,
-			rate: 2 * ( 1 - ( 1 - this.g.timescale.current ) * 0.4 )
+			name: 'score-player-2',
+			volume: 0.8,
+			rate: 1 * ( 1 - ( 1 - this.g.timescale.current ) * 0.4 )
+			//rate: 2 * ( 1 - ( 1 - this.g.timescale.current ) * 0.4 )
 		});
 	}
 
@@ -158,9 +161,10 @@ G.prototype.Ball.prototype.contain = function() {
 		this.g.triggerClass( this.g.edgeLeft, 'hit' );
 		this.g.triggerClass( this.g.scoreEnemy.elem, 'scored' );
 		pg.soundPlay({
-			name: 'score-enemy-1',
-			volume: 0.7,
+			name: 'score-enemy-2',
+			volume: 0.5,
 			rate: 1 * ( 1 - ( 1 - this.g.timescale.current ) * 0.4 )
+			//rate: 1 * ( 1 - ( 1 - this.g.timescale.current ) * 0.4 )
 		});
 	}
 
@@ -218,6 +222,12 @@ G.prototype.Ball.prototype.step = function() {
 			this.servingTimer = 0;
 			this.vx = this.speed;
 			this.vy = this.speed;
+			
+			this.ghost.x = this.x;
+			this.ghost.y = this.y;
+			this.ghost.vx = this.speed * this.g.enemyForesight;
+			this.ghost.vy = this.speed * this.g.enemyForesight;
+			this.ghost.active = true;
 		}
 		this.rotation = Math.PI / 4;
 	} else {
@@ -278,7 +288,7 @@ G.prototype.Ball.prototype.step = function() {
 			}
 		}
 
-		if( Math.random() < 0.5 * this.g.timescale.getDt() ) {
+		if( Math.random() < 0.6 * this.g.timescale.getDt() ) {
 			var size = this.g.rand( 10, 20 );
 			if( this.wasSpiked ) {
 				this.g.particlesGreen.create({
@@ -327,8 +337,8 @@ G.prototype.Ball.prototype.draw = function() {
 		transform: 'translate3d(' + this.x + 'px, ' + this.y + 'px, ' + this.z + 'px) rotateZ(' + this.rotation + 'rad)'
 	});
 
-	/*this.g.css( this.ghost.elem, {
+	this.g.css( this.ghost.elem, {
 		opacity: this.ghost.active ? 0.5 : 0,
 		transform: 'translate3d(' + this.ghost.x + 'px, ' + this.ghost.y + 'px, ' + this.ghost.z + 'px) rotateZ(' + this.ghost.rotation + 'rad)'
-	});*/
+	});
 };

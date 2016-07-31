@@ -12,11 +12,17 @@ var G = function( opt ) {
 			height: 240,
 			speed: 16
 		},
+		enemy: {
+			blindStart: 0.2,
+			blindInc: 0.1,
+			foresightStart: 1.2,
+			foresightInc: 0.2
+		},
 		ball: {
 			width: 60,
 			height: 60,
 			speed: 24,
-			inc: 1
+			inc: 1.25
 		},
 		score: {
 			max: 5
@@ -42,6 +48,8 @@ var G = function( opt ) {
 
 	// paddle enemy
 	this.paddleEnemy = new this.Paddle( this, false );
+	this.enemyBlind = this.config.enemy.blindStart;
+	this.enemyForesight = this.config.enemy.foresightStart;
 
 	// paddle collision
 	this.paddleCollision = false;
@@ -102,6 +110,8 @@ Reset
 G.prototype.reset = function() {
 	this.scorePlayer.setValue( 0 );
 	this.scoreEnemy.setValue( 0 );
+	this.enemyBlind = this.config.enemy.blindStart;
+	this.enemyForesight = this.config.enemy.foresightStart;
 	this.ball.speed = this.config.ball.speed;
 	this.ball.reset();
 };
@@ -129,7 +139,9 @@ Step / Update
 ==============================================================================*/
 
 G.prototype.step = function() {
-	pg.music.setMaster( this.timescale.current );
+	if( !this.muted ) {
+		pg.music.setMaster( this.timescale.current );
+	}
 
 	this.stage.step();
 	if( this.paused ) {

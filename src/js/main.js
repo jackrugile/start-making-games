@@ -405,13 +405,15 @@ var pg = playground({
 			'paddle-1',
 			'wall-1',
 			'score-player-1',
+			'score-player-2',
 			'score-enemy-1',
+			'score-enemy-2',
 			'spike-1',
 			'spike-2',
 			'spike-3',
 			'slow-mo-1',
 			'hum-1',
-			'alarm-3',
+			'alarm-1',
 			'music-1'
 		]);
 	},
@@ -435,7 +437,7 @@ var pg = playground({
 		this.sound.setVolume( this.humLoop, 0 );
 		this.sound.setPlaybackRate( this.humLoop, 1 );
 
-		this.alarmLoop = this.playSound( 'alarm-3', true );
+		this.alarmLoop = this.playSound( 'alarm-1', true );
 		this.sound.setVolume( this.alarmLoop, 0 );
 		this.sound.setPlaybackRate( this.alarmLoop, 1 );
 
@@ -455,7 +457,7 @@ var pg = playground({
 	},
 	startMusic: function() {
 		this.song = this.music.play( 'music-1', true );
-		this.music.setVolume( this.song, 0.4 );
+		this.music.setVolume( this.song, 0.3 );
 	},
 	stopMusic: function() {
 		this.music.fadeOut( this.song );
