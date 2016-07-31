@@ -40,7 +40,9 @@ var G = function( opt ) {
 	this.pausedEndTime = null;
 
 	// restart music
-	pg.startMusic();
+	if( this.opt.music ) {
+		pg.startMusic();
+	}
 
 	// screenshake
 	this.screenshake = new this.Screenshake( this );
@@ -70,23 +72,31 @@ var G = function( opt ) {
 	this.scoreEnemy = new this.Score( this, false );
 
 	// overlay
-	this.overlay = document.querySelector( '.g-overlay' );
+	if( this.opt.reaction ) {
+		this.overlay = document.querySelector( '.g-overlay' );
+	}
 
 	// edges
-	this.edgeTop = document.querySelector( '.g-edge-top' );
-	this.edgeRight = document.querySelector( '.g-edge-right' );
-	this.edgeBot = document.querySelector( '.g-edge-bot' );
-	this.edgeLeft = document.querySelector( '.g-edge-left' );
+	if( this.opt.reaction ) {
+		this.edgeTop = document.querySelector( '.g-edge-top' );
+		this.edgeRight = document.querySelector( '.g-edge-right' );
+		this.edgeBot = document.querySelector( '.g-edge-bot' );
+		this.edgeLeft = document.querySelector( '.g-edge-left' );
+	}
 
 	// particles
-	this.particlesWhite = new this.Pool( this, this.ParticleWhite, 30 );
-	this.particlesGreen = new this.Pool( this, this.ParticleGreen, 30 );
-	this.particlesBlue = new this.Pool( this, this.ParticleBlue, 30 );
+	if( this.opt.particles ) {
+		this.particlesWhite = new this.Pool( this, this.ParticleWhite, 30 );
+		this.particlesGreen = new this.Pool( this, this.ParticleGreen, 30 );
+		this.particlesBlue = new this.Pool( this, this.ParticleBlue, 30 );
+	}
 
 	// pulses
-	this.pulsesWhite = new this.Pool( this, this.PulseWhite, 30 );
-	this.pulsesGreen = new this.Pool( this, this.PulseGreen, 30 );
-	this.pulsesBlue = new this.Pool( this, this.PulseBlue, 30 );
+	if( this.opt.particles ) {
+		this.pulsesWhite = new this.Pool( this, this.PulseWhite, 30 );
+		this.pulsesGreen = new this.Pool( this, this.PulseGreen, 30 );
+		this.pulsesBlue = new this.Pool( this, this.PulseBlue, 30 );
+	}
 
 	// initialize on creation
 	this.init();
@@ -145,7 +155,9 @@ G.prototype.step = function() {
 		pg.music.setMaster( this.timescale.current );
 	}
 
-	this.stage.step();
+	if( this.opt.move3d ) {
+		this.stage.step();
+	}
 	if( this.paused ) {
 		return;
 	}
@@ -156,12 +168,14 @@ G.prototype.step = function() {
 		this.screenshake.step();
 	}
 	this.timescale.step();
-	this.particlesWhite.each( 'step' );
-	this.particlesGreen.each( 'step' );
-	this.particlesBlue.each( 'step' );
-	this.pulsesWhite.each( 'step' );
-	this.pulsesGreen.each( 'step' );
-	this.pulsesBlue.each( 'step' );
+	if( this.opt.particles ) {
+		this.particlesWhite.each( 'step' );
+		this.particlesGreen.each( 'step' );
+		this.particlesBlue.each( 'step' );
+		this.pulsesWhite.each( 'step' );
+		this.pulsesGreen.each( 'step' );
+		this.pulsesBlue.each( 'step' );
+	}
 	this.checkWinState();
 	this.paddleCollision = false;
 };
@@ -179,12 +193,14 @@ G.prototype.draw = function() {
 	this.ball.draw();
 	this.scorePlayer.draw();
 	this.scoreEnemy.draw();
-	this.particlesWhite.each( 'draw' );
-	this.particlesGreen.each( 'draw' );
-	this.particlesBlue.each( 'draw' );
-	this.pulsesWhite.each( 'draw' );
-	this.pulsesGreen.each( 'draw' );
-	this.pulsesBlue.each( 'draw' );
+	if( this.opt.particles ) {
+		this.particlesWhite.each( 'draw' );
+		this.particlesGreen.each( 'draw' );
+		this.particlesBlue.each( 'draw' );
+		this.pulsesWhite.each( 'draw' );
+		this.pulsesGreen.each( 'draw' );
+		this.pulsesBlue.each( 'draw' );
+	}
 };
 
 /*==============================================================================
@@ -207,7 +223,9 @@ Kill / Destroy
 
 G.prototype.kill = function() {
 	cancelAnimationFrame( this.raf );
-	pg.stopMusic();
+	if( this.opt.music ) {
+		pg.stopMusic();
+	}
 	this.config = null;
 	this.stage = null;
 	this.ball = null;
@@ -222,18 +240,20 @@ G.prototype.kill = function() {
 	this.edgeRight = null;
 	this.edgeBot = null;
 	this.edgeLeft = null;
-	this.particlesWhite.kill();
-	this.particlesWhite = null;
-	this.particlesGreen.kill();
-	this.particlesGreen = null;
-	this.particlesBlue.kill();
-	this.particlesBlue = null;
-	this.pulsesWhite.kill();
-	this.pulsesWhite = null;
-	this.pulsesGreen.kill();
-	this.pulsesGreen = null;
-	this.pulsesBlue.kill();
-	this.pulsesBlue = null;
+	if( this.opt.particles ) {
+		this.particlesWhite.kill();
+		this.particlesWhite = null;
+		this.particlesGreen.kill();
+		this.particlesGreen = null;
+		this.particlesBlue.kill();
+		this.particlesBlue = null;
+		this.pulsesWhite.kill();
+		this.pulsesWhite = null;
+		this.pulsesGreen.kill();
+		this.pulsesGreen = null;
+		this.pulsesBlue.kill();
+		this.pulsesBlue = null;
+	}
 	this.unpause();
 	this.removeEventListeners();
 };
