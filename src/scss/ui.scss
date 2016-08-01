@@ -10,8 +10,8 @@ UI
 	overflow: hidden;
 	position: absolute;
 	right: 0;
-	transition-duration: 300ms;
-	transition-property: opacity, transform;
+	//transition-duration: 300ms;
+	//transition-property: opacity, transform;
 	z-index: 100;
 	.zoom & {
 		opacity: 0;

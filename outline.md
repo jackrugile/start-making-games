@@ -67,7 +67,10 @@
 
 ## III: Let's Make it Better!
 
-
+- explain
+	- code not shown
+	- each addition could be it's own talk
+	- meant to inspire
 
 - three types of enhancements
 	- user interface

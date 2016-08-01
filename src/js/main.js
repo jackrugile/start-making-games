@@ -105,6 +105,11 @@ var slideWrap = document.querySelector( '.slide-wrap' ),
 	slideScaleTimeout;
 
 function applyScale() {
+	slide.style.transform = 'scale(1)';
+	slideBcr = slide.getBoundingClientRect();
+	slideWidth = slideBcr.width;
+	slideHeight = slideBcr.height;
+	slideRatio = slideHeight / slideWidth;
 	if( slideWrap.offsetWidth > slideWrap.offsetHeight / slideRatio ) {
 		slideScale = slideWrap.offsetHeight / slideRatio / slideWidth;
 	} else {
@@ -337,25 +342,6 @@ var controlDownDownEvent = new Event( 'controlDownDown' ),
 		down: document.querySelector( '.dir-down' ),
 		left: document.querySelector( '.dir-left' )
 	};
-
-/*
-up
-right
-down
-left
-y
-b
-a
-x
-
-
-make this more dry
-
-separate dir stuff
-
-
-*/
-
 /*==============================================================================
 Playground General
 ==============================================================================*/

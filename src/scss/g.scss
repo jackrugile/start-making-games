@@ -429,7 +429,7 @@ Ball
 	width: 60px;
 	z-index: 2;
 	&.g-ball-ghost {
-		background: hsl(30, 100%, 60%);
+		background: hsl(0, 100%, 60%);
 		opacity: 0;
 	}
 }
@@ -464,7 +464,7 @@ Ball
 .g-ball-panel-top:after {
 	background: hsla(0, 0%, 100%, 1);
 	.g-ball-ghost & {
-		background: hsl(30, 100%, 70%);
+		background: hsl(0, 100%, 70%);
 	}
 }
 

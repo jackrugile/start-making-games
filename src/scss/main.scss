@@ -151,8 +151,12 @@ body {
 	position: absolute;
 	right: 7vw;
 	top: 7vh;
-	transition-duration: 1200ms, 1200ms, 1200ms, 300ms, 300ms, 300ms, 300ms;
-	transition-property: opacity, transform, -webkit-transform, bottom, left, right, top;
+	//transition-duration: 1200ms, 1200ms, 1200ms, 300ms, 300ms, 300ms, 300ms;
+	//transition-property: opacity, transform, -webkit-transform, bottom, left, right, top;
+	//transition-timing-function: $easeOutExpo;
+
+	transition-duration: 1200ms;
+	transition-property: opacity, transform;
 	transition-timing-function: $easeOutExpo;
 	z-index: 25;
 	.loading & {
@@ -166,10 +170,10 @@ body {
 		transform: translateX( 2% );
 	}
 	.zoom & {
-		bottom: 3vh;
-		left: 3vw;
-		right: 3vw;
-		top: 3vh;
+		bottom: 6vh;
+		left: 6vw;
+		right: 6vw;
+		top: 6vh;
 	}
 }
 
@@ -183,7 +187,7 @@ body {
 	opacity: 1;
 	position: absolute;
 	top: 50%;
-	transition: background 300ms, transform 300ms;
+	//transition: background 300ms, transform 300ms;
 	width: $width;
 	//will-change: transform;
 	.dev &:hover {

@@ -39,7 +39,7 @@
 }
 
 .aabb-rect-1 {
-	animation: rect-highlight 12000ms infinite;
+	animation: rect-highlight 10000ms infinite;
 	opacity: 0.05;
 	transform: scale( 0.75 );
 }
@@ -66,7 +66,7 @@
 }
 
 .aabb-rect-1-b {
-	animation-delay: 3000ms;
+	animation-delay: 2500ms;
 	border-color: hsl(200, 100%, 60%);
 	color: hsl(200, 100%, 60%);
 	left: 150%;
@@ -74,7 +74,7 @@
 }
 
 .aabb-rect-1-c {
-	animation-delay: 6000ms;
+	animation-delay: 5000ms;
 	border-color: hsl(330, 100%, 60%);
 	color: hsl(330, 100%, 60%);
 	left: 0;
@@ -82,7 +82,7 @@
 }
 
 .aabb-rect-1-d {
-	animation-delay: 9000ms;
+	animation-delay: 7500ms;
 	border-color: hsl(40, 100%, 60%);
 	color: hsl(40, 100%, 60%);
 	left: -150%;
@@ -103,7 +103,7 @@
 }
 
 .aabb-condition {
-	animation: condition-highlight 12000ms infinite;
+	animation: condition-highlight 10000ms infinite;
 	font-size: 4.5em;
 	margin: 0 0 2rem;
 	opacity: 0.1;
@@ -121,9 +121,9 @@
 }
 
 .aabb-condition-a { animation-delay: 0ms; }
-.aabb-condition-b { animation-delay: 3000ms; }
-.aabb-condition-c { animation-delay: 6000ms; }
-.aabb-condition-d { animation-delay: 9000ms; }
+.aabb-condition-b { animation-delay: 2500ms; }
+.aabb-condition-c { animation-delay: 5000ms; }
+.aabb-condition-d { animation-delay: 7500ms; }
 
 .aabb-condition-a strong { color: hsl(130, 100%, 60%); }
 .aabb-condition-b strong { color: hsl(200, 100%, 60%); }
