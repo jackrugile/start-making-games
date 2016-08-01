@@ -10,7 +10,7 @@ game = new G({
 	/*[x]*/ screenshake: false, // screenshake!
 	/*[x]*/ sound: false, // audio sfx
 	/*[ ]*/ spike: false, // spike move with charge and slow motion
-	/*[x]*/ spin: false, // rotate ball based on speed and animate in on start
+	/*[x]*/ spin: true, // rotate ball based on speed and animate in on start
 	/*[ ]*/ trajectory: false // bounce ball off paddle bases on position
 });
 

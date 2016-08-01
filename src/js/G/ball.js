@@ -20,7 +20,7 @@ G.prototype.Ball = function( g ) {
 	this.width = this.g.config.ball.width;
 	this.height = this.g.config.ball.height;
 	this.rotation = this.g.opt.spin ? Math.PI / 4 : 0;
-	this.opacity = 1;
+	this.opacity = 0;
 	this.wasSpiked = false;
 
 	this.ghost = {
@@ -34,14 +34,12 @@ G.prototype.Ball = function( g ) {
 		active: false
 	}
 
-	this.reset();
+	//this.reset();
 };
 
 G.prototype.Ball.prototype.reset = function() {
 	this.serving = true;
-	
 	this.ghost.active = false;
-	
 	
 	this.x = this.g.stage.width / 2 - this.width / 2;
 	if( this.g.opt.spin ) {
@@ -238,14 +236,16 @@ G.prototype.Ball.prototype.contain = function() {
 			});
 		}
 
-		this.reset();
+		//if( this.g.scorePlayer.value < this.g.config.score.max && this.g.scoreEnemy.value < this.g.config.score.max  ) {
+			this.reset();
+		//}
 	}
 };
 
 G.prototype.Ball.prototype.step = function() {
 	this.contain();
 
-	if ( this.serving ) {
+	if ( this.serving && !this.g.done ) {
 		if ( this.servingTimer < this.servingTimerMax ) {
 			this.servingTimer++;
 		} else {

@@ -26,8 +26,8 @@
 	- *** explore sound and music, stereo sound
 	- *** clean up ALL resources in kill method (objects, pools, loop, etc.)
 - 2016-07-31 // Sunday
-	- victory screen
-	- start screen
+	- results screen
+	- menu screen
 	- *** 5 block indicator for score
 	- compile configs, order, and slide intros for juice build
 	- initial content slides - why?

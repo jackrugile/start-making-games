@@ -38,6 +38,27 @@ var G = function( opt ) {
 	this.pausedTime = 0;
 	this.pausedStartTime = null;
 	this.pausedEndTime = null;
+	this.state = 'menu';
+
+	// done
+	this.done = false;
+	this.doneExitTick = 0;
+	this.doneExitTickMax = 60;
+
+	// menu state
+	this.menu = document.querySelector( '.g-menu' );
+	this.menuExit = false;
+	this.menuExitTick = 0;
+	this.menuExitTickMax = 60;
+
+	// result state
+	this.result = document.querySelector( '.g-result' );
+	this.resultText = document.querySelector( '.g-result-text' );
+	this.resultPlayer = document.querySelector( '.g-result-player' );
+	this.resultEnemy = document.querySelector( '.g-result-enemy' );
+	this.resultMessage = '';;
+	this.resultExitTick = 0;
+	this.resultExitTickMax = 180;
 
 	// restart music
 	if( this.opt.music ) {
@@ -73,6 +94,8 @@ var G = function( opt ) {
 	// score / scoring
 	this.scorePlayer = new this.Score( this, true );
 	this.scoreEnemy = new this.Score( this, false );
+	//this.scorePlayerLast = 0;
+	//this.scoreEnemyLast = 0;
 
 	// overlay
 	if( this.opt.reaction ) {
@@ -118,17 +141,60 @@ G.prototype.init = function() {
 
 /*==============================================================================
 
+Menu
+
+==============================================================================*/
+
+G.prototype.showMenu = function() {
+	this.removeClass( this.menu, 'hidden' );
+};
+
+G.prototype.hideMenu = function() {
+	this.addClass( this.menu, 'hidden' );
+};
+
+/*==============================================================================
+
+Result
+
+==============================================================================*/
+
+G.prototype.showResult = function() {
+	this.text( this.resultText, this.resultMessage );
+	this.text( this.resultPlayer, this.scorePlayer.value );
+	this.text( this.resultEnemy, this.scoreEnemy.value );
+	this.removeClass( this.result, 'hidden' );
+};
+
+G.prototype.hideResult = function() {
+	this.addClass( this.result, 'hidden' );
+};
+
+/*==============================================================================
+
+Play
+
+==============================================================================*/
+
+G.prototype.play = function() {
+	this.menuExit = true;
+	this.hideMenu();
+};
+
+/*==============================================================================
+
 Reset
 
 ==============================================================================*/
 
 G.prototype.reset = function() {
 	this.scorePlayer.setValue( 0 );
-	this.scoreEnemy.setValue( 0 );
+	this.scoreEnemy.setValue( 4 );
 	this.enemyBlind = this.config.enemy.blindStart;
 	this.enemyForesight = this.config.enemy.foresightStart;
 	this.ball.speed = this.config.ball.speed;
 	this.ball.reset();
+	this.done = false;
 };
 
 /*==============================================================================
@@ -138,12 +204,27 @@ Check Win State
 ==============================================================================*/
 
 G.prototype.checkWinState = function() {
-	if ( this.scorePlayer.value >= this.config.score.max ) {
-		console.log( 'You Won!' );
-		this.reset();
-	} else if ( this.scoreEnemy.value >= this.config.score.max  ) {
-		console.log( 'You Lost!' );
-		this.reset();
+	if( this.done ) {
+		if( this.doneExitTick < this.doneExitTickMax ) {
+			this.doneExitTick++;
+		} else {
+			this.showResult();
+			this.state = 'result';
+		}
+	} else {
+		if ( this.scorePlayer.value >= this.config.score.max ) {
+			//console.log( 'You Won!' );
+			this.done = true;
+			this.resultMessage = 'You Won!';
+			//this.scorePlayerLast = this.scorePlayer.value;
+			//this.scoreEnemyLast = this.scoreEnemy.value;
+			//this.reset();
+		} else if ( this.scoreEnemy.value >= this.config.score.max  ) {
+			//console.log( 'You Lost!' );
+			this.done = true;
+			this.resultMessage = 'You Lost';
+			//this.reset();
+		}
 	}
 };
 
@@ -164,23 +245,37 @@ G.prototype.step = function() {
 	if( this.paused ) {
 		return;
 	}
-	this.paddlePlayer.step();
-	this.paddleEnemy.step();
-	this.ball.step();
-	if( this.opt.screenshake ) {
-		this.screenshake.step();
+
+	if( this.state === 'play' ) {
+		this.paddlePlayer.step();
+		this.paddleEnemy.step();
+		this.ball.step();
+		if( this.opt.screenshake ) {
+			this.screenshake.step();
+		}
+		this.timescale.step();
+		if( this.opt.particles ) {
+			this.particlesWhite.each( 'step' );
+			this.particlesGreen.each( 'step' );
+			this.particlesBlue.each( 'step' );
+			this.pulsesWhite.each( 'step' );
+			this.pulsesGreen.each( 'step' );
+			this.pulsesBlue.each( 'step' );
+		}
+		this.checkWinState();
+		this.paddleCollision = false;
 	}
-	this.timescale.step();
-	if( this.opt.particles ) {
-		this.particlesWhite.each( 'step' );
-		this.particlesGreen.each( 'step' );
-		this.particlesBlue.each( 'step' );
-		this.pulsesWhite.each( 'step' );
-		this.pulsesGreen.each( 'step' );
-		this.pulsesBlue.each( 'step' );
+
+	if( this.menuExit ) {
+		if( this.menuExitTick < this.menuExitTickMax ) {
+			this.menuExitTick++;
+		} else {
+			this.menuExit = false;
+			this.menuExitTick = 0;
+			this.state = 'play';
+			this.reset();
+		}
 	}
-	this.checkWinState();
-	this.paddleCollision = false;
 };
 
 /*==============================================================================

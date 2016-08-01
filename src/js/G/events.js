@@ -48,14 +48,23 @@ G.prototype.removeEventListeners = function() {
 
 G.prototype.onControlUpDown = function() {
 	this.paddlePlayer.moveUp = true;
+	if( this.state === 'menu' ) {
+		this.play();
+	}
 };
 
 G.prototype.onControlDownDown = function() {
 	this.paddlePlayer.moveDown = true;
+	if( this.state === 'menu' ) {
+		this.play();
+	}
 };
 
 G.prototype.onControlSpikeDown = function() {
 	this.paddlePlayer.isCharging = true;
+	if( this.state === 'menu' ) {
+		this.play();
+	}
 };
 
 G.prototype.onControlUpUp = function() {

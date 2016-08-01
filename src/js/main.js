@@ -337,9 +337,7 @@ Playground General
 
 var pg = playground({
 	mousemove: function( e ) {
-		if( this.mouseIdle ) {
-			document.documentElement.classList.remove( 'mouse-idle' );
-		}
+		document.documentElement.classList.remove( 'mouse-idle' );
 		this.mouseIdle = false;
 		this.mouseIdleTick = this.mouseIdleTickMax;
 	},
