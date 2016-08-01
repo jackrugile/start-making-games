@@ -56,7 +56,7 @@ var G = function( opt ) {
 	this.resultText = document.querySelector( '.g-result-text' );
 	this.resultPlayer = document.querySelector( '.g-result-player' );
 	this.resultEnemy = document.querySelector( '.g-result-enemy' );
-	this.resultMessage = '';;
+	this.resultMessage = '';
 	this.resultExitTick = 0;
 	this.resultExitTickMax = 180;
 
@@ -94,8 +94,6 @@ var G = function( opt ) {
 	// score / scoring
 	this.scorePlayer = new this.Score( this, true );
 	this.scoreEnemy = new this.Score( this, false );
-	//this.scorePlayerLast = 0;
-	//this.scoreEnemyLast = 0;
 
 	// overlay
 	if( this.opt.reaction ) {
@@ -205,22 +203,22 @@ Check Win State
 
 G.prototype.checkWinState = function() {
 	if( this.done ) {
+		this.ball.opacity = 0;
+		pg.sound.setVolume( pg.humLoop, 0);
+		pg.sound.setVolume( pg.alarmLoop, 0);
 		if( this.doneExitTick < this.doneExitTickMax ) {
 			this.doneExitTick++;
 		} else {
+			this.doneExitTick = 0;
 			this.showResult();
 			this.state = 'result';
 		}
 	} else {
 		if ( this.scorePlayer.value >= this.config.score.max ) {
-			//console.log( 'You Won!' );
 			this.done = true;
 			this.resultMessage = 'You Won!';
-			//this.scorePlayerLast = this.scorePlayer.value;
-			//this.scoreEnemyLast = this.scoreEnemy.value;
 			//this.reset();
 		} else if ( this.scoreEnemy.value >= this.config.score.max  ) {
-			//console.log( 'You Lost!' );
 			this.done = true;
 			this.resultMessage = 'You Lost';
 			//this.reset();
@@ -250,20 +248,23 @@ G.prototype.step = function() {
 		this.paddlePlayer.step();
 		this.paddleEnemy.step();
 		this.ball.step();
-		if( this.opt.screenshake ) {
-			this.screenshake.step();
-		}
-		this.timescale.step();
-		if( this.opt.particles ) {
-			this.particlesWhite.each( 'step' );
-			this.particlesGreen.each( 'step' );
-			this.particlesBlue.each( 'step' );
-			this.pulsesWhite.each( 'step' );
-			this.pulsesGreen.each( 'step' );
-			this.pulsesBlue.each( 'step' );
-		}
 		this.checkWinState();
 		this.paddleCollision = false;
+	}
+
+	this.timescale.step();
+
+	if( this.opt.screenshake ) {
+		this.screenshake.step();
+	}
+
+	if( this.opt.particles ) {
+		this.particlesWhite.each( 'step' );
+		this.particlesGreen.each( 'step' );
+		this.particlesBlue.each( 'step' );
+		this.pulsesWhite.each( 'step' );
+		this.pulsesGreen.each( 'step' );
+		this.pulsesBlue.each( 'step' );
 	}
 
 	if( this.menuExit ) {
@@ -274,6 +275,17 @@ G.prototype.step = function() {
 			this.menuExitTick = 0;
 			this.state = 'play';
 			this.reset();
+		}
+	}
+
+	if( this.state === 'result' ) {
+		if( this.resultExitTick < this.resultExitTickMax ) {
+			this.resultExitTick++;
+		} else {
+			this.resultExitTick = 0;
+			this.state = 'menu';
+			this.hideResult();
+			this.showMenu();
 		}
 	}
 };

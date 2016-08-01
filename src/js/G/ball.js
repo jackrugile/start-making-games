@@ -294,7 +294,7 @@ G.prototype.Ball.prototype.step = function() {
 			this.ghost.vy *= this.friction;*/
 		}
 
-		if( this.g.opt.particles ) {
+		if( this.g.opt.particles && !this.g.done ) {
 
 			if( Math.random() < 0.5 * this.g.timescale.getDt() ) {
 				var size = 60;

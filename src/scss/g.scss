@@ -552,21 +552,43 @@ Menu
 
 ==============================================================================*/
 
-.g-menu {
+/*.g-menu {
 	align-items: center;
 	background: #111;
-	bottom: 0;
+	background: hsla(0, 0%, 0%, 0.75);
+	bottom: 200px;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	left: 0;
-	right: 0;
-	top: 0;
+	left: 200px;
+	right: 200px;
+	top: 200px;
 	transform: translateZ( 1px );
 	transition: opacity 600ms;
 	z-index: 9999;
 	&.hidden {
 		opacity: 0;
+	}
+}*/
+
+.g-menu {
+	align-items: center;
+	background: #111;
+	box-shadow: 0 0 0 4px #fff;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	left: 50%;
+	padding: 7rem 9rem;
+	top: 50%;
+	transform: translate3d( -50%, -50%, 2px );
+	transition: opacity 600ms;
+	z-index: 9999;
+	&.hidden {
+		opacity: 0;
+	}
+	.g-extrude & {
+		transform: translate3d( -50%, -50%, 60px );
 	}
 }
 
@@ -596,6 +618,7 @@ Menu
 	position: static;
 	transform: rotate( 45deg );
 	width: 60px;
+	display: none;
 }
 
 .g-menu-controls {
@@ -604,7 +627,7 @@ Menu
 }
 
 .g-control {
-	margin: 0 1rem;
+	margin: 0 1.5rem;
 	position: static;
 	text-align: center;
 }
@@ -614,8 +637,8 @@ Menu
 	font-size: 3em;
 	font-weight: 900;
 	line-height: 1;
-	margin-bottom: 1rem;
-	padding: 1rem 2rem;
+	margin-bottom: 1.5rem;
+	padding: 1.25rem 2.5rem;
 	position: static;
 }
 
@@ -635,23 +658,26 @@ Results
 .g-result {
 	align-items: center;
 	background: #111;
-	bottom: 0;
+	box-shadow: 0 0 0 4px #fff;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	left: 0;
-	right: 0;
-	top: 0;
-	transform: translateZ( 1px );
+	left: 50%;
+	padding: 7rem 9rem;
+	top: 50%;
+	transform: translate3d( -50%, -50%, 2px );
 	transition: opacity 600ms;
 	z-index: 9999;
 	&.hidden {
 		opacity: 0;
 	}
+	.g-extrude & {
+		transform: translate3d( -50%, -50%, 60px );
+	}
 }
 
 .g-result-text {
-	font-size: 8em;
+	font-size: 10em;
 	font-weight: 900;
 	letter-spacing: -0.025em;
 	line-height: 1;
@@ -666,7 +692,7 @@ Results
 
 .g-result-player {
 	color: hsl(130, 100%, 60%);
-	font-size: 6em;
+	font-size: 10em;
 	font-weight: 900;
 	line-height: 1;
 	position: static;
@@ -674,7 +700,7 @@ Results
 
 .g-result-divider {
 	color: #fff;
-	font-size: 6em;
+	font-size: 10em;
 	font-weight: 400;
 	line-height: 1;
 	margin: 0 1rem;
@@ -683,7 +709,7 @@ Results
 
 .g-result-enemy {
 	color: hsl(200, 100%, 60%);
-	font-size: 6em;
+	font-size: 10em;
 	font-weight: 900;
 	line-height: 1;
 	position: static;
