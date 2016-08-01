@@ -70,7 +70,12 @@ var slides = [
 		'juice-d-accel-1',
 		'juice-d-spin-1',
 		'juice-d-reaction-1',
-		'juice-d-move3d-1'
+		'juice-d-move3d-1',
+		'juice-d-extrude-1',
+		'juice-d-particles-1',
+		'juice-d-sound-1',
+		'juice-d-screenshake-1',
+		'juice-d-trajectory-1'
 	// outro
 ];
 

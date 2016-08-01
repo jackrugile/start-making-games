@@ -223,11 +223,9 @@ G.prototype.checkWinState = function() {
 		if ( this.scorePlayer.value >= this.config.score.max ) {
 			this.done = true;
 			this.resultMessage = 'You Won!';
-			//this.reset();
 		} else if ( this.scoreEnemy.value >= this.config.score.max  ) {
 			this.done = true;
 			this.resultMessage = 'You Lost';
-			//this.reset();
 		}
 	}
 };

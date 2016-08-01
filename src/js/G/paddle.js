@@ -298,16 +298,16 @@ G.prototype.Paddle.prototype.checkCollisions = function() {
 
 		if( this.isSpiking ) {
 			this.g.screenshake.apply({
-				translate: 10 + ( this.lastCharge * 100 ),
-				rotate: 0.3,
-				xBias: Math.cos( angle ) * ( 400 + ( this.lastCharge * 400 ) ),
+				translate: 15 + ( this.lastCharge * 100 ),
+				rotate: 0.2,
+				xBias: Math.cos( angle ) * ( 450 + ( this.lastCharge * 400 ) ),
 				yBias: Math.sin( angle ) * 0
 			});
 		} else {
 			this.g.screenshake.apply({
-				translate: 10,
-				rotate: 0.3,
-				xBias: Math.cos( angle ) * 400,
+				translate: 15,
+				rotate: 0.2,
+				xBias: Math.cos( angle ) * 450,
 				yBias: Math.sin( angle ) * 0
 			});
 		}

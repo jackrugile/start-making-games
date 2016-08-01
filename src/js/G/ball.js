@@ -9,7 +9,7 @@ G.prototype.Ball = function( g ) {
 	this.elem = document.querySelector('.g-ball-normal');
 	this.serving = true;
 	this.servingTimer = 0;
-	this.servingTimerMax = 60;
+	this.servingTimerMax = this.g.opt.spin ? 100 : 60;
 	this.x = this.g.stage.width / 2 - this.g.config.ball.width / 2;
 	this.y = this.g.stage.height / 2 - this.g.config.ball.height / 2;
 	this.z = this.g.opt.extrude ? 60 : 2;
@@ -33,8 +33,6 @@ G.prototype.Ball = function( g ) {
 		rotation: this.g.opt.spin ? Math.PI / 4 : 0,
 		active: false
 	}
-
-	//this.reset();
 };
 
 G.prototype.Ball.prototype.reset = function() {
@@ -42,33 +40,11 @@ G.prototype.Ball.prototype.reset = function() {
 	this.ghost.active = false;
 	
 	this.x = this.g.stage.width / 2 - this.width / 2;
-	if( this.g.opt.spin ) {
-		this.opacity = 0;
-		this.y = this.g.stage.height / 2 - this.height / 2 + this.g.stage.height / 3;
-		var k = pg.tween( this ).to(
-			{
-				y: this.g.stage.height / 2 - this.height / 2,
-				opacity: 1
-			},
-			0.65,
-			'inOutExpo'
-		);
-	} else {
-		this.y = this.g.stage.height / 2 - this.height / 2;
-		this.opacity = 1;
-	}
-
+	this.opacity = 0;
 	this.vx = 0;
 	this.vy = 0;
 	this.g.paddlePlayer.hasHit = false;
 	this.g.paddleEnemy.hasHit = false;
-
-	pg.soundPlay({
-		active: this.g.opt.sound,
-		name: 'whoosh-1',
-		volume: 1.3,
-		rate: 1 * ( 1 - ( 1 - this.g.timescale.current ) * 0.4 )
-	});
 };
 
 G.prototype.Ball.prototype.contain = function() {
@@ -96,10 +72,10 @@ G.prototype.Ball.prototype.contain = function() {
 
 		var angle = Math.atan2( this.vy, this.vx );
 		this.g.screenshake.apply({
-			translate: 10,
+			translate: 15,
 			rotate: 0.15,
 			xBias: Math.cos( angle ) * 0,
-			yBias: Math.sin( angle ) * -75
+			yBias: Math.sin( angle ) * -90
 		});
 
 		if( this.g.opt.particles ) {
@@ -200,6 +176,13 @@ G.prototype.Ball.prototype.contain = function() {
 		}
 		this.wasSpiked = false;
 
+		this.g.screenshake.apply({
+			translate: 30,
+			rotate: 0.3,
+			xBias: 0,
+			yBias: 0
+		});
+
 		if( this.g.opt.particles ) {
 			for( var i = 0; i < 15; i++ ) {
 				var size = this.g.rand( 10, 20 );
@@ -236,9 +219,7 @@ G.prototype.Ball.prototype.contain = function() {
 			});
 		}
 
-		//if( this.g.scorePlayer.value < this.g.config.score.max && this.g.scoreEnemy.value < this.g.config.score.max  ) {
-			this.reset();
-		//}
+		this.reset();
 	}
 };
 
@@ -248,6 +229,30 @@ G.prototype.Ball.prototype.step = function() {
 	if ( this.serving && !this.g.done ) {
 		if ( this.servingTimer < this.servingTimerMax ) {
 			this.servingTimer++;
+			if( this.servingTimer === 45 ) {
+				if( this.g.opt.spin ) {
+					this.opacity = 0;
+					this.y = this.g.stage.height / 2 - this.height / 2 + this.g.stage.height / 3;
+					var k = pg.tween( this ).to(
+						{
+							y: this.g.stage.height / 2 - this.height / 2,
+							opacity: 1
+						},
+						0.65,
+						'inOutExpo'
+					);
+				} else {
+					this.y = this.g.stage.height / 2 - this.height / 2;
+					this.opacity = 1;
+				}
+
+				pg.soundPlay({
+					active: this.g.opt.sound,
+					name: 'whoosh-1',
+					volume: 1.3,
+					rate: 1 * ( 1 - ( 1 - this.g.timescale.current ) * 0.4 )
+				});
+			}
 		} else {
 			this.serving = false;
 			this.servingTimer = 0;
