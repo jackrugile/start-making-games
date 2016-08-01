@@ -210,8 +210,13 @@ Check Win State
 G.prototype.checkWinState = function() {
 	if( this.done ) {
 		this.ball.opacity = 0;
-		pg.sound.setVolume( pg.humLoop, 0);
-		pg.sound.setVolume( pg.alarmLoop, 0);
+		pg.sound.setVolume( pg.humLoop, 0 );
+		pg.sound.setVolume( pg.alarmLoop, 0 );
+		this.paddlePlayer.currentCharge = 0;
+		this.paddlePlayer.isCharging = false;
+		this.paddlePlayer.isSpiking = false;
+		this.paddlePlayer.canSpike = false;
+		this.removeClass( this.paddlePlayer.elem, 'hit' );
 		if( this.doneExitTick < this.doneExitTickMax ) {
 			this.doneExitTick++;
 		} else {
@@ -354,6 +359,11 @@ G.prototype.kill = function() {
 	this.edgeRight = null;
 	this.edgeBot = null;
 	this.edgeLeft = null;
+	this.menu = null;
+	this.result = null;
+	this.resultText = null;
+	this.resultPlayer = null;
+	this.resultEnemy = null;
 	if( this.opt.particles ) {
 		this.particlesWhite.kill();
 		this.particlesWhite = null;

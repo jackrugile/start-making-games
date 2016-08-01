@@ -3,12 +3,12 @@ game = new G({
 	ghost: false,
 	extrude: true,
 	move3d: true,
-	music: false,
+	music: true,
 	particles: true,
 	reaction: true,
-	screenshake: false,
+	screenshake: true,
 	sound: true,
-	spike: false,
+	spike: true,
 	spin: true,
-	trajectory: false
+	trajectory: true
 });

@@ -2,7 +2,6 @@ game = new G({
 	accel: false,
 	ghost: false,
 	extrude: false,
-	menu: false,
 	move3d: false,
 	music: false,
 	particles: false,

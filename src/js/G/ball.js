@@ -140,7 +140,8 @@ G.prototype.Ball.prototype.contain = function() {
 			active: this.g.opt.sound,
 			name: 'score-player-2',
 			volume: 0.9,
-			rate: 1 * ( 1 - ( 1 - this.g.timescale.current ) * 0.4 )
+			rate: 1
+			//rate: 1 * ( 1 - ( 1 - this.g.timescale.current ) * 0.4 )
 			//rate: 2 * ( 1 - ( 1 - this.g.timescale.current ) * 0.4 )
 		});
 	}
@@ -382,7 +383,7 @@ G.prototype.Ball.prototype.draw = function() {
 
 	if( this.g.opt.ghost ) {
 		this.g.css( this.ghost.elem, {
-			opacity: this.ghost.active ? 0.5 : 0,
+			opacity: this.ghost.active ? 1 : 0,
 			transform: 'translate3d(' + this.ghost.x + 'px, ' + this.ghost.y + 'px, ' + this.ghost.z + 'px) rotateZ(' + this.ghost.rotation + 'rad)'
 		});
 	}

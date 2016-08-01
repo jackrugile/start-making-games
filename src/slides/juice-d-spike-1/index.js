@@ -1,14 +1,14 @@
 game = new G({
 	accel: true,
 	ghost: false,
-	extrude: false,
+	extrude: true,
 	move3d: true,
 	music: false,
-	particles: false,
+	particles: true,
 	reaction: true,
-	screenshake: false,
-	sound: false,
-	spike: false,
+	screenshake: true,
+	sound: true,
+	spike: true,
 	spin: true,
-	trajectory: false
+	trajectory: true
 });

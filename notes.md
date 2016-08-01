@@ -29,11 +29,11 @@
 	- *** results screen
 	- *** menu screen
 	- *** 5 block indicator for score
-	- compile configs, order, and slide intros for juice build
+	- *** compile configs, order, and slide intros for juice build
+- 2016-08-01 // Monday
 	- initial content slides - why?
 	- intro of build slides (explanations)
 	- outro slides
-- 2016-08-01 // Monday
 	- setup online resource
 		- ditch and make dead simple if running out of time
 	- /start-making-games/

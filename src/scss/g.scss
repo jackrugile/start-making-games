@@ -38,7 +38,6 @@ html {
 	will-change: transform;
 }
 
-
 .g-pong:before {
 	background: linear-gradient( 90deg, hsla( 0, 0%, 100%, 0 ), #333, hsla( 0, 0%, 100%, 0 ) );
 	content: '';
@@ -47,8 +46,9 @@ html {
 	right: 0;
 	position: absolute;
 	top: 33.333%;
-	height: 50%;
 	height: 4px;
+	transform: translateZ( 0 );
+	z-index: -1;
 }
 
 .g-pong:after {
@@ -59,8 +59,9 @@ html {
 	right: 0;
 	position: absolute;
 	top: 66.666%;
-	height: 50%;
 	height: 4px;
+	transform: translateZ( 0 );
+	z-index: -1;
 }
 
 /*==============================================================================
@@ -428,6 +429,7 @@ Ball
 	width: 60px;
 	z-index: 2;
 	&.g-ball-ghost {
+		background: hsl(30, 100%, 60%);
 		opacity: 0;
 	}
 }
@@ -461,6 +463,9 @@ Ball
 
 .g-ball-panel-top:after {
 	background: hsla(0, 0%, 100%, 1);
+	.g-ball-ghost & {
+		background: hsl(30, 100%, 70%);
+	}
 }
 
 .g-ball-panel-bot {

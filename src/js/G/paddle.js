@@ -133,9 +133,9 @@ G.prototype.Paddle.prototype.checkCollisions = function() {
 					rate: this.g.rand( 1, 1.6 ) * ( 1 - ( 1 - this.g.timescale.current ) * 0.4 )
 				});
 				if( this.lastCharge >= 1 ) {
-					paddleSpeed = this.lastCharge * 200;
+					paddleSpeed = 25 + this.lastCharge * 175;
 				} else {
-					paddleSpeed = this.lastCharge * 150;
+					paddleSpeed = 25 + this.lastCharge * 125;
 				}
 			} else {
 				paddleSpeed = 0;
@@ -484,7 +484,7 @@ G.prototype.Paddle.prototype.draw = function() {
 	if( this.isPlayer ) {
 		this.g.css( this.chargeElem, {
 			opacity: this.currentCharge < 1 ? this.currentCharge : 0.75 + Math.sin( Date.now() / 30 ) * 0.25,
-			transform: 'scaleX(' + ( 0.23 + this.currentCharge * 0.77 ) + ') translateZ( 1px )'
+			transform: 'scaleX(' + ( 0.23 + this.currentCharge * 0.77 ) + ') translateZ( 2px )'
 		});
 	}
 };

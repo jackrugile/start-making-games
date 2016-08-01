@@ -101,10 +101,16 @@
 - trajectory
 	- adds some skill and strategy
 	- more dynamic paths
+	- not physically accurate at all, but more fun and better
 - spike
 	- even more strategy
+	- make player feel powerful
+	- slow motion for full charge
+	- player gets slower, it's a tradeoff
 - ghost
 	- a boost to ai performance
+	- needed once trajectory and spike were introduced
+	- also, it sees further in the future and has less of a chance to be blind the higher your score gets
 - music
 	- wrap it up with music
 
