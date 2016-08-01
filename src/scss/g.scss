@@ -218,6 +218,11 @@ Paddles
 	}
 }
 
+// show reaction hit flashes on non-extruded version
+.g-reaction .g-paddle-panel-flash.g-paddle-panel-front {
+	display: block;
+}
+
 .g-paddle-panel:after {
 	bottom: 0;
 	content: '';
@@ -407,10 +412,10 @@ Net
 	left: 50%;
 	margin-left: -2px;
 	top: 0;
-	transform: translateZ( 1px );
+	//transform: translateZ( 1px );
 	width: 4px;
 	z-index: 1;
-	backface-visibility: hidden;
+	//backface-visibility: hidden;
 }
 
 /*==============================================================================
@@ -552,25 +557,6 @@ Menu
 
 ==============================================================================*/
 
-/*.g-menu {
-	align-items: center;
-	background: #111;
-	background: hsla(0, 0%, 0%, 0.75);
-	bottom: 200px;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	left: 200px;
-	right: 200px;
-	top: 200px;
-	transform: translateZ( 1px );
-	transition: opacity 600ms;
-	z-index: 9999;
-	&.hidden {
-		opacity: 0;
-	}
-}*/
-
 .g-menu {
 	align-items: center;
 	background: #111;
@@ -581,14 +567,14 @@ Menu
 	left: 50%;
 	padding: 7rem 9rem;
 	top: 50%;
-	transform: translate3d( -50%, -50%, 2px );
-	transition: opacity 600ms;
+	transform: translate3d( -50%, -50%, 2px ) scale( 1 );
+	transition-duration: 1000ms;
+	transform-property: opacity, transform;
+	transition-timing-function: $easeInOutExpo;
 	z-index: 9999;
 	&.hidden {
 		opacity: 0;
-	}
-	.g-extrude & {
-		transform: translate3d( -50%, -50%, 60px );
+		transform: translate3d( -50%, -50%, 2px ) scale( 0 );
 	}
 }
 
@@ -627,7 +613,7 @@ Menu
 }
 
 .g-control {
-	margin: 0 1.5rem;
+	margin: 0 2rem;
 	position: static;
 	text-align: center;
 }
@@ -640,6 +626,7 @@ Menu
 	margin-bottom: 1.5rem;
 	padding: 1.25rem 2.5rem;
 	position: static;
+	white-space: nowrap;
 }
 
 .g-control-action {
@@ -647,6 +634,12 @@ Menu
 	font-weight: 400;
 	line-height: 1;
 	position: static;
+}
+
+.g-spike {
+	.g-no-spike & {
+		display: none;
+	}
 }
 
 /*==============================================================================
@@ -665,14 +658,14 @@ Results
 	left: 50%;
 	padding: 7rem 9rem;
 	top: 50%;
-	transform: translate3d( -50%, -50%, 2px );
-	transition: opacity 600ms;
+	transform: translate3d( -50%, -50%, 2px ) scale( 1 );
+	transition-duration: 1000ms;
+	transform-property: opacity, transform;
+	transition-timing-function: $easeInOutExpo;
 	z-index: 9999;
 	&.hidden {
 		opacity: 0;
-	}
-	.g-extrude & {
-		transform: translate3d( -50%, -50%, 60px );
+		transform: translate3d( -50%, -50%, 2px ) scale( 0 );
 	}
 }
 

@@ -76,9 +76,15 @@ var G = function( opt ) {
 	if( this.opt.extrude ) {
 		this.addClass( this.stage.elem, 'g-extrude' );
 	}
+	if( this.opt.reaction ) {
+		this.addClass( this.stage.elem, 'g-reaction' );
+	}
 
 	// paddle player
 	this.paddlePlayer = new this.Paddle( this, true );
+	if( !this.opt.spike ) {
+		this.addClass( this.stage.elem, 'g-no-spike' );
+	}
 
 	// paddle enemy
 	this.paddleEnemy = new this.Paddle( this, false );
@@ -187,7 +193,7 @@ Reset
 
 G.prototype.reset = function() {
 	this.scorePlayer.setValue( 0 );
-	this.scoreEnemy.setValue( 4 );
+	this.scoreEnemy.setValue( 0 );
 	this.enemyBlind = this.config.enemy.blindStart;
 	this.enemyForesight = this.config.enemy.foresightStart;
 	this.ball.speed = this.config.ball.speed;

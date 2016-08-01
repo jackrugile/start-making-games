@@ -9,7 +9,9 @@ var slides = [
 		'intro-t-poll-1',
 		'intro-t-poll-2',
 	// why
+		'why-t-title-1',
 	// build
+		'build-t-title-1',
 		'build-c-html-1',
 		'build-c-css-pong-1',
 		'build-d-css-pong-1',
@@ -62,8 +64,13 @@ var slides = [
 		'build-c-js-reset-game-1',
 		'build-d-js-check-win-state-1',
 	// juice
+		'juice-t-title-1',
 		'juice-t-titles-1',
-		'juice-d-final-1'
+		'juice-d-menu-1',
+		'juice-d-accel-1',
+		'juice-d-spin-1',
+		'juice-d-reaction-1',
+		'juice-d-move3d-1'
 	// outro
 ];
 
@@ -227,34 +234,44 @@ function loadSlide( i ) {
 	slideRequest.send();
 }
 
-function prevSlide() {
+function prevSlide( jump ) {
 	if( currentSlide > 0 && !slideRequest ) {
 		document.documentElement.classList.add( 'prev' );
 		document.documentElement.classList.remove( 'next' );
 		lastSlide = currentSlide;
-		currentSlide--;
+		if( jump ) {
+			currentSlide -= 5;
+		} else {
+			currentSlide--;
+		}
+		currentSlide = Math.max( 0, currentSlide );
 		loadSlide( currentSlide );
 	}
 }
 
-function nextSlide() {
+function nextSlide( jump ) {
 	if( currentSlide < totalSlides - 1 && !slideRequest ) {
 		document.documentElement.classList.add( 'next' );
 		document.documentElement.classList.remove( 'prev' );
 		lastSlide = currentSlide;
-		currentSlide++;
+		if( jump ) {
+			currentSlide += 5;
+		} else {
+			currentSlide++;
+		}
+		currentSlide = Math.min( totalSlides - 1, currentSlide );
 		loadSlide( currentSlide );
 	}
 }
 
 prevSlideButton.addEventListener( 'click', function( e ) {
 	e.preventDefault();
-	prevSlide();
+	prevSlide( e.shiftKey );
 });
 
 nextSlideButton.addEventListener( 'click', function( e ) {
 	e.preventDefault();
-	nextSlide();
+	nextSlide( e.shiftKey );
 });
 
 slides.forEach( function( elem, i ) {
@@ -363,8 +380,8 @@ var pg = playground({
 		else if( keyMap.down.indexOf( e.key ) > -1 )  { keys.down = 1; dirs.down.classList.add( 'is-active' ); window.dispatchEvent( controlDownDownEvent ); }
 		else if( keyMap.left.indexOf( e.key ) > -1 )  { keys.left = 1; dirs.left.classList.add( 'is-active' ); }
 		else if( keyMap.spike.indexOf( e.key ) > -1 ) { window.dispatchEvent( controlSpikeDownEvent ); }
-		else if( keyMap.prev.indexOf( e.key ) > -1 )  { prevSlide(); }
-		else if( keyMap.next.indexOf( e.key ) > -1 )  { nextSlide(); }
+		else if( keyMap.prev.indexOf( e.key ) > -1 )  { prevSlide( e.original.shiftKey ); }
+		else if( keyMap.next.indexOf( e.key ) > -1 )  { nextSlide( e.original.shiftKey ); }
 		else if( keyMap.mute.indexOf( e.key ) > -1 )  { window.dispatchEvent( controlMuteDownEvent ); }
 		else if( keyMap.pause.indexOf( e.key ) > -1 ) { window.dispatchEvent( controlPauseDownEvent ); }
 		else if( keyMap.zoom.indexOf( e.key ) > -1 ) { toggleZoom(); }

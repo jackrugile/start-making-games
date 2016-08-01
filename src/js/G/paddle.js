@@ -63,7 +63,7 @@ G.prototype.Paddle.prototype.contain = function() {
 };
 
 G.prototype.Paddle.prototype.spike = function() {
-	if( this.canSpike ) {
+	if( this.g.opt.spike && this.canSpike ) {
 		this.isSpiking = true;
 		this.spikeTarget = this.spikeRange * this.currentCharge;
 		this.lastCharge = this.currentCharge;
@@ -157,8 +157,12 @@ G.prototype.Paddle.prototype.checkCollisions = function() {
 			ballAngle = -Math.PI * 0.35 + ( ( this.g.ball.y + this.g.ball.height - this.y ) / ( this.height + this.g.ball.height ) ) * Math.PI * 0.7;
 
 			this.g.ball.x = this.x + this.width;
-			this.g.ball.vx = Math.cos( ballAngle ) * speed;
-			this.g.ball.vy = Math.sin( ballAngle ) * speed;
+			if( this.g.opt.trajectory ) {
+				this.g.ball.vx = Math.cos( ballAngle ) * speed;
+				this.g.ball.vy = Math.sin( ballAngle ) * speed;
+			} else {
+				this.g.ball.vx *= -1;
+			}
 
 			if( this.g.opt.reaction ) {
 				this.angle = ballAngle / 2;
@@ -211,8 +215,13 @@ G.prototype.Paddle.prototype.checkCollisions = function() {
 
 			ballAngle = -Math.PI * 0.35 + ( ( this.g.ball.y + this.g.ball.height - this.y ) / ( this.height + this.g.ball.height ) ) * Math.PI * 0.7;
 			this.g.ball.x = this.x - this.g.ball.width;
-			this.g.ball.vx = Math.cos( ballAngle ) * -speed;
-			this.g.ball.vy = Math.sin( ballAngle ) * speed;
+			
+			if( this.g.opt.trajectory ) {
+				this.g.ball.vx = Math.cos( ballAngle ) * -speed;
+				this.g.ball.vy = Math.sin( ballAngle ) * speed;
+			} else {
+				this.g.ball.vx *= -1;
+			}
 
 			if( this.g.opt.reaction ) {
 				this.angle = -ballAngle / 2;
@@ -333,7 +342,7 @@ G.prototype.Paddle.prototype.step = function() {
 		if ( !this.hasHit || Math.random() < this.g.enemyBlind ) {
 			this.moveUp = false;
 			this.moveDown = false;
-			if ( this.g.ball.ghost.active ) {
+			if ( this.g.opt.trajectory && this.g.ball.ghost.active ) {
 				if ( this.g.ball.ghost.y + this.g.ball.height < this.y + this.height / 2 ) {
 					this.moveUp = true;
 				} else if ( this.g.ball.ghost.y > this.y + this.height / 2 ) {
@@ -395,7 +404,7 @@ G.prototype.Paddle.prototype.step = function() {
 		this.y += this.vy * this.g.timescale.getDt();
 	}
 
-	if( this.isCharging && this.currentCharge < 1 && this.canSpike ) {
+	if( this.g.opt.spike && this.isCharging && this.currentCharge < 1 && this.canSpike ) {
 		this.currentCharge += this.chargeRate * this.g.timescale.getDt();
 	}
 
@@ -437,23 +446,17 @@ G.prototype.Paddle.prototype.step = function() {
 	if( this.x < this.xOrigin ) {
 		this.x = this.xOrigin;
 		this.vx = 0;
-		if( !this.canSpike ) {
+		if( this.g.opt.spike && !this.canSpike ) {
 			this.canSpike = true;
 		}
 	}
 
 	if( this.isPlayer && this.g.opt.sound ) {
-		pg.sound.setVolume( pg.humLoop, this.currentCharge * 0.6 );
+		pg.sound.setVolume( pg.humLoop, 0.2 + this.currentCharge * 0.4 );
 		pg.sound.setPlaybackRate( pg.humLoop, this.currentCharge * 5  );
 
-		pg.sound.setVolume( pg.alarmLoop, this.currentCharge * 0.5 );
+		pg.sound.setVolume( pg.alarmLoop, 0.2 + this.currentCharge * 0.3 );
 		pg.sound.setPlaybackRate( pg.alarmLoop, this.currentCharge * 3 );
-
-		//pg.sound.setVolume( pg.humLoop2, this.currentCharge );
-		//pg.sound.setPlaybackRate( pg.humLoop2, this.currentCharge * 6 );
-
-		//pg.sound.setVolume( pg.humLoop2, this.currentCharge );
-		//pg.sound.setPlaybackRate( pg.humLoop2, 12 - this.currentCharge * 3 );
 	}
 
 	if( this.isPlayer ) {

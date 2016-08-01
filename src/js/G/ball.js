@@ -12,7 +12,7 @@ G.prototype.Ball = function( g ) {
 	this.servingTimerMax = 60;
 	this.x = this.g.stage.width / 2 - this.g.config.ball.width / 2;
 	this.y = this.g.stage.height / 2 - this.g.config.ball.height / 2;
-	this.z = this.g.opt.extrude ? 60 : 1;
+	this.z = this.g.opt.extrude ? 60 : 2;
 	this.speed = this.g.config.ball.speed;
 	this.vx = 0;
 	this.vy = 0;
@@ -30,7 +30,7 @@ G.prototype.Ball = function( g ) {
 		z: 60,
 		vx: 0,
 		vy: 0,
-		rotation: Math.PI / 4,
+		rotation: this.g.opt.spin ? Math.PI / 4 : 0,
 		active: false
 	}
 
@@ -271,7 +271,7 @@ G.prototype.Ball.prototype.step = function() {
 			} else {
 				this.rotation -= 0.005 * Math.abs( this.vx ) * this.g.timescale.getDt();
 				this.ghost.rotation -= 0.005 * Math.abs( this.ghost.vx ) * this.g.timescale.getDt();
-		}
+			}
 		}
 		this.x += this.vx * this.g.timescale.getDt();
 		this.y += this.vy * this.g.timescale.getDt();

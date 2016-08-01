@@ -2,15 +2,13 @@
 
 # Start Making Games
 
-#### Jack Rugile
-- Front End Developer at The Firm Graphics
-- @jackrugile on The Internet
 
-### My Goal
-- Get you to start making games
-- Already do? Make more games. Make better games.
 
-## II: Game Dev is Amazing
+
+
+
+
+## I: Game Dev is Amazing!
 
 ### It's also painful, frustrating, exhausting
 
@@ -47,13 +45,6 @@
 - how many people are experiencing a low frame rate?
 
 
-## III: Let's Build a Game
-
-
-
-## IV: Game Juice / Polish: Enhance That
-
-### Explain Juice / Polish
 
 
 
@@ -61,6 +52,9 @@
 
 
 
+
+
+## II: Let's Build a Game!
 
 
 
@@ -71,7 +65,55 @@
 
 
 
-## V: Go Make a Game
+## III: Let's Make it Better!
+
+
+
+- three types of enhancements
+	- user interface
+	- gameplay
+	- visual / aural
+- title / instructions
+	- three titles
+	- final title
+	- start screen
+	- move scores with visual indicators
+- accel
+	- more natural movement for paddles
+	- acceleration and friction
+- spin
+	- entrance animation
+	- spin
+- reaction
+	- show that the game world is being affected
+- move3d
+	- rotate based on ball position
+- extrude
+	- give it some depth
+	- cuboids for paddles and ball
+- particles
+	- pool objects
+	- channel your inner bob ross: happy little particles
+- sound
+	- gives weight to all actions in the game
+- screenshake
+	- more reactions to things happening in the game world
+- trajectory
+	- adds some skill and strategy
+	- more dynamic paths
+- spike
+	- even more strategy
+- ghost
+	- a boost to ai performance
+- music
+	- wrap it up with music
+
+
+
+
+
+
+## Go Make a Game
 
 ### Remix or Innovate, it doesn't matter
 
