@@ -9,7 +9,7 @@ G.prototype.Ball = function( g ) {
 	this.elem = document.querySelector('.g-ball-normal');
 	this.serving = true;
 	this.servingTimer = 0;
-	this.servingTimerMax = this.g.opt.spin ? 100 : 60;
+	this.servingTimerMax = ( this.g.opt.sound ) ? 100 : 60;
 	this.x = this.g.stage.width / 2 - this.g.config.ball.width / 2;
 	this.y = this.g.stage.height / 2 - this.g.config.ball.height / 2;
 	this.z = this.g.opt.extrude ? 60 : 2;
@@ -230,7 +230,7 @@ G.prototype.Ball.prototype.step = function() {
 	if ( this.serving && !this.g.done ) {
 		if ( this.servingTimer < this.servingTimerMax ) {
 			this.servingTimer++;
-			if( this.servingTimer === 45 ) {
+			if( this.servingTimer === ( this.g.opt.sound ? 45 : 1 ) ) {
 				if( this.g.opt.spin ) {
 					this.opacity = 0;
 					this.y = this.g.stage.height / 2 - this.height / 2 + this.g.stage.height / 3;

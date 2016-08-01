@@ -102,6 +102,7 @@
 	- adds some skill and strategy
 	- more dynamic paths
 	- not physically accurate at all, but more fun and better
+	- illustration panel for this?
 - spike
 	- even more strategy
 	- make player feel powerful
