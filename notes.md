@@ -76,12 +76,7 @@
 
 # Tech Notes
 - use scale3d instead of scale on both wrap and pong?
-	- this is in place, not sure if it is more performant though. need test environment on laptop and retina
-	- if 3d caused texture, maybe a smaller starting point makes more sense
-- if time is running low, ditch the step by step juice/polish and add it all at once
 - cuboid issues on firefox
-- figure out friction issue, use math.pow version on ball or no?
-- prefetch slides? choppy when loading in at first
 - perf mode, fewer particles
 - prep codepen demo too! (one aspect of game?) or chromatic abberation
 - change dir display? remove left and right, add spike charge indicator

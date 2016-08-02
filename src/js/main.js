@@ -65,6 +65,7 @@ var slides = [
 		'build-d-js-check-win-state-1',
 	// juice
 		'juice-t-title-1',
+		'juice-t-enhancements-1',
 		'juice-t-titles-1',
 		'juice-d-menu-1',
 		'juice-d-accel-1',
@@ -75,6 +76,7 @@ var slides = [
 		'juice-d-particles-1',
 		'juice-d-sound-1',
 		'juice-d-screenshake-1',
+		'juice-t-trajectory-1',
 		'juice-d-trajectory-1',
 		'juice-d-spike-1',
 		'juice-d-ghost-1',
