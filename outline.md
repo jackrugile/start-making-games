@@ -110,11 +110,12 @@
 	- even more strategy
 	- make player feel powerful
 	- slow motion for full charge
-	- player gets slower, it's a tradeoff
+	- player gets slower, it's a tradeoff, 4th speed
 - ghost
 	- a boost to ai performance
 	- needed once trajectory and spike were introduced
 	- also, it sees further in the future and has less of a chance to be blind the higher your score gets
+	- sometimes, even when you see the future, you don't have enough time to change it
 - music
 	- wrap it up with music
 

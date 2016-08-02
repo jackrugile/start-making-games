@@ -35,6 +35,9 @@ G.prototype.Paddle = function( g, isPlayer ) {
 	this.chargeDecay = 0.075;
 	this.lastCharge = 0;
 
+	this.spikeHoldTick = 0;
+	this.spikeHoldTickMax = 7;
+
 	if ( this.isPlayer) {
 		this.elem = document.querySelector( '.g-paddle-player' );
 		this.x = 0;
@@ -67,10 +70,6 @@ G.prototype.Paddle.prototype.spike = function() {
 		this.isSpiking = true;
 		this.spikeTarget = this.spikeRange * this.currentCharge;
 		this.lastCharge = this.currentCharge;
-		/*if( this.currentCharge >= 1 ) {
-			this.g.timescale.triggerSlowMo();
-			this.g.triggerClass( this.g.overlay, 'flash' );
-		}*/
 		this.g.removeClass( this.elem, 'hit' );
 	}
 };
@@ -142,7 +141,7 @@ G.prototype.Paddle.prototype.checkCollisions = function() {
 			}
 			speed = ballSpeed + paddleSpeed;
 
-			if( this.isSpiking && this.lastCharge >= 1  ) {
+			if( this.isSpiking && this.lastCharge >= 1 ) {
 				this.g.ball.wasSpiked = true;
 				//if( this.currentCharge >= 1 ) {
 					this.g.timescale.triggerSlowMo();
@@ -297,12 +296,14 @@ G.prototype.Paddle.prototype.checkCollisions = function() {
 		var angle = Math.atan2( this.g.ball.vy, this.g.ball.vx );
 
 		if( this.isSpiking ) {
-			this.g.screenshake.apply({
-				translate: 15 + ( this.lastCharge * 100 ),
-				rotate: 0.2,
-				xBias: Math.cos( angle ) * ( 450 + ( this.lastCharge * 400 ) ),
-				yBias: Math.sin( angle ) * 0
-			});
+			if( this.lastCharge < 1 ) {
+				this.g.screenshake.apply({
+					translate: 15 + ( this.lastCharge * 100 ),
+					rotate: 0.2,
+					xBias: Math.cos( angle ) * ( 450 + ( this.lastCharge * 400 ) ),
+					yBias: Math.sin( angle ) * 0
+				});
+			}
 		} else {
 			this.g.screenshake.apply({
 				translate: 15,
@@ -399,7 +400,7 @@ G.prototype.Paddle.prototype.step = function() {
 
 	this.x += this.vx * this.g.timescale.getDt();
 	if( this.isCharging && this.currentCharge > 0 && this.currentCharge <= 1 ) {
-		this.y += (this.vy / ( 1 + this.currentCharge * 7 )) * this.g.timescale.getDt();
+		this.y += (this.vy / ( 1 + this.currentCharge * 4 )) * this.g.timescale.getDt();
 	} else {
 		this.y += this.vy * this.g.timescale.getDt();
 	}
@@ -441,7 +442,12 @@ G.prototype.Paddle.prototype.step = function() {
 	if( this.x > this.spikeTarget ) {
 		this.x = this.spikeTarget;
 		this.vx = 0;
-		this.isSpiking = false;
+		if( this.spikeHoldTick < this.spikeHoldTickMax ) {
+			this.spikeHoldTick++;
+		} else {
+			this.spikeHoldTick = 0;
+			this.isSpiking = false;
+		}
 	}
 	if( this.x < this.xOrigin ) {
 		this.x = this.xOrigin;

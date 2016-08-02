@@ -40,6 +40,7 @@ G.prototype.Ball.prototype.reset = function() {
 	this.ghost.active = false;
 	
 	this.x = this.g.stage.width / 2 - this.width / 2;
+	this.y = this.g.stage.height / 2 - this.height / 2 + this.g.stage.height / 3;
 	this.opacity = 0;
 	this.vx = 0;
 	this.vy = 0;
