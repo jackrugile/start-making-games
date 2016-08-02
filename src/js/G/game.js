@@ -49,7 +49,7 @@ var G = function( opt ) {
 	this.menu = document.querySelector( '.g-menu' );
 	this.menuExit = false;
 	this.menuExitTick = 0;
-	this.menuExitTickMax = 60;
+	this.menuExitTickMax = 30;
 
 	// result state
 	this.result = document.querySelector( '.g-result' );
@@ -58,7 +58,7 @@ var G = function( opt ) {
 	this.resultEnemy = document.querySelector( '.g-result-enemy' );
 	this.resultMessage = '';
 	this.resultExitTick = 0;
-	this.resultExitTickMax = 180;
+	this.resultExitTickMax = 140;
 
 	// restart music
 	if( this.opt.music ) {
