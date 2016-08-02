@@ -568,7 +568,7 @@ Menu
 	padding: 7rem 9rem;
 	top: 50%;
 	transform: translate3d( -50%, -50%, 2px ) scale( 1 );
-	transition-duration: 1000ms;
+	transition-duration: 600ms;
 	transform-property: opacity, transform;
 	transition-timing-function: $easeInOutExpo;
 	z-index: 9999;
@@ -659,7 +659,7 @@ Results
 	padding: 7rem 9rem;
 	top: 50%;
 	transform: translate3d( -50%, -50%, 2px ) scale( 1 );
-	transition-duration: 1000ms;
+	transition-duration: 600ms;
 	transform-property: opacity, transform;
 	transition-timing-function: $easeInOutExpo;
 	z-index: 9999;

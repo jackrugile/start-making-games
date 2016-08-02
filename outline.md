@@ -67,35 +67,13 @@
 
 ## III: Let's Make it Better!
 
-- explain
-	- code not shown
-	- each addition could be it's own talk
-	- meant to inspire
-- three types of enhancements
-	- user interface
-	- gameplay
-	- visual / aural
-- title / instructions
-	- three titles
-	- final title
-	- start screen
-	- move scores with visual indicators
-- accel
-	- more natural movement for paddles
-	- acceleration and friction
-- spin
-	- entrance animation
-	- spin
-- reaction
-	- show that the game world is being affected
-- move3d
-	- rotate based on ball position
-- extrude
-	- give it some depth
-	- cuboids for paddles and ball
-- particles
+
+
 	- pool objects
 	- channel your inner bob ross: happy little particles
+
+
+	
 - sound
 	- gives weight to all actions in the game
 - screenshake

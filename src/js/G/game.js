@@ -49,7 +49,7 @@ var G = function( opt ) {
 	this.menu = document.querySelector( '.g-menu' );
 	this.menuExit = false;
 	this.menuExitTick = 0;
-	this.menuExitTickMax = 30;
+	this.menuExitTickMax = 20;
 
 	// result state
 	this.result = document.querySelector( '.g-result' );

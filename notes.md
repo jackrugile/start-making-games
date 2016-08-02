@@ -31,7 +31,7 @@
 	- *** 5 block indicator for score
 	- *** compile configs, order, and slide intros for juice build
 - 2016-08-01 // Monday
-	- laundry
+	- *** laundry
 	- initial content slides - why?
 	- intro of build slides (explanations)
 	- outro slides
