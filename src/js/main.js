@@ -304,17 +304,28 @@ nextSlideButton.addEventListener( 'click', function( e ) {
 	nextSlide( e.shiftKey );
 });
 
+var loadedCount = 0;
+
+function checkLoaded() {
+	if( loadedCount >= totalSlides ) {
+		document.documentElement.classList.add( 'loaded' );
+	}
+}
+
 slides.forEach( function( elem, i ) {
 	var html = new XMLHttpRequest();
 	html.open('GET', 'slides/' + elem + '/index.html', true);
+	html.onload = function() { loadedCount++; checkLoaded(); };
 	html.send();
 
 	var css = new XMLHttpRequest();
 	css.open('GET', 'slides/' + elem + '/index.css', true);
+	css.onload = function() { loadedCount++; checkLoaded(); };
 	css.send();
 
 	var js = new XMLHttpRequest();
 	js.open('GET', 'slides/' + elem + '/index.js', true);
+	js.onload = function() { loadedCount++; checkLoaded(); };
 	js.send();
 });
 
