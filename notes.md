@@ -72,6 +72,7 @@
 - change dir display? remove left and right, add spike charge indicator
 - trim down bullet notes at the end for juice?
 - link to codepen bare bones demo?
+- add loader to slides?
 - add share meta to slides online?
 
 ---

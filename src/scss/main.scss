@@ -81,6 +81,7 @@ body {
 	}
 }
 
+/*
 .loader {
 	background: #000;
 	bottom: 0;
@@ -97,24 +98,27 @@ body {
 }
 
 .loader-inner {
-	animation: loader 1000ms infinite alternate;
+	animation: loader 500ms infinite alternate;
 	background: #fff;
-	border-radius: 50%;
 	bottom: 0;
-	height: 64px;
+	height: 60px;
 	left: 0;
 	margin: auto;
 	position: absolute;
 	right: 0;
 	top: 0;
-	width: 64px;
+	width: 60px;
 }
 
 @keyframes loader {
+	0% {
+		transform: scale( 0.8 ) rotate( 45deg );
+	}
 	100% {
-		transform: scale( 0.8 );
+		transform: scale( 0.8 ) rotate( 45deg );
 	}
 }
+*/
 
 .font-load {
 	left: 0;

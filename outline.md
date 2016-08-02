@@ -33,4 +33,3 @@
 - when do people play?
 - how many people mute the game?
 - how many people are experiencing a low frame rate?
-
