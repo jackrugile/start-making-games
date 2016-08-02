@@ -124,6 +124,12 @@ ol a {
 	&:hover {
 		color: map-get( $colors, accent2 );
 	}
+	&.alt {
+		color: map-get( $colors, accent2 );
+	}
+	&.alt:hover {
+		color: map-get( $colors, accent );
+	}
 	&:after {
 		background: hsla(0, 0%, 100%, 0.15);
 		//background: linear-gradient(90deg, hsla(0, 0%, 100%, 0.25), transparent);
@@ -173,7 +179,7 @@ hr {
 	position: absolute;
 	right: 0;
 	top: 0;
-	transform: translateZ( 2px );
+	transform: translateZ( 3px );
 	visibility: hidden;
 	white-space: pre-wrap;
 	z-index: 200;

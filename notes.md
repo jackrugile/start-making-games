@@ -32,22 +32,11 @@
 	- *** compile configs, order, and slide intros for juice build
 - 2016-08-01 // Monday
 	- *** laundry
-	- initial content slides - why?
-	- intro of build slides (explanations)
-	- outro slides
-	- setup online resource
-		- ditch and make dead simple if running out of time
-	- /start-making-games/
-		- link to slides
-		- link to starter game
-			- demo
-			- code
-		- link to juicy game
-			- demo
-			- code
-		- game dev resources
+	- *** outro slides
 - 2016-08-02 // Tuesday
 	- haircut
+	- initial content slides - why?
+	- intro of build slides (explanations)
 	- check typos
 	- check consistency
 	- run through talk two times
@@ -58,6 +47,7 @@
 	- film talk
 - 2016-08-04 // Thursday
 	- run through talk three times in full
+	- add slides to github AND to online location /start-making-games/
 	- lots of rest
 - 2016-08-05 // Friday
 	- talk!
@@ -81,6 +71,7 @@
 - prep codepen demo too! (one aspect of game?) or chromatic abberation
 - change dir display? remove left and right, add spike charge indicator
 - trim down bullet notes at the end for juice?
+- link to codepen bare bones demo?
 
 ---
 

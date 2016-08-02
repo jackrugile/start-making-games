@@ -88,10 +88,15 @@ var slides = [
 		'juice-t-trajectory-1',
 		'juice-i-trajectory-1',
 		'juice-d-trajectory-1',
+		'juice-t-spike-1',
 		'juice-d-spike-1',
+		'juice-t-ghost-1',
 		'juice-d-ghost-1',
-		'juice-d-music-1'
+		'juice-t-music-1',
+		'juice-d-music-1',
 	// outro
+		'outro-t-go-make-a-game-1',
+		'outro-t-thank-you-1'
 ];
 
 /*==============================================================================
