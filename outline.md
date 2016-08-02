@@ -68,21 +68,6 @@
 ## III: Let's Make it Better!
 
 
-
-	- pool objects
-	- channel your inner bob ross: happy little particles
-
-
-	
-- sound
-	- gives weight to all actions in the game
-- screenshake
-	- more reactions to things happening in the game world
-- trajectory
-	- adds some skill and strategy
-	- more dynamic paths
-	- not physically accurate at all, but more fun and better
-	- illustration panel for this?
 - spike
 	- even more strategy
 	- make player feel powerful

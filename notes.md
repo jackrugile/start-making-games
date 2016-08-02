@@ -80,6 +80,7 @@
 - perf mode, fewer particles
 - prep codepen demo too! (one aspect of game?) or chromatic abberation
 - change dir display? remove left and right, add spike charge indicator
+- trim down bullet notes at the end for juice?
 
 ---
 
