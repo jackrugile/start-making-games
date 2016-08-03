@@ -1,35 +1,45 @@
 ## I: Game Dev is Amazing!
 
-### It's also painful, frustrating, exhausting
 
-### But mainly it's amazing!
 
-### The Ultimate Creative Expression
-- Visual Art / Graphics
-- Animation
-- Sound
-- Music
-- Interactivity
-- User Interface
-- Story / Writing / Dialogue / Characters
-- Cinematography
-- Artifical Intelligence
+- The Ultimate Creative Expression
+	- Visual Art / Graphics
+	- Animation
+	- Sound
+	- Music
+	- Interactivity
+	- User Interface
+	- Story / Writing / Dialogue / Characters
+	- Cinematography
+	- Artifical Intelligence
 
-### Being able to control something on the screen and have an effect on the game world is pretty gosh darn delightful.
+-Being able to control something on the screen and have an effect on the game world is pretty gosh darn delightful.
 
-### Similarities between Front End Dev and Game Dev
+- nice to do something that doesn't involve money
 
-#### context/position aware
-- use TD game as example
 
-#### performance is key
-- framerate
-- load time
+- tons of ways to build games
 
-#### use analytics to improve your game
-- how many people beat it?
-- which levels to people quit at?
-- which control scheme is most used?
-- when do people play?
-- how many people mute the game?
-- how many people are experiencing a low frame rate?
+	- there is a natural step forward for web devs
+	- when starting out, give your self every advantage, use what you know
+
+
+
+
+- games of the past
+	- use them to learn concepts
+	- put your own twist on it
+	- build a functioning prototype
+
+- your own games
+	- hone in on a single game mechanic
+	- build a working a prototype
+	- if it's fun in it's most basic form, then you have something special and you should iterate
+
+
+
+
+
+- watching other people play your game
+	- seeing them have fun or get angry, both are equally enjoyable
+	- 

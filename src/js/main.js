@@ -12,6 +12,7 @@ var slides = [
 		'why-t-title-1',
 	// build
 		'build-t-title-1',
+		'build-t-what-1',
 		'build-c-html-1',
 		'build-c-css-pong-1',
 		'build-d-css-pong-1',
@@ -190,13 +191,27 @@ Slide Loading
 ==============================================================================*/
 
 var slideTimeout = null,
-	currentSlide = location.hash ? location.hash.slice( 1 ) - 1 : 0,
 	lastSlide = null,
 	totalSlides = slides.length,
 	prevSlideButton = document.querySelector( '.nav-prev' ),
 	nextSlideButton = document.querySelector( '.nav-next' ),
 	slideIndicator = document.querySelector( '.slide-indicator' ),
+	currentSlide,
 	slideRequest;
+
+if( location.hash ) {
+	var hash = parseInt( location.hash.slice( 1 ), 10 );
+	if( isNaN( hash ) ) {
+		currentSlide = 0;
+	} else {
+		hash--;
+		hash = Math.max( 0, hash );
+		hash = Math.min( totalSlides - 1, hash );
+		currentSlide = hash;
+	}
+} else {
+	currentSlide = 0;
+}
 
 if( currentSlide > totalSlides ) {
 	currentSlide = 0;

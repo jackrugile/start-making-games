@@ -98,10 +98,10 @@ ul li {
 		transition-duration: 300ms;
 		transition-property: margin, transform;
 		transform: rotate(45deg);
-		.zoom & {
+		/*.zoom & {
 			margin-left: -0.55em;
 			transform: scale(0.7) rotate(45deg) ;
-		}
+		}*/
 	}
 	&:last-child {
 		margin-bottom: 0;
@@ -166,6 +166,17 @@ hr {
 .subdued {
 	font-weight: 400;
 	opacity: 0.5;
+}
+
+.inline-code {
+	background: #333;
+	color: map-get( $colors, accent3 );
+	display: inline-block;
+	font-family: $font-roboto-mono;
+	font-size: 0.8em;
+	letter-spacing: -0.025em;
+	padding: 0.25em;
+	margin: -0.25em;
 }
 
 .notes {

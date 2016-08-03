@@ -34,7 +34,7 @@
 	- *** laundry
 	- *** outro slides
 - 2016-08-02 // Tuesday
-	- haircut
+	- *** haircut
 	- initial content slides - why?
 	- intro of build slides (explanations)
 	- check typos
@@ -48,30 +48,23 @@
 - 2016-08-04 // Thursday
 	- run through talk three times in full
 	- add slides to github AND to online location /start-making-games/
+	- add slides to usb drive
 	- lots of rest
 - 2016-08-05 // Friday
 	- talk!
 
 
 
-- non-essential bonus features if I have time
-	- add character faces
-	- ball chromatic abberation
-	- background grid
-		- light up panel bases on where ball is
-	- diagonal light streaks
-	- total score and progress meter (bar)
-
 ---
 
 # Tech Notes
-- use scale3d instead of scale on both wrap and pong?
 - cuboid issues on firefox
 - perf mode, fewer particles
 - prep codepen demo too! (one aspect of game?) or chromatic abberation
 - change dir display? remove left and right, add spike charge indicator
 - trim down bullet notes at the end for juice?
 - link to codepen bare bones demo?
+- link to full game?
 - add loader to slides?
 - add share meta to slides online?
 
@@ -95,30 +88,3 @@
 	- know if you're ahead or behind
 - php -S localhost:9001
 - python -m SimpleHTTPServer 9001
-
----
-
-# Miscellaneous Points
-- easy to get started, difficult to master
-- math plays a role
-- don't need to know it all
-- hide it away in a utility/helper function
-- pythagoreans theorem? totally useful!
-- I don't learn all the math because of pythagoreasons
-- whole journey that other game developers have experience that you get to experience too
-	- even if you weren't the one to invent or discover a concept, it still feels great to understand it and implement it in your own way
-- compare hitbox sizes to front end dev
-- show before and after
-- developers can be lonely people, makes sense that we make ai
-- pong is good because nothing gets added or removed
-- explain request animation frame
-	- sync game updates and rendering to the browser painting process
-	- aims for 60fps
-	- prevents dropped frames
-	- stops running when browser window/tab is not in focus
-- explain why animation through loop vs animation or transition
-- bang for your buck with playrate on audio
-- judge the end result before you even think about juding the code
-- always give a reason not to press a button
-- getting to watch people play and react to your game is awesome
-- build is roughly ~300 LOC
