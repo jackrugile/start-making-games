@@ -10,9 +10,17 @@ var slides = [
 		'intro-t-poll-2',
 	// why
 		'why-t-title-1',
+		'why-t-fun-1',
+		'why-t-recreational-1',
+		'why-t-ultimate-1',
+		'why-t-ways-1',
+		'why-t-past-1',
+		'why-t-your-own-1',
+		'why-t-watch-1',
 	// build
 		'build-t-title-1',
 		'build-t-what-1',
+		'build-t-what-2',
 		'build-c-html-1',
 		'build-c-css-pong-1',
 		'build-d-css-pong-1',
