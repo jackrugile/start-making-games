@@ -35,14 +35,11 @@
 	- *** outro slides
 - 2016-08-02 // Tuesday
 	- *** haircut
-	- initial content slides - why?
-	- intro of build slides (explanations)
+	- *** initial content slides - why?
+	- *** intro of build slides (explanations)
+- 2016-08-03 // Wednesday
 	- check typos
 	- check consistency
-	- run through talk two times
-- 2016-08-03 // Wednesday
-	- meet with thomas for testing
-	- meet with dan for testing
 	- run through talk two times
 	- film talk
 - 2016-08-04 // Thursday

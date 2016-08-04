@@ -39,9 +39,9 @@
 }
 
 .aabb-rect-1 {
-	animation: rect-highlight 10000ms infinite;
-	opacity: 0.05;
-	transform: scale( 0.75 );
+	//animation: rect-highlight 10000ms infinite;
+	//opacity: 0.05;
+	//transform: scale( 0.75 );
 }
 
 @keyframes rect-highlight {
@@ -103,11 +103,11 @@
 }
 
 .aabb-condition {
-	animation: condition-highlight 10000ms infinite;
+	//animation: condition-highlight 10000ms infinite;
 	font-size: 4.5em;
 	margin: 0 0 2rem;
-	opacity: 0.1;
-	transform: scale( 0.75 );
+	//opacity: 0.1;
+	//transform: scale( 0.75 );
 	transform-origin: 0% 50%;
 	white-space: nowrap;
 }
