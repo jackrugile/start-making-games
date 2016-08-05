@@ -9,6 +9,7 @@
 - link to codepen bare bones demo?
 - link to full game?
 - add share meta to slides online?
+- add arrow keys for next/prev
 
 ---
 

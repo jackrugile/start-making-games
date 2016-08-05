@@ -3,7 +3,7 @@ UI
 ==============================================================================*/
 
 .ui {
-	background: rgba(255,255,255,0.05);
+	// background: rgba(255,255,255,0.05);
 	bottom: 0;
 	left: 0;
 	height: 80px;
@@ -14,8 +14,8 @@ UI
 	//transition-property: opacity, transform;
 	z-index: 100;
 	.zoom & {
-		opacity: 0;
-		transform: translateY( 80px );
+		// opacity: 0;
+		// transform: translateY( 80px );
 	}
 }
 
@@ -24,6 +24,7 @@ Directions
 ==============================================================================*/
 
 .dirs {
+	display: none;
 	height: 40px;
 	left: 30px;
 	margin-top: -20px;
@@ -105,10 +106,10 @@ Slide Indicator
 .slide-indicator {
 	color: rgba(255, 255, 255, 0.2);
 	font-family: $font-roboto-mono;
-	font-size: 2.2em;
+	font-size: 1.2em;
 	font-weight: 700;
 	line-height: 1;
-	margin-top: -18px;
+	margin-top: -10px;
 	position: absolute;
 	right: 135px;
 	top: 50%;
@@ -150,7 +151,7 @@ Navigations
 		top: 50%;
 	}
 	&.nav-prev {
-		margin-right: 1px;
+		margin-right: 2px;
 		&:after {
 			border-left-width: 0;
 			border-right-color: map-get( $colors, bg );
