@@ -1,6 +1,4 @@
 # Timeline
-	- check typos
-	- check consistency
 	- add slides to github AND to online location /start-making-games/
 	- add slides to usb drive
 
@@ -25,7 +23,7 @@
 - disable all notifications
 - run caffeine app?
 - visible timer
-	- have milestone checkpoints
+	- have milestone checkpoints note paper
 	- know if you're ahead or behind
 - php -S localhost:9001
 - python -m SimpleHTTPServer 9001
