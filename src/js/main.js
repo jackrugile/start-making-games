@@ -76,7 +76,7 @@ var slides = [
 		'juice-t-title-1',
 		'juice-t-enhancements-1',
 		'juice-t-menu-1',
-		'juice-t-titles-1',
+		//'juice-t-titles-1',
 		'juice-d-menu-1',
 		'juice-t-accel-1',
 		'juice-d-accel-1',

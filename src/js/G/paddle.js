@@ -36,7 +36,7 @@ G.prototype.Paddle = function( g, isPlayer ) {
 	this.lastCharge = 0;
 
 	this.spikeHoldTick = 0;
-	this.spikeHoldTickMax = 7;
+	this.spikeHoldTickMax = 5;
 
 	if ( this.isPlayer) {
 		this.elem = document.querySelector( '.g-paddle-player' );
