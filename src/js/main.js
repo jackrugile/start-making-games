@@ -446,7 +446,7 @@ var pg = playground({
 		else if( keyMap.down.indexOf( e.button ) > -1 )  { keys.down = 1; dirs.down.classList.add( 'is-active' ); window.dispatchEvent( controlDownDownEvent ); }
 		else if( keyMap.left.indexOf( e.button ) > -1 )  { keys.left = 1; dirs.left.classList.add( 'is-active' ); }
 		else if( keyMap.spike.indexOf( e.button ) > -1 ) { window.dispatchEvent( controlSpikeDownEvent ); }
-		else if( keyMap.prev.indexOf( e.button ) > -1 )  { console.log( this.gamepads[ 0 ].buttons[ '3' ] ); prevSlide( this.gamepads[ 0 ].buttons[ '3' ] ); }
+		else if( keyMap.prev.indexOf( e.button ) > -1 )  { prevSlide( this.gamepads[ 0 ].buttons[ '3' ] ); }
 		else if( keyMap.next.indexOf( e.button ) > -1 )  { nextSlide( this.gamepads[ 0 ].buttons[ '3' ] ); }
 		else if( keyMap.mute.indexOf( e.button ) > -1 )  { window.dispatchEvent( controlMuteDownEvent ); }
 		else if( keyMap.pause.indexOf( e.button ) > -1 ) { window.dispatchEvent( controlPauseDownEvent ); }
