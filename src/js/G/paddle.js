@@ -477,8 +477,12 @@ G.prototype.Paddle.prototype.step = function() {
 
 G.prototype.Paddle.prototype.draw = function() {
 	if( this.isCharging ) {
+		var opac = this.currentCharge < 1 ? 1 : 0.75 + Math.cos( Date.now() / 30 ) * 0.25;
+		// chrome bug causing any opacity below zero to hide 3d children
+		opac = 1;
+		//opac = 0.9
 		this.g.css( this.elem, {
-			opacity: this.currentCharge < 1 ? 1 : 0.75 + Math.cos( Date.now() / 30 ) * 0.25,
+			opacity: opac,
 			transform: 'translate3d(' + ( this.x + this.g.rand( -this.currentCharge * 5, this.currentCharge * 5 ) ) + 'px, ' + ( this.y + this.g.rand( -this.currentCharge * 5, this.currentCharge * 5 ) ) + 'px, ' + this.z + 'px) rotateZ(' + ( this.angle + this.g.rand( -this.currentCharge * 0.05, this.currentCharge * 0.05 ) ) + 'rad)'
 		});
 	} else {

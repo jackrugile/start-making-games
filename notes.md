@@ -1,15 +1,7 @@
-# Timeline
-	- add slides to github AND to online location /start-making-games/
-	- add slides to usb drive
-
----
-
 # Tech Notes
 - cuboid issues on firefox
 - link to codepen bare bones demo?
 - link to full game?
-- add share meta to slides online?
-- add arrow keys for next/prev
 
 ---
 
