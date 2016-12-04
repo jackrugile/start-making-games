@@ -33,7 +33,7 @@ html {
 
 body {
 	background: #111;
-	background: radial-gradient( #222, #111 );
+	//background: radial-gradient( #222, #111 );
 	color: map-get( $colors, primary );
 	font: 400 100%/1.5 $font-lato;
 	min-height: 100vh;

@@ -9,10 +9,10 @@
 	<code class="language-js">
 		function collisionAABB(r1, r2) {
 			if (!(
-				r1.y + r1.height < r2.y    // rect1 is above rect2
+				r1.y + r1.height < r2.y || // rect1 is above rect2
 				r1.x > r2.x + r2.width ||  // rect1 is on the right of rect2
 				r1.y > r2.y + r2.height || // rect1 is below rect2
-				r1.x + r1.width < r2.x ||  // rect1 is on the left of rect2
+				r1.x + r1.width < r2.x     // rect1 is on the left of rect2
 			)) {
 				return true;
 			}
