@@ -3,20 +3,20 @@ UI
 ==============================================================================*/
 
 .ui {
-	// background: rgba(255,255,255,0.05);
-	bottom: 0;
-	left: 0;
-	height: 80px;
-	overflow: hidden;
-	position: absolute;
-	right: 0;
-	//transition-duration: 300ms;
-	//transition-property: opacity, transform;
-	z-index: 100;
-	.zoom & {
-		// opacity: 0;
-		// transform: translateY( 80px );
-	}
+  // background: rgba(255,255,255,0.05);
+  bottom: 0;
+  left: 0;
+  height: 80px;
+  overflow: hidden;
+  position: absolute;
+  right: 0;
+  //transition-duration: 300ms;
+  //transition-property: opacity, transform;
+  z-index: 100;
+  .zoom & {
+    // opacity: 0;
+    // transform: translateY( 80px );
+  }
 }
 
 /*==============================================================================
@@ -24,79 +24,79 @@ Directions
 ==============================================================================*/
 
 .dirs {
-	display: none;
-	height: 40px;
-	left: 30px;
-	margin-top: -20px;
-	position: absolute;
-	top: 50%;
-	width: 40px;
+  display: none;
+  height: 40px;
+  left: 30px;
+  margin-top: -20px;
+  position: absolute;
+  top: 50%;
+  width: 40px;
 }
 
 .dir {
-	//background: rgba(255, 255, 255, 0.1);
-	background: #fff;
-	height: 30%;
-	opacity: 0.1;
-	position: absolute;
-	transform: rotate( 45deg );
-	transition-duration: 600ms;
-	transition-property: opacity, transform;
-	transition-timing-function: $easeOutExpo;
-	width: 30%;
-	will-change: transform;
-	&.is-active {
-		//background: #fff;
-		opacity: 1;
-		transition-duration: 0ms;
-	}
-	&.dir-up,
-	&.dir-down {
-		left: 35%;
-	}
-	&.dir-right,
-	&.dir-left {
-		top: 35%;
-	}
-	&.dir-up {
-		top: 0;
-		&.is-active {
-			transform: translateY( -50% ) scale( 0.75, 1.25 ) rotate( 45deg );
-		}
-	}
-	&.dir-right {
-		right: 0;
-		&.is-active {
-			transform: translateX( 50% ) scale( 1.25, 0.75 ) rotate( 45deg );
-		}
-	}
-	&.dir-down {
-		bottom: 0;
-		&.is-active {
-			transform: translateY( 50% ) scale( 0.75, 1.25 ) rotate( 45deg );
-		}
-	}
-	&.dir-left {
-		left: 0;
-		&.is-active {
-			transform: translateX( -50% ) scale( 1.25, 0.75 ) rotate( 45deg );
-		}
-	}
-	&.dir-center {
-		background: none;
-		border: none;
-		border: 2px solid rgba(255, 255, 255, 0.1);
-		bottom: 0;
-		display: none;
-		height: 60%;
-		left: 0;
-		margin: auto;
-		opacity: 1;
-		right: 0;
-		top: 0;
-		transform: rotate( 45deg );
-		width: 60%;
-	}
+  //background: rgba(255, 255, 255, 0.1);
+  background: #fff;
+  height: 30%;
+  opacity: 0.1;
+  position: absolute;
+  transform: rotate(45deg);
+  transition-duration: 600ms;
+  transition-property: opacity, transform;
+  transition-timing-function: $easeOutExpo;
+  width: 30%;
+  will-change: transform;
+  &.is-active {
+    //background: #fff;
+    opacity: 1;
+    transition-duration: 0ms;
+  }
+  &.dir-up,
+  &.dir-down {
+    left: 35%;
+  }
+  &.dir-right,
+  &.dir-left {
+    top: 35%;
+  }
+  &.dir-up {
+    top: 0;
+    &.is-active {
+      transform: translateY(-50%) scale(0.75, 1.25) rotate(45deg);
+    }
+  }
+  &.dir-right {
+    right: 0;
+    &.is-active {
+      transform: translateX(50%) scale(1.25, 0.75) rotate(45deg);
+    }
+  }
+  &.dir-down {
+    bottom: 0;
+    &.is-active {
+      transform: translateY(50%) scale(0.75, 1.25) rotate(45deg);
+    }
+  }
+  &.dir-left {
+    left: 0;
+    &.is-active {
+      transform: translateX(-50%) scale(1.25, 0.75) rotate(45deg);
+    }
+  }
+  &.dir-center {
+    background: none;
+    border: none;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    bottom: 0;
+    display: none;
+    height: 60%;
+    left: 0;
+    margin: auto;
+    opacity: 1;
+    right: 0;
+    top: 0;
+    transform: rotate(45deg);
+    width: 60%;
+  }
 }
 
 /*==============================================================================
@@ -104,17 +104,17 @@ Slide Indicator
 ==============================================================================*/
 
 .slide-indicator {
-	color: rgba(255, 255, 255, 0.2);
-	font-family: $font-roboto-mono;
-	font-size: 1.2em;
-	font-weight: 700;
-	line-height: 1;
-	margin-top: -10px;
-	position: absolute;
-	right: 135px;
-	top: 50%;
-	will-change: transform;
-	z-index: 50;
+  color: rgba(255, 255, 255, 0.2);
+  font-family: $font-roboto-mono;
+  font-size: 1.2em;
+  font-weight: 700;
+  line-height: 1;
+  margin-top: -10px;
+  position: absolute;
+  right: 135px;
+  top: 50%;
+  will-change: transform;
+  z-index: 50;
 }
 
 /*==============================================================================
@@ -122,55 +122,55 @@ Navigations
 ==============================================================================*/
 
 .nav {
-	display: flex;
-	margin-top: -20px;
-	position: absolute;
-	right: 30px;
-	top: 50%;
-	will-change: transform;
+  display: flex;
+  margin-top: -20px;
+  position: absolute;
+  right: 30px;
+  top: 50%;
+  will-change: transform;
 }
 
 .nav-item {
-	background: #fff;
-	opacity: 0.1;
-	display: block;
-	height: 40px;
-	position: relative;
-	transition-duration: 300ms;
-	transition-property: opacity, transform;
-	transition-timing-function: $easeOutExpo;
-	width: 40px;
-	will-change: transform;
-	&:before,
-	&:after {
-		border: 6px solid transparent;
-		content: '';
-		left: 50%;
-		margin-top: -6px;
-		position: absolute;
-		top: 50%;
-	}
-	&.nav-prev {
-		margin-right: 2px;
-		&:after {
-			border-left-width: 0;
-			border-right-color: map-get( $colors, bg );
-			margin-left: -3px;
-		}
-	}
-	&.nav-next {
-		&:after {
-			border-left-color: map-get( $colors, bg );
-			border-right-width: 0;
-			margin-left: -3px;
-		}
-	}
-	&:hover {
-		opacity: 0.5;
-	}
-	&:active {
-		opacity: 1;
-		transition-duration: 0ms;
-		transform: translateY( 3px );
-	}
+  background: #fff;
+  opacity: 0.1;
+  display: block;
+  height: 40px;
+  position: relative;
+  transition-duration: 300ms;
+  transition-property: opacity, transform;
+  transition-timing-function: $easeOutExpo;
+  width: 40px;
+  will-change: transform;
+  &:before,
+  &:after {
+    border: 6px solid transparent;
+    content: "";
+    left: 50%;
+    margin-top: -6px;
+    position: absolute;
+    top: 50%;
+  }
+  &.nav-prev {
+    margin-right: 2px;
+    &:after {
+      border-left-width: 0;
+      border-right-color: map-get($colors, bg);
+      margin-left: -3px;
+    }
+  }
+  &.nav-next {
+    &:after {
+      border-left-color: map-get($colors, bg);
+      border-right-width: 0;
+      margin-left: -3px;
+    }
+  }
+  &:hover {
+    opacity: 0.5;
+  }
+  &:active {
+    opacity: 1;
+    transition-duration: 0ms;
+    transform: translateY(3px);
+  }
 }

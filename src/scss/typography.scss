@@ -1,13 +1,13 @@
 strong {
-	font-weight: 900;
+  font-weight: 900;
 }
 
 em {
-	font-style: italic;
+  font-style: italic;
 }
 
 small {
-	font-size: 0.8em;
+  font-size: 0.8em;
 }
 
 h1,
@@ -19,10 +19,10 @@ h6,
 ul,
 ol,
 p {
-	margin-bottom: 4rem;
-	&:last-child {
-		margin-bottom: 0;
-	}
+  margin-bottom: 4rem;
+  &:last-child {
+    margin-bottom: 0;
+  }
 }
 
 h1,
@@ -31,85 +31,85 @@ h3,
 h4,
 h5,
 h6 {
-	font-weight: 900;
-	line-height: 1;
+  font-weight: 900;
+  line-height: 1;
 }
 
 h1,
 h2 {
-	font-size: 10em;
-	letter-spacing: -0.01em;
+  font-size: 10em;
+  letter-spacing: -0.01em;
 }
 
 h3,
 h4 {
-	font-size: 8em;
-	letter-spacing: -0.01em;
+  font-size: 8em;
+  letter-spacing: -0.01em;
 }
 
 h5,
 h6 {
-	font-size: 6em;
-	letter-spacing: -0.01em;
+  font-size: 6em;
+  letter-spacing: -0.01em;
 }
 
 h2,
 h4,
 h6 {
-	font-weight: 400;
+  font-weight: 400;
 }
 
 .med-marg {
-	margin-bottom: 3rem !important;
+  margin-bottom: 3rem !important;
 }
 
 .small-marg {
-	margin-bottom: 2rem !important;
+  margin-bottom: 2rem !important;
 }
 
 .no-marg {
-	margin-bottom: 0rem !important;
+  margin-bottom: 0rem !important;
 }
 
 ul {
-	list-style: none;
+  list-style: none;
 }
 
 ol {
-	list-style: decimal;
+  list-style: decimal;
 }
 
 p,
 li {
-	font-size: 4em;
-	letter-spacing: -0.01em;
+  font-size: 4em;
+  letter-spacing: -0.01em;
 }
 
 ul li {
-	line-height: 1;
-	margin-bottom: 2rem;
-	position: relative;
-	&:after {
-		//border: 1em solid transparent;
-		background: hsla(0, 0%, 100%, 0.25);
-		width: 0.25em;
-		height: 0.25em;
-		content: '';
-		left: 0;
-		margin-left: -0.85em;
-		position: absolute;
-		top: 0.42em;
-		transition-duration: 300ms;
-		transition-property: margin, transform;
-		transform: rotate(45deg);
-		/*.zoom & {
-			margin-left: -0.55em;
-			transform: scale(0.7) rotate(45deg) ;
-		}*/
-	}
-	&:last-child {
-		margin-bottom: 0;
-	}
+  line-height: 1;
+  margin-bottom: 2rem;
+  position: relative;
+  &:after {
+    //border: 1em solid transparent;
+    background: hsla(0, 0%, 100%, 0.25);
+    width: 0.25em;
+    height: 0.25em;
+    content: "";
+    left: 0;
+    margin-left: -0.85em;
+    position: absolute;
+    top: 0.42em;
+    transition-duration: 300ms;
+    transition-property: margin, transform;
+    transform: rotate(45deg);
+    /*.zoom & {
+      margin-left: -0.55em;
+      transform: scale(0.7) rotate(45deg) ;
+    }*/
+  }
+  &:last-child {
+    margin-bottom: 0;
+  }
 }
 
 h1 a,
@@ -121,81 +121,81 @@ h6 a,
 p a,
 ul a,
 ol a {
-	color: map-get( $colors, accent );
-	position: relative;
-	text-decoration: none;
-	transition: color 300ms;
-	&:hover {
-		color: map-get( $colors, accent2 );
-	}
-	&.alt {
-		color: map-get( $colors, accent2 );
-	}
-	&.alt:hover {
-		color: map-get( $colors, accent );
-	}
-	&:after {
-		background: hsla(0, 0%, 100%, 0.15);
-		//background: linear-gradient(90deg, hsla(0, 0%, 100%, 0.25), transparent);
-		content: '';
-		height: 3px;
-		left: 0;
-		margin-top: 3px;
-		position: absolute;
-		top: 100%;
-		width: 100%;
-	}
+  color: map-get($colors, accent);
+  position: relative;
+  text-decoration: none;
+  transition: color 300ms;
+  &:hover {
+    color: map-get($colors, accent2);
+  }
+  &.alt {
+    color: map-get($colors, accent2);
+  }
+  &.alt:hover {
+    color: map-get($colors, accent);
+  }
+  &:after {
+    background: hsla(0, 0%, 100%, 0.15);
+    //background: linear-gradient(90deg, hsla(0, 0%, 100%, 0.25), transparent);
+    content: "";
+    height: 3px;
+    left: 0;
+    margin-top: 3px;
+    position: absolute;
+    top: 100%;
+    width: 100%;
+  }
 }
 
 hr {
-	background: linear-gradient(90deg, hsla(0, 0%, 100%, 0.15), transparent);
-	border: none;
-	display: block;
-	height: 3px;
-	margin: 5rem 0;
-	width: 100%;
-	&.small-marg {
-		margin: 2rem 0 !important;
-	}
+  background: linear-gradient(90deg, hsla(0, 0%, 100%, 0.15), transparent);
+  border: none;
+  display: block;
+  height: 3px;
+  margin: 5rem 0;
+  width: 100%;
+  &.small-marg {
+    margin: 2rem 0 !important;
+  }
 }
 
 .acc1 {
-	color: map-get( $colors, accent );
+  color: map-get($colors, accent);
 }
 
 .acc2 {
-	color: map-get( $colors, accent2 );
+  color: map-get($colors, accent2);
 }
 
 .subdued {
-	font-weight: 400;
-	opacity: 0.5;
+  font-weight: 400;
+  opacity: 0.5;
 }
 
 .inline-code {
-	background: #333;
-	color: map-get( $colors, accent3 );
-	display: inline-block;
-	font-family: $font-roboto-mono;
-	font-size: 0.8em;
-	letter-spacing: -0.025em;
-	padding: 0.25em;
-	margin: -0.25em;
+  background: #333;
+  color: map-get($colors, accent3);
+  display: inline-block;
+  font-family: $font-roboto-mono;
+  font-size: 0.8em;
+  letter-spacing: -0.025em;
+  padding: 0.25em;
+  margin: -0.25em;
 }
 
 .notes {
-	background: rgba(0, 0, 0, 0.9);
-	bottom: 0;
-	font-size: 2em;
-	left: 0;
-	margin: auto;
-	min-height: 540px;
-	padding: 5rem;
-	position: absolute;
-	right: 0;
-	top: 0;
-	transform: translateZ( 3px );
-	visibility: hidden;
-	white-space: pre-wrap;
-	z-index: 200;
+  background: rgba(0, 0, 0, 0.9);
+  bottom: 0;
+  font-size: 2em;
+  left: 0;
+  margin: auto;
+  min-height: 540px;
+  padding: 5rem;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transform: translateZ(3px);
+  visibility: hidden;
+  white-space: pre-wrap;
+  z-index: 200;
 }

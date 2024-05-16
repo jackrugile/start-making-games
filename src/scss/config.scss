@@ -1,35 +1,35 @@
 /*==============================================================================
 Easings
 ==============================================================================*/
-$linear: cubic-bezier(0.250, 0.250, 0.750, 0.750);
-$ease: cubic-bezier(0.250, 0.100, 0.250, 1.000);
-$easeIn: cubic-bezier(0.420, 0.000, 1.000, 1.000);
-$easeOut: cubic-bezier(0.000, 0.000, 0.580, 1.000);
-$easeInOut: cubic-bezier(0.420, 0.000, 0.580, 1.000);
-$easeInQuad: cubic-bezier(0.550, 0.085, 0.680, 0.530);
-$easeInCubic: cubic-bezier(0.550, 0.055, 0.675, 0.190);
-$easeInQuart: cubic-bezier(0.895, 0.030, 0.685, 0.220);
-$easeInQuint: cubic-bezier(0.755, 0.050, 0.855, 0.060);
-$easeInSine: cubic-bezier(0.470, 0.000, 0.745, 0.715);
-$easeInExpo: cubic-bezier(0.950, 0.050, 0.795, 0.035);
-$easeInCirc: cubic-bezier(0.600, 0.040, 0.980, 0.335);
-$easeInBack: cubic-bezier(0.600, -0.280, 0.735, 0.045);
-$easeOutQuad: cubic-bezier(0.250, 0.460, 0.450, 0.940);
-$easeOutCubic: cubic-bezier(0.215, 0.610, 0.355, 1.000);
-$easeOutQuart: cubic-bezier(0.165, 0.840, 0.440, 1.000);
-$easeOutQuint: cubic-bezier(0.230, 1.000, 0.320, 1.000);
-$easeOutSine: cubic-bezier(0.390, 0.575, 0.565, 1.000);
-$easeOutExpo: cubic-bezier(0.190, 1.000, 0.220, 1.000);
-$easeOutCirc: cubic-bezier(0.075, 0.820, 0.165, 1.000);
-$easeOutBack: cubic-bezier(0.175, 0.885, 0.320, 1.275);
-$easeInOutQuad: cubic-bezier(0.455, 0.030, 0.515, 0.955);
-$easeInOutCubic: cubic-bezier(0.645, 0.045, 0.355, 1.000);
-$easeInOutQuart: cubic-bezier(0.770, 0.000, 0.175, 1.000);
-$easeInOutQuint: cubic-bezier(0.860, 0.000, 0.070, 1.000);
-$easeInOutSine: cubic-bezier(0.445, 0.050, 0.550, 0.950);
-$easeInOutExpo: cubic-bezier(1.000, 0.000, 0.000, 1.000);
-$easeInOutCirc: cubic-bezier(0.785, 0.135, 0.150, 0.860);
-$easeInOutBack: cubic-bezier(0.680, -0.550, 0.265, 1.550);
+$linear: cubic-bezier(0.25, 0.25, 0.75, 0.75);
+$ease: cubic-bezier(0.25, 0.1, 0.25, 1);
+$easeIn: cubic-bezier(0.42, 0, 1, 1);
+$easeOut: cubic-bezier(0, 0, 0.58, 1);
+$easeInOut: cubic-bezier(0.42, 0, 0.58, 1);
+$easeInQuad: cubic-bezier(0.55, 0.085, 0.68, 0.53);
+$easeInCubic: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+$easeInQuart: cubic-bezier(0.895, 0.03, 0.685, 0.22);
+$easeInQuint: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+$easeInSine: cubic-bezier(0.47, 0, 0.745, 0.715);
+$easeInExpo: cubic-bezier(0.95, 0.05, 0.795, 0.035);
+$easeInCirc: cubic-bezier(0.6, 0.04, 0.98, 0.335);
+$easeInBack: cubic-bezier(0.6, -0.28, 0.735, 0.045);
+$easeOutQuad: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+$easeOutCubic: cubic-bezier(0.215, 0.61, 0.355, 1);
+$easeOutQuart: cubic-bezier(0.165, 0.84, 0.44, 1);
+$easeOutQuint: cubic-bezier(0.23, 1, 0.32, 1);
+$easeOutSine: cubic-bezier(0.39, 0.575, 0.565, 1);
+$easeOutExpo: cubic-bezier(0.19, 1, 0.22, 1);
+$easeOutCirc: cubic-bezier(0.075, 0.82, 0.165, 1);
+$easeOutBack: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+$easeInOutQuad: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+$easeInOutCubic: cubic-bezier(0.645, 0.045, 0.355, 1);
+$easeInOutQuart: cubic-bezier(0.77, 0, 0.175, 1);
+$easeInOutQuint: cubic-bezier(0.86, 0, 0.07, 1);
+$easeInOutSine: cubic-bezier(0.445, 0.05, 0.55, 0.95);
+$easeInOutExpo: cubic-bezier(1, 0, 0, 1);
+$easeInOutCirc: cubic-bezier(0.785, 0.135, 0.15, 0.86);
+$easeInOutBack: cubic-bezier(0.68, -0.55, 0.265, 1.55);
 
 /*==============================================================================
 Dimensions
@@ -41,86 +41,86 @@ $height: 1080px;
 
 // spacing
 //$padding: ceil( $width * 0.1 );
-$padding: ceil( $width * 0.025 );
+$padding: ceil($width * 0.025);
 $padding: 0;
 
 /*==============================================================================
 Fonts
 ==============================================================================*/
 
-$font-lato: 'latowf', 'Helvetica Neue', helvetica, arial, sans-serif;
-$font-roboto-mono: 'robotomonowf', 'Droid Sans Mono', courier, monospace;
+$font-lato: "latowf", "Helvetica Neue", helvetica, arial, sans-serif;
+$font-roboto-mono: "robotomonowf", "Droid Sans Mono", courier, monospace;
 
 /*==============================================================================
 Colors
 ==============================================================================*/
 
 $colors1: (
-	bg: #151c27,
-	slide-bg: #151c27,
-	primary: #f4ecd0,
-	accent: #f34,
-	subdued: #4c6381
+  bg: #151c27,
+  slide-bg: #151c27,
+  primary: #f4ecd0,
+  accent: #f34,
+  subdued: #4c6381,
 );
 
 $colors2: (
-	bg: #fff,
-	slide-bg: #fff,
-	primary: #333,
-	accent: #f34,
-	subdued: #999
+  bg: #fff,
+  slide-bg: #fff,
+  primary: #333,
+  accent: #f34,
+  subdued: #999,
 );
 
 $colors3: (
-	bg: #111,
-	slide-bg: transparent,
-	primary: #fff,
-	accent: #f34,
-	accent2: #3bf,
-	subdued: #666
+  bg: #111,
+  slide-bg: transparent,
+  primary: #fff,
+  accent: #f34,
+  accent2: #3bf,
+  subdued: #666,
 );
 
 $colors4: (
-	bg: #202025,
-	slide-bg: #202025,
-	primary: #fec,
-	accent: #f34,
-	subdued: #66666c
+  bg: #202025,
+  slide-bg: #202025,
+  primary: #fec,
+  accent: #f34,
+  subdued: #66666c,
 );
 
 $colors5: (
-	bg: #1b1b1f,
-	slide-bg: #1b1b1f,
-	primary: #edb,
-	accent: #f23,
-	subdued: #68687b
+  bg: #1b1b1f,
+  slide-bg: #1b1b1f,
+  primary: #edb,
+  accent: #f23,
+  subdued: #68687b,
 );
 
 $colors6: (
-	bg: #181b23,
-	slide-bg: #181b23,
-	primary: hsl(50, 96%, 90%),
-	accent: hsl(130, 90%, 60%),
-	subdued: hsl(50, 96%, 90%)
+  bg: #181b23,
+  slide-bg: #181b23,
+  primary: hsl(50, 96%, 90%),
+  accent: hsl(130, 90%, 60%),
+  subdued: hsl(50, 96%, 90%),
 );
 
 $colors7: (
-	bg: #fdf0dd,
-	slide-bg: #fdf0dd,
-	primary: #3e414e,
-	accent: #f34,
-	subdued: #847b6e
+  bg: #fdf0dd,
+  slide-bg: #fdf0dd,
+  primary: #3e414e,
+  accent: #f34,
+  subdued: #847b6e,
 );
 
 $colors8: (
-	bg: #111,
-	slide-bg: transparent,
-	primary: #fff,
-	accent: hsl(130, 100%, 60%),
-	accent2: hsl(200, 100%, 60%),
-	accent3: hsl(330, 100%, 60%),
-	accent4: hsl(40, 100%, 60%),
-	subdued: #666
+  bg: #111,
+  slide-bg: transparent,
+  primary: #fff,
+  accent: hsl(130, 100%, 60%),
+  accent2: hsl(200, 100%, 60%),
+  accent3: hsl(330, 100%, 60%),
+  accent4: hsl(40, 100%, 60%),
+  subdued: #666,
 );
 
 $colors: $colors8;
