@@ -12,6 +12,7 @@ G.prototype.Ball = function (g) {
   this.serving = true;
   this.servingTimer = 0;
   this.servingTimerMax = this.g.opt.sound ? 100 : 60;
+  this.servingFlag = false;
   this.x = this.g.stage.width / 2 - this.g.config.ball.width / 2;
   this.y = this.g.stage.height / 2 - this.g.config.ball.height / 2;
   this.z = this.g.opt.extrude ? 60 : 2;
@@ -24,6 +25,7 @@ G.prototype.Ball = function (g) {
   this.rotation = this.g.opt.spin ? Math.PI / 4 : 0;
   this.opacity = 0;
   this.wasSpiked = false;
+  this.scoring = false;
 
   this.ghost = {
     elem: document.querySelector(".g-ball-ghost"),
@@ -38,6 +40,7 @@ G.prototype.Ball = function (g) {
 };
 
 G.prototype.Ball.prototype.reset = function () {
+  this.scoring = false;
   this.serving = true;
   this.ghost.active = false;
 
@@ -46,6 +49,8 @@ G.prototype.Ball.prototype.reset = function () {
   this.opacity = 0;
   this.vx = 0;
   this.vy = 0;
+  this.ghost.vx = 0;
+  this.ghost.vy = 0;
   this.g.paddlePlayer.hasHit = false;
   this.g.paddleEnemy.hasHit = false;
 };
@@ -174,6 +179,7 @@ G.prototype.Ball.prototype.contain = function () {
   }
 
   if (hasScored) {
+    this.scoring = true;
     this.speed += this.g.config.ball.inc;
     if (this.g.opt.reaction) {
       this.g.triggerClass(this.g.overlay, "flash");
@@ -232,8 +238,12 @@ G.prototype.Ball.prototype.step = function () {
 
   if (this.serving && !this.g.done) {
     if (this.servingTimer < this.servingTimerMax) {
-      this.servingTimer++;
-      if (this.servingTimer === (this.g.opt.sound ? 45 : 1)) {
+      this.servingTimer += this.g.timescale.getDt();
+
+      if (
+        !this.servingFlag &&
+        this.servingTimer >= (this.g.opt.sound ? 45 : 1)
+      ) {
         if (this.g.opt.spin) {
           this.opacity = 0;
           this.y =
@@ -251,6 +261,7 @@ G.prototype.Ball.prototype.step = function () {
           this.opacity = 1;
         }
 
+        this.servingFlag = true;
         pg.soundPlay({
           active: this.g.opt.sound,
           name: "whoosh-1",
@@ -261,6 +272,7 @@ G.prototype.Ball.prototype.step = function () {
     } else {
       this.serving = false;
       this.servingTimer = 0;
+      this.servingFlag = false;
       this.vx = this.speed;
       this.vy = this.speed;
 
@@ -293,16 +305,19 @@ G.prototype.Ball.prototype.step = function () {
 
     // lock velocity
     if (Math.sqrt(this.vx * this.vx + this.vy * this.vy) > this.speed) {
-      this.vx *= Math.pow(this.friction, this.g.timescale.getDt());
-      this.vy *= Math.pow(this.friction, this.g.timescale.getDt());
+      // this.vx *= Math.pow(this.friction, this.g.timescale.getDt());
+      // this.vy *= Math.pow(this.friction, this.g.timescale.getDt());
 
-      this.ghost.vx *= Math.pow(this.friction, this.g.timescale.getDt());
-      this.ghost.vy *= Math.pow(this.friction, this.g.timescale.getDt());
+      // this.ghost.vx *= Math.pow(this.friction, this.g.timescale.getDt());
+      // this.ghost.vy *= Math.pow(this.friction, this.g.timescale.getDt());
 
-      /*this.vx *= this.friction;
-      this.vy *= this.friction;
-      this.ghost.vx *= this.friction;
-      this.ghost.vy *= this.friction;*/
+      let lerp = 1 - Math.exp(-(1 - this.friction) * this.g.timescale.getDt());
+
+      this.vx += (0 - this.vx) * lerp;
+      this.vy += (0 - this.vy) * lerp;
+
+      this.ghost.vx += (0 - this.ghost.vx) * lerp;
+      this.ghost.vy += (0 - this.ghost.vy) * lerp;
     }
 
     if (this.g.opt.particles && !this.g.done) {

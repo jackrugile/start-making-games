@@ -12,7 +12,7 @@ G.prototype.Pulse = function (g, parent) {
   this.elem = this.g.cE(this.g.stage.elem, "g-pulse");
   this.g.css(this.elem, {
     opacity: 0,
-    transform: "translate3d(-999px , -999px, 0)",
+    transform: "translate3d(-9999px , -9999px, 0)",
   });
 };
 
@@ -69,7 +69,7 @@ G.prototype.Pulse.prototype.draw = function () {
 G.prototype.Pulse.prototype.destroy = function () {
   this.g.css(this.elem, {
     opacity: 0,
-    transform: "translate3d(-999px , -999px, 0)",
+    transform: "translate3d(-9999px , -9999px, 0)",
   });
   this.parent.release(this);
 };

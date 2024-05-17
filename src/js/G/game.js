@@ -218,7 +218,7 @@ G.prototype.checkWinState = function () {
     this.paddlePlayer.canSpike = false;
     this.removeClass(this.paddlePlayer.elem, "hit");
     if (this.doneExitTick < this.doneExitTickMax) {
-      this.doneExitTick++;
+      this.doneExitTick += this.timescale.getDt();
     } else {
       this.doneExitTick = 0;
       this.showResult();
@@ -278,7 +278,7 @@ G.prototype.step = function () {
 
   if (this.menuExit) {
     if (this.menuExitTick < this.menuExitTickMax) {
-      this.menuExitTick++;
+      this.menuExitTick += this.timescale.getDt();
     } else {
       this.menuExit = false;
       this.menuExitTick = 0;
@@ -289,7 +289,7 @@ G.prototype.step = function () {
 
   if (this.state === "result") {
     if (this.resultExitTick < this.resultExitTickMax) {
-      this.resultExitTick++;
+      this.resultExitTick += this.timescale.getDt();
     } else {
       this.resultExitTick = 0;
       this.state = "menu";

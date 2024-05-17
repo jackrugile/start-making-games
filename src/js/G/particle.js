@@ -12,7 +12,7 @@ G.prototype.Particle = function (g, parent) {
   this.elem = this.g.cE(this.g.stage.elem, "g-particle");
   this.g.css(this.elem, {
     opacity: 0,
-    transform: "translate3d(-999px , -999px, 0)",
+    transform: "translate3d(-9999px , -9999px, 0)",
   });
 };
 
@@ -39,9 +39,10 @@ G.prototype.Particle.prototype.init = function (opt) {
 };
 
 G.prototype.Particle.prototype.step = function () {
-  this.vx *= this.friction;
-  this.vy *= this.friction;
-  this.vz *= this.friction;
+  let lerp = 1 - Math.exp(-(1 - this.friction) * this.g.timescale.getDt());
+  this.vx += -this.vx * lerp;
+  this.vy += -this.vy * lerp;
+  this.vz += -this.vz * lerp;
   this.x += this.vx * this.g.timescale.getDt();
   this.y += this.vy * this.g.timescale.getDt();
   this.z += this.vz * this.g.timescale.getDt();
@@ -83,7 +84,7 @@ G.prototype.Particle.prototype.draw = function () {
 G.prototype.Particle.prototype.destroy = function () {
   this.g.css(this.elem, {
     opacity: 0,
-    transform: "translate3d(-999px , -999px, 0)",
+    transform: "translate3d(-9999px , -9999px, 0)",
   });
   this.parent.release(this);
 };

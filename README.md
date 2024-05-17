@@ -6,7 +6,7 @@ A talk about why games are the ultimate creative expression, how to build a simp
 - [Final Game (Developong)](https://jackrugile.com/start-making-games/#96)
 - [Presentation Video](https://www.youtube.com/watch?v=Zj7PKrdKWu4)
 
-# Credits and Resources
+## Credits and Resources
 
 ### Talks
 

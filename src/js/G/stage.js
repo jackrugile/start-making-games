@@ -27,33 +27,39 @@ G.prototype.Stage = function (g) {
 };
 
 G.prototype.Stage.prototype.step = function () {
-  this.xDegTarget = this.g.done
-    ? 0
-    : (this.g.ball.y / (this.height - this.g.ball.height) - 0.5) *
-      2 *
-      this.rangeDeg;
-  this.xDeg += (this.xDegTarget - this.xDeg) * this.smoothingDeg;
+  let lerp = 1 - Math.exp(-this.smoothingDeg * this.g.timescale.getDt());
 
-  this.yDegTarget = this.g.done
-    ? 0
-    : (this.g.ball.x / (this.width - this.g.ball.width) - 0.5) *
-      2 *
-      this.rangeDeg;
-  this.yDeg += (this.yDegTarget - this.yDeg) * this.smoothingDeg;
+  this.xDegTarget =
+    this.g.done || this.g.ball.serving
+      ? 0
+      : (this.g.ball.y / (this.height - this.g.ball.height) - 0.5) *
+        2 *
+        this.rangeDeg;
+  this.xDeg += (this.xDegTarget - this.xDeg) * lerp;
 
-  this.xTransTarget = this.g.done
-    ? 0
-    : (-this.g.ball.x + this.width / 2) *
-      0.1 *
-      ((1 - this.g.timescale.current) * 10);
-  this.xTrans += (this.xTransTarget - this.xTrans) * this.smoothingDeg;
+  this.yDegTarget =
+    this.g.done || this.g.ball.serving
+      ? 0
+      : (this.g.ball.x / (this.width - this.g.ball.width) - 0.5) *
+        2 *
+        this.rangeDeg;
+  this.yDeg += (this.yDegTarget - this.yDeg) * lerp;
 
-  this.yTransTarget = this.g.done
-    ? 0
-    : (-this.g.ball.y + this.height / 2) *
-      0.1 *
-      ((1 - this.g.timescale.current) * 10);
-  this.yTrans += (this.yTransTarget - this.yTrans) * this.smoothingDeg;
+  this.xTransTarget =
+    this.g.done || this.g.ball.serving
+      ? 0
+      : (-this.g.ball.x + this.width / 2) *
+        0.1 *
+        ((1 - this.g.timescale.current) * 10);
+  this.xTrans += (this.xTransTarget - this.xTrans) * lerp;
+
+  this.yTransTarget =
+    this.g.done || this.g.ball.serving
+      ? 0
+      : (-this.g.ball.y + this.height / 2) *
+        0.1 *
+        ((1 - this.g.timescale.current) * 10);
+  this.yTrans += (this.yTransTarget - this.yTrans) * lerp;
 
   this.rotation = this.g.screenshake.angle;
 

@@ -356,8 +356,16 @@ G.prototype.Paddle.prototype.checkCollisions = function () {
 
 G.prototype.Paddle.prototype.step = function () {
   if (this.isEnemy) {
-    //if ( !this.hasHit || Math.random() < 0.2 ) {
-    if (!this.hasHit || Math.random() < this.g.enemyBlind) {
+    if (this.g.ball.serving || this.g.ball.scoring) {
+      this.moveUp = false;
+      this.moveDown = false;
+    }
+
+    if (
+      !this.g.ball.serving &&
+      !this.g.ball.scoring &&
+      (!this.hasHit || Math.random() < this.g.enemyBlind)
+    ) {
       this.moveUp = false;
       this.moveDown = false;
       if (this.g.opt.trajectory && this.g.ball.ghost.active) {
@@ -385,7 +393,9 @@ G.prototype.Paddle.prototype.step = function () {
     } else if (this.moveDown) {
       this.vy += this.ay * this.g.timescale.getDt();
     } else {
-      this.vy *= this.friction;
+      this.vy +=
+        (0 - this.vy) *
+        (1 - Math.exp(-(1 - this.friction) * this.g.timescale.getDt()));
     }
   } else {
     if (this.moveUp) {
@@ -395,13 +405,15 @@ G.prototype.Paddle.prototype.step = function () {
     }
   }
 
-  this.angle += (0 - this.angle) * 0.1;
+  // this.angle += (0 - this.angle) * 0.1;
+  this.angle +=
+    (0 - this.angle) * (1 - Math.exp(-0.1 * this.g.timescale.getDt()));
 
   if (this.isSpiking) {
     this.canSpike = false;
-    this.vx += this.ax;
+    this.vx += this.ax * this.g.timescale.getDt();
   } else {
-    this.vx -= this.ax / 20;
+    this.vx -= (this.ax / 20) * this.g.timescale.getDt();
   }
 
   if (this.vx < -this.vxMax) {
@@ -472,7 +484,7 @@ G.prototype.Paddle.prototype.step = function () {
     this.x = this.spikeTarget;
     this.vx = 0;
     if (this.spikeHoldTick < this.spikeHoldTickMax) {
-      this.spikeHoldTick++;
+      this.spikeHoldTick += this.g.timescale.getDt();
     } else {
       this.spikeHoldTick = 0;
       this.isSpiking = false;
