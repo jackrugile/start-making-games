@@ -112,7 +112,7 @@ var slides = [
 Game
 ==============================================================================*/
 
-var game = null;
+window.game = null;
 
 /*==============================================================================
 Slide Scaling
@@ -235,10 +235,10 @@ function loadSlide(i) {
   if (isDev) {
     document.title = slides[i] + " // Start Making Games";
   }
-  if (game && typeof game.kill == "function") {
-    game.kill();
+  if (window.game && typeof window.game.kill == "function") {
+    window.game.kill();
   }
-  game = null;
+  window.game = null;
   document.documentElement.classList.add("loading");
   slideRequest = new XMLHttpRequest();
   slideRequest.open("GET", "slides/" + slides[i] + "/index.html", true);
@@ -330,30 +330,17 @@ nextSlideButton.addEventListener("click", function (e) {
   nextSlide(e.shiftKey);
 });
 
-/*
-var loadedCount = 0;
-
-function checkLoaded() {
-  if( loadedCount >= totalSlides ) {
-    document.documentElement.classList.add( 'loaded' );
-  }
-}
-*/
-
 slides.forEach(function (elem, i) {
   var html = new XMLHttpRequest();
-  html.open("GET", /* @vite-ignore */ "slides/" + elem + "/index.html", true);
-  //html.onload = function() { loadedCount++; checkLoaded(); };
+  html.open("GET", "slides/" + elem + "/index.html", true);
   html.send();
 
   var css = new XMLHttpRequest();
-  css.open("GET", /* @vite-ignore */ "slides/" + elem + "/index.css", true);
-  //css.onload = function() { loadedCount++; checkLoaded(); };
+  css.open("GET", "slides/" + elem + "/index.css", true);
   css.send();
 
   var js = new XMLHttpRequest();
-  js.open("GET", /* @vite-ignore */ "slides/" + elem + "/index.js", true);
-  //js.onload = function() { loadedCount++; checkLoaded(); };
+  js.open("GET", "slides/" + elem + "/index.js", true);
   js.send();
 });
 
@@ -402,7 +389,7 @@ var controlDownDownEvent = new Event("controlDownDown"),
 Playground General
 ==============================================================================*/
 
-var pg = playground({
+window.pg = window.playground({
   mousemove: function (e) {
     document.documentElement.classList.remove("mouse-idle");
     this.mouseIdle = false;

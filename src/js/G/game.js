@@ -62,7 +62,7 @@ var G = function (opt) {
 
   // restart music
   if (this.opt.music) {
-    pg.startMusic();
+    window.pg.startMusic();
   }
 
   // screenshake
@@ -210,8 +210,8 @@ Check Win State
 G.prototype.checkWinState = function () {
   if (this.done) {
     this.ball.opacity = 0;
-    pg.sound.setVolume(pg.humLoop, 0);
-    pg.sound.setVolume(pg.alarmLoop, 0);
+    window.pg.sound.setVolume(window.pg.humLoop, 0);
+    window.pg.sound.setVolume(window.pg.alarmLoop, 0);
     this.paddlePlayer.currentCharge = 0;
     this.paddlePlayer.isCharging = false;
     this.paddlePlayer.isSpiking = false;
@@ -243,7 +243,7 @@ Step / Update
 
 G.prototype.step = function () {
   if (!this.muted) {
-    pg.music.setMaster(this.timescale.current);
+    window.pg.music.setMaster(this.timescale.current);
   }
 
   if (this.opt.move3d) {
@@ -343,7 +343,7 @@ Kill / Destroy
 G.prototype.kill = function () {
   cancelAnimationFrame(this.raf);
   if (this.opt.music) {
-    pg.stopMusic();
+    window.pg.stopMusic();
   }
   this.config = null;
   this.stage = null;
@@ -381,3 +381,7 @@ G.prototype.kill = function () {
   this.unpause();
   this.removeEventListeners();
 };
+
+window.G = G;
+
+export default G;

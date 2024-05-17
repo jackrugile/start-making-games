@@ -1,6 +1,8 @@
 export default {
   root: "src",
-  optimizeDeps: {
-    exclude: ["/src/slides/**/*"],
+  publicDir: "static",
+  build: {
+    outDir: "../dist",
+    emptyOutDir: true,
   },
 };

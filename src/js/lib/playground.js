@@ -1,15 +1,13 @@
-
-
 /* file: license.txt */
 
-/*     
+/*
 
   PlaygroundJS r12
-  
+
   http://playgroundjs.com
-  
+
   (c) 2012-2016 http://rezoner.net
-  
+
   Playground may be freely distributed under the MIT license.
 
   latest major changes:
@@ -22,7 +20,7 @@
   r11
 
   + sound panning
-  
+
   r10
 
   + tween.call
@@ -49,7 +47,7 @@
   + custom transitions
   + fixes for gamepad
   + updated CanvasQuery
-  
+
   r5
 
   + game loop split into render and step - check profiler
@@ -60,7 +58,7 @@
   + gamepad stick issue
   + pointerwheel event
   + updated CanvasQuery
-  - removed video recorder  
+  - removed video recorder
 
   r4
 
@@ -75,35 +73,28 @@
 
 /* file: src/lib/Ease.js */
 
-/*     
+/*
 
   Ease 1.0
-  
+
   http://canvasquery.com
-  
+
   (c) 2015 by Rezoner - http://rezoner.net
 
   `ease` may be freely distributed under the MIT license.
 
 */
 
-(function() {
-
-  var ease = function(progress, easing) {
-
+(function () {
+  var ease = function (progress, easing) {
     if (typeof ease.cache[easing] === "function") {
-
       return ease.cache[easing](progress);
-
     } else {
-
       return ease.spline(progress, easing || ease.defaultEasing);
-
     }
-
   };
 
-  var extend = function() {
+  var extend = function () {
     for (var i = 1; i < arguments.length; i++) {
       for (var j in arguments[i]) {
         arguments[0][j] = arguments[i][j];
@@ -114,83 +105,83 @@
   };
 
   extend(ease, {
-
     defaultEasing: "016",
 
     cache: {
-
-      linear: function(t) {
-        return t
+      linear: function (t) {
+        return t;
       },
 
-      inQuad: function(t) {
-        return t * t
+      inQuad: function (t) {
+        return t * t;
       },
-      outQuad: function(t) {
-        return t * (2 - t)
+      outQuad: function (t) {
+        return t * (2 - t);
       },
-      inOutQuad: function(t) {
-        return t < .5 ? 2 * t * t : -1 + (4 - 2 * t) * t
+      inOutQuad: function (t) {
+        return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
       },
-      inCubic: function(t) {
-        return t * t * t
+      inCubic: function (t) {
+        return t * t * t;
       },
-      outCubic: function(t) {
-        return (--t) * t * t + 1
+      outCubic: function (t) {
+        return --t * t * t + 1;
       },
-      inOutCubic: function(t) {
-        return t < .5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1
+      inOutCubic: function (t) {
+        return t < 0.5
+          ? 4 * t * t * t
+          : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
       },
-      inQuart: function(t) {
-        return t * t * t * t
+      inQuart: function (t) {
+        return t * t * t * t;
       },
-      outQuart: function(t) {
-        return 1 - (--t) * t * t * t
+      outQuart: function (t) {
+        return 1 - --t * t * t * t;
       },
-      inOutQuart: function(t) {
-        return t < .5 ? 8 * t * t * t * t : 1 - 8 * (--t) * t * t * t
+      inOutQuart: function (t) {
+        return t < 0.5 ? 8 * t * t * t * t : 1 - 8 * --t * t * t * t;
       },
-      inQuint: function(t) {
-        return t * t * t * t * t
+      inQuint: function (t) {
+        return t * t * t * t * t;
       },
-      outQuint: function(t) {
-        return 1 + (--t) * t * t * t * t
+      outQuint: function (t) {
+        return 1 + --t * t * t * t * t;
       },
-      inOutQuint: function(t) {
-        return t < .5 ? 16 * t * t * t * t * t : 1 + 16 * (--t) * t * t * t * t
+      inOutQuint: function (t) {
+        return t < 0.5 ? 16 * t * t * t * t * t : 1 + 16 * --t * t * t * t * t;
       },
-      inSine: function(t) {
-        return -1 * Math.cos(t / 1 * (Math.PI * 0.5)) + 1;
+      inSine: function (t) {
+        return -1 * Math.cos((t / 1) * (Math.PI * 0.5)) + 1;
       },
-      outSine: function(t) {
-        return Math.sin(t / 1 * (Math.PI * 0.5));
+      outSine: function (t) {
+        return Math.sin((t / 1) * (Math.PI * 0.5));
       },
-      inOutSine: function(t) {
-        return -1 / 2 * (Math.cos(Math.PI * t) - 1);
+      inOutSine: function (t) {
+        return (-1 / 2) * (Math.cos(Math.PI * t) - 1);
       },
-      inExpo: function(t) {
-        return (t == 0) ? 0 : Math.pow(2, 10 * (t - 1));
+      inExpo: function (t) {
+        return t == 0 ? 0 : Math.pow(2, 10 * (t - 1));
       },
-      outExpo: function(t) {
-        return (t == 1) ? 1 : (-Math.pow(2, -10 * t) + 1);
+      outExpo: function (t) {
+        return t == 1 ? 1 : -Math.pow(2, -10 * t) + 1;
       },
-      inOutExpo: function(t) {
+      inOutExpo: function (t) {
         if (t == 0) return 0;
         if (t == 1) return 1;
-        if ((t /= 1 / 2) < 1) return 1 / 2 * Math.pow(2, 10 * (t - 1));
-        return 1 / 2 * (-Math.pow(2, -10 * --t) + 2);
+        if ((t /= 1 / 2) < 1) return (1 / 2) * Math.pow(2, 10 * (t - 1));
+        return (1 / 2) * (-Math.pow(2, -10 * --t) + 2);
       },
-      inCirc: function(t) {
+      inCirc: function (t) {
         return -1 * (Math.sqrt(1 - t * t) - 1);
       },
-      outCirc: function(t) {
+      outCirc: function (t) {
         return Math.sqrt(1 - (t = t - 1) * t);
       },
-      inOutCirc: function(t) {
-        if ((t /= 1 / 2) < 1) return -1 / 2 * (Math.sqrt(1 - t * t) - 1);
-        return 1 / 2 * (Math.sqrt(1 - (t -= 2) * t) + 1);
+      inOutCirc: function (t) {
+        if ((t /= 1 / 2) < 1) return (-1 / 2) * (Math.sqrt(1 - t * t) - 1);
+        return (1 / 2) * (Math.sqrt(1 - (t -= 2) * t) + 1);
       },
-      inElastic: function(t) {
+      inElastic: function (t) {
         var s = 1.70158;
         var p = 0;
         var a = 1;
@@ -200,10 +191,14 @@
         if (a < 1) {
           a = 1;
           var s = p / 4;
-        } else var s = p / (2 * Math.PI) * Math.asin(1 / a);
-        return -(a * Math.pow(2, 10 * (t -= 1)) * Math.sin((t - s) * (2 * Math.PI) / p));
+        } else var s = (p / (2 * Math.PI)) * Math.asin(1 / a);
+        return -(
+          a *
+          Math.pow(2, 10 * (t -= 1)) *
+          Math.sin(((t - s) * (2 * Math.PI)) / p)
+        );
       },
-      outElastic: function(t) {
+      outElastic: function (t) {
         var s = 1.70158;
         var p = 0;
         var a = 1;
@@ -213,67 +208,80 @@
         if (a < 1) {
           a = 1;
           var s = p / 4;
-        } else var s = p / (2 * Math.PI) * Math.asin(1 / a);
-        return a * Math.pow(2, -10 * t) * Math.sin((t - s) * (2 * Math.PI) / p) + 1;
+        } else var s = (p / (2 * Math.PI)) * Math.asin(1 / a);
+        return (
+          a * Math.pow(2, -10 * t) * Math.sin(((t - s) * (2 * Math.PI)) / p) + 1
+        );
       },
-      inOutElastic: function(t) {
+      inOutElastic: function (t) {
         var s = 1.70158;
         var p = 0;
         var a = 1;
         if (t == 0) return 0;
         if ((t /= 1 / 2) == 2) return 1;
-        if (!p) p = (0.3 * 1.5);
+        if (!p) p = 0.3 * 1.5;
         if (a < 1) {
           a = 1;
           var s = p / 4;
-        } else var s = p / (2 * Math.PI) * Math.asin(1 / a);
-        if (t < 1) return -.5 * (a * Math.pow(2, 10 * (t -= 1)) * Math.sin((t - s) * (2 * Math.PI) / p));
-        return a * Math.pow(2, -10 * (t -= 1)) * Math.sin((t - s) * (2 * Math.PI) / p) * 0.5 + 1;
+        } else var s = (p / (2 * Math.PI)) * Math.asin(1 / a);
+        if (t < 1)
+          return (
+            -0.5 *
+            (a *
+              Math.pow(2, 10 * (t -= 1)) *
+              Math.sin(((t - s) * (2 * Math.PI)) / p))
+          );
+        return (
+          a *
+            Math.pow(2, -10 * (t -= 1)) *
+            Math.sin(((t - s) * (2 * Math.PI)) / p) *
+            0.5 +
+          1
+        );
       },
-      inBack: function(t, s) {
+      inBack: function (t, s) {
         if (s == undefined) s = 1.70158;
         return 1 * t * t * ((s + 1) * t - s);
       },
-      outBack: function(t, s) {
+      outBack: function (t, s) {
         if (s == undefined) s = 1.70158;
         return 1 * ((t = t / 1 - 1) * t * ((s + 1) * t + s) + 1);
       },
-      inOutBack: function(t, s) {
+      inOutBack: function (t, s) {
         if (s == undefined) s = 1.70158;
-        if ((t /= 1 / 2) < 1) return 1 / 2 * (t * t * (((s *= (1.525)) + 1) * t - s));
-        return 1 / 2 * ((t -= 2) * t * (((s *= (1.525)) + 1) * t + s) + 2);
+        if ((t /= 1 / 2) < 1)
+          return (1 / 2) * (t * t * (((s *= 1.525) + 1) * t - s));
+        return (1 / 2) * ((t -= 2) * t * (((s *= 1.525) + 1) * t + s) + 2);
       },
-      inBounce: function(t) {
+      inBounce: function (t) {
         return 1 - this.outBounce(1 - t);
       },
-      outBounce: function(t) {
-        if ((t /= 1) < (1 / 2.75)) {
-          return (7.5625 * t * t);
-        } else if (t < (2 / 2.75)) {
-          return (7.5625 * (t -= (1.5 / 2.75)) * t + .75);
-        } else if (t < (2.5 / 2.75)) {
-          return (7.5625 * (t -= (2.25 / 2.75)) * t + .9375);
+      outBounce: function (t) {
+        if ((t /= 1) < 1 / 2.75) {
+          return 7.5625 * t * t;
+        } else if (t < 2 / 2.75) {
+          return 7.5625 * (t -= 1.5 / 2.75) * t + 0.75;
+        } else if (t < 2.5 / 2.75) {
+          return 7.5625 * (t -= 2.25 / 2.75) * t + 0.9375;
         } else {
-          return (7.5625 * (t -= (2.625 / 2.75)) * t + .984375);
+          return 7.5625 * (t -= 2.625 / 2.75) * t + 0.984375;
         }
       },
-      inOutBounce: function(t) {
+      inOutBounce: function (t) {
         if (t < 1 / 2) return this.inBounce(t * 2) * 0.5;
         return this.outBounce(t * 2 - 1) * 0.5 + 0.5;
-      }
+      },
     },
 
-    translateEasing: function(key) {
-
+    translateEasing: function (key) {
       if (!this.cache[key]) {
-        var array = key.split('');
+        var array = key.split("");
 
         var sign = 1;
         var signed = false;
         var trimming = false;
 
         for (var i = 0; i < array.length; i++) {
-
           var char = array[i];
 
           if (char === "-") {
@@ -287,7 +295,6 @@
             trimming = !trimming;
             array.splice(i--, 1);
           } else array[i] = parseInt(array[i], 16) * sign;
-
         }
 
         var min = Math.min.apply(null, array);
@@ -297,40 +304,30 @@
         var normalized = [];
 
         for (var i = 0; i < array.length; i++) {
-
           if (signed) {
-
-            var diff = Math.max(Math.abs(min), Math.abs(max))
+            var diff = Math.max(Math.abs(min), Math.abs(max));
             var value = array[i] / diff;
-
           } else {
-
             var diff = max - min;
             var value = (array[i] - min) / diff;
-
           }
 
           if (trimming) {
-
             if (value < 0) value = 0;
             if (value > 1.0) value = 1.0;
-
           }
 
           normalized.push(value);
-
         }
 
         this.cache[key] = normalized;
-
       }
 
-      return this.cache[key]
-
+      return this.cache[key];
     },
 
-    /* 
-      
+    /*
+
       Cubic-spline interpolation by Ivan Kuckir
 
       http://blog.ivank.net/interpolation-with-cubic-splines.html
@@ -345,7 +342,7 @@
     splineX: {},
     splineY: {},
 
-    insertIntermediateValues: function(a) {
+    insertIntermediateValues: function (a) {
       var result = [];
       for (var i = 0; i < a.length; i++) {
         result.push(a[i]);
@@ -356,10 +353,8 @@
       return result;
     },
 
-    spline: function(x, key) {
-
+    spline: function (x, key) {
       if (!this.splineK[key]) {
-
         var xs = [];
         var ys = this.translateEasing(key);
 
@@ -369,8 +364,8 @@
 
         for (var i = 0; i < ys.length; i++) xs.push(i * (1 / (ys.length - 1)));
 
-        var ks = xs.map(function() {
-          return 0
+        var ks = xs.map(function () {
+          return 0;
         });
 
         ks = this.getNaturalKs(xs, ys, ks);
@@ -378,7 +373,6 @@
         this.splineX[key] = xs;
         this.splineY[key] = ys;
         this.splineK[key] = ks;
-
       }
 
       if (x > 1) return this.splineY[key][this.splineY[key].length - 1];
@@ -394,7 +388,8 @@
       var t = (x - xs[i - 1]) / (xs[i] - xs[i - 1]);
       var a = ks[i - 1] * (xs[i] - xs[i - 1]) - (ys[i] - ys[i - 1]);
       var b = -ks[i] * (xs[i] - xs[i - 1]) + (ys[i] - ys[i - 1]);
-      var q = (1 - t) * ys[i - 1] + t * ys[i] + t * (1 - t) * (a * (1 - t) + b * t);
+      var q =
+        (1 - t) * ys[i - 1] + t * ys[i] + t * (1 - t) * (a * (1 - t) + b * t);
 
       /*
       var py = ys[i - 2];
@@ -410,37 +405,46 @@
     if (cy === ny && cy === py) q = py;
     */
 
-
       return q;
     },
 
-    getNaturalKs: function(xs, ys, ks) {
+    getNaturalKs: function (xs, ys, ks) {
       var n = xs.length - 1;
       var A = this.zerosMat(n + 1, n + 2);
 
-      for (var i = 1; i < n; i++) // rows
-      {
+      for (
+        var i = 1;
+        i < n;
+        i++ // rows
+      ) {
         A[i][i - 1] = 1 / (xs[i] - xs[i - 1]);
         A[i][i] = 2 * (1 / (xs[i] - xs[i - 1]) + 1 / (xs[i + 1] - xs[i]));
         A[i][i + 1] = 1 / (xs[i + 1] - xs[i]);
-        A[i][n + 1] = 3 * ((ys[i] - ys[i - 1]) / ((xs[i] - xs[i - 1]) * (xs[i] - xs[i - 1])) + (ys[i + 1] - ys[i]) / ((xs[i + 1] - xs[i]) * (xs[i + 1] - xs[i])));
+        A[i][n + 1] =
+          3 *
+          ((ys[i] - ys[i - 1]) / ((xs[i] - xs[i - 1]) * (xs[i] - xs[i - 1])) +
+            (ys[i + 1] - ys[i]) / ((xs[i + 1] - xs[i]) * (xs[i + 1] - xs[i])));
       }
 
       A[0][0] = 2 / (xs[1] - xs[0]);
       A[0][1] = 1 / (xs[1] - xs[0]);
-      A[0][n + 1] = 3 * (ys[1] - ys[0]) / ((xs[1] - xs[0]) * (xs[1] - xs[0]));
+      A[0][n + 1] = (3 * (ys[1] - ys[0])) / ((xs[1] - xs[0]) * (xs[1] - xs[0]));
 
       A[n][n - 1] = 1 / (xs[n] - xs[n - 1]);
       A[n][n] = 2 / (xs[n] - xs[n - 1]);
-      A[n][n + 1] = 3 * (ys[n] - ys[n - 1]) / ((xs[n] - xs[n - 1]) * (xs[n] - xs[n - 1]));
+      A[n][n + 1] =
+        (3 * (ys[n] - ys[n - 1])) / ((xs[n] - xs[n - 1]) * (xs[n] - xs[n - 1]));
 
       return this.solve(A, ks);
     },
 
-    solve: function(A, ks) {
+    solve: function (A, ks) {
       var m = A.length;
-      for (var k = 0; k < m; k++) // column
-      {
+      for (
+        var k = 0;
+        k < m;
+        k++ // column
+      ) {
         // pivot for column
         var i_max = 0;
         var vali = Number.NEGATIVE_INFINITY;
@@ -458,12 +462,18 @@
           A[i][k] = 0;
         }
       }
-      for (var i = m - 1; i >= 0; i--) // rows = columns
-      {
+      for (
+        var i = m - 1;
+        i >= 0;
+        i-- // rows = columns
+      ) {
         var v = A[i][m] / A[i][i];
         ks[i] = v;
-        for (var j = i - 1; j >= 0; j--) // rows
-        {
+        for (
+          var j = i - 1;
+          j >= 0;
+          j-- // rows
+        ) {
           A[j][m] -= A[j][i] * v;
           A[j][i] = 0;
         }
@@ -471,7 +481,7 @@
       return ks;
     },
 
-    zerosMat: function(r, c) {
+    zerosMat: function (r, c) {
       var A = [];
       for (var i = 0; i < r; i++) {
         A.push([]);
@@ -480,75 +490,62 @@
       return A;
     },
 
-    splineSwapRows: function(m, k, l) {
+    splineSwapRows: function (m, k, l) {
       var p = m[k];
       m[k] = m[l];
       m[l] = p;
-    }
+    },
   });
 
   window.ease = ease;
-
 })();
 
 /* file: src/Playground.js */
 
 window.PLAYGROUND = {};
 
-PLAYGROUND.MOBILE = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+PLAYGROUND.MOBILE =
+  /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+    navigator.userAgent
+  );
 
-function playground(args) {
-
+window.playground = function (args) {
   return new PLAYGROUND.Application(args);
-
 };
+
+// window.playground = playground;
 
 /* file: src/Utils.js */
 
 PLAYGROUND.Utils = {
-
-  extend: function() {
-
+  extend: function () {
     for (var i = 1; i < arguments.length; i++) {
-
       for (var j in arguments[i]) {
-
         arguments[0][j] = arguments[i][j];
-
       }
-
     }
 
     return arguments[0];
-
   },
 
-  defaults: function() {
-
+  defaults: function () {
     for (var i = 1; i < arguments.length; i++) {
-
       for (var j in arguments[i]) {
-
-        if (typeof arguments[0][j] === "undefined") arguments[0][j] = arguments[i][j];
-
+        if (typeof arguments[0][j] === "undefined")
+          arguments[0][j] = arguments[i][j];
       }
-
     }
 
     return arguments[0];
-
   },
 
   /* deep extend */
 
-  merge: function(a) {
-
+  merge: function (a) {
     for (var i = 1; i < arguments.length; i++) {
-
       var b = arguments[i];
 
       for (var key in b) {
-
         var value = b[key];
 
         if (typeof a[key] !== "undefined") {
@@ -560,29 +557,23 @@ PLAYGROUND.Utils = {
       }
     }
     return a;
-
   },
 
-  invoke: function(object, methodName) {
-
+  invoke: function (object, methodName) {
     var args = Array.prototype.slice.call(arguments, 2);
 
     for (var i = 0; i < object.length; i++) {
       var current = object[i];
 
       if (current[methodName]) current[methodName].apply(current, args);
-
     }
-
   },
 
-  throttle: function(fn, delay) {
-
+  throttle: function (fn, delay) {
     var timeout;
     var last = 0;
 
-    return function() {
-
+    return function () {
       var args = [];
 
       for (var i = 0; i < arguments.length; i++) args.push(arguments[i]);
@@ -590,32 +581,24 @@ PLAYGROUND.Utils = {
       var context = this;
 
       if (Date.now() - last > delay) {
-
         last = Date.now();
 
         fn.apply(context, args);
 
         clearTimeout(timeout);
-
       } else {
-
         clearTimeout(timeout);
 
-        timeout = setTimeout(function() {
-
+        timeout = setTimeout(function () {
           fn.apply(context, args);
 
           last = Date.now();
-
         }, Date.now() - last);
-
       }
-
     };
-
   },
 
-  wrapTo: function(value, target, max, step) {
+  wrapTo: function (value, target, max, step) {
     if (value === target) return target;
 
     var result = value;
@@ -645,12 +628,10 @@ PLAYGROUND.Utils = {
    * @param max largest valid value
    * @return result
    */
-  wrap: function(value, min, max) {
-
+  wrap: function (value, min, max) {
     if (value < min) return max + (value % max);
     if (value >= max) return value % max;
     return value;
-
   },
 
   /** Bring the value between 0 and 2*PI.
@@ -661,12 +642,9 @@ PLAYGROUND.Utils = {
    * @param val value to process
    * @return a value in 0..2*PI interval
    */
-  circWrap: function(val) {
-
+  circWrap: function (val) {
     return this.wrap(val, 0, Math.PI * 2);
-
   },
-
 
   /** Bring the value between 0 and 2*PI.
    *
@@ -676,14 +654,11 @@ PLAYGROUND.Utils = {
    * @param val value to process
    * @return a value in 0..2*PI interval
    */
-  circWrapTo: function(value, target, step) {
-
+  circWrapTo: function (value, target, step) {
     return this.wrapTo(value, target, Math.PI * 2, step);
-
   },
 
-  wrappedDistance: function(a, b, max) {
-
+  wrappedDistance: function (a, b, max) {
     if (a === b) return 0;
     else if (a < b) {
       var l = -a - max + b;
@@ -695,13 +670,10 @@ PLAYGROUND.Utils = {
 
     if (Math.abs(l) > Math.abs(r)) return r;
     else return l;
-
   },
 
-  circWrappedDistance: function(a, b) {
-
-    return this.wrappedDistance(a, b, Math.PI * 2)
-
+  circWrappedDistance: function (a, b) {
+    return this.wrappedDistance(a, b, Math.PI * 2);
   },
 
   /** Compute first multiple of threshold that is smaller or equal to num.
@@ -713,56 +685,40 @@ PLAYGROUND.Utils = {
    * @param threshold reference value
    * @return an even multiple of `threshold` smaller or equal to `num`
    */
-  ground: function(num, threshold) {
-
-    return (num / threshold | 0) * threshold;
-
+  ground: function (num, threshold) {
+    return ((num / threshold) | 0) * threshold;
   },
 
   /** TBD
    *  Alias to `circWrappedDistance`.
    */
-  circDistance: function(a, b) {
-
-    return this.circWrappedDistance(a, b)
-
+  circDistance: function (a, b) {
+    return this.circWrappedDistance(a, b);
   },
 
-  distance: function(x1, y1, x2, y2) {
-
+  distance: function (x1, y1, x2, y2) {
     if (arguments.length > 2) {
-
       var dx = x1 - x2;
       var dy = y1 - y2;
 
       return Math.sqrt(dx * dx + dy * dy);
-
     } else {
-
       var dx = x1.x - y1.x;
       var dy = x1.y - y1.y;
 
       return Math.sqrt(dx * dx + dy * dy);
-
     }
-
   },
 
-  sprintf: function(string, replace) {
-
+  sprintf: function (string, replace) {
     for (var key in replace) {
-
       var find = new RegExp("{" + key + "}", "g");
 
       string = string.replace(find, replace[key]);
-
     }
 
     return string;
-
-  }
-
-
+  },
 };
 
 PLAYGROUND.Utils.ease = ease;
@@ -785,14 +741,11 @@ PLAYGROUND.Utils.ease = ease;
  * `context` and `data`.
  */
 
-PLAYGROUND.Events = function() {
-
+PLAYGROUND.Events = function () {
   this.listeners = {};
-
 };
 
 PLAYGROUND.Events.prototype = {
-
   /** Add a listner for an event.
    *
    * @param event name of the event or an associative array
@@ -805,12 +758,11 @@ PLAYGROUND.Events.prototype = {
    * @returns the listner object
    */
 
-  on: function(event, callback, context) {
-
+  on: function (event, callback, context) {
     if (typeof event === "object") {
       var result = {};
       for (var key in event) {
-        result[key] = this.on(key, event[key], context)
+        result[key] = this.on(key, event[key], context);
       }
       return result;
     }
@@ -820,7 +772,7 @@ PLAYGROUND.Events.prototype = {
     var listener = {
       once: false,
       callback: callback,
-      context: context
+      context: context,
     };
 
     this.listeners[event].push(listener);
@@ -840,12 +792,11 @@ PLAYGROUND.Events.prototype = {
    * @returns the listner object
    */
 
-  once: function(event, callback, context) {
-
+  once: function (event, callback, context) {
     if (typeof event === "object") {
       var result = {};
       for (var key in event) {
-        result[key] = this.once(key, event[key], context)
+        result[key] = this.once(key, event[key], context);
       }
       return result;
     }
@@ -855,7 +806,7 @@ PLAYGROUND.Events.prototype = {
     var listener = {
       once: true,
       callback: callback,
-      context: context
+      context: context,
     };
 
     this.listeners[event].push(listener);
@@ -872,19 +823,13 @@ PLAYGROUND.Events.prototype = {
    * @param callback identifying the listner
    */
 
-  off: function(event, callback) {
-
+  off: function (event, callback) {
     for (var i = 0, len = this.listeners[event].length; i < len; i++) {
-
       if (this.listeners[event][i] === callback) {
-      
         this.listeners[event].splice(i--, 1);
         len--;
-      
       }
-
     }
-
   },
 
   /** Raise an event.
@@ -897,28 +842,21 @@ PLAYGROUND.Events.prototype = {
    *
    */
 
-  trigger: function(event, data) {
-
+  trigger: function (event, data) {
     /* if you prefer events pipe */
 
     if (this.listeners["event"]) {
-
       for (var i = 0, len = this.listeners["event"].length; i < len; i++) {
-
         var listener = this.listeners["event"][i];
 
         listener.callback.call(listener.context || this, event, data);
-
       }
-
     }
 
     /* or subscribed to a single event */
 
     if (this.listeners[event]) {
-      
       for (var i = 0, len = this.listeners[event].length; i < len; i++) {
-
         var listener = this.listeners[event][i];
 
         listener.callback.call(listener.context || this, data);
@@ -926,14 +864,10 @@ PLAYGROUND.Events.prototype = {
         if (listener.once) {
           this.listeners[event].splice(i--, 1);
           len--;
-        } 
-
+        }
       }
-      
     }
-
-  }
-
+  },
 };
 
 /* file: src/States.js */
@@ -965,44 +899,38 @@ PLAYGROUND.Events.prototype = {
  * Reference: http://playgroundjs.com/playground-states
  */
 
-PLAYGROUND.States = function(app) {
-
+PLAYGROUND.States = function (app) {
   this.app = app;
 
   PLAYGROUND.Events.call(this);
 
   app.on("step", this.step.bind(this));
-
 };
 
 PLAYGROUND.States.prototype = {
-
   /** Called each frame to update logic. */
 
-  step: function(delta) {
-
+  step: function (delta) {
     if (!this.next) return;
 
     if (this.current && this.current.locked) return;
 
     var state = this.next;
 
-    if(typeof state === "function") state = new state;
+    if (typeof state === "function") state = new state();
 
     /* create state if object has never been used as a state before */
 
     if (!state.__created) {
-
       state.__created = true;
 
       state.app = this.app;
 
       this.trigger("createstate", {
-        state: state
+        state: state,
       });
 
       if (state.create) state.create();
-
     }
 
     /* enter new state */
@@ -1011,14 +939,14 @@ PLAYGROUND.States.prototype = {
       this.trigger("leavestate", {
         prev: this.current,
         next: state,
-        state: this.current
+        state: this.current,
       });
     }
 
     this.trigger("enterstate", {
       prev: this.current,
       next: state,
-      state: state
+      state: state,
     });
 
     this.current = state;
@@ -1030,8 +958,6 @@ PLAYGROUND.States.prototype = {
     this.app.state = this.current;
 
     this.next = false;
-
-
   },
 
   /** Used by application to set the state.
@@ -1039,26 +965,24 @@ PLAYGROUND.States.prototype = {
    * Don't call this function directly. Instead, use
    * `PLAYGROUND.Application.setState()`.
    */
-   
-  set: function(state) {
 
+  set: function (state) {
     if (this.current && this.current.leave) this.current.leave();
 
     this.next = state;
 
     this.step(0);
-
-  }
-
-
+  },
 };
 
-PLAYGROUND.Utils.extend(PLAYGROUND.States.prototype, PLAYGROUND.Events.prototype);
+PLAYGROUND.Utils.extend(
+  PLAYGROUND.States.prototype,
+  PLAYGROUND.Events.prototype
+);
 
 /* file: src/Application.js */
 
-PLAYGROUND.Application = function(args) {
-
+PLAYGROUND.Application = function (args) {
   var app = this;
 
   this.killed = false;
@@ -1083,7 +1007,8 @@ PLAYGROUND.Application = function(args) {
 
   if (this.container !== document.body) this.customContainer = true;
 
-  if (typeof this.container === "string") this.container = document.querySelector(this.container);
+  if (typeof this.container === "string")
+    this.container = document.querySelector(this.container);
 
   //this.container.style.background = this.background;
 
@@ -1137,11 +1062,17 @@ PLAYGROUND.Application = function(args) {
 
   /* visibility API */
 
-  document.addEventListener("visibilitychange", this.handleVisibilityChange.bind(this));
+  document.addEventListener(
+    "visibilitychange",
+    this.handleVisibilityChange.bind(this)
+  );
 
   /* window resize */
 
-  this.resizelistener = PLAYGROUND.Utils.throttle(this.handleResize.bind(this), 100);
+  this.resizelistener = PLAYGROUND.Utils.throttle(
+    this.handleResize.bind(this),
+    100
+  );
 
   window.addEventListener("resize", this.resizelistener);
 
@@ -1160,11 +1091,9 @@ PLAYGROUND.Application = function(args) {
   this.plugins = [];
 
   for (var key in PLAYGROUND) {
-
     var property = PLAYGROUND[key];
 
     if (property.plugin) this.plugins.push(new property(this));
-
   }
 
   /* flow */
@@ -1176,13 +1105,11 @@ PLAYGROUND.Application = function(args) {
   if (this.disabledUntilLoaded) this.skipEvents = true;
 
   function onPreloadEnd() {
-
     app.loadFoo(0.25);
 
     /* run everything in the next frame */
 
-    setTimeout(function() {
-
+    setTimeout(function () {
       app.emitLocalEvent("create");
 
       app.setState(PLAYGROUND.DefaultState);
@@ -1196,8 +1123,7 @@ PLAYGROUND.Application = function(args) {
 
       /* stage proper loading step */
 
-      app.loader.once("ready", function() {
-
+      app.loader.once("ready", function () {
         app.firstBatch = false;
 
         if (app.disabledUntilLoaded) app.skipEvents = false;
@@ -1206,45 +1132,36 @@ PLAYGROUND.Application = function(args) {
 
         app.emitLocalEvent("ready");
         app.handleResize();
-
       });
-
     });
-
-
-  };
-
+  }
 
   this.loader.once("ready", onPreloadEnd);
-
 };
 
 PLAYGROUND.Application.prototype = {
-
   defaults: {
     background: "#272822",
     smoothing: 1,
     paths: {
       base: "",
       images: "images/",
-      fonts: "fonts/"
+      fonts: "fonts/",
     },
     offsetX: 0,
     offsetY: 0,
     skipEvents: false,
-    disabledUntilLoaded: true
+    disabledUntilLoaded: true,
   },
 
   /**
       Change active state.
-      Simply forwarded to PLAYGROUND.States.  
+      Simply forwarded to PLAYGROUND.States.
 
   */
 
-  setState: function(state) {
-
+  setState: function (state) {
     this.states.set(state);
-
   },
 
   /**
@@ -1254,24 +1171,20 @@ PLAYGROUND.Application.prototype = {
 
   */
 
-  insertAsset: function(asset, collection, path) {
-
+  insertAsset: function (asset, collection, path) {
     var pathArray = path.split("/");
 
     var current = collection;
 
     for (var i = 0; i < pathArray.length - 1; i++) {
-
       var segment = pathArray[i];
 
       if (!current[segment]) current[segment] = {};
 
       current = current[segment];
-
     }
 
     current[pathArray.pop()] = asset;
-
   },
 
   /* Compute a fully qualified path.
@@ -1281,10 +1194,8 @@ PLAYGROUND.Application.prototype = {
    * @param to a key in `paths` or a string (without ending `/`).
    */
 
-  getPath: function(to) {
-
-    return this.paths.base + (this.paths[to] || (to + "/"));
-
+  getPath: function (to) {
+    return this.paths.base + (this.paths[to] || to + "/");
   },
 
   /** Create a standardised representation for an asset.
@@ -1298,12 +1209,11 @@ PLAYGROUND.Application.prototype = {
    * @returns a dictionary with standardised information
    */
 
-  getAssetEntry: function(path, folder, defaultExtension) {
-
+  getAssetEntry: function (path, folder, defaultExtension) {
     /* translate folder according to user provided paths
        or leave it as is */
 
-    var folder = this.paths[folder] || (folder + "/");
+    var folder = this.paths[folder] || folder + "/";
 
     var fileinfo = path.match(/(.*)\..*/);
     var key = fileinfo ? fileinfo[1] : path;
@@ -1323,32 +1233,40 @@ PLAYGROUND.Application.prototype = {
       key: key,
       url: this.paths.base + folder + basename,
       path: this.paths.base + folder + path,
-      ext: ext
+      ext: ext,
     };
-
   },
 
   /** Emits events that shouldn't flow down to the state. */
 
-  emitLocalEvent: function(event, data) {
-
+  emitLocalEvent: function (event, data) {
     this.trigger(event, data);
 
-    if ((event !== "render" || !this.skipEvents || this.loader.ready) && this[event]) this[event](data);
-
+    if (
+      (event !== "render" || !this.skipEvents || this.loader.ready) &&
+      this[event]
+    )
+      this[event](data);
   },
 
   /** Emits events that should be passed to the state. */
 
-  emitGlobalEvent: function(event, data) {
-
+  emitGlobalEvent: function (event, data) {
     if (!this.state) return this.emitLocalEvent(event, data);
 
     this.trigger(event, data);
 
-    if ((event !== "render" || !this.skipEvents || this.loader.ready) && this.event) this.event(event, data);
+    if (
+      (event !== "render" || !this.skipEvents || this.loader.ready) &&
+      this.event
+    )
+      this.event(event, data);
 
-    if ((event !== "render" || !this.skipEvents || this.loader.ready) && this[event]) this[event](data);
+    if (
+      (event !== "render" || !this.skipEvents || this.loader.ready) &&
+      this[event]
+    )
+      this[event](data);
 
     if (this.state.event) this.state.event(event, data);
 
@@ -1357,7 +1275,6 @@ PLAYGROUND.Application.prototype = {
     this.trigger("after" + event, data);
 
     // if (this.state.proxy) this.state.proxy(event, data);
-
   },
 
   /** Responds to a resize event by updating some internal variables.
@@ -1366,84 +1283,65 @@ PLAYGROUND.Application.prototype = {
    * `width`, `height` and `scale` may also be updated.
    */
 
-  updateSize: function() {
-
+  updateSize: function () {
     if (this.customContainer) {
-
       var containerWidth = this.container.offsetWidth;
       var containerHeight = this.container.offsetHeight;
-
     } else {
-
       var containerWidth = window.innerWidth;
       var containerHeight = window.innerHeight;
-
     }
 
     if (!this.autoScale && !this.autoWidth && !this.autoHeight) {
-
     } else if (!this.autoHeight && this.autoWidth) {
-
       if (this.autoScale) this.scale = containerHeight / this.height;
 
       this.width = Math.ceil(containerWidth / this.scale);
-
     } else if (!this.autoWidth && this.autoHeight) {
-
       if (this.autoScale) this.scale = containerWidth / this.width;
 
       this.height = Math.ceil(containerHeight / this.scale);
-
-
     } else if (this.autoWidth && this.autoHeight && this.autoScale) {
-
       this.scale = 1;
       this.width = containerWidth;
       this.height = containerHeight;
-
     } else if (this.autoWidth && this.autoHeight) {
-
       this.width = Math.ceil(containerWidth / this.scale);
       this.height = Math.ceil(containerHeight / this.scale);
-
     } else {
-
-      this.scale = Math.min(containerWidth / this.width, containerHeight / this.height);
-
+      this.scale = Math.min(
+        containerWidth / this.width,
+        containerHeight / this.height
+      );
     }
 
-    this.offsetX = (containerWidth - this.width * this.scale) / 2 | 0;
-    this.offsetY = (containerHeight - this.height * this.scale) / 2 | 0;
+    this.offsetX = ((containerWidth - this.width * this.scale) / 2) | 0;
+    this.offsetY = ((containerHeight - this.height * this.scale) / 2) | 0;
 
     this.center = {
-      x: this.width / 2 | 0,
-      y: this.height / 2 | 0
+      x: (this.width / 2) | 0,
+      y: (this.height / 2) | 0,
     };
-
   },
 
-  handleVisibilityChange: function() {
-
+  handleVisibilityChange: function () {
     this.emitGlobalEvent("visibilitychange", {
       visible: !document.hidden,
-      hidden: document.hidden
+      hidden: document.hidden,
     });
-
   },
 
   /** Responds to windows resize event. */
 
-  handleResize: function() {
-
+  handleResize: function () {
     this.emitGlobalEvent("beforeresize", {});
-    
+
     this.updateSize();
 
     this.mouse.handleResize();
     this.touch.handleResize();
 
     this.emitGlobalEvent("resize", {});
-
   },
 
   /** Request a file over http.
@@ -1453,83 +1351,61 @@ PLAYGROUND.Application.prototype = {
    * @returns a promise
    */
 
-  request: function(url) {
-
+  request: function (url) {
     function promise(success, fail) {
-
       var request = new XMLHttpRequest();
 
       var app = this;
 
       request.open("GET", url, true);
 
-      request.onload = function(event) {
-
+      request.onload = function (event) {
         var xhr = event.target;
 
         if (xhr.status !== 200 && xhr.status !== 0) {
-
           return fail(new Error("Failed to get " + url));
-
         }
 
         success(xhr);
-
-      }
+      };
 
       request.send();
-
     }
 
     return new Promise(promise);
-
   },
 
   /** Imaginary timeout to delay loading. */
 
-  loadFoo: function(timeout) {
-
+  loadFoo: function (timeout) {
     var loader = this.loader;
 
     this.loader.add("foo " + timeout);
 
-    setTimeout(function() {
-
+    setTimeout(function () {
       loader.success("foo " + timeout);
-
     }, timeout * 1000);
-
-
   },
 
   /** Loads assets as data/json or text.
    *
    * The list may be nested.
    */
-  loadData: function() {
-
+  loadData: function () {
     for (var i = 0; i < arguments.length; i++) {
-
       var arg = arguments[i];
 
       if (typeof arg === "object") {
-
         for (var key in arg) this.loadData(arg[key]);
-
       } else {
-
         this.loadDataItem(arg);
-
       }
-
     }
-
   },
 
   /** Loads one asset as data/json or text (internal). */
 
-  loadDataItem: function(name) {
-
+  loadDataItem: function (name) {
     var entry = this.getAssetEntry(name, "data", "json");
 
     var app = this;
@@ -1539,106 +1415,78 @@ PLAYGROUND.Application.prototype = {
     this.request(entry.url).then(processData);
 
     function processData(request) {
-
       var extend = entry.key.indexOf("/") > -1;
 
       if (entry.ext === "json") {
-
         var data = JSON.parse(request.responseText);
 
         if (extend) {
-
           var key = entry.key.split("/")[0];
 
           if (!app.data[key]) app.data[key] = {};
 
           PLAYGROUND.Utils.extend(app.data[key], data);
-
         } else {
-
           if (!app.data[entry.key]) app.data[entry.key] = {};
 
           PLAYGROUND.Utils.defaults(app.data[entry.key], data);
-
         }
-
       } else {
-
         if (extend) {
-
           var key = entry.key.split("/")[0];
 
           if (!app.data[key]) app.data[key] = "";
 
           app.data[entry.key] += request.responseText;
-
         } else {
-
           app.data[entry.key] = request.responseText;
-
         }
-
       }
 
       app.loader.success(entry.url);
-
     }
-
   },
 
-  loadImage: function() {
-
+  loadImage: function () {
     return this.loadImages.apply(this, arguments);
-
   },
 
   /*
 
     Loads images.
-   
+
     The list may be nested.
 
   */
 
-  loadImages: function() {
-
+  loadImages: function () {
     var promises = [];
 
     for (var i = 0; i < arguments.length; i++) {
-
       var arg = arguments[i];
 
       /* polymorphism at its finest */
 
       if (typeof arg === "object") {
-
-        for (var key in arg) promises = promises.concat(this.loadImages(arg[key]));
-
+        for (var key in arg)
+          promises = promises.concat(this.loadImages(arg[key]));
       } else {
-
         promises.push(this.loadOneImage(arg));
-
       }
-
     }
 
     return Promise.all(promises);
-
   },
-
 
   /** Loads a single image (internal). */
 
-  loadOneImage: function(name) {
-
+  loadOneImage: function (name) {
     var app = this;
 
     if (!this._imageLoaders) this._imageLoaders = {};
 
     if (!this._imageLoaders[name]) {
-
-      var promise = function(resolve, reject) {
-
+      var promise = function (resolve, reject) {
         /* if argument is not an object/array let's try to load it */
 
         var loader = app.loader;
@@ -1647,10 +1495,9 @@ PLAYGROUND.Application.prototype = {
 
         app.loader.add(entry.path);
 
-        var image = new Image;
+        var image = new Image();
 
-        image.addEventListener("load", function() {
-
+        image.addEventListener("load", function () {
           app.images[entry.key] = image;
 
           resolve(image);
@@ -1661,77 +1508,62 @@ PLAYGROUND.Application.prototype = {
           app.insertAsset(image, app.images, entry.key);
 
           app.emitLocalEvent("imageready", entry);
-
         });
 
-        image.addEventListener("error", function() {
-
+        image.addEventListener("error", function () {
           reject("can't load " + entry.url);
           loader.error(entry.url);
-
         });
 
         image.src = entry.url;
-
       };
 
       app._imageLoaders[name] = new Promise(promise);
-
     }
 
     return this._imageLoaders[name];
-
   },
 
-  /* 
+  /*
     Load a single font.
-   
+
     At this point it doesn't really load font
     it just ensures the font has been loaded (use css font-face)
 
   */
 
-  loadFont: function() {
-
+  loadFont: function () {
     var promises = [];
 
     for (var i = 0; i < arguments.length; i++) {
-
       var arg = arguments[i];
 
       promises.push(this.loadFontItem(arg));
-
     }
 
     return Promise.all(promises);
-
   },
 
-  loadFonts: function() {
-
+  loadFonts: function () {
     return this.loadFont.apply(this, arguments);
-
   },
 
-  /* 
+  /*
 
-    Load a single font (internal).  
+    Load a single font (internal).
     It actually doesn't load any font - just ensures it has been loaded (with css)
 
   */
 
-  loadFontItem: function(name) {
-
+  loadFontItem: function (name) {
     /* insert font into a stylesheet */
 
     if (!this.fontStyleSheet) {
-
       var style = document.createElement("style");
 
       document.head.appendChild(style);
 
       this.fontStyleSheet = style;
-
     }
 
     var entry = this.getAssetEntry(name, "fonts", "ttf");
@@ -1739,15 +1571,16 @@ PLAYGROUND.Application.prototype = {
     var format = {
       woff: "woff",
       otf: "opentype",
-      ttf: "truetype"
+      ttf: "truetype",
     }[entry.ext];
 
-    var raw = "@font-face { font-family: '{name}'; font-style: 'normal'; font-weight: 400, 800; src: url(fonts/{name}.{ext}) format('{format}'); }";
+    var raw =
+      "@font-face { font-family: '{name}'; font-style: 'normal'; font-weight: 400, 800; src: url(fonts/{name}.{ext}) format('{format}'); }";
 
     var rule = PLAYGROUND.Utils.sprintf(raw, {
       name: name,
       ext: entry.ext,
-      format: format
+      format: format,
     });
 
     this.fontStyleSheet.innerHTML += rule;
@@ -1759,74 +1592,65 @@ PLAYGROUND.Application.prototype = {
     if (!this._fontPromises) this._fontPromises = {};
 
     if (!this._fontPromises[name]) {
-
-      var promise = function(resolve, reject) {
-
+      var promise = function (resolve, reject) {
         app.loader.add("font " + name);
 
-        var checkingTimer = setInterval(function() {
-
-          var base = cq(100, 32).font("14px somethingrandom").fillStyle("#fff").textBaseline("top");
+        var checkingTimer = setInterval(function () {
+          var base = cq(100, 32)
+            .font("14px somethingrandom")
+            .fillStyle("#fff")
+            .textBaseline("top");
           base.context.fillText("lorem ipsum dolores sit", 0, 4);
 
-          var test = cq(100, 32).font("14px '" + name + "'").fillStyle("#fff").textBaseline("top");
+          var test = cq(100, 32)
+            .font("14px '" + name + "'")
+            .fillStyle("#fff")
+            .textBaseline("top");
           test.context.fillText("lorem ipsum dolores sit", 0, 4);
 
           if (!cq.compare(base, test)) {
-
             app.loader.success("font" + name);
 
             clearInterval(checkingTimer);
 
             resolve();
-
           }
-
         }, 100);
-
-      }
+      };
 
       this._fontPromises[name] = new Promise(promise);
-
     }
 
     return this._fontPromises[name];
-
   },
 
-  render: function() {},
+  render: function () {},
 
-  enableInputs: function() {
-
+  enableInputs: function () {
     this.mouse.enabled = true;
     this.touch.enabled = true;
     this.keyboard.enabled = true;
-
   },
 
-  disableInputs: function() {
-
+  disableInputs: function () {
     this.mouse.enabled = false;
     this.touch.enabled = false;
     this.keyboard.enabled = false;
-
   },
 
-  kill: function() {
-
+  kill: function () {
     this.killed = true;
 
     this.trigger("kill");
 
     window.removeEventListener("resize", this.resizelistener);
-
-  }
-
-
-
+  },
 };
 
-PLAYGROUND.Utils.extend(PLAYGROUND.Application.prototype, PLAYGROUND.Events.prototype);
+PLAYGROUND.Utils.extend(
+  PLAYGROUND.Application.prototype,
+  PLAYGROUND.Events.prototype
+);
 
 /* file: src/GameLoop.js */
 
@@ -1848,8 +1672,7 @@ PLAYGROUND.Utils.extend(PLAYGROUND.Application.prototype, PLAYGROUND.Events.prot
  * - render: second step in refreshing the screen
  * - postrender: third step in refreshing the screen
  */
-PLAYGROUND.GameLoop = function(app) {
-
+PLAYGROUND.GameLoop = function (app) {
   app.lifetime = 0;
   app.ops = 0;
   app.opcost = 0;
@@ -1858,21 +1681,16 @@ PLAYGROUND.GameLoop = function(app) {
   var frame = 0;
 
   function render(dt) {
-
-    app.emitGlobalEvent("prerender", dt)
-    app.emitGlobalEvent("render", dt)
-    app.emitGlobalEvent("postrender", dt)
-
-  };
+    app.emitGlobalEvent("prerender", dt);
+    app.emitGlobalEvent("render", dt);
+    app.emitGlobalEvent("postrender", dt);
+  }
 
   function step(dt) {
-
-    app.emitGlobalEvent("step", dt)
-
-  };
+    app.emitGlobalEvent("step", dt);
+  }
 
   function gameLoop() {
-
     if (app.killed) return;
 
     requestAnimationFrame(gameLoop);
@@ -1900,11 +1718,9 @@ PLAYGROUND.GameLoop = function(app) {
 
     app.opcost = delta / 1000;
     app.ops = 1000 / app.opcost;
-
-  };
+  }
 
   requestAnimationFrame(gameLoop);
-
 };
 
 /* file: src/Gamepads.js */
@@ -1935,8 +1751,7 @@ PLAYGROUND.GameLoop = function(app) {
  * Reference: http://playgroundjs.com/playground-gamepads
  */
 
-PLAYGROUND.Gamepads = function(app) {
-
+PLAYGROUND.Gamepads = function (app) {
   this.app = app;
 
   PLAYGROUND.Events.call(this);
@@ -1951,11 +1766,9 @@ PLAYGROUND.Gamepads = function(app) {
   this.gamepads = {};
 
   this.app.on("step", this.step.bind(this));
-
 };
 
 PLAYGROUND.Gamepads.prototype = {
-
   buttons: {
     0: "1",
     1: "2",
@@ -1970,40 +1783,39 @@ PLAYGROUND.Gamepads.prototype = {
     12: "up",
     13: "down",
     14: "left",
-    15: "right"
+    15: "right",
   },
 
-  zeroState: function() {
-
+  zeroState: function () {
     var buttons = [];
 
     for (var i = 0; i <= 15; i++) {
       buttons.push({
         pressed: false,
-        value: 0
+        value: 0,
       });
     }
 
     return {
       axes: [],
-      buttons: buttons
+      buttons: buttons,
     };
-
   },
 
-  createGamepad: function() {
-
+  createGamepad: function () {
     var result = {
       buttons: {},
-      sticks: [{
-        x: 0,
-        y: 0
-      }, {
-        x: 0,
-        y: 0
-      }]
+      sticks: [
+        {
+          x: 0,
+          y: 0,
+        },
+        {
+          x: 0,
+          y: 0,
+        },
+      ],
     };
-
 
     for (var i = 0; i < 16; i++) {
       var key = this.buttons[i];
@@ -2011,17 +1823,14 @@ PLAYGROUND.Gamepads.prototype = {
     }
 
     return result;
-
   },
 
-  step: function() {
-
+  step: function () {
     if (!navigator.getGamepads) return;
 
     var gamepads = navigator.getGamepads();
 
     for (var i = 0; i < gamepads.length; i++) {
-
       var current = gamepads[i];
 
       if (!current) continue;
@@ -2035,12 +1844,11 @@ PLAYGROUND.Gamepads.prototype = {
       /* hack for missing  dpads */
 
       for (var h = 12; h <= 15; h++) {
-
-        // if (!buttons[h]) 
+        // if (!buttons[h])
 
         buttons[h] = {
           pressed: false,
-          value: 0
+          value: 0,
         };
       }
 
@@ -2049,7 +1857,6 @@ PLAYGROUND.Gamepads.prototype = {
       /* axes (sticks) to buttons */
 
       if (current.axes) {
-
         if (Math.abs(current.axes[0]) > 0.01) {
           if (current.axes[0] < 0) buttons[14].pressed = true;
           if (current.axes[0] > 0) buttons[15].pressed = true;
@@ -2065,38 +1872,29 @@ PLAYGROUND.Gamepads.prototype = {
         var stickB = false;
 
         if (previous.sticks[0].x !== current.axes[0]) {
-
           stickChanged = true;
           stickA = true;
-
         }
 
         if (previous.sticks[0].y !== current.axes[1]) {
-
           stickChanged = true;
           stickA = true;
-
         }
 
         if (previous.sticks[1].x !== current.axes[2]) {
-
           stickChanged = true;
           stickB = true;
-
         }
 
         if (previous.sticks[1].y !== current.axes[3]) {
-
           stickChanged = true;
           stickB = true;
-
         }
 
         if (stickChanged) {
-
           this.gamepadmoveEvent.old = [
             PLAYGROUND.Utils.extend({}, previous.sticks[0]),
-            PLAYGROUND.Utils.extend({}, previous.sticks[1])
+            PLAYGROUND.Utils.extend({}, previous.sticks[1]),
           ];
 
           previous.sticks[0].x = current.axes[0];
@@ -2114,58 +1912,46 @@ PLAYGROUND.Gamepads.prototype = {
 
           this.gamepadmoveEvent.gamepad = i;
           this.trigger("gamepadmove", this.gamepadmoveEvent);
-
         }
-
-
       }
 
       /* check buttons changes */
 
       for (var j = 0; j < buttons.length; j++) {
-
         var key = this.buttons[j];
 
         /* gamepad down */
 
         if (buttons[j].pressed && !previous.buttons[key]) {
-
           previous.buttons[key] = true;
           this.gamepaddownEvent.button = this.buttons[j];
           this.gamepaddownEvent.gamepad = i;
           this.trigger("gamepaddown", this.gamepaddownEvent);
-
         }
 
         /* gamepad hold */
 
         if (buttons[j].pressed) {
-
           this.gamepadholdEvent.button = this.buttons[j];
           this.gamepadholdEvent.gamepad = i;
           this.gamepadholdEvent.dt = this.app.elapsed;
           this.trigger("gamepadhold", this.gamepadholdEvent);
-
-        }
-
-        /* gamepad up */
-        else if (!buttons[j].pressed && previous.buttons[key]) {
-
+        } else if (!buttons[j].pressed && previous.buttons[key]) {
+          /* gamepad up */
           previous.buttons[key] = false;
           this.gamepadupEvent.button = this.buttons[j];
           this.gamepadupEvent.gamepad = i;
           this.trigger("gamepadup", this.gamepadupEvent);
-
         }
-
       }
-
     }
-
-  }
+  },
 };
 
-PLAYGROUND.Utils.extend(PLAYGROUND.Gamepads.prototype, PLAYGROUND.Events.prototype);
+PLAYGROUND.Utils.extend(
+  PLAYGROUND.Gamepads.prototype,
+  PLAYGROUND.Events.prototype
+);
 
 /* file: src/Keyboard.js */
 
@@ -2194,8 +1980,7 @@ PLAYGROUND.Utils.extend(PLAYGROUND.Gamepads.prototype, PLAYGROUND.Events.prototy
  * Reference: http://playgroundjs.com/playground-keyboard
  */
 
-PLAYGROUND.Keyboard = function(app) {
-
+PLAYGROUND.Keyboard = function (app) {
   PLAYGROUND.Events.call(this);
 
   this.app = app;
@@ -2219,17 +2004,13 @@ PLAYGROUND.Keyboard = function(app) {
   this.enabled = true;
 
   this.app.on("kill", this.kill.bind(this));
-
 };
 
 PLAYGROUND.Keyboard.prototype = {
-
-  kill: function() {
-
+  kill: function () {
     document.removeEventListener("keydown", this.keydownlistener);
     document.removeEventListener("keyup", this.keyuplistener);
     document.removeEventListener("keypress", this.keypresslistener);
-
   },
 
   keycodes: {
@@ -2292,16 +2073,16 @@ PLAYGROUND.Keyboard.prototype = {
     219: "openbracket",
     220: "backslash",
     221: "closebraket",
-    222: "singlequote"
+    222: "singlequote",
   },
 
   bypassKeys: ["f12", "f11", "f5", "ctrl", "alt", "shift"],
 
-  keydown: function(e) {
-
+  keydown: function (e) {
     if (!this.enabled) return;
 
-    if (e.which >= 48 && e.which <= 90) var keyName = String.fromCharCode(e.which).toLowerCase();
+    if (e.which >= 48 && e.which <= 90)
+      var keyName = String.fromCharCode(e.which).toLowerCase();
     else var keyName = this.keycodes[e.which];
 
     if (this.keys[keyName]) return;
@@ -2316,17 +2097,14 @@ PLAYGROUND.Keyboard.prototype = {
     this.trigger("keydown", this.keydownEvent);
 
     if (this.preventDefault && document.activeElement === document.body) {
-
       var bypass = e.metaKey;
 
       if (!bypass) {
         for (var i = 0; i < this.bypassKeys.length; i++) {
-
           if (this.keys[this.bypassKeys[i]]) {
             bypass = true;
-            break
+            break;
           }
-
         }
       }
 
@@ -2336,16 +2114,14 @@ PLAYGROUND.Keyboard.prototype = {
         e.preventDefault();
         e.stopPropagation();
       }
-
     }
-
   },
 
-  keyup: function(e) {
-
+  keyup: function (e) {
     if (!this.enabled) return;
 
-    if (e.which >= 48 && e.which <= 90) var keyName = String.fromCharCode(e.which).toLowerCase();
+    if (e.which >= 48 && e.which <= 90)
+      var keyName = String.fromCharCode(e.which).toLowerCase();
     else var keyName = this.keycodes[e.which];
 
     this.any--;
@@ -2356,27 +2132,26 @@ PLAYGROUND.Keyboard.prototype = {
     this.keys[keyName] = false;
 
     this.trigger("keyup", this.keyupEvent);
-
   },
 
-  keypress: function(e) {
-
+  keypress: function (e) {
     if (!this.enabled) return;
 
-    if (e.which >= 48 && e.which <= 90) var keyName = String.fromCharCode(e.which).toLowerCase();
+    if (e.which >= 48 && e.which <= 90)
+      var keyName = String.fromCharCode(e.which).toLowerCase();
     else var keyName = this.keycodes[e.which];
 
     this.keypressEvent.key = keyName;
     this.keypressEvent.original = e;
 
     this.trigger("keypress", this.keypressEvent);
-
-  }
-
-
+  },
 };
 
-PLAYGROUND.Utils.extend(PLAYGROUND.Keyboard.prototype, PLAYGROUND.Events.prototype);
+PLAYGROUND.Utils.extend(
+  PLAYGROUND.Keyboard.prototype,
+  PLAYGROUND.Events.prototype
+);
 
 /* file: src/Pointer.js */
 
@@ -2394,8 +2169,7 @@ PLAYGROUND.Utils.extend(PLAYGROUND.Keyboard.prototype, PLAYGROUND.Events.prototy
  * Reference: http://playgroundjs.com/playground-pointer
  */
 
-PLAYGROUND.Pointer = function(app) {
-
+PLAYGROUND.Pointer = function (app) {
   this.app = app;
 
   app.on("touchstart", this.touchstart, this);
@@ -2410,15 +2184,12 @@ PLAYGROUND.Pointer = function(app) {
   this.pointers = app.pointers = {};
 
   this.lastTap = 0;
-
 };
 
 PLAYGROUND.Pointer.plugin = true;
 
 PLAYGROUND.Pointer.prototype = {
-
-  updatePointer: function(e) {
-
+  updatePointer: function (e) {
     if (!this.pointers[e.id]) this.pointers[e.id] = {};
 
     var pointer = this.pointers[e.id];
@@ -2426,21 +2197,17 @@ PLAYGROUND.Pointer.prototype = {
     pointer.x = e.x;
     pointer.y = e.y;
     // pointer.touch = e.touch;
-    // pointer.mouse = e.mouse;    
+    // pointer.mouse = e.mouse;
     pointer.id = e.id;
 
     return pointer;
-
   },
 
-  removePointer: function(e) {
-
+  removePointer: function (e) {
     delete this.pointers[e.id];
-
   },
 
-  touchstart: function(e) {
-
+  touchstart: function (e) {
     e.touch = true;
 
     this.updatePointer(e);
@@ -2448,11 +2215,9 @@ PLAYGROUND.Pointer.prototype = {
     this.pointerdown(e);
 
     this.app.emitGlobalEvent("pointerdown", e);
-
   },
 
-  touchend: function(e) {
-
+  touchend: function (e) {
     e.touch = true;
 
     this.pointerup(e);
@@ -2460,11 +2225,9 @@ PLAYGROUND.Pointer.prototype = {
     this.removePointer(e);
 
     this.app.emitGlobalEvent("pointerup", e);
-
   },
 
-  touchmove: function(e) {
-
+  touchmove: function (e) {
     e.touch = true;
 
     this.updatePointer(e);
@@ -2472,11 +2235,9 @@ PLAYGROUND.Pointer.prototype = {
     this.pointermove(e);
 
     this.app.emitGlobalEvent("pointermove", e);
-
   },
 
-  mousemove: function(e) {
-
+  mousemove: function (e) {
     e.mouse = true;
 
     this.updatePointer(e);
@@ -2484,11 +2245,9 @@ PLAYGROUND.Pointer.prototype = {
     this.pointermove(e);
 
     this.app.emitGlobalEvent("pointermove", e);
-
   },
 
-  mousedown: function(e) {
-
+  mousedown: function (e) {
     e.mouse = true;
 
     this.updatePointer(e);
@@ -2496,29 +2255,23 @@ PLAYGROUND.Pointer.prototype = {
     this.app.emitGlobalEvent("pointerdown", e);
 
     this.pointerdown(e);
-
   },
 
-  mouseup: function(e) {
-
+  mouseup: function (e) {
     e.mouse = true;
 
     this.pointerup(e);
 
     this.app.emitGlobalEvent("pointerup", e);
-
   },
 
-  mousewheel: function(e) {
-
+  mousewheel: function (e) {
     e.mouse = true;
 
     this.app.emitGlobalEvent("pointerwheel", e);
-
   },
 
-  pointerdown: function(e) {
-
+  pointerdown: function (e) {
     var pointer = this.pointers[e.id];
 
     pointer.pressed = true;
@@ -2527,46 +2280,42 @@ PLAYGROUND.Pointer.prototype = {
 
     pointer.lastTap = this.app.lifetime;
 
-    if (timeFrame < 0.4 && pointer.tapPosition && PLAYGROUND.Utils.distance(pointer, pointer.tapPosition) < 5) {
-
+    if (
+      timeFrame < 0.4 &&
+      pointer.tapPosition &&
+      PLAYGROUND.Utils.distance(pointer, pointer.tapPosition) < 5
+    ) {
       this.app.emitGlobalEvent("pointerdoubletap", pointer);
 
       pointer.lastTap = 0;
-
     }
 
     pointer.tapPosition = {
       x: e.x,
-      y: e.y
+      y: e.y,
     };
-
   },
 
-  pointermove: function(e) {
-
+  pointermove: function (e) {
     var pointer = this.pointers[e.id];
 
-    if (!pointer.dragging && pointer.pressed && PLAYGROUND.Utils.distance(pointer.tapPosition, e) > 5) {
-
+    if (
+      !pointer.dragging &&
+      pointer.pressed &&
+      PLAYGROUND.Utils.distance(pointer.tapPosition, e) > 5
+    ) {
       pointer.dragging = true;
-
     }
 
     e.dragging = pointer.dragging;
-
   },
 
-  pointerup: function(e) {
-
+  pointerup: function (e) {
     var pointer = this.pointers[e.id];
 
     pointer.pressed = false;
     pointer.dragging = false;
-
-  }
-
-
-
+  },
 };
 
 /* file: src/Loader.js */
@@ -2604,43 +2353,35 @@ PLAYGROUND.Pointer.prototype = {
  *   if any element reported an error.
  */
 
-PLAYGROUND.Loader = function(app) {
-
+PLAYGROUND.Loader = function (app) {
   this.app = app;
 
   PLAYGROUND.Events.call(this);
 
   this.reset();
-
 };
 
 PLAYGROUND.Loader.prototype = {
-
   /** Start retreiving an element */
 
-  add: function(id) {
-
+  add: function (id) {
     this.queue++;
     this.count++;
     this.ready = false;
     this.trigger("add", id);
 
     return id;
-
   },
 
   /** Report an error to the loader. */
 
-  error: function(id) {
-
+  error: function (id) {
     this.trigger("error", id);
-
   },
 
   /** Report a success to the loader. */
 
-  success: function(id) {
-
+  success: function (id) {
     this.queue--;
 
     this.progress = 1 - this.queue / this.count;
@@ -2651,26 +2392,26 @@ PLAYGROUND.Loader.prototype = {
       this.reset();
       this.trigger("ready");
     }
-
   },
 
   /** Bring loader back to the ground state */
 
-  reset: function() {
-
+  reset: function () {
     this.progress = 0;
     this.queue = 0;
     this.count = 0;
     this.ready = true;
-
-  }
+  },
 };
 
-PLAYGROUND.Utils.extend(PLAYGROUND.Loader.prototype, PLAYGROUND.Events.prototype);
+PLAYGROUND.Utils.extend(
+  PLAYGROUND.Loader.prototype,
+  PLAYGROUND.Events.prototype
+);
 
 /* file: src/Mouse.js */
 
-/** 
+/**
 
   Mouse related functionality.
 
@@ -2695,13 +2436,12 @@ PLAYGROUND.Utils.extend(PLAYGROUND.Loader.prototype, PLAYGROUND.Events.prototype
   - touchstart or mousedown: action starts
   - touchend or mouseup: action ends
   - mousewheel: wheel event
- 
+
   Reference: http://playgroundjs.com/playground-mouse
 
  */
 
-PLAYGROUND.Mouse = function(app, element) {
-
+PLAYGROUND.Mouse = function (app, element) {
   var self = this;
 
   this.app = app;
@@ -2722,15 +2462,12 @@ PLAYGROUND.Mouse = function(app, element) {
   this.x = 0;
   this.y = 0;
 
-
   this.mousemovelistener = this.mousemove.bind(this);
   this.mousedownlistener = this.mousedown.bind(this);
   this.mouseuplistener = this.mouseup.bind(this);
   this.mouseoutlistener = this.mouseout.bind(this);
-  this.contextmenulistener = function(e) {
-
+  this.contextmenulistener = function (e) {
     if (self.preventContextMenu && !e.metaKey) e.preventDefault();
-
   };
 
   element.addEventListener("mousemove", this.mousemovelistener);
@@ -2743,102 +2480,83 @@ PLAYGROUND.Mouse = function(app, element) {
 
   this.enableMousewheel();
 
-  element.requestPointerLock = element.requestPointerLock ||
+  element.requestPointerLock =
+    element.requestPointerLock ||
     element.mozRequestPointerLock ||
     element.webkitRequestPointerLock;
 
-  document.exitPointerLock = document.exitPointerLock ||
+  document.exitPointerLock =
+    document.exitPointerLock ||
     document.mozExitPointerLock ||
     document.webkitExitPointerLock;
 
-
   this.handleResize();
-
 };
 
 PLAYGROUND.Mouse.prototype = {
-
-  kill: function() {
-
+  kill: function () {
     this.element.removeEventListener("mousemove", this.mousemovelistener);
     this.element.removeEventListener("mousedown", this.mousedownlistener);
     this.element.removeEventListener("mouseup", this.mouseuplistener);
     this.element.removeEventListener("mouseout", this.mouseoutlistener);
     this.element.removeEventListener("contextmenu", this.contextmenulistener);
-
   },
 
-  mouseout: function(button) {
-
+  mouseout: function (button) {
     for (var i = 0; i < 3; i++) {
-
       this.mouseup({
-        button: i
+        button: i,
       });
-
     }
-
   },
 
-  lock: function() {
-
+  lock: function () {
     this.locked = true;
     this.element.requestPointerLock();
-
   },
 
-  unlock: function() {
-
+  unlock: function () {
     this.locked = false;
     document.exitPointerLock();
-
   },
 
-  getElementOffset: function(element) {
-
+  getElementOffset: function (element) {
     var offsetX = 0;
     var offsetY = 0;
 
     do {
       offsetX += element.offsetLeft;
       offsetY += element.offsetTop;
-    }
-
-    while ((element = element.offsetParent));
+    } while ((element = element.offsetParent));
 
     return {
       x: offsetX,
-      y: offsetY
+      y: offsetY,
     };
-
   },
 
-  handleResize: function() {
-
+  handleResize: function () {
     this.elementOffset = this.getElementOffset(this.element);
-
   },
 
-  mousemove: PLAYGROUND.Utils.throttle(function(e) {
-
+  mousemove: PLAYGROUND.Utils.throttle(function (e) {
     if (!this.enabled) return;
 
-    this.x = this.mousemoveEvent.x = (e.pageX - this.elementOffset.x - this.app.offsetX) / this.app.scale | 0;
-    this.y = this.mousemoveEvent.y = (e.pageY - this.elementOffset.y - this.app.offsetY) / this.app.scale | 0;
+    this.x = this.mousemoveEvent.x =
+      ((e.pageX - this.elementOffset.x - this.app.offsetX) / this.app.scale) |
+      0;
+    this.y = this.mousemoveEvent.y =
+      ((e.pageY - this.elementOffset.y - this.app.offsetY) / this.app.scale) |
+      0;
 
     this.mousemoveEvent.original = e;
 
     if (this.locked) {
+      this.mousemoveEvent.movementX =
+        e.movementX || e.mozMovementX || e.webkitMovementX || 0;
 
-      this.mousemoveEvent.movementX = e.movementX ||
-        e.mozMovementX ||
-        e.webkitMovementX ||
-        0;
-
-      this.mousemoveEvent.movementY = e.movementY ||
-        e.mozMovementY ||
-        e.webkitMovementY ||
-        0;
+      this.mousemoveEvent.movementY =
+        e.movementY || e.mozMovementY || e.webkitMovementY || 0;
     }
 
     if (this.app.mouseToTouch) {
@@ -2850,11 +2568,9 @@ PLAYGROUND.Mouse.prototype = {
       this.mousemoveEvent.id = this.mousemoveEvent.identifier = 255;
       this.trigger("mousemove", this.mousemoveEvent);
     }
-
   }, 15),
 
-  mousedown: function(e) {
-
+  mousedown: function (e) {
     if (!this.enabled) return;
 
     var buttonName = ["left", "middle", "right"][e.button];
@@ -2874,11 +2590,9 @@ PLAYGROUND.Mouse.prototype = {
     } else {
       this.trigger("mousedown", this.mousedownEvent);
     }
-
   },
 
-  mouseup: function(e) {
-
+  mouseup: function (e) {
     if (!this.enabled) return;
 
     var buttonName = ["left", "middle", "right"][e.button];
@@ -2893,21 +2607,15 @@ PLAYGROUND.Mouse.prototype = {
     this.mouseupEvent.id = this.mouseupEvent.identifier = 255;
 
     if (this.app.mouseToTouch) {
-
       this.trigger("touchend", this.mouseupEvent);
-
     } else {
-
       this.trigger("mouseup", this.mouseupEvent);
-
     }
 
     this[buttonName] = false;
-
   },
 
-  mousewheel: function(e) {
-
+  mousewheel: function (e) {
     this.mousewheelEvent.x = this.mousemoveEvent.x;
     this.mousewheelEvent.y = this.mousemoveEvent.y;
     this.mousewheelEvent.button = ["none", "left", "middle", "right"][e.button];
@@ -2917,18 +2625,17 @@ PLAYGROUND.Mouse.prototype = {
     this[e.button] = false;
 
     this.trigger("mousewheel", this.mousewheelEvent);
-
   },
 
-
-  enableMousewheel: function() {
-
-    var eventNames = 'onwheel' in document || document.documentMode >= 9 ? ['wheel'] : ['mousewheel', 'DomMouseScroll', 'MozMousePixelScroll'];
+  enableMousewheel: function () {
+    var eventNames =
+      "onwheel" in document || document.documentMode >= 9
+        ? ["wheel"]
+        : ["mousewheel", "DomMouseScroll", "MozMousePixelScroll"];
     var callback = this.mousewheel.bind(this);
     var self = this;
 
-    var throttled = PLAYGROUND.Utils.throttle(function(event) {
-
+    var throttled = PLAYGROUND.Utils.throttle(function (event) {
       var orgEvent = event || window.event,
         args = [].slice.call(arguments, 1),
         delta = 0,
@@ -2970,19 +2677,19 @@ PLAYGROUND.Mouse.prototype = {
       callback(self.mousewheelEvent);
 
       orgEvent.preventDefault();
-
     }, 40);
 
-    for (var i = eventNames.length; i;) {
+    for (var i = eventNames.length; i; ) {
+      self.element.addEventListener(
+        eventNames[--i],
+        function (event) {
+          throttled(event);
 
-      self.element.addEventListener(eventNames[--i], function(event) {
-
-        throttled(event);
-
-        event.preventDefault();
-        event.stopPropagation();
-
-      }, false);
+          event.preventDefault();
+          event.stopPropagation();
+        },
+        false
+      );
       /*
             self.element.addEventListener(eventNames[--i], function(event) {
 
@@ -2991,16 +2698,14 @@ PLAYGROUND.Mouse.prototype = {
 
             });
             */
-
     }
-
-
-
-  }
-
+  },
 };
 
-PLAYGROUND.Utils.extend(PLAYGROUND.Mouse.prototype, PLAYGROUND.Events.prototype);
+PLAYGROUND.Utils.extend(
+  PLAYGROUND.Mouse.prototype,
+  PLAYGROUND.Events.prototype
+);
 
 /* file: src/Sound.js */
 
@@ -3011,66 +2716,50 @@ PLAYGROUND.Utils.extend(PLAYGROUND.Mouse.prototype, PLAYGROUND.Events.prototype)
  * The application object will have tow (identical) objects inserted:
  * `sound` and `music`.
  */
-PLAYGROUND.Sound = function(app) {
-
-  var audioContext = window.AudioContext || window.webkitAudioContext || window.mozAudioContext;
+PLAYGROUND.Sound = function (app) {
+  var audioContext =
+    window.AudioContext || window.webkitAudioContext || window.mozAudioContext;
 
   if (audioContext && !app.forceAudioFallback) {
-
-    if (!PLAYGROUND.audioContext) PLAYGROUND.audioContext = new audioContext;
+    if (!PLAYGROUND.audioContext) PLAYGROUND.audioContext = new audioContext();
 
     app.audioContext = PLAYGROUND.audioContext;
     app.sound = new PLAYGROUND.SoundWebAudioAPI(app, app.audioContext);
     app.music = new PLAYGROUND.SoundWebAudioAPI(app, app.audioContext);
-
   } else {
-
     app.sound = new PLAYGROUND.SoundAudio(app);
     app.music = new PLAYGROUND.SoundAudio(app);
-
   }
-
 };
 
 /** Play a sound */
-PLAYGROUND.Application.prototype.playSound = function(key, loop) {
-
+PLAYGROUND.Application.prototype.playSound = function (key, loop) {
   return this.sound.play(key, loop);
-
 };
 
 /** Stop a sound from playing */
-PLAYGROUND.Application.prototype.stopSound = function(sound) {
-
+PLAYGROUND.Application.prototype.stopSound = function (sound) {
   this.sound.stop(sound);
-
 };
 
 /** Load the sound */
-PLAYGROUND.Application.prototype.loadSound = function() {
-
+PLAYGROUND.Application.prototype.loadSound = function () {
   return this.loadSounds.apply(this, arguments);
-
 };
 
 /** Load multiple sounds */
-PLAYGROUND.Application.prototype.loadSounds = function() {
-
+PLAYGROUND.Application.prototype.loadSounds = function () {
   for (var i = 0; i < arguments.length; i++) {
-
     var arg = arguments[i];
 
     /* polymorphism at its finest */
 
     if (typeof arg === "object") {
-
       for (var key in arg) this.loadSounds(arg[key]);
-
     } else {
       this.sound.load(arg);
     }
   }
-
 };
 
 /* file: src/SoundWebAudioAPI.js */
@@ -3085,175 +2774,215 @@ PLAYGROUND.Application.prototype.loadSounds = function() {
         if (!u && a) return a(o, !0);
         if (i) return i(o, !0);
         var f = new Error("Cannot find module '" + o + "'");
-        throw f.code = "MODULE_NOT_FOUND", f
+        throw ((f.code = "MODULE_NOT_FOUND"), f);
       }
-      var l = n[o] = {
-        exports: {}
-      };
-      t[o][0].call(l.exports, function(e) {
-        var n = t[o][1][e];
-        return s(n ? n : e)
-      }, l, l.exports, e, t, n, r)
+      var l = (n[o] = {
+        exports: {},
+      });
+      t[o][0].call(
+        l.exports,
+        function (e) {
+          var n = t[o][1][e];
+          return s(n ? n : e);
+        },
+        l,
+        l.exports,
+        e,
+        t,
+        n,
+        r
+      );
     }
-    return n[o].exports
+    return n[o].exports;
   }
   var i = typeof require == "function" && require;
   for (var o = 0; o < r.length; o++) s(r[o]);
-  return s
-})({
-  1: [function(require, module, exports) {
-    (function(global) {
-      "use strict";
-      var AudioContext = global.AudioContext || global.webkitAudioContext;
-      var StereoPannerNode = require("stereo-panner-node");
-      if (AudioContext && !AudioContext.prototype.createStereoPanner) {
-        AudioContext.prototype.createStereoPanner = function() {
-          return new StereoPannerNode(this)
-        }
-      }
-    }).call(this, typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-  }, {
-    "stereo-panner-node": 4
-  }],
-  2: [function(require, module, exports) {
-    "use strict";
-    var WS_CURVE_SIZE = 4096;
-    var curveL = new Float32Array(WS_CURVE_SIZE);
-    var curveR = new Float32Array(WS_CURVE_SIZE);
-    (function() {
-      for (var i = 0; i < WS_CURVE_SIZE; i++) {
-        curveL[i] = Math.cos(i / WS_CURVE_SIZE * Math.PI * .5);
-        curveR[i] = Math.sin(i / WS_CURVE_SIZE * Math.PI * .5)
-      }
-    })();
-    module.exports = {
-      L: curveL,
-      R: curveR
-    }
-  }, {}],
-  3: [function(require, module, exports) {
-    (function(global) {
-      "use strict";
-      var curve = require("./curve");
-
-      function StereoPannerImpl(audioContext) {
-        this.audioContext = audioContext;
-        this.inlet = audioContext.createChannelSplitter(2);
-        this._pan = audioContext.createGain();
-        this.pan = this._pan.gain;
-        this._wsL = audioContext.createWaveShaper();
-        this._wsR = audioContext.createWaveShaper();
-        this._L = audioContext.createGain();
-        this._R = audioContext.createGain();
-        this.outlet = audioContext.createChannelMerger(2);
-        this.inlet.channelCount = 2;
-        this.inlet.channelCountMode = "explicit";
-        this._pan.gain.value = 0;
-        this._wsL.curve = curve.L;
-        this._wsR.curve = curve.R;
-        this._L.gain.value = 0;
-        this._R.gain.value = 0;
-        this.inlet.connect(this._L, 0);
-        this.inlet.connect(this._R, 1);
-        this._L.connect(this.outlet, 0, 0);
-        this._R.connect(this.outlet, 0, 1);
-        this._pan.connect(this._wsL);
-        this._pan.connect(this._wsR);
-        this._wsL.connect(this._L.gain);
-        this._wsR.connect(this._R.gain);
-        this._isConnected = false;
-        this._dc1buffer = null;
-        this._dc1 = null
-      }
-      StereoPannerImpl.prototype.connect = function(destination) {
-        var audioContext = this.audioContext;
-        if (!this._isConnected) {
-          this._isConnected = true;
-          this._dc1buffer = audioContext.createBuffer(1, 2, audioContext.sampleRate);
-          this._dc1buffer.getChannelData(0).set([1, 1]);
-          this._dc1 = audioContext.createBufferSource();
-          this._dc1.buffer = this._dc1buffer;
-          this._dc1.loop = true;
-          this._dc1.start(audioContext.currentTime);
-          this._dc1.connect(this._pan)
-        }
-        global.AudioNode.prototype.connect.call(this.outlet, destination)
-      };
-      StereoPannerImpl.prototype.disconnect = function() {
-        var audioContext = this.audioContext;
-        if (this._isConnected) {
-          this._isConnected = false;
-          this._dc1.stop(audioContext.currentTime);
-          this._dc1.disconnect();
-          this._dc1 = null;
-          this._dc1buffer = null
-        }
-        global.AudioNode.prototype.disconnect.call(this.outlet)
-      };
-      module.exports = StereoPannerImpl
-    }).call(this, typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-  }, {
-    "./curve": 2
-  }],
-  4: [function(require, module, exports) {
-    "use strict";
-    var StereoPannerImpl = require("./stereo-panner-impl");
-
-    function StereoPanner(audioContext) {
-      var impl = new StereoPannerImpl(audioContext);
-      Object.defineProperties(impl.inlet, {
-        pan: {
-          value: impl.pan,
-          enumerable: true
-        },
-        connect: {
-          value: function(node) {
-            return impl.connect(node)
+  return s;
+})(
+  {
+    1: [
+      function (require, module, exports) {
+        (function (global) {
+          "use strict";
+          var AudioContext = global.AudioContext || global.webkitAudioContext;
+          var StereoPannerNode = require("stereo-panner-node");
+          if (AudioContext && !AudioContext.prototype.createStereoPanner) {
+            AudioContext.prototype.createStereoPanner = function () {
+              return new StereoPannerNode(this);
+            };
           }
-        },
-        disconnect: {
-          value: function() {
-            return impl.disconnect()
+        }).call(
+          this,
+          typeof global !== "undefined"
+            ? global
+            : typeof self !== "undefined"
+            ? self
+            : typeof window !== "undefined"
+            ? window
+            : {}
+        );
+      },
+      {
+        "stereo-panner-node": 4,
+      },
+    ],
+    2: [
+      function (require, module, exports) {
+        "use strict";
+        var WS_CURVE_SIZE = 4096;
+        var curveL = new Float32Array(WS_CURVE_SIZE);
+        var curveR = new Float32Array(WS_CURVE_SIZE);
+        (function () {
+          for (var i = 0; i < WS_CURVE_SIZE; i++) {
+            curveL[i] = Math.cos((i / WS_CURVE_SIZE) * Math.PI * 0.5);
+            curveR[i] = Math.sin((i / WS_CURVE_SIZE) * Math.PI * 0.5);
           }
-        }
-      });
-      return impl.inlet
-    }
-    module.exports = StereoPanner
-  }, {
-    "./stereo-panner-impl": 3
-  }]
-}, {}, [1]);
+        })();
+        module.exports = {
+          L: curveL,
+          R: curveR,
+        };
+      },
+      {},
+    ],
+    3: [
+      function (require, module, exports) {
+        (function (global) {
+          "use strict";
+          var curve = require("./curve");
 
+          function StereoPannerImpl(audioContext) {
+            this.audioContext = audioContext;
+            this.inlet = audioContext.createChannelSplitter(2);
+            this._pan = audioContext.createGain();
+            this.pan = this._pan.gain;
+            this._wsL = audioContext.createWaveShaper();
+            this._wsR = audioContext.createWaveShaper();
+            this._L = audioContext.createGain();
+            this._R = audioContext.createGain();
+            this.outlet = audioContext.createChannelMerger(2);
+            this.inlet.channelCount = 2;
+            this.inlet.channelCountMode = "explicit";
+            this._pan.gain.value = 0;
+            this._wsL.curve = curve.L;
+            this._wsR.curve = curve.R;
+            this._L.gain.value = 0;
+            this._R.gain.value = 0;
+            this.inlet.connect(this._L, 0);
+            this.inlet.connect(this._R, 1);
+            this._L.connect(this.outlet, 0, 0);
+            this._R.connect(this.outlet, 0, 1);
+            this._pan.connect(this._wsL);
+            this._pan.connect(this._wsR);
+            this._wsL.connect(this._L.gain);
+            this._wsR.connect(this._R.gain);
+            this._isConnected = false;
+            this._dc1buffer = null;
+            this._dc1 = null;
+          }
+          StereoPannerImpl.prototype.connect = function (destination) {
+            var audioContext = this.audioContext;
+            if (!this._isConnected) {
+              this._isConnected = true;
+              this._dc1buffer = audioContext.createBuffer(
+                1,
+                2,
+                audioContext.sampleRate
+              );
+              this._dc1buffer.getChannelData(0).set([1, 1]);
+              this._dc1 = audioContext.createBufferSource();
+              this._dc1.buffer = this._dc1buffer;
+              this._dc1.loop = true;
+              this._dc1.start(audioContext.currentTime);
+              this._dc1.connect(this._pan);
+            }
+            global.AudioNode.prototype.connect.call(this.outlet, destination);
+          };
+          StereoPannerImpl.prototype.disconnect = function () {
+            var audioContext = this.audioContext;
+            if (this._isConnected) {
+              this._isConnected = false;
+              this._dc1.stop(audioContext.currentTime);
+              this._dc1.disconnect();
+              this._dc1 = null;
+              this._dc1buffer = null;
+            }
+            global.AudioNode.prototype.disconnect.call(this.outlet);
+          };
+          module.exports = StereoPannerImpl;
+        }).call(
+          this,
+          typeof global !== "undefined"
+            ? global
+            : typeof self !== "undefined"
+            ? self
+            : typeof window !== "undefined"
+            ? window
+            : {}
+        );
+      },
+      {
+        "./curve": 2,
+      },
+    ],
+    4: [
+      function (require, module, exports) {
+        "use strict";
+        var StereoPannerImpl = require("./stereo-panner-impl");
+
+        function StereoPanner(audioContext) {
+          var impl = new StereoPannerImpl(audioContext);
+          Object.defineProperties(impl.inlet, {
+            pan: {
+              value: impl.pan,
+              enumerable: true,
+            },
+            connect: {
+              value: function (node) {
+                return impl.connect(node);
+              },
+            },
+            disconnect: {
+              value: function () {
+                return impl.disconnect();
+              },
+            },
+          });
+          return impl.inlet;
+        }
+        module.exports = StereoPanner;
+      },
+      {
+        "./stereo-panner-impl": 3,
+      },
+    ],
+  },
+  {},
+  [1]
+);
 
 /** Sound back-end using Web Audio API
  *
  * Reference: https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API
  */
 
-
-PLAYGROUND.SoundWebAudioAPI = function(app, audioContext) {
-
+PLAYGROUND.SoundWebAudioAPI = function (app, audioContext) {
   this.app = app;
 
-  var canPlayMp3 = (new Audio).canPlayType("audio/mp3");
-  var canPlayOgg = (new Audio).canPlayType('audio/ogg; codecs="vorbis"');
+  var canPlayMp3 = new Audio().canPlayType("audio/mp3");
+  var canPlayOgg = new Audio().canPlayType('audio/ogg; codecs="vorbis"');
 
   if (this.app.preferedAudioFormat === "mp3") {
-
     if (canPlayMp3) this.audioFormat = "mp3";
     else this.audioFormat = "ogg";
-
   } else {
-
     if (canPlayOgg) this.audioFormat = "ogg";
     else this.audioFormat = "mp3";
-
   }
 
   this.context = audioContext;
 
-  this.gainNode = this.context.createGain()
+  this.gainNode = this.context.createGain();
   this.gainNode.connect(this.context.destination);
 
   this.compressor = this.context.createDynamicsCompressor();
@@ -3269,34 +2998,27 @@ PLAYGROUND.SoundWebAudioAPI = function(app, audioContext) {
   this.loops = [];
 
   this.app.on("step", this.step.bind(this));
-
 };
 
 PLAYGROUND.SoundWebAudioAPI.prototype = {
-
   buffers: {},
   aliases: {},
 
-  alias: function(alias, source, volume, rate) {
-
+  alias: function (alias, source, volume, rate) {
     this.aliases[alias] = {
       source: source,
       volume: volume,
-      rate: rate
+      rate: rate,
     };
-
   },
 
-  setMaster: function(volume) {
-
+  setMaster: function (volume) {
     this.volume = volume;
 
     this.gainNode.gain.value = volume;
-
   },
 
-  load: function(file) {
-
+  load: function (file) {
     var entry = this.app.getAssetEntry(file, "sounds", this.audioFormat);
 
     var sampler = this;
@@ -3308,20 +3030,17 @@ PLAYGROUND.SoundWebAudioAPI.prototype = {
 
     var id = this.app.loader.add(entry.url);
 
-    request.onload = function() {
-
-      sampler.context.decodeAudioData(this.response, function(decodedBuffer) {
+    request.onload = function () {
+      sampler.context.decodeAudioData(this.response, function (decodedBuffer) {
         sampler.buffers[entry.key] = decodedBuffer;
         sampler.app.loader.success(entry.url);
       });
-
-    }
+    };
 
     request.send();
-
   },
 
-  cleanArray: function(array, property) {
+  cleanArray: function (array, property) {
     for (var i = 0, len = array.length; i < len; i++) {
       if (array[i] === null || (property && array[i][property])) {
         array.splice(i--, 1);
@@ -3330,50 +3049,41 @@ PLAYGROUND.SoundWebAudioAPI.prototype = {
     }
   },
 
-  getSoundBuffer: function() {
-
+  getSoundBuffer: function () {
     if (!this.pool.length) {
       for (var i = 0; i < 100; i++) {
-
         var buffer, gain, panner;
 
         var nodes = [
-          buffer = this.context.createBufferSource(),
-          gain = this.context.createGain(),
-          panner = this.context.createStereoPanner()
+          (buffer = this.context.createBufferSource()),
+          (gain = this.context.createGain()),
+          (panner = this.context.createStereoPanner()),
         ];
 
         this.pool.push(nodes);
 
-
         if (!PLAYGROUND.MOBILE) {
-
           nodes[0].connect(nodes[1]);
           nodes[1].connect(nodes[2]);
           nodes[2].connect(this.output);
-
         } else {
-
           nodes[0].connect(nodes[1]);
           nodes[1].connect(this.gainNode);
-
         }
-
       }
     }
 
     return this.pool.pop();
   },
 
-  play: function(name, loop) {
-
+  play: function (name, loop) {
     var alias = this.aliases[name];
 
     var nodes = this.getSoundBuffer();
 
     if (alias) name = alias.source;
 
-    bufferSource = nodes[0];
+    var bufferSource = nodes[0];
     bufferSource.gainNode = nodes[1];
     bufferSource.pannerNode = nodes[2];
     bufferSource.buffer = this.buffers[name];
@@ -3390,7 +3100,6 @@ PLAYGROUND.SoundWebAudioAPI.prototype = {
       // bufferSource.loopEnd = this.loopEnd;
     }
 
-
     bufferSource.start(0);
 
     bufferSource.volumeLimit = 1;
@@ -3398,54 +3107,43 @@ PLAYGROUND.SoundWebAudioAPI.prototype = {
     return bufferSource;
   },
 
-  stop: function(what) {
-
+  stop: function (what) {
     if (!what) return;
 
     what.stop(0);
-
   },
 
-  setPlaybackRate: function(sound, rate) {
-
+  setPlaybackRate: function (sound, rate) {
     if (!sound) return;
 
     if (sound.alias) rate *= sound.alias.rate;
 
-    return sound.playbackRate.value = rate;
+    return (sound.playbackRate.value = rate);
   },
 
-  getVolume: function(sound) {
-
+  getVolume: function (sound) {
     if (!sound) return;
 
     return sound.gainNode.gain.value;
-
   },
 
-  setVolume: function(sound, volume) {
-
+  setVolume: function (sound, volume) {
     if (!sound) return;
 
     if (sound.alias) volume *= sound.alias.volume;
 
-    return sound.gainNode.gain.value = Math.max(0, volume);
+    return (sound.gainNode.gain.value = Math.max(0, volume));
   },
 
-  setPanning: function(sound, pan) {
-
+  setPanning: function (sound, pan) {
     sound.pannerNode.pan.value = pan;
-
   },
 
-  getPanning: function(sound) {
-
+  getPanning: function (sound) {
     return sound.pannerNode.pan.value;
-
   },
 
-  fadeOut: function(sound) {
-
+  fadeOut: function (sound) {
     if (!sound) return;
 
     sound.fadeOut = true;
@@ -3453,11 +3151,9 @@ PLAYGROUND.SoundWebAudioAPI.prototype = {
     this.loops.push(sound);
 
     return sound;
-
   },
 
-  fadeIn: function(sound) {
-
+  fadeIn: function (sound) {
     if (!sound) return;
 
     sound.fadeIn = true;
@@ -3465,15 +3161,11 @@ PLAYGROUND.SoundWebAudioAPI.prototype = {
     this.loops.push(sound);
     this.setVolume(sound, 0);
 
-
     return sound;
-
   },
 
-  step: function(delta) {
-
+  step: function (delta) {
     for (var i = 0; i < this.loops.length; i++) {
-
       var loop = this.loops[i];
 
       if (loop.fadeIn) {
@@ -3494,11 +3186,8 @@ PLAYGROUND.SoundWebAudioAPI.prototype = {
           this.stop(loop);
         }
       }
-
     }
-
-  }
-
+  },
 };
 
 /* file: src/SoundAudio.js */
@@ -3506,48 +3195,36 @@ PLAYGROUND.SoundWebAudioAPI.prototype = {
 /** Sound back-end using HTML DOM Audio object.
  *
  */
-PLAYGROUND.SoundAudio = function(app) {
-
+PLAYGROUND.SoundAudio = function (app) {
   this.app = app;
 
-  var canPlayMp3 = (new Audio).canPlayType("audio/mp3");
-  var canPlayOgg = (new Audio).canPlayType('audio/ogg; codecs="vorbis"');
+  var canPlayMp3 = new Audio().canPlayType("audio/mp3");
+  var canPlayOgg = new Audio().canPlayType('audio/ogg; codecs="vorbis"');
 
   if (this.app.preferedAudioFormat === "mp3") {
-
     if (canPlayMp3) this.audioFormat = "mp3";
     else this.audioFormat = "ogg";
-
   } else {
-
     if (canPlayOgg) this.audioFormat = "ogg";
     else this.audioFormat = "mp3";
-
   }
-
 };
 
 PLAYGROUND.SoundAudio.prototype = {
-
   samples: {},
 
-  setMaster: function(volume) {
-
+  setMaster: function (volume) {
     this.volume = volume;
-
   },
 
-  setMasterPosition: function() {
+  setMasterPosition: function () {},
 
-  },
-
-  setPosition: function(x, y, z) {
+  setPosition: function (x, y, z) {
     return;
   },
 
-  load: function(file) {
-
-    console.log(file, this.audioFormat)
+  load: function (file) {
+    console.log(file, this.audioFormat);
 
     var url = "sounds/" + file + "." + this.audioFormat;
 
@@ -3555,16 +3232,13 @@ PLAYGROUND.SoundAudio.prototype = {
 
     this.app.loader.add(url);
 
-    var audio = this.samples[file] = new Audio;
+    var audio = (this.samples[file] = new Audio());
 
-    audio.addEventListener("canplay", function() {
-
+    audio.addEventListener("canplay", function () {
       console.log("CANPLAY");
 
       this.pause();
       loader.success(url);
-
-
     });
     /*
         audio.addEventListener("canplaythrough", function() {
@@ -3583,20 +3257,15 @@ PLAYGROUND.SoundAudio.prototype = {
 
         });
     */
-    audio.addEventListener("error", function() {
-
+    audio.addEventListener("error", function () {
       loader.error(url);
-
     });
 
     audio.src = url;
     audio.play();
-
-
   },
 
-  play: function(key, loop) {
-
+  play: function (key, loop) {
     var sound = this.samples[key];
 
     sound.currentTime = 0;
@@ -3604,40 +3273,27 @@ PLAYGROUND.SoundAudio.prototype = {
     sound.play();
 
     return sound;
-
   },
 
-  stop: function(what) {
-
+  stop: function (what) {
     if (!what) return;
 
     what.pause();
-
   },
 
-  step: function(delta) {
+  step: function (delta) {},
 
-  },
-
-  setPlaybackRate: function(sound, rate) {
-
+  setPlaybackRate: function (sound, rate) {
     return;
   },
 
-  setVolume: function(sound, volume) {
-
+  setVolume: function (sound, volume) {
     sound.volume = volume * this.volume;
-
   },
 
-  setPosition: function() {
+  setPosition: function () {},
 
-  },
-
-  setPanning: function(sound, pan) {
-
-  }
-
+  setPanning: function (sound, pan) {},
 };
 
 /* file: src/Touch.js */
@@ -3670,8 +3326,7 @@ PLAYGROUND.SoundAudio.prototype = {
  *
  * Reference: http://playgroundjs.com/playground-touch
  */
-PLAYGROUND.Touch = function(app, element) {
-
+PLAYGROUND.Touch = function (app, element) {
   PLAYGROUND.Events.call(this);
 
   this.app = app;
@@ -3694,56 +3349,50 @@ PLAYGROUND.Touch = function(app, element) {
   element.addEventListener("touchend", this.touchendlistener);
 
   this.app.on("kill", this.kill.bind(this));
-
 };
 
 PLAYGROUND.Touch.prototype = {
-
-  kill: function() {
-
+  kill: function () {
     this.element.removeEventListener("touchmove", this.touchmovelistener);
     this.element.removeEventListener("touchstart", this.touchstartlistener);
     this.element.removeEventListener("touchend", this.touchendlistener);
-
   },
 
-  getElementOffset: function(element) {
-
+  getElementOffset: function (element) {
     var offsetX = 0;
     var offsetY = 0;
 
     do {
       offsetX += element.offsetLeft;
       offsetY += element.offsetTop;
-    }
-
-    while ((element = element.offsetParent));
+    } while ((element = element.offsetParent));
 
     return {
       x: offsetX,
-      y: offsetY
+      y: offsetY,
     };
-
   },
 
-  handleResize: function() {
-
+  handleResize: function () {
     this.elementOffset = this.getElementOffset(this.element);
-
   },
 
-  touchmove: function(e) {
-
+  touchmove: function (e) {
     if (!this.enabled) return;
 
     for (var i = 0; i < e.changedTouches.length; i++) {
-
       var touch = e.changedTouches[i];
 
-      touchmoveEvent = {}
+      touchmoveEvent = {};
 
-      this.x = touchmoveEvent.x = (touch.pageX - this.elementOffset.x - this.app.offsetX) / this.app.scale | 0;
-      this.y = touchmoveEvent.y = (touch.pageY - this.elementOffset.y - this.app.offsetY) / this.app.scale | 0;
+      this.x = touchmoveEvent.x =
+        ((touch.pageX - this.elementOffset.x - this.app.offsetX) /
+          this.app.scale) |
+        0;
+      this.y = touchmoveEvent.y =
+        ((touch.pageY - this.elementOffset.y - this.app.offsetY) /
+          this.app.scale) |
+        0;
 
       touchmoveEvent.original = touch;
       touchmoveEvent.id = touchmoveEvent.identifier = touch.identifier;
@@ -3752,54 +3401,57 @@ PLAYGROUND.Touch.prototype = {
       this.touches[touch.identifier].y = touchmoveEvent.y;
 
       this.trigger("touchmove", touchmoveEvent);
-
     }
 
     e.preventDefault();
-
   },
 
-  touchstart: function(e) {
-
+  touchstart: function (e) {
     if (!this.enabled) return;
 
-
     for (var i = 0; i < e.changedTouches.length; i++) {
-
       var touch = e.changedTouches[i];
 
-      var touchstartEvent = {}
+      var touchstartEvent = {};
 
-      this.x = touchstartEvent.x = (touch.pageX - this.elementOffset.x - this.app.offsetX) / this.app.scale | 0;
-      this.y = touchstartEvent.y = (touch.pageY - this.elementOffset.y - this.app.offsetY) / this.app.scale | 0;
+      this.x = touchstartEvent.x =
+        ((touch.pageX - this.elementOffset.x - this.app.offsetX) /
+          this.app.scale) |
+        0;
+      this.y = touchstartEvent.y =
+        ((touch.pageY - this.elementOffset.y - this.app.offsetY) /
+          this.app.scale) |
+        0;
 
       touchstartEvent.original = e.touch;
       touchstartEvent.id = touchstartEvent.identifier = touch.identifier;
 
       this.touches[touch.identifier] = {
         x: touchstartEvent.x,
-        y: touchstartEvent.y
+        y: touchstartEvent.y,
       };
 
       this.trigger("touchstart", touchstartEvent);
-
     }
 
     e.preventDefault();
-
   },
 
-  touchend: function(e) {
-
+  touchend: function (e) {
     if (!this.enabled) return;
 
     for (var i = 0; i < e.changedTouches.length; i++) {
-
       var touch = e.changedTouches[i];
       var touchendEvent = {};
 
-      touchendEvent.x = (touch.pageX - this.elementOffset.x - this.app.offsetX) / this.app.scale | 0;
-      touchendEvent.y = (touch.pageY - this.elementOffset.y - this.app.offsetY) / this.app.scale | 0;
+      touchendEvent.x =
+        ((touch.pageX - this.elementOffset.x - this.app.offsetX) /
+          this.app.scale) |
+        0;
+      touchendEvent.y =
+        ((touch.pageY - this.elementOffset.y - this.app.offsetY) /
+          this.app.scale) |
+        0;
 
       touchendEvent.original = touch;
       touchendEvent.id = touchendEvent.identifier = touch.identifier;
@@ -3807,43 +3459,38 @@ PLAYGROUND.Touch.prototype = {
       delete this.touches[touch.identifier];
 
       this.trigger("touchend", touchendEvent);
-
     }
 
     e.preventDefault();
-
-  }
-
+  },
 };
 
-PLAYGROUND.Utils.extend(PLAYGROUND.Touch.prototype, PLAYGROUND.Events.prototype);
+PLAYGROUND.Utils.extend(
+  PLAYGROUND.Touch.prototype,
+  PLAYGROUND.Events.prototype
+);
 
 /* file: src/Tween.js */
 
-PLAYGROUND.Tween = function(manager, context) {
-
+PLAYGROUND.Tween = function (manager, context) {
   PLAYGROUND.Events.call(this);
 
   this.manager = manager;
   this.context = context;
 
   PLAYGROUND.Utils.extend(this, {
-
     prevEasing: "045",
-    prevDuration: 0.5
-
+    prevDuration: 0.5,
   });
 
   this.clear();
-
 };
 
 PLAYGROUND.Tween.prototype = {
-
-  /* 
+  /*
 
     Add an action to the end of the list
-     
+
     @param properties
     @param duration in miliseconds (optional, default is 0.5)
     @param easing (optional, default is 045)
@@ -3851,8 +3498,7 @@ PLAYGROUND.Tween.prototype = {
 
   */
 
-  add: function(properties, duration, easing) {
-
+  add: function (properties, duration, easing) {
     if (typeof duration !== "undefined") this.prevDuration = duration;
     else duration = 0.5;
 
@@ -3862,43 +3508,35 @@ PLAYGROUND.Tween.prototype = {
     this.actions.push([properties, duration, easing]);
 
     return this;
-
   },
 
   /* Clear animations */
 
-  clear: function() {
-
+  clear: function () {
     this.actions = [];
     this.index = -1;
     this.current = false;
 
     return this;
-
   },
 
   /* Discard all other tweens associated with same context as ours */
 
-  discard: function() {
-
+  discard: function () {
     this.manager.discard(this.context, this);
 
     return this;
-
   },
 
   /* Alias for `add()` */
 
-  to: function(properties, duration, easing) {
-
+  to: function (properties, duration, easing) {
     return this.add(properties, duration, easing);
-
   },
 
   /* Enqueue a method call */
 
-  call: function(methodName, context) {
-
+  call: function (methodName, context) {
     var action = ["call", methodName, context || this.context];
 
     for (var i = 2; i < arguments.length; i++) action.push(arguments[i]);
@@ -3906,75 +3544,61 @@ PLAYGROUND.Tween.prototype = {
     this.actions.push(action);
 
     return this;
-
   },
 
   /* Mark the instance as being a repeated tween */
 
-  loop: function() {
-
+  loop: function () {
     this.looped = true;
 
     return this;
-
   },
 
   /* Add a repeat action for specified number of times */
 
-  repeat: function(times) {
-
+  repeat: function (times) {
     this.actions.push(["repeat", times]);
 
     return this;
-
   },
 
   /* Add a wait action for specified number of miliseconds */
 
-  wait: function(time) {
-
+  wait: function (time) {
     this.actions.push(["wait", time]);
 
     return this;
-
   },
 
   /* Alias for `wait()` */
 
-  delay: function(time) {
-
+  delay: function (time) {
     this.actions.push(["wait", time]);
 
     return this;
-
   },
 
   /* Remove this tween from the manager */
 
-  stop: function() {
-
+  stop: function () {
     this.manager.remove(this);
 
     return this;
-
   },
 
   /* Inserts the tween into the manager if not already inside. */
 
-  play: function() {
-
+  play: function () {
     this.manager.add(this);
 
     this.finished = false;
 
     return this;
-
   },
 
   /* Performs last step in the animation list. */
 
-  end: function() {
-
+  end: function () {
     var lastAnimationIndex = 0;
 
     for (var i = this.index + 1; i < this.actions.length; i++) {
@@ -3987,68 +3611,56 @@ PLAYGROUND.Tween.prototype = {
     this.step(0);
 
     return this;
-
   },
 
   /* TBD */
 
-  forward: function() {
-
+  forward: function () {
     this.delta = this.duration;
     this.step(0);
-
   },
 
   /* TBD */
 
-  rewind: function() {
-
+  rewind: function () {
     this.delta = 0;
     this.step(0);
-
   },
 
-  /* 
+  /*
 
     Perform one animation step
-   
+
     Advances the index and, if the index reached the end of the
     `actions` array, either restarts it (for looped tweens) or terminates it.
-   
+
     The function will set a string in `currentAction` indicating what it
     should be done next but it does not perform the action itself.
 
   */
 
-  next: function() {
-
+  next: function () {
     this.delta = 0;
 
     this.index++;
 
     if (this.index >= this.actions.length) {
-
       if (this.looped) {
-
         this.trigger("loop", {
-          tween: this
+          tween: this,
         });
 
         this.index = 0;
-
       } else {
-
         this.manager.remove(this);
 
         return;
-
       }
     }
 
     this.current = this.actions[this.index];
 
     if (this.current[0] === "call") {
-
       var args = this.current.slice(2);
 
       var methodName = this.current[1];
@@ -4056,14 +3668,10 @@ PLAYGROUND.Tween.prototype = {
       var method = context[methodName];
 
       method.apply(context, args);
-
     } else if (this.current[0] === "wait") {
-
       this.duration = this.current[1];
       this.currentAction = "wait";
-
     } else {
-
       /* calculate changes */
 
       var properties = this.current[0];
@@ -4077,28 +3685,30 @@ PLAYGROUND.Tween.prototype = {
       this.types = [];
 
       for (var i = 0; i < this.keys.length; i++) {
-
         var key = this.keys[i];
         var value = this.context[key];
 
         if (typeof properties[key] === "number") {
-
           value = value || 0;
 
           this.before.push(value);
           this.change.push(properties[key] - value);
           this.types.push(0);
-
-        } else if (typeof properties[key] === "string" && properties[key].indexOf("rad") > -1) {
-
+        } else if (
+          typeof properties[key] === "string" &&
+          properties[key].indexOf("rad") > -1
+        ) {
           value = value || 0;
 
           this.before.push(value);
-          this.change.push(PLAYGROUND.Utils.circWrappedDistance(value, parseFloat(properties[key])));
+          this.change.push(
+            PLAYGROUND.Utils.circWrappedDistance(
+              value,
+              parseFloat(properties[key])
+            )
+          );
           this.types.push(2);
-
         } else {
-
           value = value || "#000";
 
           var before = cq.color(value);
@@ -4116,37 +3726,28 @@ PLAYGROUND.Tween.prototype = {
           this.change.push(temp);
 
           this.types.push(1);
-
         }
-
       }
 
       this.currentAction = "animate";
 
       this.duration = this.current[1];
       this.easing = this.current[2];
-
     }
-
-
   },
 
   /* TBD */
 
-  prev: function() {
-
-  },
+  prev: function () {},
 
   /* Select an action if none is current then perform required steps. */
 
-  step: function(delta) {
-
+  step: function (delta) {
     this.delta += delta;
 
     if (!this.current) this.next();
 
     switch (this.currentAction) {
-
       case "animate":
         this.doAnimate(delta);
         break;
@@ -4154,116 +3755,104 @@ PLAYGROUND.Tween.prototype = {
       case "wait":
         this.doWait(delta);
         break;
-
     }
-
   },
 
-  doAnimate: function(delta) {
-
-    this.progress = this.duration ? Math.min(1, this.delta / this.duration) : 1.0;
+  doAnimate: function (delta) {
+    this.progress = this.duration
+      ? Math.min(1, this.delta / this.duration)
+      : 1.0;
 
     var mod = PLAYGROUND.Utils.ease(this.progress, this.easing);
 
     for (var i = 0; i < this.keys.length; i++) {
-
       var key = this.keys[i];
 
       switch (this.types[i]) {
-
         /* number */
 
         case 0:
-
           this.context[key] = this.before[i] + this.change[i] * mod;
 
           break;
 
-          /* color */
+        /* color */
 
         case 1:
-
           var change = this.change[i];
           var before = this.before[i];
           var color = [];
 
           for (var j = 0; j < 3; j++) {
-            color.push(before[j] + change[j] * mod | 0);
+            color.push((before[j] + change[j] * mod) | 0);
           }
 
           this.context[key] = "rgb(" + color.join(",") + ")";
 
           break;
 
-          /* angle */
+        /* angle */
 
         case 2:
-
-          this.context[key] = PLAYGROUND.Utils.circWrap(this.before[i] + this.change[i] * mod);
+          this.context[key] = PLAYGROUND.Utils.circWrap(
+            this.before[i] + this.change[i] * mod
+          );
 
           break;
       }
     }
 
     if (this.progress >= 1) {
-
       this.next();
-
     }
 
     if (this.listeners["step"]) {
-
       this.trigger("step", {
         tween: this,
-        dt: delta
+        dt: delta,
       });
-
     }
-
   },
 
-  /* 
+  /*
 
     Advances the animation if enough time has passed
-   
+
     The function is called in response to `step()`; it will advance the
     index to next slot in the animation if
 
   */
 
-  doWait: function(delta) {
-
+  doWait: function (delta) {
     if (this.delta >= this.duration) this.next();
-
   },
 
-  onremove: function() {
-
+  onremove: function () {
     this.trigger("finished", {
-      tween: this
+      tween: this,
     });
 
     this.trigger("finish", {
-      tween: this
+      tween: this,
     });
 
     this.finished = true;
-
-  }
-
+  },
 };
 
-PLAYGROUND.Utils.extend(PLAYGROUND.Tween.prototype, PLAYGROUND.Events.prototype);
+PLAYGROUND.Utils.extend(
+  PLAYGROUND.Tween.prototype,
+  PLAYGROUND.Events.prototype
+);
 
-
-/* 
+/*
 
   Manager for easing effects (transition between various states).
- 
+
   If `app` is provided the manager becomes application's manager
   for tween effects. The constructor inserts a `tween()` function
   in application for simplicity.
- 
+
   Properties:
   - delta:
   - defaultEasing:
@@ -4271,8 +3860,7 @@ PLAYGROUND.Utils.extend(PLAYGROUND.Tween.prototype, PLAYGROUND.Events.prototype)
 
 */
 
-PLAYGROUND.TweenManager = function(app) {
-
+PLAYGROUND.TweenManager = function (app) {
   this.tweens = [];
 
   if (app) {
@@ -4283,118 +3871,99 @@ PLAYGROUND.TweenManager = function(app) {
   this.delta = 0;
 
   this.app.on("step", this.step.bind(this));
-
 };
 
 PLAYGROUND.TweenManager.prototype = {
-
   defaultEasing: "128",
 
   /* TBD */
 
-  circ: function(value) {
-
+  circ: function (value) {
     return {
       type: "circ",
-      value: value
+      value: value,
     };
-
   },
 
-  /* 
+  /*
 
     Marks the tween for removing.
-   
+
     The tween is actually removed in `step()` function.
-   
+
     @param object the object associated with the tween
     @param safe if the tween located using `object` is `safe` then it is not removed.
 
   */
 
-  discard: function(object, safe) {
-
+  discard: function (object, safe) {
     for (var i = 0; i < this.tweens.length; i++) {
-
       var tween = this.tweens[i];
 
       if (tween.context === object && tween !== safe) this.remove(tween);
-
     }
-
   },
 
-  /* 
+  /*
 
     Create a new tween.
-   
+
     The tween is also added to internal list (you don't have to call
     `add()` yourself).
-   
+
     @param context the object to associate with the new tween
     @returns a new PLAYGROUND.Tween object
-  
+
   */
 
-  tween: function(context) {
-
+  tween: function (context) {
     var tween = new PLAYGROUND.Tween(this, context);
 
     this.add(tween);
 
     return tween;
-
   },
 
-  /* 
+  /*
 
     Called each frame to update logic.
-   
+
     The function updates all active tweens and removes the ones
     tagged as such.
-   
+
   */
 
-  step: function(delta) {
-
+  step: function (delta) {
     this.delta += delta;
 
     for (var i = 0; i < this.tweens.length; i++) {
-
       var tween = this.tweens[i];
 
       if (!tween._remove) tween.step(delta);
 
       if (tween._remove) this.tweens.splice(i--, 1);
-
     }
-
   },
 
   /* Add a tween to internal list. */
 
-  add: function(tween) {
-
+  add: function (tween) {
     tween._remove = false;
 
     var index = this.tweens.indexOf(tween);
 
     if (index === -1) this.tweens.push(tween);
-
   },
 
   /* Marks a tween for removing during next step(). */
 
-  remove: function(tween) {
-
+  remove: function (tween) {
     if (tween._remove) return;
 
     tween._remove = true;
 
     tween.onremove();
-
-  }
-
+  },
 };
 
 /* file: src/Atlases.js */
@@ -4418,52 +3987,42 @@ PLAYGROUND.TweenManager.prototype = {
  *
  * Reference: http://playgroundjs.com/playground-atlases
  */
-PLAYGROUND.Application.prototype.loadAtlases = function() {
-
+PLAYGROUND.Application.prototype.loadAtlases = function () {
   for (var i = 0; i < arguments.length; i++) {
-
     var arg = arguments[i];
 
     /* polymorphism at its finest */
 
     if (typeof arg === "object") {
-
       for (var key in arg) this.loadAtlases(arg[key]);
-
     } else {
-
       /* if argument is not an object/array let's try to load it */
 
-      this._loadAtlas(arg)
-
+      this._loadAtlas(arg);
     }
   }
-
 };
 
 /** Alias for `loadAtlases()`. */
-PLAYGROUND.Application.prototype.loadAtlas = function() {
-
+PLAYGROUND.Application.prototype.loadAtlas = function () {
   return this.loadAtlases.apply(this, arguments);
-
 };
 
 /** Load a single atlas (internal). */
-PLAYGROUND.Application.prototype._loadAtlas = function(filename) {
-
+PLAYGROUND.Application.prototype._loadAtlas = function (filename) {
   var entry = this.getAssetEntry(filename, "atlases", "png");
 
   this.loader.add(entry.url);
 
-  var atlas = this.atlases[entry.key] = {};
+  var atlas = (this.atlases[entry.key] = {});
 
-  var image = atlas.image = new Image;
+  var image = (atlas.image = new Image());
 
-  image.addEventListener("load", function() {
+  image.addEventListener("load", function () {
     loader.success(entry.url);
   });
 
-  image.addEventListener("error", function() {
+  image.addEventListener("error", function () {
     loader.error(entry.url);
   });
 
@@ -4479,8 +4038,7 @@ PLAYGROUND.Application.prototype._loadAtlas = function(filename) {
 
   var loader = this.loader;
 
-  request.onload = function() {
-
+  request.onload = function () {
     var data = JSON.parse(this.response);
 
     atlas.frames = [];
@@ -4492,13 +4050,12 @@ PLAYGROUND.Application.prototype._loadAtlas = function(filename) {
         region: [frame.frame.x, frame.frame.y, frame.frame.w, frame.frame.h],
         offset: [frame.spriteSourceSize.x || 0, frame.spriteSourceSize.y || 0],
         width: frame.sourceSize.w,
-        height: frame.sourceSize.h
+        height: frame.sourceSize.h,
       });
     }
 
     loader.success(entry.path + ".json");
-
-  }
+  };
 
   request.send();
 };
@@ -4508,24 +4065,25 @@ PLAYGROUND.Application.prototype._loadAtlas = function(filename) {
 /** Load a font.
  * @deprecated Use `Application.loadFont()` instead.
  */
-PLAYGROUND.Application.prototype.loadFontOld = function(name) {
-
+PLAYGROUND.Application.prototype.loadFontOld = function (name) {
   var styleNode = document.createElement("style");
   styleNode.type = "text/css";
 
   var formats = {
-    "woff": "woff",
-    "ttf": "truetype"
+    woff: "woff",
+    ttf: "truetype",
   };
 
   var sources = "";
 
   for (var ext in formats) {
     var type = formats[ext];
-    sources += " url(\"fonts/" + name + "." + ext + "\") format('" + type + "');"
+    sources +=
+      ' url("fonts/' + name + "." + ext + "\") format('" + type + "');";
   }
 
-  styleNode.textContent = "@font-face { font-family: '" + name + "'; src: " + sources + " }";
+  styleNode.textContent =
+    "@font-face { font-family: '" + name + "'; src: " + sources + " }";
 
   document.head.appendChild(styleNode);
 
@@ -4542,34 +4100,25 @@ PLAYGROUND.Application.prototype.loadFontOld = function(name) {
   var self = this;
 
   function check() {
-
     var layer = cq(32, 32);
 
     layer.font("10px " + name).fillText(16, 16, 16);
     layer.trim();
 
     if (layer.width !== width || layer.height !== height) {
-
       self.loader.ready("font " + name);
-
     } else {
-
       setTimeout(check, 250);
-
     }
-
-  };
+  }
 
   check();
-
 };
 
 /* file: src/DefaultState.js */
 
 /** State used while initializing the application */
-PLAYGROUND.DefaultState = {
-
-};
+PLAYGROUND.DefaultState = {};
 
 /* file: src/LoadingScreen.js */
 
@@ -4581,16 +4130,15 @@ PLAYGROUND.DefaultState = {
  * playground.js was imported.
  */
 PLAYGROUND.LoadingScreen = {
+  logoRaw:
+    "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAANoAAAASBAMAAADPiN0xAAAAGFBMVEUAAQAtLixHSUdnaGaJioimqKXMzsv7/fr5shgVAAAAAWJLR0QAiAUdSAAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB98EAwkeA4oQWJ4AAAAZdEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIEdJTVBXgQ4XAAAB9klEQVQ4y72UvW+rMBDAz+FrpVKrrFmesmapWNOlrKjSe1kZ+uoVAvj+/frujG1SaJcqJwU7voOf7xMQzQmsIDi5NPTMsLRntH3U+F6SAZo3NlCvcgBFJz8o+vkDiE63lI95Y/UmpinsZWkgJWJiDbAVQ16htptxSTNloIlugwaw001Ey3ASF3so6L1qLNXzQS5S0UGKL/CI5wWNriE0UH9Yty37LqIVg+wsqu7Ix0MwVBSF/dU+jv2SNnma021LEdPqVnMeU3xAu0kXcSGjmq7Ox4E2Wn88LZ2+EFj3avjixzai6VPVyuYveZLHF2XfdDnvAq27DIHGuq+0DJFsE30OtB1KqOwd8Dr7PcM4b+jfj2g5lp4WyntBK66qua3JzEA+uXJpwH/NlVuzRVPY/kTLB2mjuN+KwdZ8FOy8j2gDbEUSqumnSCY4lf4ibq3IhVM4ycZQRnv+zFqVdJQVn6BxvUqebGpuaNo3sZxwBzjajiMZOoBiwyVF+kCr+nUaJOaGpnAeRPPJZTr4FqmHRXcneEo4DqQ/ftfdnLeDrUAME8xWKPeKCwW6YkEpXfs3p1EWJhdcUAYP0TI/uYaV8cgjwBovaeyWwji2T9rTFIdS/cP/MnkTLRUWxgNNZVin7bT5fqT9miDcUVJzR1gRpfIONMmulU+5Qqr6zXAUqAAAAABJRU5ErkJggg==",
 
-  logoRaw: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAANoAAAASBAMAAADPiN0xAAAAGFBMVEUAAQAtLixHSUdnaGaJioimqKXMzsv7/fr5shgVAAAAAWJLR0QAiAUdSAAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB98EAwkeA4oQWJ4AAAAZdEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIEdJTVBXgQ4XAAAB9klEQVQ4y72UvW+rMBDAz+FrpVKrrFmesmapWNOlrKjSe1kZ+uoVAvj+/frujG1SaJcqJwU7voOf7xMQzQmsIDi5NPTMsLRntH3U+F6SAZo3NlCvcgBFJz8o+vkDiE63lI95Y/UmpinsZWkgJWJiDbAVQ16htptxSTNloIlugwaw001Ey3ASF3so6L1qLNXzQS5S0UGKL/CI5wWNriE0UH9Yty37LqIVg+wsqu7Ix0MwVBSF/dU+jv2SNnma021LEdPqVnMeU3xAu0kXcSGjmq7Ox4E2Wn88LZ2+EFj3avjixzai6VPVyuYveZLHF2XfdDnvAq27DIHGuq+0DJFsE30OtB1KqOwd8Dr7PcM4b+jfj2g5lp4WyntBK66qua3JzEA+uXJpwH/NlVuzRVPY/kTLB2mjuN+KwdZ8FOy8j2gDbEUSqumnSCY4lf4ibq3IhVM4ycZQRnv+zFqVdJQVn6BxvUqebGpuaNo3sZxwBzjajiMZOoBiwyVF+kCr+nUaJOaGpnAeRPPJZTr4FqmHRXcneEo4DqQ/ftfdnLeDrUAME8xWKPeKCwW6YkEpXfs3p1EWJhdcUAYP0TI/uYaV8cgjwBovaeyWwji2T9rTFIdS/cP/MnkTLRUWxgNNZVin7bT5fqT9miDcUVJzR1gRpfIONMmulU+5Qqr6zXAUqAAAAABJRU5ErkJggg==",
-
-  create: function() {
-
+  create: function () {
     var self = this;
 
-    this.logo = new Image;
+    this.logo = new Image();
 
-    this.logo.addEventListener("load", function() {
+    this.logo.addEventListener("load", function () {
       self.ready = true;
       self.createElements();
     });
@@ -4600,49 +4148,42 @@ PLAYGROUND.LoadingScreen = {
     this.background = "#000";
 
     if (window.getComputedStyle) {
-      this.background = window.getComputedStyle(document.body).backgroundColor || "#000";
+      this.background =
+        window.getComputedStyle(document.body).backgroundColor || "#000";
     }
-
-
   },
 
-  enter: function() {
-
+  enter: function () {
     this.current = 0;
-
   },
 
-  leave: function() {
-
+  leave: function () {
     this.locked = true;
 
-    this.animation = this.app.tween(this)
-      .to({
-        current: 1
-      }, 0.5);
-
+    this.animation = this.app.tween(this).to(
+      {
+        current: 1,
+      },
+      0.5
+    );
   },
 
-  step: function(delta) {
-
+  step: function (delta) {
     if (this.locked) {
-
       if (this.animation.finished) {
         this.locked = false;
         //this.wrapper.parentNode.removeChild(this.wrapper);
       }
-
     } else {
-
-      this.current = this.current + Math.abs(this.app.loader.progress - this.current) * delta;
+      this.current =
+        this.current +
+        Math.abs(this.app.loader.progress - this.current) * delta;
     }
-
   },
 
-  createElements: function() {
-
-    this.width = window.innerWidth * 0.6 | 0;
-    this.height = window.innerHeight * 0.1 | 0;
+  createElements: function () {
+    this.width = (window.innerWidth * 0.6) | 0;
+    this.height = (window.innerHeight * 0.1) | 0;
 
     this.wrapper = document.createElement("div");
     this.wrapper.style.width = this.width + "px";
@@ -4650,8 +4191,10 @@ PLAYGROUND.LoadingScreen = {
     this.wrapper.style.background = "#000";
     this.wrapper.style.border = "4px solid #fff";
     this.wrapper.style.position = "absolute";
-    this.wrapper.style.left = (window.innerWidth / 2 - this.width / 2 | 0) + "px";
-    this.wrapper.style.top = (window.innerHeight / 2 - this.height / 2 | 0) + "px";
+    this.wrapper.style.left =
+      ((window.innerWidth / 2 - this.width / 2) | 0) + "px";
+    this.wrapper.style.top =
+      ((window.innerHeight / 2 - this.height / 2) | 0) + "px";
     this.wrapper.style.zIndex = 100;
 
     //this.app.container.appendChild(this.wrapper);
@@ -4662,17 +4205,13 @@ PLAYGROUND.LoadingScreen = {
     this.progressBar.style.background = "#fff";
 
     //this.wrapper.appendChild(this.progressBar);
-
   },
 
-
-  render: function() {
-
+  render: function () {
     if (!this.ready) return;
 
-    this.progressBar.style.width = (this.current * 100 | 0) + "%";
-
-
-  }
-
+    this.progressBar.style.width = ((this.current * 100) | 0) + "%";
+  },
 };
+
+// export default PLAYGROUND;

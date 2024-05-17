@@ -295,6 +295,7 @@ Kill
 ==========================================*/
 
 game.kill = function() {
+	console.log('wow');
 	cancelAnimationFrame( game.raf );
 	game.paddlePlayer = null;
 	game.paddleEnemy = null;

@@ -1,3 +1,5 @@
+import G from "./game.js";
+
 /*==============================================================================
 
 DOM / CSS
@@ -30,8 +32,9 @@ G.prototype.text = function (elem, content) {
 
 G.prototype.triggerClass = function (elem, className) {
   this.addClass(elem, className);
-  elem.offsetWidth = elem.offsetWidth;
-  this.removeClass(elem, className);
+  window.setTimeout(() => {
+    this.removeClass(elem, className);
+  }, 0);
 };
 
 // credit: Julian Shapiro - http://julian.com/research/velocity/

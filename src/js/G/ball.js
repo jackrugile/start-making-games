@@ -1,3 +1,5 @@
+import G from "./game.js";
+
 /*==============================================================================
 
 Ball Object
@@ -140,7 +142,7 @@ G.prototype.Ball.prototype.contain = function () {
     pg.soundPlay({
       active: this.g.opt.sound,
       name: "score-player-2",
-      volume: 0.9,
+      volume: 0.5,
       rate: 1,
       //rate: 1 * ( 1 - ( 1 - this.g.timescale.current ) * 0.4 )
       //rate: 2 * ( 1 - ( 1 - this.g.timescale.current ) * 0.4 )
