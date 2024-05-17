@@ -5,14 +5,18 @@
 
 <hr>
 
+<ul>
+	<li><strong class="acc1">A</strong>xis-<strong class="acc1">A</strong>ligned <strong class="acc1">B</strong>ounding <strong class="acc1">B</strong>ox</li>
+</ul>
+
 <pre>
 	<code class="language-js">
 		function collisionAABB(r1, r2) {
 			if (!(
-				r1.y + r1.height < r2.y || // rect1 is above rect2
-				r1.x > r2.x + r2.width ||  // rect1 is on the right of rect2
-				r1.y > r2.y + r2.height || // rect1 is below rect2
-				r1.x + r1.width < r2.x     // rect1 is on the left of rect2
+				r1.y + r1.height &lt; r2.y || // rect1 is above rect2
+				r1.x &gt; r2.x + r2.width ||  // rect1 is on the right of rect2
+				r1.y &gt; r2.y + r2.height || // rect1 is below rect2
+				r1.x + r1.width &lt; r2.x     // rect1 is on the left of rect2
 			)) {
 				return true;
 			}

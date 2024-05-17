@@ -10,16 +10,16 @@
 <pre>
 	<code class="language-js">
 		function moveEnemy() {
-			if (Math.random() < 0.2) {
+			if (Math.random() &lt; 0.15) {
 				paddleEnemy.moveUp = false;
 				paddleEnemy.moveDown = false;
-				if (ball.y + ballHeight < paddleEnemy.y + paddleEnemy.height / 2) {
+				if (ball.y + ballHeight &lt; paddleEnemy.y + paddleEnemy.height / 2) {
 					paddleEnemy.moveUp = true;
-				} else if (ball.y > paddleEnemy.y + paddleEnemy.height / 2) {
+				} else if (ball.y &gt; paddleEnemy.y + paddleEnemy.height / 2) {
 					paddleEnemy.moveDown = true;
 				}
 			}
-			
+
 			if (paddleEnemy.moveUp) {
 				paddleEnemy.y -= paddleEnemy.speed;
 			} else if (paddleEnemy.moveDown) {

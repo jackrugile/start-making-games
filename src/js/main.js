@@ -231,6 +231,7 @@ function loadSlide(i) {
   }
   location.hash = i + 1;
   slideIndicator.innerHTML = i + 1;
+  console.log(`Slide: ${slides[i]}`);
   if (isDev) {
     document.title = slides[i] + " // Start Making Games";
   }
@@ -341,17 +342,17 @@ function checkLoaded() {
 
 slides.forEach(function (elem, i) {
   var html = new XMLHttpRequest();
-  html.open("GET", "slides/" + elem + "/index.html", true);
+  html.open("GET", /* @vite-ignore */ "slides/" + elem + "/index.html", true);
   //html.onload = function() { loadedCount++; checkLoaded(); };
   html.send();
 
   var css = new XMLHttpRequest();
-  css.open("GET", "slides/" + elem + "/index.css", true);
+  css.open("GET", /* @vite-ignore */ "slides/" + elem + "/index.css", true);
   //css.onload = function() { loadedCount++; checkLoaded(); };
   css.send();
 
   var js = new XMLHttpRequest();
-  js.open("GET", "slides/" + elem + "/index.js", true);
+  js.open("GET", /* @vite-ignore */ "slides/" + elem + "/index.js", true);
   //js.onload = function() { loadedCount++; checkLoaded(); };
   js.send();
 });

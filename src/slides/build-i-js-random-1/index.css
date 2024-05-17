@@ -13,7 +13,7 @@
 	right: 0;
 }
 
-.random-gauge-20 {
+.random-gauge-15 {
 	background: hsl(200, 100%, 60%);
 	height: 100%;
 	left: 0;
@@ -38,7 +38,6 @@
 	bottom: 100%;
 	content: '';
 	height: 25px;
-	
 	position: absolute;
 	width: 4px;
 }
@@ -47,52 +46,49 @@
 	left: 0;
 }
 
-	.random-label-start:after {
-		left: 0;
-	}
-
-.random-label-middle {
-	left: 17.5%;
+.random-label-start:after {
+	left: 0;
 }
 
-	.random-label-middle:after {
-		left: 50%;
-		margin: 0 0 0 -2px;
-	}
+.random-label-middle {
+	left: 15%;
+	transform: translateX(-50%);
+}
+
+.random-label-middle:after {
+	left: 50%;
+	margin: 0 0 0 -2px;
+}
 
 .random-label-end {
 	right: 0;
 }
 
-	.random-label-end:after {
-		right: 0;
-	}
+.random-label-end:after {
+	right: 0;
+}
 
 .random-percent {
 	color: hsl(130, 100%, 60%);
 	color: #fff;
 	font-family: 'robotomonowf', monospace;
 	font-size: 2.5em;
-	/*font-style: italic;*/
 	font-weight: 900;
 	letter-spacing: -0.05em;
 	line-height: 1;
 	position: absolute;
-	/*text-align: center;*/
 	top: 25%;
 	z-index: 1;
 }
 
-.random-percent-20 {
+.random-percent-15 {
 	color: #222;
 	left: 50px;
-	//width: 100%;
 }
 
-.random-percent-80 {
+.random-percent-85 {
 	color: #fff;
 	right: 50px;
-	//width: 100%;
 }
 
 .random-elems {
@@ -104,7 +100,7 @@
 }
 
 .random-elems div {
-	animation: random-pulse-reg 500ms forwards;
+	animation: random-pulse-reg 250ms forwards;
 	background: hsla(0, 0%, 100%, 0.25);
 	height: 10px;
 	left: 0;
@@ -115,7 +111,7 @@
 }
 
 .random-elems div.in-range {
-	animation: random-pulse-alt 500ms forwards;
+	animation: random-pulse-alt 250ms forwards;
 	background: hsla(200, 100%, 60%, 0.25);
 }
 
@@ -136,7 +132,7 @@
 		transform: scaleY( 8 );
 	}
 	100% {
-		background: hsla(200, 100%, 60%, 0.25)
+		background: hsla(200, 100%, 60%, 0.25);
 		transform: scaleY( 1 );
 	}
 }

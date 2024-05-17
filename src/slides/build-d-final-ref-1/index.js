@@ -1,5 +1,5 @@
 /*==========================================
-Config 
+Config
 ==========================================*/
 
 // game
@@ -21,7 +21,7 @@ var ballWidth = 60,
 var scoreMax = 5;
 
 /*==========================================
-Objects 
+Objects
 ==========================================*/
 
 var paddlePlayer = {
@@ -45,7 +45,7 @@ var paddleEnemy = {
 	moveUp: false,
 	moveDown: false
 };
-	
+
 var ball = {
 	elem: document.querySelector('.ball'),
 	x: gameWidth / 2 - ballWidth / 2,
@@ -67,7 +67,7 @@ var scoreEnemy = {
 };
 
 /*==========================================
-Initialize 
+Initialize
 ==========================================*/
 
 function init() {
@@ -98,12 +98,12 @@ function resetBall() {
 }
 
 /*==========================================
-Events 
+Events
 ==========================================*/
 
 function addEventListeners() {
 	window.addEventListener('keydown', function(e) {
-		if (e.which === 38) { 
+		if (e.which === 38) {
 			paddlePlayer.moveUp = true;
 		}
 		if (e.which === 40) {
@@ -112,7 +112,7 @@ function addEventListeners() {
 	});
 
 	window.addEventListener('keyup', function(e) {
-		if (e.which === 38) { 
+		if (e.which === 38) {
 			paddlePlayer.moveUp = false;
 		}
 		if (e.which === 40) {
@@ -162,7 +162,7 @@ Move Enemy
 ==========================================*/
 
 function moveEnemy() {
-	if (Math.random() < 0.2) {
+	if (Math.random() < 0.15 * pg.getDt()) {
 		paddleEnemy.moveUp = false;
 		paddleEnemy.moveDown = false;
 		if (ball.y + ballHeight < paddleEnemy.y + paddleEnemy.height / 2) {
@@ -171,7 +171,7 @@ function moveEnemy() {
 			paddleEnemy.moveDown = true;
 		}
 	}
-	
+
 	if (paddleEnemy.moveUp) {
 		paddleEnemy.y -= paddleEnemy.speed;
 	} else if (paddleEnemy.moveDown) {
@@ -218,7 +218,7 @@ Contain Paddles
 function containPaddles() {
 	paddlePlayer.y = Math.max(0, paddlePlayer.y);
 	paddlePlayer.y = Math.min(gameHeight - paddlePlayer.height, paddlePlayer.y);
-	
+
 	paddleEnemy.y = Math.max(0, paddleEnemy.y);
 	paddleEnemy.y = Math.min(gameHeight - paddleEnemy.height, paddleEnemy.y);
 }
@@ -232,7 +232,7 @@ function checkCollisions() {
 		ball.x = paddlePlayer.x + paddlePlayer.width;
 		ball.vx = -ball.vx;
 	}
-	
+
 	if (collisionAABB(ball, paddleEnemy)) {
 		ball.x = paddleEnemy.x - ball.width;
 		ball.vx = -ball.vx;
@@ -245,7 +245,7 @@ Check Win State
 
 function checkWinState() {
 	if (scorePlayer.value >= scoreMax) {
-		console.log('You win!');
+		console.log('You’re winner!');
 		resetGame();
 	} else if (scoreEnemy.value >= scoreMax) {
 		console.log('You get nothing! You lose! Good day, sir!');
@@ -280,7 +280,7 @@ function render() {
 }
 
 /*==========================================
-Loop 
+Loop
 ==========================================*/
 
 function loop() {
@@ -290,7 +290,7 @@ function loop() {
 }
 
 /*==========================================
-Let's Play! 
+Let's Play!
 ==========================================*/
 
 init(); // to win it!

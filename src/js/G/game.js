@@ -15,7 +15,7 @@ var G = function (opt) {
       speed: 16,
     },
     enemy: {
-      blindStart: 0.2,
+      blindStart: 0.15,
       blindInc: 0.1,
       foresightStart: 1.2,
       foresightInc: 0.2,

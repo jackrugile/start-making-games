@@ -1,5 +1,5 @@
 /*==========================================
-Config 
+Config
 ==========================================*/
 
 game = {};
@@ -24,7 +24,7 @@ game.ballSpeed = game.ballSpeedStart;
 game.scoreMax = 5;
 
 /*==========================================
-Objects 
+Objects
 ==========================================*/
 
 game.paddlePlayer = {
@@ -70,7 +70,7 @@ game.scoreEnemy = {
 };
 
 /*==========================================
-Initialize 
+Initialize
 ==========================================*/
 
 game.init = function() {
@@ -88,13 +88,14 @@ game.resetBall = function() {
 	game.ball.vx = 0;
 	game.ball.vy = 0;
 	setTimeout(function() {
+		if(!game) return;
 		game.ball.vx = game.ballSpeed;
 		game.ball.vy = game.ballSpeed;
 	}, 1000);
 };
 
 /*==========================================
-Events 
+Events
 ==========================================*/
 
 game.addEventListeners = function() {
@@ -140,8 +141,8 @@ Move Ball
 ==========================================*/
 
 game.moveBall = function() {
-	game.ball.x += game.ball.vx;
-	game.ball.y += game.ball.vy;
+	game.ball.x += game.ball.vx * pg.getDt();
+	game.ball.y += game.ball.vy * pg.getDt();
 };
 
 /*==========================================
@@ -150,9 +151,9 @@ Move Player
 
 game.movePlayer = function() {
 	if (game.paddlePlayer.moveUp) {
-		game.paddlePlayer.y -= game.paddlePlayer.speed;
+		game.paddlePlayer.y -= game.paddlePlayer.speed * pg.getDt();
 	} else if (game.paddlePlayer.moveDown) {
-		game.paddlePlayer.y += game.paddlePlayer.speed;
+		game.paddlePlayer.y += game.paddlePlayer.speed * pg.getDt();
 	}
 };
 
@@ -161,7 +162,7 @@ Move Enemy
 ==========================================*/
 
 game.moveEnemy = function() {
-	if (Math.random() < 0.2) {
+	if (Math.random() < 0.15 * pg.getDt()) {
 		game.paddleEnemy.moveUp = false;
 		game.paddleEnemy.moveDown = false;
 		if (game.ball.y + game.ballHeight < game.paddleEnemy.y + game.paddleEnemy.height / 2) {
@@ -170,11 +171,11 @@ game.moveEnemy = function() {
 			game.paddleEnemy.moveDown = true;
 		}
 	}
-	
+
 	if (game.paddleEnemy.moveUp) {
-		game.paddleEnemy.y -= game.paddleEnemy.speed;
+		game.paddleEnemy.y -= game.paddleEnemy.speed * pg.getDt();
 	} else if (game.paddleEnemy.moveDown) {
-		game.paddleEnemy.y += game.paddleEnemy.speed;
+		game.paddleEnemy.y += game.paddleEnemy.speed * pg.getDt();
 	}
 };
 
@@ -209,7 +210,7 @@ Contain Paddles
 game.containPaddles = function() {
 	game.paddlePlayer.y = Math.max(0, game.paddlePlayer.y);
 	game.paddlePlayer.y = Math.min(game.gameHeight - game.paddlePlayer.height, game.paddlePlayer.y);
-	
+
 	game.paddleEnemy.y = Math.max(0, game.paddleEnemy.y);
 	game.paddleEnemy.y = Math.min(game.gameHeight - game.paddleEnemy.height, game.paddleEnemy.y);
 };
@@ -223,7 +224,7 @@ game.checkCollisions = function() {
 		game.ball.x = game.paddlePlayer.x + game.paddlePlayer.width;
 		game.ball.vx = -game.ball.vx;
 	}
-	
+
 	if (game.collisionAABB(game.ball, game.paddleEnemy)) {
 		game.ball.x = game.paddleEnemy.x - game.ball.width;
 		game.ball.vx = -game.ball.vx;
@@ -256,7 +257,7 @@ game.render = function() {
 };
 
 /*==========================================
-Loop 
+Loop
 ==========================================*/
 
 game.loop = function() {
@@ -285,7 +286,7 @@ game.kill = function() {
 };
 
 /*==========================================
-Let's Play! 
+Let's Play!
 ==========================================*/
 
 game.init(); // to win it!

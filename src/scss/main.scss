@@ -319,7 +319,7 @@ body {
   height: $height;
   justify-content: center;
   left: 50%;
-  margin: ($height / -2) 0 0 ($width / -2);
+  margin: calc($height / -2) 0 0 calc($width / -2);
   opacity: 1;
   position: absolute;
   top: 50%;

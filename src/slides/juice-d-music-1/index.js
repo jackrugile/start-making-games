@@ -3,7 +3,7 @@ game = new G({
 	ghost: false,
 	extrude: true,
 	move3d: true,
-	music: true,
+	music: false,
 	particles: true,
 	reaction: true,
 	screenshake: true,

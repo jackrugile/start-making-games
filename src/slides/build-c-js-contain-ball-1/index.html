@@ -9,18 +9,18 @@
 <pre>
 	<code class="language-js">
 		function containBall() {
-			if (ball.y <= 0) {
+			if (ball.y &lt;= 0) {
 				ball.y = 0;
 				ball.vy = -ball.vy;
-			} else if (ball.y + ball.height >= gameHeight) {
+			} else if (ball.y + ball.height &gt;= gameHeight) {
 				ball.y = gameHeight - ball.height;
 				ball.vy = -ball.vy;
 			}
 
-			if (ball.x <= 0) {
+			if (ball.x &lt;= 0) {
 				ball.x = 0;
 				ball.vx = -ball.vx;
-			} else if (ball.x + ball.width >= gameWidth) {
+			} else if (ball.x + ball.width &gt;= gameWidth) {
 				ball.x = gameWidth - ball.width;
 				ball.vx = -ball.vx;
 			}
