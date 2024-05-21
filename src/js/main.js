@@ -231,7 +231,7 @@ function loadSlide(i) {
   }
   location.hash = i + 1;
   slideIndicator.innerHTML = i + 1;
-  console.log(`Slide: ${slides[i]}`);
+  // console.log(`Slide: ${slides[i]}`);
   if (isDev) {
     document.title = slides[i] + " // Start Making Games";
   }
