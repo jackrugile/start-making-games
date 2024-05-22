@@ -49,6 +49,9 @@ G.prototype.removeEventListeners = function () {
 };
 
 G.prototype.onControlUpDown = function () {
+  if (this.opt.music && !window.pg.songIsPlaying) {
+    window.pg.startMusic();
+  }
   this.paddlePlayer.moveUp = true;
   if (this.state === "menu") {
     this.play();
@@ -56,6 +59,9 @@ G.prototype.onControlUpDown = function () {
 };
 
 G.prototype.onControlDownDown = function () {
+  if (this.opt.music && !window.pg.songIsPlaying) {
+    window.pg.startMusic();
+  }
   this.paddlePlayer.moveDown = true;
   if (this.state === "menu") {
     this.play();
@@ -63,6 +69,9 @@ G.prototype.onControlDownDown = function () {
 };
 
 G.prototype.onControlSpikeDown = function () {
+  if (this.opt.music && !window.pg.songIsPlaying) {
+    window.pg.startMusic();
+  }
   this.paddlePlayer.isCharging = true;
   if (this.state === "menu") {
     this.play();

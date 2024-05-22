@@ -61,9 +61,9 @@ var G = function (opt) {
   this.resultExitTickMax = 140;
 
   // restart music
-  if (this.opt.music) {
-    window.pg.startMusic();
-  }
+  // if (this.opt.music && !this.songIsPlaying) {
+  //   window.pg.startMusic();
+  // }
 
   // screenshake
   this.screenshake = new this.Screenshake(this);
@@ -342,6 +342,10 @@ Kill / Destroy
 
 G.prototype.kill = function () {
   cancelAnimationFrame(this.raf);
+  if (this.opt.sound) {
+    window.pg.sound.setVolume(pg.humLoop, 0);
+    window.pg.sound.setVolume(pg.alarmLoop, 0);
+  }
   if (this.opt.music) {
     window.pg.stopMusic();
   }

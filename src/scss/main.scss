@@ -81,54 +81,6 @@ body {
   }
 }
 
-/*
-.loader {
-  background: #000;
-  bottom: 0;
-  left: 0;
-  pointer-events: none;
-  position: fixed;
-  right: 0;
-  top: 0;
-  transition: opacity 300ms;
-  z-index: 99999;
-  .loaded & {
-    opacity: 0;
-  }
-}
-
-.loader-inner {
-  animation: loader 500ms infinite alternate;
-  background: #fff;
-  bottom: 0;
-  height: 60px;
-  left: 0;
-  margin: auto;
-  position: absolute;
-  right: 0;
-  top: 0;
-  width: 60px;
-}
-
-@keyframes loader {
-  0% {
-    transform: scale( 0.8 ) rotate( 45deg );
-  }
-  100% {
-    transform: scale( 0.8 ) rotate( 45deg );
-  }
-}
-*/
-
-.font-load {
-  left: 0;
-  opacity: 0;
-  pointer-events: none;
-  position: absolute;
-  top: 0;
-  visibility: hidden;
-}
-
 .lato-100 {
   font-family: $font-lato;
   font-weight: 100;
@@ -259,7 +211,6 @@ body {
 .pause {
   align-items: flex-end;
   background: #fff;
-  //box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.35);
   color: #222;
   display: flex;
   font-size: 2.5em;

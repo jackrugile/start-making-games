@@ -499,10 +499,12 @@ G.prototype.Paddle.prototype.step = function () {
   }
 
   if (this.isPlayer && this.g.opt.sound) {
-    pg.sound.setVolume(pg.humLoop, 0.2 + this.currentCharge * 0.4);
+    let vol1 = this.currentCharge > 0 ? 0.4 + this.currentCharge * 0.4 : 0;
+    pg.sound.setVolume(pg.humLoop, vol1);
     pg.sound.setPlaybackRate(pg.humLoop, this.currentCharge * 5);
 
-    pg.sound.setVolume(pg.alarmLoop, 0.2 + this.currentCharge * 0.3);
+    let vol2 = this.currentCharge > 0 ? 0.4 + this.currentCharge * 0.3 : 0;
+    pg.sound.setVolume(pg.alarmLoop, vol2);
     pg.sound.setPlaybackRate(pg.alarmLoop, this.currentCharge * 3);
   }
 

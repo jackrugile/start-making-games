@@ -571,10 +571,12 @@ window.pg = window.playground({
   startMusic: function () {
     this.song = this.music.play("music-1", true);
     this.music.setVolume(this.song, 0.3);
+    this.songIsPlaying = true;
   },
   stopMusic: function () {
     this.music.fadeOut(this.song);
     this.song = null;
+    this.songIsPlaying = false;
   },
   manageTime: function (dt) {
     this.dt = dt;
